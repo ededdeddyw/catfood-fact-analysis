@@ -1,0 +1,14 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# 環境変数・秘密情報
+.env
+
+# クロール生成物（再生成可能。必要なら個別に追跡解除）
+logs/*.log
+
+# OS
+Thumbs.db
+.DS_Store
