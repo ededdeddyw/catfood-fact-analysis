@@ -43,10 +43,20 @@ python -m venv .venv
 # ② 抽出エンジンの自己テスト（正規表現の動作確認）
 .\.venv\Scripts\python.exe scripts\catfood_nutrition_patterns.py
 
-# ③ 製品ファクト抽出（保証分析値・カロリー・リン・原材料）
-#    site モード: メーカーサイトを浅く巡回して成分ページを自動発見
+# ③ 母集団79社の公式サイトURLを解決（Bing＋会社名一致検証・トークンゼロ）
+.\.venv\Scripts\python.exe scripts\resolve_maker_sites.py        # → data/maker_sites.csv（再開可）
+.\.venv\Scripts\python.exe scripts\verify_proposed_sites.py      # 人手候補(data/maker_url_proposals.csv)を取得検証
+.\.venv\Scripts\python.exe scripts\reconcile_maker_sites.py      # 検証結果で確定/降格を反映
+
+# ④ 開示率オーディットを自動実行（確定URL群を巡回→項目別開示率＋リン撤退ライン判定）
+.\.venv\Scripts\python.exe scripts\run_disclosure_audit.py --fresh --max-pages 20
+#   → data/disclosure_matrix.csv（メーカー別）/ data/product_facts_raw.csv（生データ）
+
+# ⑤ JS描画ページの抽出（大手向け・Playwright・トークンゼロ）
+.\.venv\Scripts\python.exe scripts\extract_product_facts_pw.py --site https://www.example.co.jp/ --maker 例社
+
+# 単発の製品ファクト抽出（site/seed モード）
 .\.venv\Scripts\python.exe scripts\extract_product_facts.py --site https://example.co.jp/ --maker 例社 --max-pages 30
-#    seed モード: 既知の製品URL一覧（maker,product_name,url）から抽出
 .\.venv\Scripts\python.exe scripts\extract_product_facts.py --seed data\seed_product_urls.csv
 ```
 
@@ -64,23 +74,25 @@ python -m venv .venv
 
 ---
 
-## 現状と次の一手（引き継ぎ — 2026-06-20）
+## 現状と次の一手（引き継ぎ — 2026-06-20 更新）
+
+> 詳細な実測結果は **[docs/04_acquisition_audit_results.md](docs/04_acquisition_audit_results.md)**。
 
 **できたこと**
-- ✅ 母集団クロール成功：公正取引協議会 **83社**（正会員79=メーカー／準会員4=検査機関）→ `data/pffta_members.csv`
-  - ②の母集団＝**正会員79社**（準会員は分析機関なので対象外）
-- ✅ 保証分析値の抽出エンジン（`catfood_nutrition_patterns.py`）：自己テストで9項目すべて正抽出
-- ✅ 巡回型の製品ファクト抽出（`extract_product_facts.py`）：礼儀正しい同一ドメインBFS・成分ページ自動発見
+- ✅ 母集団：公正取引協議会 正会員79社 → `data/pffta_members.csv`
+- ✅ 抽出エンジン（`catfood_nutrition_patterns.py`）：自己テスト9項目正抽出
+- ✅ **公式URL解決パイプライン**（`resolve_maker_sites.py` ほか）：Bing＋会社名一致検証で
+  **79社中29社を出典付きで確定**（主要大手を網羅）。残50社は要確認として `data/maker_sites.csv` に明記
+- ✅ **開示率オーディットを自動実行**（`run_disclosure_audit.py`）：確定29社を巡回し実測
 
-**重要な実測所見（＝02オーディットの「現実を見る」段階）**
-- ⚠️ **大手メーカー（アイシア・いなば・日本ペットフード）の製品ページは静的HTMLに保証分析値が無い**
-  - アイシアは商品詳細がJS描画。いなば/日本ペットフードは詳細ページにも成分テキストが出ない
-  - → **requests だけのトークンゼロ静的クロールでは大手の栄養データは取れない**ことが判明
+**実測した開示率（02オーディットの自動版・取得12ページ）**
+- 原材料100% / 水分83% / たんぱく質・脂肪・カロリー等75% / **リン 8%（1/12）**
+- → リン < 20% ＝ **腎臓シートは見送り。体重管理（カロリー密度）を第1ローンチの看板に**（02の撤退ライン）
+- ⚠️ ただし **29社中23社（主要大手すべて）は静的HTMLで成分0件**。上の母数は中小tail偏重なので**暫定**
+- ⚠️ Playwrightでもアイシアはトップ巡回では0件（製品詳細がサイト内検索アプリの奥）。**大手はサイト個別対応が要る**
 
-**次に決めること（製品の栄養データをどう取るか）**
-1. **Playwright（ヘッドレスブラウザ）** — JS描画ページを取得。LLM不使用＝トークンゼロ。重いが確実（病院プロジェクトも採用実績あり）
-2. **楽天市場 商品検索API** — 商品説明が静的HTMLで成分・原材料を含むことが多い。無料appIDで合法・トークンゼロ。②の「実需カバレッジ」にも有効
-3. **静的HTMLで成分を出す中小・プレミアムブランドの手動シードURL** — 02オーディットが想定した手作業50件
-4. 上記の組み合わせ
-
-→ おすすめは **2（楽天API）で実需カバレッジを取りつつ、1（Playwright）で公式の保証分析値を補完**。
+**次の一手（おすすめ順 / 詳細は docs/04 §4）**
+1. **体重管理を第1ローンチに確定**（リン依存の腎臓は後回し）
+2. **大手はサイト個別のPlaywrightアダプタ**（アイシア・いなば・日本ペットフード／`extract_product_facts_pw.py` を拡張）
+3. **要確認50社のURL確定**（人手 or 楽天API実需上位 → `verify_proposed_sites.py` で取得検証）
+4. **大手＋療法食が入った母数でリンを再評価**（療法食はリン開示が高いはず → 02判定を引き直す）

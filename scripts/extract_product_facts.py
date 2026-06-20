@@ -50,7 +50,8 @@ def _link_score(text: str, href: str) -> int:
     return sum(1 for k in LINK_KEYWORDS if k.lower() in blob)
 
 
-def crawl_site(start: str, maker: str, max_pages: int, sleep: float) -> list[dict]:
+def crawl_site(start: str, maker: str, max_pages: int, sleep: float,
+               timeout=(8, 15), retries: int = 1) -> list[dict]:
     visited: set[str] = set()
     frontier: deque[str] = deque([start])
     found: list[dict] = []
@@ -62,7 +63,7 @@ def crawl_site(start: str, maker: str, max_pages: int, sleep: float) -> list[dic
         if url in visited:
             continue
         visited.add(url)
-        resp = polite_get(url, sleep=sleep)
+        resp = polite_get(url, sleep=sleep, timeout=timeout, retries=retries)
         pages += 1
         if resp is None:
             continue

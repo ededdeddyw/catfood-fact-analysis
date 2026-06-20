@@ -8,6 +8,7 @@ __pycache__/
 
 # クロール生成物（再生成可能。必要なら個別に追跡解除）
 logs/*.log
+logs/*.out
 
 # OS
 Thumbs.db
