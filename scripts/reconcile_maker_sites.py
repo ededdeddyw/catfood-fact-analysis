@@ -16,7 +16,7 @@ from catfood_common import DATA_DIR, safe_print, today_stamp
 CSV = DATA_DIR / "maker_sites.csv"
 FIELDS = ["company_name", "official_url", "domain", "matched", "match_token",
           "method", "http_status", "candidate_hint", "needs_review",
-          "source_url", "fetched_at"]
+          "source_url", "fetched_at", "note"]
 
 # verify_proposed_sites.py が会社名一致で OK にした URL（取得検証済み）
 VERIFIED = {
