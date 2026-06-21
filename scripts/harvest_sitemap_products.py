@@ -37,6 +37,12 @@ SOURCES: dict[str, dict] = {
         "sitemaps": ["https://www.npf.co.jp/cms/sitemap/www/Sitemap_2_Article_catfood_1.xml.gz"],
         "pattern": r"cat-detail",
     },
+    # 療法食/プレミアム大手。RC は専用 sitemap-products.xml に猫製品が並ぶ（静的で保証成分取得可）。
+    "ロイヤルカナンジャポン合同会社": {
+        "sitemaps": ["https://www.royalcanin.com/jp/ja-jp/sitemap/sitemap-products.xml"],
+        "pattern": r"/jp/cats/products/",
+    },
+    # ヒルズは製品一覧がJS描画で sitemap に個別製品が無い → 別途Playwright/API対応が必要（保留）。
 }
 
 LOC_RE = re.compile(r"<loc>\s*([^<\s]+)\s*</loc>")
