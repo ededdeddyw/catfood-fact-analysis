@@ -86,7 +86,7 @@ def extract_url(url: str, maker: str, stamp: str) -> dict | None:
     if r is None:
         return None
     title, text = _page_text(r.text)
-    data = extract_nutrition(text)
+    data = extract_nutrition(text, url=url, name=title)
     if data["fields_found"] < PAGE_TEXT_MIN_FIELDS:
         return None
     return {"maker": maker, "product_name": title[:80], "url": url,

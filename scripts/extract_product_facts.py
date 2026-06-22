@@ -69,7 +69,7 @@ def crawl_site(start: str, maker: str, max_pages: int, sleep: float,
             continue
         title, text = _page_text(resp.text)
 
-        data = extract_nutrition(text)
+        data = extract_nutrition(text, url=url, name=title)
         if data["fields_found"] >= PAGE_TEXT_MIN_FIELDS:
             row = {
                 "maker": maker,

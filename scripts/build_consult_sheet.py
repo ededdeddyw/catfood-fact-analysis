@@ -1,0 +1,220 @@
+# -*- coding: utf-8 -*-
+"""相談シートMVPの素データ＋静的プレビューを生成（docs/06）。
+
+product_facts_raw.csv（精緻化抽出済み）から:
+  - 猫のみ（species != dog）・成分ページのみ
+  - 乾物量換算（DM）列を計算（水分があるもの）
+  - カロリー密度（per_100g のみ）。per_piece は密度比較不可フラグ
+出力:
+  data/consult_sheet_cat.csv
+  prototype/consult/data.json
+  prototype/consult/index.html （ランキング無し・4状態・出典・DM・固定注記。そのまま獣医に見せる用）
+LLM不使用。
+"""
+from __future__ import annotations
+
+import csv
+import json
+import re
+from pathlib import Path
+
+from catfood_common import DATA_DIR, ROOT, safe_print, today_stamp
+
+FACTS = DATA_DIR / "product_facts_raw.csv"
+OUT_CSV = DATA_DIR / "consult_sheet_cat.csv"
+PROTO = ROOT / "prototype" / "consult"
+
+SHEET_COLS = ["maker", "product_name", "url", "form", "moisture_pct",
+              "protein_asfed", "protein_dm", "fat_dm",
+              "phosphorus_asfed", "phosphorus_dm",
+              "calorie_density_100g", "calorie_basis",
+              "is_therapeutic", "phosphorus_disclosed", "fetched_at"]
+
+
+def num(s: str):
+    """'0.7%' '90mg' '40.0%' → float（数値部）。取れなければ None。"""
+    if not s:
+        return None
+    m = re.search(r"\d+(?:\.\d+)?", s)
+    return float(m.group()) if m else None
+
+
+def is_pct(s: str) -> bool:
+    return bool(s) and "%" in s
+
+
+def dm(asfed, moisture):
+    """乾物量換算 %。水分がなければ None。"""
+    if asfed is None or moisture is None or moisture >= 100:
+        return None
+    return round(asfed / (100 - moisture) * 100, 1)
+
+
+def form_of(moisture):
+    if moisture is None:
+        return "不明"
+    if moisture >= 60:
+        return "ウェット"
+    if moisture <= 20:
+        return "ドライ"
+    return "セミモイスト"
+
+
+def calorie_density(kcal_str, basis):
+    """kcal/100g に正規化（per_100g/per_kg のみ）。それ以外は None。"""
+    v = num(kcal_str)
+    if v is None:
+        return None
+    if basis == "per_100g":
+        return round(v, 1)
+    if basis == "per_kg":
+        return round(v / 10, 1)
+    return None  # per_piece / per_g / unknown は密度比較不可
+
+
+def build_rows() -> list[dict]:
+    rows = list(csv.DictReader(FACTS.open(encoding="utf-8-sig", newline="")))
+    out = []
+    for r in rows:
+        if r.get("species") == "dog":
+            continue
+        moisture = num(r.get("moisture_value"))
+        prot = num(r.get("crude_protein_value")) if is_pct(r.get("crude_protein_value")) else None
+        fat = num(r.get("crude_fat_value")) if is_pct(r.get("crude_fat_value")) else None
+        p_pct = is_pct(r.get("phosphorus_value"))
+        phos = num(r.get("phosphorus_value")) if p_pct else None
+        out.append({
+            "maker": r.get("maker", ""),
+            "product_name": r.get("product_name", ""),
+            "url": r.get("url", ""),
+            "form": form_of(moisture),
+            "moisture_pct": moisture if moisture is not None else "",
+            "protein_asfed": prot if prot is not None else "",
+            "protein_dm": dm(prot, moisture) if prot is not None else "",
+            "fat_dm": dm(fat, moisture) if fat is not None else "",
+            "phosphorus_asfed": r.get("phosphorus_value", ""),
+            "phosphorus_dm": dm(phos, moisture) if phos is not None else "",
+            "calorie_density_100g": calorie_density(r.get("calorie_kcal"), r.get("calorie_basis")) or "",
+            "calorie_basis": r.get("calorie_basis", ""),
+            "is_therapeutic": r.get("is_therapeutic", ""),
+            "phosphorus_disclosed": r.get("disclosed_phosphorus", "no"),
+            "fetched_at": r.get("fetched_at", ""),
+        })
+    return out
+
+
+HTML_TMPL = """<!doctype html><html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>キャットフード 比較メモ（出典付きファクト・非診断）</title>
+<style>
+ body{font-family:system-ui,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;margin:0;color:#222;background:#fafafa}
+ header{background:#fff;border-bottom:3px solid #d9534f;padding:14px 18px}
+ h1{font-size:18px;margin:0 0 6px}
+ .warn{background:#fff8e1;border:1px solid #ffe082;border-radius:6px;padding:10px 12px;margin:10px 18px;font-size:13px;line-height:1.6}
+ .controls{margin:10px 18px;font-size:13px}
+ .controls button,.controls label{margin-right:10px}
+ table{border-collapse:collapse;width:calc(100% - 36px);margin:12px 18px;background:#fff;font-size:13px}
+ th,td{border:1px solid #e0e0e0;padding:6px 8px;text-align:left;vertical-align:top}
+ th{background:#f5f5f5;cursor:pointer;white-space:nowrap}
+ td.num{text-align:right;font-variant-numeric:tabular-nums}
+ .na{color:#999;font-size:12px}
+ .ther{color:#b71c1c;font-weight:600}
+ .src a{color:#1565c0;text-decoration:none}
+ footer{margin:16px 18px 40px;font-size:12px;color:#555;line-height:1.7}
+ .note{font-size:12px;color:#666;margin:4px 18px}
+</style></head><body>
+<header>
+ <h1>🐾 キャットフード 比較メモ（出典付きファクト）</h1>
+ <div class="note">当サービスは評価・順位付け・おすすめを行いません。公式表示を転記・乾物量換算したファクトのみを並べています。</div>
+</header>
+<div class="warn">
+ ⚠️ このシートは「おすすめ」ではありません。当サービスは診断・治療の助言を行いません。
+ 数値は各メーカー公式の表示を転記・換算したファクトです。<br>
+ 「記載なし」は「含まれない」ではなく「メーカーが公開していない」という意味です。
+ 与えてよいか・療法食が必要かは、必ずかかりつけの獣医師にご相談ください。
+</div>
+<div class="controls">
+ 並べ替え:
+ <button onclick="sortBy('product_name')">商品名</button>
+ <button onclick="sortBy('calorie_density_100g')">カロリー密度</button>
+ <button onclick="sortBy('phosphorus_dm')">リン(乾物量)</button>
+ <label><input type="checkbox" id="ponly" onchange="render()"> リンを開示している商品だけ（腎臓ビュー）</label>
+</div>
+<table id="t"><thead><tr>
+ <th onclick="sortBy('product_name')">商品 / メーカー</th>
+ <th onclick="sortBy('form')">種別</th>
+ <th onclick="sortBy('moisture_pct')">水分%</th>
+ <th onclick="sortBy('protein_dm')">たんぱく質%(乾物量)</th>
+ <th onclick="sortBy('phosphorus_dm')">リン%(乾物量)</th>
+ <th onclick="sortBy('calorie_density_100g')">カロリー密度<br>kcal/100g</th>
+ <th>療法食</th>
+ <th>出典</th>
+</tr></thead><tbody id="b"></tbody></table>
+<footer id="cov"></footer>
+<script>
+const DATA = __DATA__;
+const COV = __COV__;
+let sortKey='product_name', asc=true;
+function cell(v,unit){ if(v===''||v===null||v===undefined) return '<span class="na">記載なし（要確認）</span>'; return v+(unit||''); }
+function sortBy(k){ asc = (sortKey===k)? !asc : true; sortKey=k; render(); }
+function render(){
+ let rows=DATA.slice();
+ if(document.getElementById('ponly').checked) rows=rows.filter(r=>r.phosphorus_disclosed==='yes');
+ rows.sort((a,b)=>{let x=a[sortKey],y=b[sortKey];
+   const xn=(x===''?null:Number(x)), yn=(y===''?null:Number(y));
+   if(xn!==null&&yn!==null&&!isNaN(xn)&&!isNaN(yn)){return asc?xn-yn:yn-xn;}
+   x=(x||'').toString();y=(y||'').toString();return asc?x.localeCompare(y,'ja'):y.localeCompare(x,'ja');});
+ const b=document.getElementById('b'); b.innerHTML='';
+ for(const r of rows){
+   const tr=document.createElement('tr');
+   const cal = r.calorie_basis==='per_piece' ? '<span class="na">個包装のため密度比較不可</span>' : cell(r.calorie_density_100g);
+   tr.innerHTML=`<td>${r.product_name||'(無題)'}<br><span class="na">${r.maker}</span></td>`+
+     `<td>${r.form}</td>`+
+     `<td class="num">${cell(r.moisture_pct)}</td>`+
+     `<td class="num">${cell(r.protein_dm)}</td>`+
+     `<td class="num">${cell(r.phosphorus_dm)}</td>`+
+     `<td class="num">${cal}</td>`+
+     `<td>${r.is_therapeutic==='True'?'<span class="ther">療法食</span>':'—'}</td>`+
+     `<td class="src"><a href="${r.url}" target="_blank" rel="noopener">公式</a> <span class="na">${r.fetched_at}</span></td>`;
+   b.appendChild(tr);
+ }
+ document.getElementById('cov').innerHTML =
+  `掲載 ${rows.length} 商品（全${DATA.length}）。対象母集団＝ペットフード公正取引協議会 正会員${COV.makers}社／`+
+  `公式に成分を開示している商品を掲載（確定メーカー${COV.confirmed}・データ取得${COV.with_data}社）。`+
+  `<br>※療法食は獣医師の指示なく与えないでください。リン等の数値の解釈は症例ごとに異なります。この表を獣医師にお見せください。`+
+  `<br>※乾物量換算＝水分を除いた基準。ウェットとドライを公平に比較するためのものです。`;
+}
+render();
+</script></body></html>"""
+
+
+def main() -> None:
+    rows = build_rows()
+    PROTO.mkdir(parents=True, exist_ok=True)
+    with OUT_CSV.open("w", encoding="utf-8-sig", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=SHEET_COLS, extrasaction="ignore")
+        w.writeheader()
+        w.writerows(rows)
+    (PROTO / "data.json").write_text(json.dumps(rows, ensure_ascii=False), encoding="utf-8")
+
+    # カバレッジ数値
+    cov = {"makers": 79, "confirmed": _count_confirmed(), "with_data": len(set(r["maker"] for r in rows))}
+    html = HTML_TMPL.replace("__DATA__", json.dumps(rows, ensure_ascii=False)).replace("__COV__", json.dumps(cov, ensure_ascii=False))
+    (PROTO / "index.html").write_text(html, encoding="utf-8")
+
+    p_open = sum(1 for r in rows if r["phosphorus_disclosed"] == "yes")
+    safe_print(f"[consult] {len(rows)} 商品 / リン開示 {p_open} / {cov['with_data']}社")
+    safe_print(f"  -> {OUT_CSV}")
+    safe_print(f"  -> {PROTO / 'index.html'}（ブラウザで開く）")
+
+
+def _count_confirmed() -> int:
+    p = DATA_DIR / "maker_sites.csv"
+    if not p.exists():
+        return 0
+    return sum(1 for r in csv.DictReader(p.open(encoding="utf-8-sig"))
+               if r.get("matched") == "yes" and r.get("needs_review") == "no")
+
+
+if __name__ == "__main__":
+    main()
