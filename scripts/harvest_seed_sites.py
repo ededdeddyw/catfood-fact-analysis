@@ -111,13 +111,20 @@ def main() -> None:
         safe_print(f"\n({i}/{len(targets)}) {maker}  {url}")
         cmd = [sys.executable, "-u", __file__, "--one", maker, url,
                "--max-pages", str(args.max_pages), "--sleep", str(args.sleep)]
+        # ★ capture_output は使わない（タイムアウト時に communicate() がパイプで
+        #   デッドロックし5時間ハングした事故への対策）。出力は捨て、子は直接CSVへ追記。
+        proc = subprocess.Popen(cmd, cwd=str(DATA_DIR.parent),
+                                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         try:
-            r = subprocess.run(cmd, cwd=str(DATA_DIR.parent), timeout=PER_MAKER_TIMEOUT,
-                               capture_output=True, text=True, encoding="utf-8")
-            tail = (r.stdout or "").strip().splitlines()[-1:]
-            safe_print("   " + (tail[0] if tail else "(no output)"))
+            proc.wait(timeout=PER_MAKER_TIMEOUT)
+            safe_print("   done")
             ok += 1
         except subprocess.TimeoutExpired:
+            proc.kill()
+            try:
+                proc.wait(timeout=10)
+            except subprocess.TimeoutExpired:
+                pass
             safe_print(f"   !! TIMEOUT {PER_MAKER_TIMEOUT}s → 打ち切り（Playwright/手当て候補）")
             hung.append(maker)
         mark_processed(maker)
