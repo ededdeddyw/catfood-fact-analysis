@@ -13,3 +13,4 @@ logs/*.out
 # OS
 Thumbs.db
 .DS_Store
+logs/*.txt
