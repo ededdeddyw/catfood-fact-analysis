@@ -59,16 +59,22 @@ FIELD_LABELS: dict[str, list[str]] = {
     "magnesium": ["マグネシウム"],
 }
 
+# ラベル直前がカナ＝別語の一部（例「コリン」の中の「リン」）なので除外。
+# また「リン酸（添加物）」を栄養値のリンと取り違えないよう (?!酸) を付ける。
+_KANA_BEFORE = r"(?<![ァ-ヶーぁ-ん])"
+_GAP = 8  # ラベルと数値の許容距離（12→8に短縮し別項目への飛び移りを防ぐ）
+
+
 # %値（ラベル → 近接する数値%）。ラベルと値の間に「：」「含有量」等が挟まるのを許容
 def _pct_pattern(labels: list[str]) -> re.Pattern:
     lab = "|".join(re.escape(x) for x in labels)
-    return re.compile(rf"(?:{lab})\s*[:：]?\s*[^0-9%％\n]{{0,12}}?{_NUM}{_PCT}")
+    return re.compile(rf"{_KANA_BEFORE}(?:{lab})(?!酸)\s*[:：]?\s*[^0-9%％\n]{{0,{_GAP}}}?{_NUM}{_PCT}")
 
 
 # リン等は mg 表記もある（例: リン 90mg/100g）。% が無い場合の補助
 def _mg_pattern(labels: list[str]) -> re.Pattern:
     lab = "|".join(re.escape(x) for x in labels)
-    return re.compile(rf"(?:{lab})\s*[:：]?\s*[^0-9\n]{{0,12}}?{_NUM}\s*mg")
+    return re.compile(rf"{_KANA_BEFORE}(?:{lab})(?!酸)\s*[:：]?\s*[^0-9\n]{{0,{_GAP}}}?{_NUM}\s*mg")
 
 
 PCT_PATTERNS = {f: _pct_pattern(ls) for f, ls in FIELD_LABELS.items()}
