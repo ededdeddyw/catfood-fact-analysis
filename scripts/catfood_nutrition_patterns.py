@@ -134,14 +134,32 @@ def detect_species(*sources: str) -> str:
     return "unknown"
 
 
+# 物理的にありえない%値を弾く（誤抽出のバックストップ）。as-fed %の妥当上限。
+_PLAUSIBLE_MAX_PCT = {
+    "phosphorus": 4.0, "calcium": 6.0, "magnesium": 2.0, "sodium": 5.0,
+    "crude_ash": 20.0, "crude_fiber": 30.0,
+}
+
+
+def _plausible(field: str, val: str) -> bool:
+    """'0.7%' 等の%値が field の妥当範囲内か。mg値や非対象fieldは常にTrue。"""
+    cap = _PLAUSIBLE_MAX_PCT.get(field)
+    if cap is None or not val.endswith("%"):
+        return True
+    try:
+        return float(val[:-1]) <= cap
+    except ValueError:
+        return True
+
+
 def _scan_fields(scope: str) -> tuple[dict, dict]:
     out, disclosed = {}, {}
     for field, pat in PCT_PATTERNS.items():
         m = pat.search(scope)
         val = None
-        if m:
+        if m and _plausible(field, m.group(1) + "%"):
             val = m.group(1) + "%"
-        elif field in ("phosphorus", "calcium", "sodium", "magnesium"):
+        if val is None and field in ("phosphorus", "calcium", "sodium", "magnesium"):
             m2 = MG_PATTERNS[field].search(scope)
             if m2:
                 val = m2.group(1) + "mg"

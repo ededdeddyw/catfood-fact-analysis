@@ -81,8 +81,18 @@ def append_facts(rows: list[dict]) -> None:
 
 
 def run_one(maker: str, url: str, max_pages: int, sleep: float) -> None:
-    """子プロセス: 1社だけcrawl→重複除去→追記。"""
+    """子プロセス: 1社だけcrawl→重複除去→追記。
+
+    ★自爆タイマー: trickle応答で固まっても 75秒で os._exit する（親のkillに依存しない。
+      これが無いと socket recv が requests のreadタイムアウトをすり抜けて無限待ちになる）。
+    """
+    import os
+    import threading
+    bomb = threading.Timer(75, lambda: os._exit(0))
+    bomb.daemon = True
+    bomb.start()
     rows = crawl_site(url, maker, max_pages, sleep)
+    bomb.cancel()
     seen = existing_urls()
     rows = [r for r in rows if r.get("url") not in seen]
     if rows:
