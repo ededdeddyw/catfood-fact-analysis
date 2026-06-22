@@ -14,3 +14,4 @@ logs/*.out
 Thumbs.db
 .DS_Store
 logs/*.txt
+data/html_cache/

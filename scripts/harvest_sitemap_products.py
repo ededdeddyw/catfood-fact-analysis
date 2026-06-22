@@ -17,6 +17,7 @@ import re
 
 from bs4 import BeautifulSoup
 
+import html_cache
 from catfood_common import DATA_DIR, log_line, polite_get, safe_print, today_stamp
 from catfood_nutrition_patterns import EXTRACT_FIELDS, extract_nutrition
 from extract_product_facts import PAGE_TEXT_MIN_FIELDS, _page_text
@@ -82,10 +83,10 @@ def harvest_urls(sitemaps: list[str], pattern: str, *, max_depth: int = 2) -> li
 
 
 def extract_url(url: str, maker: str, stamp: str) -> dict | None:
-    r = polite_get(url, retries=1, sleep=0.8, timeout=(8, 20))
-    if r is None:
+    html, _from_cache = html_cache.fetch(url, retries=1, sleep=0.8, timeout=(8, 20))
+    if html is None:
         return None
-    title, text = _page_text(r.text)
+    title, text = _page_text(html)
     data = extract_nutrition(text, url=url, name=title)
     if data["fields_found"] < PAGE_TEXT_MIN_FIELDS:
         return None

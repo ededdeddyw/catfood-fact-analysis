@@ -21,6 +21,7 @@ from urllib.parse import urljoin, urlparse
 
 from bs4 import BeautifulSoup
 
+import html_cache
 from catfood_common import DATA_DIR, log_line, polite_get, safe_print, today_stamp, write_csv
 from catfood_nutrition_patterns import EXTRACT_FIELDS, extract_nutrition
 
@@ -63,11 +64,11 @@ def crawl_site(start: str, maker: str, max_pages: int, sleep: float,
         if url in visited:
             continue
         visited.add(url)
-        resp = polite_get(url, sleep=sleep, timeout=timeout, retries=retries)
+        html, _from_cache = html_cache.fetch(url, sleep=sleep, timeout=timeout, retries=retries)
         pages += 1
-        if resp is None:
+        if html is None:
             continue
-        title, text = _page_text(resp.text)
+        title, text = _page_text(html)
 
         data = extract_nutrition(text, url=url, name=title)
         if data["fields_found"] >= PAGE_TEXT_MIN_FIELDS:
@@ -82,7 +83,7 @@ def crawl_site(start: str, maker: str, max_pages: int, sleep: float,
             safe_print(f"  [HIT {data['fields_found']}項目] {title[:40]} {url}")
 
         # 同一ドメインのリンクをスコア順に追加
-        soup = BeautifulSoup(resp.text, "html.parser")
+        soup = BeautifulSoup(html, "html.parser")
         scored = []
         for a in soup.find_all("a", href=True):
             nxt = urljoin(url, a["href"]).split("#")[0]
