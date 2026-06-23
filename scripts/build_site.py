@@ -19,6 +19,39 @@ SITE = ROOT / "site"
 CONSULT = DATA_DIR / "consult_sheet_cat.csv"
 MAKERS = DATA_DIR / "maker_sites.csv"
 
+# 肉球マスク（h2見出しのアクセント用・単色）
+_PAW_MASK = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E"
+             "%3Cg fill='black'%3E%3Cellipse cx='22' cy='20' rx='6' ry='8'/%3E%3Cellipse cx='42' cy='20' rx='6' ry='8'/%3E"
+             "%3Cellipse cx='10' cy='34' rx='5.5' ry='7'/%3E%3Cellipse cx='54' cy='34' rx='5.5' ry='7'/%3E"
+             "%3Cpath d='M32 28c9 0 16 7 16 15 0 6-7 8-16 8s-16-2-16-8c0-8 7-15 16-15z'/%3E%3C/g%3E%3C/svg%3E")
+
+# ヘッダーのブランド猫（顔）
+BRAND_CAT = ('<svg viewBox="0 0 48 48" aria-hidden="true">'
+             '<g fill="#8a5a3c"><path d="M14 14 L11 3 L24 12 Z"/><path d="M34 14 L37 3 L24 12 Z"/>'
+             '<circle cx="24" cy="27" r="16"/></g>'
+             '<circle cx="18" cy="25" r="2.4" fill="#fffaf3"/><circle cx="30" cy="25" r="2.4" fill="#fffaf3"/>'
+             '<path d="M21 31 l3 3 l3 -3 z" fill="#d98c7a"/></svg>')
+
+# トップのヒーロー（座り猫＋ごはん茶碗）
+HERO_ART = ('<svg class="art" viewBox="0 0 200 150" aria-hidden="true">'
+            '<g class="catsil">'
+            '<path d="M78 50 C58 50 48 78 48 100 C48 120 64 126 78 126 C92 126 108 120 108 100 C108 78 98 50 78 50Z"/>'
+            '<path d="M107 116 C133 114 133 78 113 72 C124 83 116 102 102 103Z"/>'
+            '<circle cx="78" cy="34" r="22"/><path d="M63 20 L59 0 L78 16 Z"/><path d="M93 20 L97 0 L78 16 Z"/></g>'
+            '<circle cx="70" cy="32" r="3" fill="#fffaf3"/><circle cx="86" cy="32" r="3" fill="#fffaf3"/>'
+            '<path d="M75 40 l3 3 l3 -3 z" fill="#d98c7a"/>'
+            '<path class="bowl-body" d="M118 104 a32 10 0 0 0 64 0 l-6 26 a26 7 0 0 1 -52 0 z"/>'
+            '<ellipse class="bowl-food" cx="150" cy="104" rx="34" ry="10"/>'
+            '<circle cx="142" cy="101" r="3" fill="#a87544"/><circle cx="156" cy="103" r="3" fill="#a87544"/>'
+            '<circle cx="150" cy="98" r="3" fill="#a87544"/></svg>')
+
+# フッターの座り猫
+FOOTER_CAT = ('<svg class="fcat" viewBox="0 0 120 130" aria-hidden="true"><g class="catsil">'
+              '<path d="M60 56 C42 56 33 80 33 100 C33 118 47 123 60 123 C73 123 87 118 87 100 C87 80 78 56 60 56Z"/>'
+              '<path d="M86 112 C110 110 110 78 92 72 C103 83 95 102 82 103Z"/>'
+              '<circle cx="60" cy="42" r="22"/><path d="M45 28 L41 6 L60 23 Z"/><path d="M75 28 L79 6 L60 23 Z"/>'
+              '</g></svg>')
+
 # 公開先URL（GitHub Pages のプロジェクトページ既定。独自ドメイン時はここを変える）
 BASE_URL = "https://ededdeddyw.github.io/catfood-fact-analysis"
 SITE_NAME = "ねこごはんファクト"
@@ -26,40 +59,68 @@ SITE_NAME = "ねこごはんファクト"
 FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' "
            "viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%BE%3C/text%3E%3C/svg%3E")
 
+# ブラウン基調 + 猫イラスト(SVG)で温かみのある配色
+_PAW_BG = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' "
+           "viewBox='0 0 80 80'%3E%3Cg fill='%23b89a78' fill-opacity='0.18'%3E"
+           "%3Cellipse cx='30' cy='34' rx='5' ry='7'/%3E%3Cellipse cx='50' cy='34' rx='5' ry='7'/%3E"
+           "%3Cellipse cx='20' cy='44' rx='4.5' ry='6'/%3E%3Cellipse cx='60' cy='44' rx='4.5' ry='6'/%3E"
+           "%3Cpath d='M40 42c7 0 13 6 13 12 0 5-6 6-13 6s-13-1-13-6c0-6 6-12 13-12z'/%3E%3C/g%3E%3C/svg%3E")
+
 CSS = """
 *{box-sizing:border-box}
-body{font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
- margin:0;color:#1f2937;background:#f7f7f5;line-height:1.65}
-a{color:#1565c0}
+:root{--accent:#8a5a3c;--accent-d:#5e3b22;--cream:#f5ede2;--card:#fffdf9;
+ --line:#e7dcca;--ink:#3b2f26;--muted:#90806d}
+body{font-family:system-ui,-apple-system,"Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+ margin:0;color:var(--ink);background:var(--cream);line-height:1.7}
+a{color:var(--accent)}
 .wrap{max-width:1040px;margin:0 auto;padding:0 18px}
-header.site{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:5}
-header.site .wrap{display:flex;align-items:center;gap:18px;height:56px}
-.brand{font-weight:800;font-size:17px;color:#b1442f;text-decoration:none;white-space:nowrap}
+header.site{background:#fffaf3;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;
+ box-shadow:0 1px 0 rgba(94,59,34,.04)}
+header.site .wrap{display:flex;align-items:center;gap:18px;height:60px}
+.brand{font-weight:800;font-size:18px;color:var(--accent-d);text-decoration:none;white-space:nowrap;
+ display:flex;align-items:center;gap:7px}
+.brand svg{width:26px;height:26px;flex:none}
 nav.main{display:flex;gap:14px;flex-wrap:wrap;font-size:14px}
-nav.main a{color:#374151;text-decoration:none;padding:4px 2px;border-bottom:2px solid transparent}
-nav.main a.active{color:#b1442f;border-bottom-color:#b1442f;font-weight:700}
-h1{font-size:26px;margin:24px 0 6px}
-h2{font-size:19px;margin:26px 0 8px;border-left:4px solid #b1442f;padding-left:10px}
-.lead{font-size:15px;color:#4b5563;margin:0 0 8px}
-.tag{display:inline-block;background:#eef2ff;color:#3730a3;border-radius:999px;padding:2px 10px;font-size:12px;margin:2px 6px 2px 0}
-.card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:16px 18px;margin:14px 0}
+nav.main a{color:#5b4a3a;text-decoration:none;padding:4px 2px;border-bottom:2px solid transparent}
+nav.main a:hover{color:var(--accent)}
+nav.main a.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:700}
+h1{font-size:27px;margin:22px 0 8px;color:var(--accent-d);letter-spacing:.01em}
+h2{font-size:19px;margin:26px 0 8px;padding-left:30px;position:relative;color:var(--accent-d)}
+h2::before{content:"";position:absolute;left:0;top:3px;width:20px;height:20px;
+ background:var(--accent);-webkit-mask:url("PAWMASK") center/contain no-repeat;mask:url("PAWMASK") center/contain no-repeat;opacity:.85}
+.lead{font-size:15px;color:#5b4a3a;margin:0 0 8px}
+.tag{display:inline-block;background:#efe4d4;color:#6b4324;border-radius:999px;padding:3px 11px;font-size:12px;margin:2px 6px 2px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:14px 0;
+ box-shadow:0 2px 10px rgba(94,59,34,.05)}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-.disclaimer{background:#fff8e1;border:1px solid #ffe082;border-radius:8px;padding:12px 14px;font-size:13.5px;margin:14px 0}
+.disclaimer{background:#fbf1df;border:1px solid #e6c79a;border-radius:10px;padding:12px 14px;font-size:13.5px;margin:14px 0;color:#5a4326}
 .controls{margin:12px 0;font-size:14px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-.controls button{border:1px solid #cfd8dc;background:#fff;border-radius:6px;padding:5px 10px;cursor:pointer}
-table{border-collapse:collapse;width:100%;background:#fff;font-size:13.5px;border:1px solid #e5e7eb}
-th,td{border-bottom:1px solid #eef0f2;padding:7px 9px;text-align:left;vertical-align:top}
-th{background:#fafafa;cursor:pointer;white-space:nowrap;position:sticky;top:56px}
+.controls button{border:1px solid var(--line);background:#fffaf3;color:#5b4a3a;border-radius:8px;padding:5px 11px;cursor:pointer}
+.controls button:hover{background:#f0e6d6}
+table{border-collapse:collapse;width:100%;background:var(--card);font-size:13.5px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+th,td{border-bottom:1px solid #efe7d8;padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#f3e9da;cursor:pointer;white-space:nowrap;position:sticky;top:60px;color:#6b4324}
+tr:hover td{background:#fdf8f0}
 td.num{text-align:right;font-variant-numeric:tabular-nums}
-.na{color:#9aa0a6;font-size:12px}
-.ther{color:#b71c1c;font-weight:700;font-size:12px}
-.buy a{display:inline-block;margin:0 3px 2px 0;padding:1px 6px;border:1px solid #cfd8dc;border-radius:4px;
- color:#37474f;text-decoration:none;font-size:11px}
-.mk{color:#9aa0a6;font-size:11.5px}
-footer.site{margin-top:40px;background:#fff;border-top:1px solid #e5e7eb;font-size:12.5px;color:#6b7280}
-footer.site .wrap{padding:18px}
-.big{font-size:30px;font-weight:800;color:#b1442f}
-@media print{header.site,nav.main,.controls,.buy,footer.site nav,.noprint{display:none}
+.na{color:#a99a86;font-size:12px}
+.ther{color:#a8421f;font-weight:700;font-size:12px}
+.buy a{display:inline-block;margin:0 3px 2px 0;padding:1px 6px;border:1px solid var(--line);border-radius:4px;
+ color:#6b4324;text-decoration:none;font-size:11px;background:#fffaf3}
+.mk{color:#a3917c;font-size:11.5px}
+.hero{display:flex;align-items:center;gap:22px;flex-wrap:wrap;background:
+ linear-gradient(180deg,#fbf3e7,#f5ebdc);border:1px solid var(--line);border-radius:18px;
+ padding:22px 24px;margin:18px 0;background-image:url("PAWBG"),linear-gradient(180deg,#fbf3e7,#f5ebdc);background-size:90px,auto}
+.hero .art{flex:none;width:170px;max-width:38vw}
+.hero .txt{flex:1;min-width:230px}
+.pagehero{display:flex;align-items:center;gap:14px;margin-top:8px}
+.pagehero svg{width:54px;height:54px;flex:none}
+.catsil{fill:var(--accent)}
+.bowl-food{fill:#c99a66}.bowl-body{fill:#7b4f2e}.bowl-rim{fill:#9c6b43}
+footer.site{margin-top:44px;background:#fffaf3;border-top:1px solid var(--line);font-size:12.5px;color:#7a6957}
+footer.site .wrap{padding:18px;display:flex;gap:14px;align-items:flex-start}
+footer.site .fcat{width:40px;flex:none;opacity:.8}
+.big{font-size:32px;font-weight:800;color:var(--accent)}
+@media print{header.site,nav.main,.controls,.buy,footer.site nav,.noprint,.hero .art,.pagehero svg{display:none}
  body{background:#fff} th{position:static} .disclaimer{border:1px solid #999;background:#fff}}
 """
 
@@ -177,15 +238,16 @@ def page(active: str, title: str, body: str, desc: str = "", path: str = "index.
 <meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="style.css"></head><body>
 <header class="site"><div class="wrap">
- <a class="brand" href="index.html">🐾 ねこごはんファクト</a>
+ <a class="brand" href="index.html">{BRAND_CAT}ねこごはんファクト</a>
  <nav class="main">{navhtml}</nav>
 </div></header>
 <main class="wrap">{body}</main>
 <footer class="site"><div class="wrap">
- 当サイトは評価・順位付け・おすすめを行いません。公式表示を転記・乾物量換算した出典付きファクトのみを掲載しています。
- 購入リンクから手数料を得る場合がありますが、掲載順・内容には一切影響しません。<br>
+ {FOOTER_CAT}
+ <div>当サイトは総合順位・おすすめ度を付けません。目的ごとに見る指標と条件を明示し、公式表示を転記・乾物量換算した
+ 出典付きファクトと実値で示します。購入リンクから手数料を得る場合がありますが、掲載順・内容には一切影響しません。<br>
  ※医療上の判断は必ずかかりつけの獣医師にご相談ください。本サイトは診断・治療の助言を行いません。
- <br>最終更新 {today_stamp()}
+ <br>最終更新 {today_stamp()}</div>
 </div></footer></body></html>"""
 
 
@@ -203,10 +265,15 @@ def table_block(products: list[dict], cols: list[dict], sort_key: str,
 
 def build_index(cov: dict) -> str:
     return f"""
-<h1>「こうしたい」から、<br>成分・出典のファクトで選ぶ。</h1>
-<p class="lead">おすすめ度や総合順位という<b>曖昧な点数は付けません</b>。代わりに、目的ごとに
-<b>見るべき指標と条件を明示</b>して、それに合う商品を<b>実際の数値つき</b>で示します。
-「なぜ合うか」が数字で見える状態にする——それがランキングサイトとの違いです。</p>
+<div class="hero">
+ <div class="art">{HERO_ART}</div>
+ <div class="txt">
+  <h1 style="margin-top:0">「こうしたい」から、<br>成分・出典のファクトで選ぶ。</h1>
+  <p class="lead">おすすめ度や総合順位という<b>曖昧な点数は付けません</b>。代わりに、目的ごとに
+  <b>見るべき指標と条件を明示</b>して、それに合う商品を<b>実際の数値つき</b>で示します。
+  「なぜ合うか」が数字で見える状態にする——それがランキングサイトとの違いです。</p>
+ </div>
+</div>
 <div>
  <span class="tag">目的→明示した条件→合致商品</span><span class="tag">スコア化しない（基準を全部見せる）</span>
  <span class="tag">公式出典＋取得日</span><span class="tag">乾物量換算</span>
@@ -402,7 +469,8 @@ def build_about() -> str:
 
 def main() -> None:
     SITE.mkdir(parents=True, exist_ok=True)
-    (SITE / "style.css").write_text(CSS, encoding="utf-8")
+    css = CSS.replace("PAWMASK", _PAW_MASK).replace("PAWBG", _PAW_BG)
+    (SITE / "style.css").write_text(css, encoding="utf-8")
     products = load_products()
     cov = coverage()
     pages = {
