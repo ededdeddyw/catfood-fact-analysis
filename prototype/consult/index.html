@@ -17,6 +17,15 @@
  .src a{color:#1565c0;text-decoration:none}
  footer{margin:16px 18px 40px;font-size:12px;color:#555;line-height:1.7}
  .note{font-size:12px;color:#666;margin:4px 18px}
+ .buy a{display:inline-block;margin:0 4px 2px 0;padding:1px 6px;border:1px solid #cfd8dc;border-radius:4px;color:#37474f;text-decoration:none;font-size:11px}
+ .buy a:hover{background:#eceff1}
+ @media print{
+   .controls,.buy{display:none}
+   .warn{border:1px solid #999;background:#fff}
+   th{cursor:default}
+   body{background:#fff}
+   table{font-size:11px}
+ }
 </style></head><body>
 <header>
  <h1>🐾 キャットフード 比較メモ（出典付きファクト）</h1>
@@ -34,6 +43,7 @@
  <button onclick="sortBy('calorie_density_100g')">カロリー密度</button>
  <button onclick="sortBy('phosphorus_dm')">リン(乾物量)</button>
  <label><input type="checkbox" id="ponly" onchange="render()"> リンを開示している商品だけ（腎臓ビュー）</label>
+ <button onclick="window.print()">🖨 印刷 / PDF保存</button>
 </div>
 <table id="t"><thead><tr>
  <th onclick="sortBy('product_name')">商品 / メーカー</th>
@@ -44,6 +54,7 @@
  <th onclick="sortBy('calorie_density_100g')">カロリー密度<br>kcal/100g</th>
  <th>療法食</th>
  <th>出典</th>
+ <th>購入先（比較）</th>
 </tr></thead><tbody id="b"></tbody></table>
 <footer id="cov"></footer>
 <script>
@@ -70,14 +81,24 @@ function render(){
      `<td class="num">${cell(r.phosphorus_dm)}</td>`+
      `<td class="num">${cal}</td>`+
      `<td>${r.is_therapeutic==='True'?'<span class="ther">療法食</span>':'—'}</td>`+
-     `<td class="src"><a href="${r.url}" target="_blank" rel="noopener">公式</a> <span class="na">${r.fetched_at}</span></td>`;
+     `<td class="src"><a href="${r.url}" target="_blank" rel="noopener">公式</a> <span class="na">${r.fetched_at}</span></td>`+
+     `<td class="buy">${buyLinks(r)}</td>`;
    b.appendChild(tr);
  }
  document.getElementById('cov').innerHTML =
   `掲載 ${rows.length} 商品（全${DATA.length}）。対象母集団＝ペットフード公正取引協議会 正会員${COV.makers}社／`+
   `公式に成分を開示している商品を掲載（確定メーカー${COV.confirmed}・データ取得${COV.with_data}社）。`+
   `<br>※療法食は獣医師の指示なく与えないでください。リン等の数値の解釈は症例ごとに異なります。この表を獣医師にお見せください。`+
-  `<br>※乾物量換算＝水分を除いた基準。ウェットとドライを公平に比較するためのものです。`;
+  `<br>※乾物量換算＝水分を除いた基準。ウェットとドライを公平に比較するためのものです。`+
+  `<br>※購入先リンクは全商品に等しく付与した比較ユーティリティです。当サイトは手数料を得る場合がありますが、<b>掲載順・内容には一切影響しません</b>。評価・ランキングは行いません。`;
+}
+// 購入先: 全商品に等しく・複数チャネル・手数料を表示順の入力にしない（docs/03 アフィリ遮断）
+function buyLinks(r){
+ const q=encodeURIComponent(((r.maker||'')+' '+(r.product_name||'')).trim());
+ const ch=[['楽天','https://search.rakuten.co.jp/search/mall/'+q+'/'],
+           ['Amazon','https://www.amazon.co.jp/s?k='+q],
+           ['Yahoo','https://shopping.yahoo.co.jp/search?p='+q]];
+ return ch.map(c=>`<a href="${c[1]}" target="_blank" rel="noopener nofollow">${c[0]}</a>`).join('');
 }
 render();
 </script></body></html>
