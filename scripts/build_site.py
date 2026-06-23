@@ -129,6 +129,72 @@ footer.site .fcat{width:40px;flex:none;opacity:.8}
 .big{font-size:32px;font-weight:800;color:var(--accent)}
 @media print{header.site,nav.main,.controls,.buy,footer.site nav,.noprint,.hero .art,.pagehero svg{display:none}
  body{background:#fff} th{position:static} .disclaimer{border:1px solid #999;background:#fff}}
+
+/* ===== リッチなランディング用コンポーネント ===== */
+.btn{display:inline-block;border-radius:999px;padding:11px 22px;font-weight:700;font-size:15px;
+ text-decoration:none;cursor:pointer;border:2px solid transparent;transition:transform .08s,box-shadow .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 6px 16px rgba(138,90,60,.28)}
+.btn-primary:hover{background:var(--accent-d)}
+.btn-ghost{background:#fff;color:var(--accent-d);border-color:var(--line)}
+.btn-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+.section{padding:46px 0}
+.section.alt{background:#fbf3e8;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.section.tint{background:linear-gradient(180deg,#fff6ec,#f7ecdc)}
+.sec-head{text-align:center;max-width:680px;margin:0 auto 26px}
+.eyebrow{display:inline-block;letter-spacing:.14em;font-size:12px;font-weight:800;color:#b07a4e;
+ background:#f1e3d2;border-radius:999px;padding:5px 14px;margin-bottom:12px}
+.sec-head h2{font-size:clamp(21px,3.4vw,30px);border:none;padding:0;margin:0 0 8px;display:block}
+.sec-head h2::before{display:none}
+.sec-head p{color:#6b5a48;font-size:15px;margin:0}
+.bighero{background:radial-gradient(120% 120% at 80% 0,#fdf3e6 0,#f3e6d2 60%,#efe0cb 100%);
+ border-bottom:1px solid var(--line)}
+.bighero .wrap{display:flex;align-items:center;gap:40px;flex-wrap:wrap;padding:54px 18px 50px}
+.bighero .htxt{flex:1 1 340px}
+.bighero h1{font-size:clamp(27px,4.6vw,44px);line-height:1.25;margin:12px 0 12px}
+.bighero .sub{font-size:clamp(15px,2vw,18px);color:#5b4a3a;margin:0;max-width:30em}
+.bighero .himg{flex:1 1 320px;display:flex;justify-content:center}
+.bighero .himg img{width:100%;max-width:440px;aspect-ratio:4/3;object-fit:cover;border-radius:22px;
+ box-shadow:0 14px 36px rgba(94,59,34,.22);border:5px solid #fffaf3}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.feature{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;
+ box-shadow:0 2px 10px rgba(94,59,34,.05)}
+.feature .ic{width:46px;height:46px;border-radius:13px;background:#f3e6d4;display:flex;align-items:center;
+ justify-content:center;font-size:24px;margin-bottom:12px}
+.feature h3{margin:0 0 6px;font-size:17px;color:var(--accent-d)}
+.feature p{margin:0;font-size:14px;color:#6b5a48;line-height:1.7}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;counter-reset:s}
+.step{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px 20px 20px}
+.step::before{counter-increment:s;content:counter(s);position:absolute;top:-16px;left:20px;width:36px;height:36px;
+ background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;
+ box-shadow:0 4px 10px rgba(138,90,60,.3)}
+.step h3{margin:8px 0 6px;font-size:16px;color:var(--accent-d)}
+.step p{margin:0;font-size:14px;color:#6b5a48}
+.split{display:flex;gap:34px;align-items:center;flex-wrap:wrap}
+.split>div{flex:1 1 300px}
+.split img{width:100%;border-radius:18px;object-fit:cover;aspect-ratio:5/4;
+ box-shadow:0 8px 24px rgba(94,59,34,.16);border:4px solid #fffaf3}
+.split.rev{flex-direction:row-reverse}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:760px;margin:0 auto}
+.compare .col{border-radius:16px;padding:20px;border:1px solid var(--line)}
+.compare .them{background:#f4efe9;color:#7a6a59}
+.compare .us{background:#fff;border:2px solid var(--accent);box-shadow:0 6px 18px rgba(138,90,60,.12)}
+.compare h3{margin:0 0 10px;font-size:16px}
+.compare ul{margin:0;padding-left:18px;font-size:14px;line-height:1.85}
+.compare .us h3{color:var(--accent-d)}
+.statband{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;text-align:center}
+.statband .s{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 10px}
+.statband .s b{display:block;font-size:30px;color:var(--accent);font-weight:800;line-height:1.1}
+.statband .s span{font-size:12.5px;color:#7a6a59}
+.goalchips{display:flex;gap:9px;flex-wrap:wrap;margin:6px 0}
+.goalchips a{background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 15px;
+ text-decoration:none;color:#6b4324;font-size:14px;font-weight:600}
+.goalchips a:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagehead{background:linear-gradient(180deg,#fdf4e7,#f6ead8);border-bottom:1px solid var(--line);
+ margin:0 -18px;padding:30px 18px 26px}
+.pagehead h1{margin:6px 0 8px}
+.pagehead .lead{max-width:42em}
+@media(max-width:560px){.compare{grid-template-columns:1fr}.bighero .wrap{gap:24px;padding:34px 18px}}
 """
 
 TABLE_JS = """
@@ -222,7 +288,8 @@ def coverage() -> dict:
             "p_open": sum(1 for r in prods if r.get("phosphorus_disclosed") == "yes")}
 
 
-def page(active: str, title: str, body: str, desc: str = "", path: str = "index.html") -> str:
+def page(active: str, title: str, body: str, desc: str = "", path: str = "index.html",
+         wrap: bool = True) -> str:
     nav = [("index", "ホーム", "index.html"), ("find", "目的から選ぶ", "find.html"),
            ("weight", "体重管理", "weight.html"), ("kidney", "腎臓相談シート", "kidney.html"),
            ("coverage", "網羅性", "coverage.html"), ("about", "この調べ方", "about.html")]
@@ -248,7 +315,7 @@ def page(active: str, title: str, body: str, desc: str = "", path: str = "index.
  <a class="brand" href="index.html">{BRAND_CAT}ねこごはんファクト</a>
  <nav class="main">{navhtml}</nav>
 </div></header>
-<main class="wrap">{body}</main>
+<main class="{'wrap' if wrap else ''}">{body}</main>
 <footer class="site"><div class="wrap">
  {FOOTER_CAT}
  <div>当サイトは総合順位・おすすめ度を付けません。目的ごとに見る指標と条件を明示し、公式表示を転記・乾物量換算した
@@ -270,45 +337,102 @@ def table_block(products: list[dict], cols: list[dict], sort_key: str,
             f'<script>{js}</script>')
 
 
+def pagehead(eyebrow: str, title: str) -> str:
+    return f'<div class="pagehead"><span class="eyebrow">{eyebrow}</span><h1>{title}</h1></div>'
+
+
 def build_index(cov: dict) -> str:
+    g_chips = "".join(f'<a href="find.html">{x["label"]}</a>'
+                      for x in GOALS if x["tier"] == "life")
     return f"""
-<div class="hero">
- <img class="hero-photo" src="img/hero.jpg" alt="キャットフードの皿を前にした黒猫" loading="eager">
- <div class="txt">
-  <h1 style="margin-top:0">「こうしたい」から、<br>成分・出典のファクトで選ぶ。</h1>
-  <p class="lead">おすすめ度や総合順位という<b>曖昧な点数は付けません</b>。代わりに、目的ごとに
-  <b>見るべき指標と条件を明示</b>して、それに合う商品を<b>実際の数値つき</b>で示します。
-  「なぜ合うか」が数字で見える状態にする——それがランキングサイトとの違いです。</p>
+<section class="bighero"><div class="wrap">
+ <div class="htxt">
+  <span class="eyebrow">出典つきファクト・非診断</span>
+  <h1>「こうしたい」から、<br>成分のファクトで選ぶ。</h1>
+  <p class="sub">おすすめ度や総合順位という曖昧な点数は付けません。目的ごとに<b>見る指標と条件を明示</b>し、
+  合う商品を<b>実際の数値つき</b>で。「なぜ合うか」が数字で見える——それがランキングサイトとの違いです。</p>
+  <div class="btn-row">
+   <a class="btn btn-primary" href="find.html">🎯 目的から選ぶ</a>
+   <a class="btn btn-ghost" href="about.html">この調べ方を見る</a>
+  </div>
  </div>
-</div>
-<div>
- <span class="tag">目的→明示した条件→合致商品</span><span class="tag">スコア化しない（基準を全部見せる）</span>
- <span class="tag">公式出典＋取得日</span><span class="tag">乾物量換算</span>
- <span class="tag">手数料は表示順に使わない</span><span class="tag">健康系は獣医併記・非診断</span>
-</div>
-<div class="card" style="background:#fff5f3;border-color:#f0c4ba">
- <h2 style="margin-top:4px;border:none;padding:0">🎯 目的から選ぶ</h2>
- <p class="lead">体重管理／高たんぱく／水分を摂らせたい／穀物を避けたい／毛玉・繊維／尿路／腎臓 …
- 「こうしたい」を選ぶと、合う商品を理由（実値）つきで表示します。</p>
- <a href="find.html"><b>→ 目的から選ぶ</b></a>
-</div>
-<div class="cards">
- <div class="card"><h2 style="margin-top:4px">体重管理ビュー</h2>
-  <p class="lead">カロリー密度の低い順。「太った猫向け」とは言いません。</p>
-  <a href="weight.html">→ 体重管理</a></div>
- <div class="card"><h2 style="margin-top:4px">腎臓相談シート</h2>
-  <p class="lead">リン開示商品を乾物量換算で。印刷して獣医師にご相談ください。</p>
-  <a href="kidney.html">→ 腎臓相談シート</a></div>
-</div>
-<div class="disclaimer">
- ⚠️ 「記載なし」は「含まれない」ではなく「メーカーが公開していない」という意味です。
- 数値の良し悪しは当サイトでは判断しません。療法食は獣医師の指示なく切り替えないでください。
-</div>
-<h2>いま掲載している範囲</h2>
-<p class="lead">対象母集団＝ペットフード公正取引協議会 正会員<b>{cov['pop']}社</b>。
-そのうち公式に成分を開示している商品を掲載しています。
-データ取得 <b>{len(cov['with_data'])}社・{cov['products']}商品</b>（リン開示 {cov['p_open']}商品）。
-範囲とその限界は <a href="coverage.html">網羅性ページ</a> で正直に開示しています。</p>
+ <div class="himg"><img src="img/hero.jpg" alt="キャットフードの皿を前にした猫" loading="eager"></div>
+</div></section>
+
+<section class="section"><div class="wrap">
+ <div class="sec-head"><span class="eyebrow">3つの約束</span>
+  <h2>広告でもランキングでもなく、ファクトで。</h2>
+  <p>口コミや推測スコアは出しません。判断材料を、出典つきで、淡々と。</p></div>
+ <div class="features">
+  <div class="feature"><div class="ic">🏷️</div><h3>評価・順位を付けない</h3>
+   <p>総合○位やおすすめ度という曖昧な点数を作りません。基準を全部見せ、数値で比べられる状態にします。</p></div>
+  <div class="feature"><div class="ic">📑</div><h3>全数値に公式出典＋取得日</h3>
+   <p>各メーカー公式の保証成分を転記。日付のない数値は載せません。水分を除いた乾物量換算で公平に比較。</p></div>
+  <div class="feature"><div class="ic">🩺</div><h3>判断は獣医師へ（非診断）</h3>
+   <p>「この病気にはこれ」とは言いません。健康に関わる観点は指標を示し、印刷して獣医師に渡せる形に。</p></div>
+ </div>
+</div></section>
+
+<section class="section alt"><div class="wrap">
+ <div class="sec-head"><span class="eyebrow">使い方</span><h2>3ステップで選べます</h2></div>
+ <div class="steps">
+  <div class="step"><h3>目的を選ぶ</h3><p>体重管理・高たんぱく・腎臓が気になる…「こうしたい」を選びます。</p></div>
+  <div class="step"><h3>指標と条件が出る</h3><p>その目的で見るべき客観指標と絞り込み条件を明示します（隠しません）。</p></div>
+  <div class="step"><h3>数値で比べて相談</h3><p>合う商品を実値つきで表示。印刷して獣医師に相談できます。</p></div>
+ </div>
+</div></section>
+
+<section class="section"><div class="wrap">
+ <div class="split">
+  <div><img src="img/eating.jpg" alt="ごはんを食べる猫"></div>
+  <div>
+   <span class="eyebrow">目的から選ぶ</span>
+   <h2 style="border:none;padding:0">「こうなりたい」に、<br>合う一皿を。</h2>
+   <p class="lead">生活の目的（体重・たんぱく・水分・穀物・毛玉）から、健康に関わる観点（尿路・腎臓）まで。
+   後者は獣医相談を必ず併記します。</p>
+   <div class="goalchips">{g_chips}</div>
+   <div class="btn-row"><a class="btn btn-primary" href="find.html">目的から選ぶ →</a></div>
+  </div>
+ </div>
+</div></section>
+
+<section class="section tint"><div class="wrap">
+ <div class="sec-head"><span class="eyebrow">ふつうのサイトとの違い</span><h2>ランキングではなく、根拠を。</h2></div>
+ <div class="compare">
+  <div class="col them"><h3>よくある比較サイト</h3>
+   <ul><li>総合○位・おすすめ度（基準は不透明）</li><li>紹介手数料の高い順に並びがち</li>
+   <li>口コミ・主観の星評価</li><li>出典・取得日があいまい</li></ul></div>
+  <div class="col us"><h3>ねこごはんファクト</h3>
+   <ul><li>順位を付けない。見る指標と条件を明示</li><li>手数料は表示順に一切使わない</li>
+   <li>公式の保証成分＋乾物量換算の実値</li><li>全数値に出典URL＋取得日／非診断</li></ul></div>
+ </div>
+</div></section>
+
+<section class="section alt"><div class="wrap">
+ <div class="sec-head"><span class="eyebrow">網羅性</span><h2>掲載範囲を、正直に。</h2>
+  <p>「全部載せています」とは言いません。宣言した母集団へのカバー率と未掲載を開示します。</p></div>
+ <div class="statband">
+  <div class="s"><b>{cov['pop']}</b><span>対象母集団（協議会 正会員）</span></div>
+  <div class="s"><b>{len(cov['confirmed'])}</b><span>公式サイト確定</span></div>
+  <div class="s"><b>{len(cov['with_data'])}</b><span>成分データ取得</span></div>
+  <div class="s"><b>{cov['products']}</b><span>掲載商品</span></div>
+  <div class="s"><b>{cov['p_open']}</b><span>リン開示商品</span></div>
+ </div>
+ <div class="btn-row" style="justify-content:center;margin-top:18px"><a class="btn btn-ghost" href="coverage.html">網羅性ページを見る →</a></div>
+</div></section>
+
+<section class="section"><div class="wrap">
+ <div class="cards">
+  <div class="card"><h2 style="margin-top:4px">体重管理ビュー</h2>
+   <p class="lead">カロリー密度の低い順。「太った猫向け」とは言いません。</p>
+   <a class="btn btn-ghost" href="weight.html">体重管理 →</a></div>
+  <div class="card"><h2 style="margin-top:4px">腎臓相談シート</h2>
+   <p class="lead">リン開示商品を乾物量換算で。印刷して獣医師にご相談ください。</p>
+   <a class="btn btn-ghost" href="kidney.html">腎臓相談シート →</a></div>
+ </div>
+ <div class="disclaimer" style="margin-top:18px">⚠️「記載なし」は「含まれない」ではなく「メーカーが公開していない」という意味です。
+ 数値の良し悪しは当サイトでは判断しません。療法食は獣医師の指示なく切り替えないでください。</div>
+</div></section>
 """
 
 
@@ -320,8 +444,8 @@ def build_weight(products: list[dict]) -> str:
             {"k": "moisture_pct", "t": "水分%"},
             {"k": "url", "t": "出典", "type": "src"},
             {"k": "buy", "t": "購入先（比較）", "type": "buy"}]
-    body = """
-<h1>体重管理ビュー</h1>
+    body = f"""
+{pagehead("体重管理 / 第2段", "体重管理ビュー")}
 <img class="photo-accent" src="img/tabby.jpg" alt="くつろぐ茶トラ猫" loading="lazy">
 <p class="lead">カロリー密度の低い順に並べ替えられる一覧です。順位やおすすめではありません。
 個包装おやつ（1個あたり表示）は密度比較ができないため「比較不可」と明示します。</p>
@@ -342,8 +466,8 @@ def build_kidney(products: list[dict]) -> str:
             {"k": "is_therapeutic", "t": "療法食", "type": "ther"},
             {"k": "url", "t": "出典", "type": "src"},
             {"k": "buy", "t": "購入先（比較）", "type": "buy"}]
-    body = """
-<h1>腎臓の健康が気になる方向け・比較メモ</h1>
+    body = f"""
+{pagehead("腎臓 / 第3段（健康・獣医併記）", "腎臓相談シート")}
 <div class="disclaimer">
  ⚠️ このシートは「おすすめ」ではありません。当サービスは診断・治療の助言を行いません。
  数値は各メーカー公式の表示を転記・乾物量換算したファクトです。
@@ -372,7 +496,7 @@ def build_coverage(cov: dict) -> str:
     excl = "".join(f"<li>{r['company_name']}<span class='na'>（{r.get('note','')}）</span></li>"
                    for r in cov["excluded"])
     return f"""
-<h1>網羅性 — 「宣言した母集団へのカバー率」</h1>
+{pagehead("網羅性 / ②③", "宣言した母集団へのカバー率")}
 <p class="lead">「日本のキャットフードを網羅」とは言いません（全商品の公的リストが存在しないため）。
 代わりに<b>収録範囲を宣言し、その中のカバー率と未取得を正直に報告</b>します。これが当サイトの網羅性の定義です。</p>
 <div class="cards">
@@ -436,7 +560,7 @@ def build_find(products: list[dict]) -> str:
           .replace("__DATA__", json.dumps(products, ensure_ascii=False))
           .replace("__GOALS__", json.dumps(GOALS, ensure_ascii=False)))
     return """
-<h1>目的から選ぶ</h1>
+""" + pagehead("あなたの「こうしたい」から", "目的から選ぶ") + """
 <img class="pagephoto" src="img/eating.jpg" alt="ボウルからウェットフードを食べる猫" loading="lazy">
 <p class="lead">「こうしたい」を選ぶと、<b>見るべき客観指標と条件を明示</b>したうえで、
 それに合う商品を<b>実際の数値つき</b>で並べます。おすすめ度や総合順位という曖昧な点数は付けません。
@@ -454,8 +578,7 @@ def build_find(products: list[dict]) -> str:
 
 
 def build_about() -> str:
-    return ("""
-<h1>この調べ方（方法と原則）</h1>""" + _ABOUT_BODY).replace("__CREDITS__", _credits_html())
+    return (pagehead("方法と原則", "この調べ方") + _ABOUT_BODY).replace("__CREDITS__", _credits_html())
 
 
 _ABOUT_BODY = """
@@ -517,7 +640,9 @@ def main() -> None:
                        "4状態ラベル・乾物量換算・出典必須・アフィリエイト遮断・非診断。データの作り方を公開。"),
     }
     for fname, (active, title, body, desc) in pages.items():
-        (SITE / fname).write_text(page(active, title, body, desc, fname), encoding="utf-8")
+        (SITE / fname).write_text(
+            page(active, title, body, desc, fname, wrap=(active != "index")),
+            encoding="utf-8")
 
     # sitemap.xml / robots.txt
     locs = "".join(f"<url><loc>{BASE_URL}/{f}</loc><lastmod>{today_stamp()}</lastmod></url>"
