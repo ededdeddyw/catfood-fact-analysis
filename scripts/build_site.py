@@ -195,6 +195,27 @@ footer.site .fcat{width:40px;flex:none;opacity:.8}
 .pagehead h1{margin:6px 0 8px}
 .pagehead .lead{max-width:42em}
 @media(max-width:560px){.compare{grid-template-columns:1fr}.bighero .wrap{gap:24px;padding:34px 18px}}
+
+/* ===== 体重記録トラッカー ===== */
+.tracker{display:grid;grid-template-columns:300px 1fr;gap:20px;align-items:start}
+@media(max-width:720px){.tracker{grid-template-columns:1fr}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 2px 10px rgba(94,59,34,.05)}
+.field{margin:10px 0}
+.field label{display:block;font-size:12.5px;color:#7a6a59;margin-bottom:4px;font-weight:700}
+.field input,.field select{width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:9px;font-size:15px;background:#fffaf3}
+.row2{display:flex;gap:10px}.row2>*{flex:1}
+.trend{font-size:14px;margin:6px 0 0}
+.trend .up{color:#a8421f;font-weight:700}.trend .down{color:#1b7a3d;font-weight:700}.trend .flat{color:#7a6a59;font-weight:700}
+.chartwrap{width:100%;overflow:hidden}
+.chartwrap svg{width:100%;height:auto}
+.chartwrap .ln{fill:none;stroke:var(--accent);stroke-width:2.5}
+.chartwrap .dot{fill:#fff;stroke:var(--accent);stroke-width:2}
+.chartwrap .tgt{stroke:#caa46f;stroke-dasharray:5 4;stroke-width:1.5}
+.chartwrap .ax{stroke:#e7dcca}.chartwrap .axt{fill:#a3917c;font-size:11px}
+.elist{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}
+.elist td,.elist th{border-bottom:1px solid #efe7d8;padding:6px 8px;text-align:left}
+.elist .del{color:#a8421f;cursor:pointer;border:none;background:none;font-size:13px}
+.savednote{font-size:12px;color:#a3917c;margin-top:8px}
 """
 
 TABLE_JS = """
@@ -291,6 +312,7 @@ def coverage() -> dict:
 def page(active: str, title: str, body: str, desc: str = "", path: str = "index.html",
          wrap: bool = True) -> str:
     nav = [("index", "ホーム", "index.html"), ("find", "目的から選ぶ", "find.html"),
+           ("record", "体重記録", "record.html"),
            ("weight", "体重管理", "weight.html"), ("kidney", "腎臓相談シート", "kidney.html"),
            ("coverage", "網羅性", "coverage.html"), ("about", "この調べ方", "about.html")]
     navhtml = "".join(
@@ -392,6 +414,19 @@ def build_index(cov: dict) -> str:
    後者は獣医相談を必ず併記します。</p>
    <div class="goalchips">{g_chips}</div>
    <div class="btn-row"><a class="btn btn-primary" href="find.html">目的から選ぶ →</a></div>
+  </div>
+ </div>
+</div></section>
+
+<section class="section alt"><div class="wrap">
+ <div class="split rev">
+  <div><img src="img/kitten.jpg" alt="くつろぐ仔猫"></div>
+  <div>
+   <span class="eyebrow">うちの子の管理</span>
+   <h2 style="border:none;padding:0">体重を記録して、<br>変化に早く気づく。</h2>
+   <p class="lead">猫の体重を記録するとグラフで増減の傾向が見えます。増え気味なら、そのまま
+   カロリー密度の低いフード探しへ。記録は端末内に保存（ログイン同期は近日）。</p>
+   <div class="btn-row"><a class="btn btn-primary" href="record.html">体重を記録する →</a></div>
   </div>
  </div>
 </div></section>
@@ -577,6 +612,106 @@ def build_find(products: list[dict]) -> str:
 """ + f"<script>{js}</script>"
 
 
+RECORD_JS = r"""
+const KEY='nekogohan_weight_v1';
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||{cats:[],active:null};}catch(e){return {cats:[],active:null};}}
+function save(s){localStorage.setItem(KEY,JSON.stringify(s));}
+function uid(){return 'c'+Math.random().toString(36).slice(2,8);}
+function cat(s){return s.cats.find(c=>c.id===s.active)||null;}
+function today(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+
+function addCat(){var n=document.getElementById('catname').value.trim();if(!n)return;
+ var s=load();var id=uid();s.cats.push({id:id,name:n,target:'',entries:[]});s.active=id;save(s);document.getElementById('catname').value='';render();}
+function selCat(){var s=load();s.active=document.getElementById('catsel').value;save(s);render();}
+function setTarget(){var s=load();var c=cat(s);if(!c)return;c.target=document.getElementById('target').value;save(s);render();}
+function addEntry(){var s=load();var c=cat(s);if(!c){alert('先に猫を登録してください');return;}
+ var d=document.getElementById('edate').value||today();var kg=parseFloat(document.getElementById('ekg').value);
+ if(!(kg>0)){alert('体重(kg)を入力してください');return;}
+ c.entries=c.entries.filter(e=>e.date!==d);c.entries.push({date:d,kg:kg});
+ c.entries.sort((a,b)=>a.date<b.date?-1:1);save(s);document.getElementById('ekg').value='';render();}
+function delEntry(d){var s=load();var c=cat(s);if(!c)return;c.entries=c.entries.filter(e=>e.date!==d);save(s);render();}
+
+function chartSVG(entries,target){
+ if(!entries.length)return '<p class="na">まだ記録がありません。右上で体重を追加してください。</p>';
+ var W=640,H=240,P=38;
+ var xs=entries.map(e=>new Date(e.date).getTime());
+ var ys=entries.map(e=>e.kg); if(target>0)ys=ys.concat([target]);
+ var minx=Math.min.apply(null,xs),maxx=Math.max.apply(null,xs);
+ var miny=Math.min.apply(null,ys),maxy=Math.max.apply(null,ys);
+ var pad=(maxy-miny)||0.4; miny-=pad*0.2; maxy+=pad*0.2;
+ function X(t){return maxx===minx?W/2:P+(W-2*P)*(t-minx)/(maxx-minx);}
+ function Y(v){return H-P-(H-2*P)*(v-miny)/(maxy-miny);}
+ var pts=entries.map(e=>X(new Date(e.date).getTime()).toFixed(1)+','+Y(e.kg).toFixed(1)).join(' ');
+ var dots=entries.map(e=>'<circle class="dot" cx="'+X(new Date(e.date).getTime()).toFixed(1)+'" cy="'+Y(e.kg).toFixed(1)+'" r="4"/>').join('');
+ var tgt=target>0?'<line class="tgt" x1="'+P+'" y1="'+Y(target).toFixed(1)+'" x2="'+(W-P)+'" y2="'+Y(target).toFixed(1)+'"/><text class="axt" x="'+(W-P)+'" y="'+(Y(target)-5).toFixed(1)+'" text-anchor="end">目標 '+target+'kg</text>':'';
+ var line=entries.length>1?'<polyline class="ln" points="'+pts+'"/>':'';
+ return '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="体重の推移">'+
+  '<line class="ax" x1="'+P+'" y1="'+(H-P)+'" x2="'+(W-P)+'" y2="'+(H-P)+'"/>'+
+  '<text class="axt" x="'+P+'" y="'+(H-P+16)+'">'+entries[0].date+'</text>'+
+  '<text class="axt" x="'+(W-P)+'" y="'+(H-P+16)+'" text-anchor="end">'+entries[entries.length-1].date+'</text>'+
+  '<text class="axt" x="6" y="'+(P)+'">'+maxy.toFixed(1)+'kg</text>'+
+  '<text class="axt" x="6" y="'+(H-P)+'">'+miny.toFixed(1)+'kg</text>'+
+  tgt+line+dots+'</svg>';
+}
+function trendText(entries){
+ if(entries.length<2)return '記録が2件以上たまると増減の傾向を表示します。';
+ var a=entries[entries.length-2].kg,b=entries[entries.length-1].kg,diff=(b-a);
+ var cls=diff>0.05?'up':(diff<-0.05?'down':'flat');
+ var word=diff>0.05?'増加':(diff<-0.05?'減少':'横ばい');
+ var sign=diff>0?'+':'';
+ return '前回比 <span class="'+cls+'">'+sign+diff.toFixed(2)+'kg（'+word+'）</span>　最新 '+b+'kg / '+entries.length+'件';
+}
+function render(){
+ var s=load(),c=cat(s);
+ var sel=document.getElementById('catsel');
+ sel.innerHTML=s.cats.map(x=>'<option value="'+x.id+'"'+(x.id===s.active?' selected':'')+'>'+x.name+'</option>').join('')||'<option>（未登録）</option>';
+ document.getElementById('target').value=c?c.target:'';
+ document.getElementById('edate').value=today();
+ var entries=c?c.entries:[];
+ document.getElementById('chart').innerHTML=chartSVG(entries,c&&parseFloat(c.target)||0);
+ document.getElementById('trend').innerHTML=c?trendText(entries):'まず猫を登録してください。';
+ document.getElementById('elist').innerHTML=entries.length?
+  ('<tr><th>日付</th><th>体重</th><th></th></tr>'+entries.slice().reverse().map(e=>
+   '<tr><td>'+e.date+'</td><td>'+e.kg+' kg</td><td><button class="del" onclick="delEntry(\''+e.date+'\')">削除</button></td></tr>').join('')):'';
+}
+window.addEventListener('DOMContentLoaded',render);
+"""
+
+
+def build_record() -> str:
+    return ("""
+""" + pagehead("うちの子の管理 / この端末に保存", "体重記録") + """
+<p class="lead">猫の体重を記録して、増減の傾向をグラフで確認できます。体重が増え気味なら
+<a href="weight.html">体重管理ビュー</a>でカロリー密度の低いフードを探せます。<b>適正体重・増減の評価は獣医師にご相談ください</b>（当サイトは診断を行いません）。</p>
+<div class="tracker">
+ <div class="panel">
+  <div class="field"><label>猫を選ぶ / 追加</label>
+   <select id="catsel" onchange="selCat()"></select></div>
+  <div class="row2">
+   <div class="field" style="flex:2"><input id="catname" placeholder="新しい猫の名前"></div>
+   <div class="field"><button class="btn btn-ghost" style="width:100%;padding:9px" onclick="addCat()">＋追加</button></div>
+  </div>
+  <div class="field"><label>目標体重（任意・kg）</label>
+   <input id="target" type="number" step="0.1" placeholder="例 4.2" onchange="setTarget()"></div>
+  <hr style="border:none;border-top:1px solid var(--line);margin:14px 0">
+  <div class="field"><label>体重を記録</label>
+   <div class="row2">
+    <input id="edate" type="date">
+    <input id="ekg" type="number" step="0.01" placeholder="kg">
+   </div></div>
+  <button class="btn btn-primary" style="width:100%" onclick="addEntry()">この日の体重を記録</button>
+  <p class="savednote">🔒 記録はこの端末のブラウザ内にだけ保存されます（外部送信なし）。<br>
+  端末をまたいだ同期・ログインは近日対応予定です。</p>
+ </div>
+ <div class="panel">
+  <div class="chartwrap" id="chart"></div>
+  <p class="trend" id="trend"></p>
+  <table class="elist" id="elist"></table>
+ </div>
+</div>
+""" + "<script>" + RECORD_JS + "</script>")
+
+
 def build_about() -> str:
     return (pagehead("方法と原則", "この調べ方") + _ABOUT_BODY).replace("__CREDITS__", _credits_html())
 
@@ -630,6 +765,8 @@ def main() -> None:
                        "キャットフードを広告やランキングではなく公式の保証成分・出典・乾物量換算のファクトで比較。目的から透明な条件で選べる。"),
         "find.html": ("find", "目的から選ぶ", build_find(products),
                       "「体重管理・高たんぱく・水分・穀物を避けたい・腎臓・尿路」など目的から、見る指標と条件を明示して合う商品を実値つきで表示。"),
+        "record.html": ("record", "体重記録", build_record(),
+                        "猫の体重を記録して増減の傾向をグラフで確認。記録は端末内に保存。体重管理フードへ連動。非診断。"),
         "weight.html": ("weight", "体重管理ビュー", build_weight(products),
                         "キャットフードをカロリー密度(kcal/100g)で並べ替えられる出典付き一覧。おすすめ・順位は出しません。"),
         "kidney.html": ("kidney", "腎臓相談シート", build_kidney(products),

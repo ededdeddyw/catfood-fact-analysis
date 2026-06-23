@@ -1,0 +1,118 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>体重記録｜ねこごはんファクト</title>
+<meta name="description" content="猫の体重を記録して増減の傾向をグラフで確認。記録は端末内に保存。体重管理フードへ連動。非診断。">
+<link rel="canonical" href="https://ededdeddyw.github.io/catfood-fact-analysis/record.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%BE%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ねこごはんファクト">
+<meta property="og:title" content="体重記録｜ねこごはんファクト">
+<meta property="og:description" content="猫の体重を記録して増減の傾向をグラフで確認。記録は端末内に保存。体重管理フードへ連動。非診断。">
+<meta property="og:url" content="https://ededdeddyw.github.io/catfood-fact-analysis/record.html">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="style.css"></head><body>
+<header class="site"><div class="wrap">
+ <a class="brand" href="index.html"><svg viewBox="0 0 48 48" aria-hidden="true"><g fill="#8a5a3c"><path d="M14 14 L11 3 L24 12 Z"/><path d="M34 14 L37 3 L24 12 Z"/><circle cx="24" cy="27" r="16"/></g><circle cx="18" cy="25" r="2.4" fill="#fffaf3"/><circle cx="30" cy="25" r="2.4" fill="#fffaf3"/><path d="M21 31 l3 3 l3 -3 z" fill="#d98c7a"/></svg>ねこごはんファクト</a>
+ <nav class="main"><a class="" href="index.html">ホーム</a><a class="" href="find.html">目的から選ぶ</a><a class="active" href="record.html">体重記録</a><a class="" href="weight.html">体重管理</a><a class="" href="kidney.html">腎臓相談シート</a><a class="" href="coverage.html">網羅性</a><a class="" href="about.html">この調べ方</a></nav>
+</div></header>
+<main class="wrap">
+<div class="pagehead"><span class="eyebrow">うちの子の管理 / この端末に保存</span><h1>体重記録</h1></div>
+<p class="lead">猫の体重を記録して、増減の傾向をグラフで確認できます。体重が増え気味なら
+<a href="weight.html">体重管理ビュー</a>でカロリー密度の低いフードを探せます。<b>適正体重・増減の評価は獣医師にご相談ください</b>（当サイトは診断を行いません）。</p>
+<div class="tracker">
+ <div class="panel">
+  <div class="field"><label>猫を選ぶ / 追加</label>
+   <select id="catsel" onchange="selCat()"></select></div>
+  <div class="row2">
+   <div class="field" style="flex:2"><input id="catname" placeholder="新しい猫の名前"></div>
+   <div class="field"><button class="btn btn-ghost" style="width:100%;padding:9px" onclick="addCat()">＋追加</button></div>
+  </div>
+  <div class="field"><label>目標体重（任意・kg）</label>
+   <input id="target" type="number" step="0.1" placeholder="例 4.2" onchange="setTarget()"></div>
+  <hr style="border:none;border-top:1px solid var(--line);margin:14px 0">
+  <div class="field"><label>体重を記録</label>
+   <div class="row2">
+    <input id="edate" type="date">
+    <input id="ekg" type="number" step="0.01" placeholder="kg">
+   </div></div>
+  <button class="btn btn-primary" style="width:100%" onclick="addEntry()">この日の体重を記録</button>
+  <p class="savednote">🔒 記録はこの端末のブラウザ内にだけ保存されます（外部送信なし）。<br>
+  端末をまたいだ同期・ログインは近日対応予定です。</p>
+ </div>
+ <div class="panel">
+  <div class="chartwrap" id="chart"></div>
+  <p class="trend" id="trend"></p>
+  <table class="elist" id="elist"></table>
+ </div>
+</div>
+<script>
+const KEY='nekogohan_weight_v1';
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||{cats:[],active:null};}catch(e){return {cats:[],active:null};}}
+function save(s){localStorage.setItem(KEY,JSON.stringify(s));}
+function uid(){return 'c'+Math.random().toString(36).slice(2,8);}
+function cat(s){return s.cats.find(c=>c.id===s.active)||null;}
+function today(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+
+function addCat(){var n=document.getElementById('catname').value.trim();if(!n)return;
+ var s=load();var id=uid();s.cats.push({id:id,name:n,target:'',entries:[]});s.active=id;save(s);document.getElementById('catname').value='';render();}
+function selCat(){var s=load();s.active=document.getElementById('catsel').value;save(s);render();}
+function setTarget(){var s=load();var c=cat(s);if(!c)return;c.target=document.getElementById('target').value;save(s);render();}
+function addEntry(){var s=load();var c=cat(s);if(!c){alert('先に猫を登録してください');return;}
+ var d=document.getElementById('edate').value||today();var kg=parseFloat(document.getElementById('ekg').value);
+ if(!(kg>0)){alert('体重(kg)を入力してください');return;}
+ c.entries=c.entries.filter(e=>e.date!==d);c.entries.push({date:d,kg:kg});
+ c.entries.sort((a,b)=>a.date<b.date?-1:1);save(s);document.getElementById('ekg').value='';render();}
+function delEntry(d){var s=load();var c=cat(s);if(!c)return;c.entries=c.entries.filter(e=>e.date!==d);save(s);render();}
+
+function chartSVG(entries,target){
+ if(!entries.length)return '<p class="na">まだ記録がありません。右上で体重を追加してください。</p>';
+ var W=640,H=240,P=38;
+ var xs=entries.map(e=>new Date(e.date).getTime());
+ var ys=entries.map(e=>e.kg); if(target>0)ys=ys.concat([target]);
+ var minx=Math.min.apply(null,xs),maxx=Math.max.apply(null,xs);
+ var miny=Math.min.apply(null,ys),maxy=Math.max.apply(null,ys);
+ var pad=(maxy-miny)||0.4; miny-=pad*0.2; maxy+=pad*0.2;
+ function X(t){return maxx===minx?W/2:P+(W-2*P)*(t-minx)/(maxx-minx);}
+ function Y(v){return H-P-(H-2*P)*(v-miny)/(maxy-miny);}
+ var pts=entries.map(e=>X(new Date(e.date).getTime()).toFixed(1)+','+Y(e.kg).toFixed(1)).join(' ');
+ var dots=entries.map(e=>'<circle class="dot" cx="'+X(new Date(e.date).getTime()).toFixed(1)+'" cy="'+Y(e.kg).toFixed(1)+'" r="4"/>').join('');
+ var tgt=target>0?'<line class="tgt" x1="'+P+'" y1="'+Y(target).toFixed(1)+'" x2="'+(W-P)+'" y2="'+Y(target).toFixed(1)+'"/><text class="axt" x="'+(W-P)+'" y="'+(Y(target)-5).toFixed(1)+'" text-anchor="end">目標 '+target+'kg</text>':'';
+ var line=entries.length>1?'<polyline class="ln" points="'+pts+'"/>':'';
+ return '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="体重の推移">'+
+  '<line class="ax" x1="'+P+'" y1="'+(H-P)+'" x2="'+(W-P)+'" y2="'+(H-P)+'"/>'+
+  '<text class="axt" x="'+P+'" y="'+(H-P+16)+'">'+entries[0].date+'</text>'+
+  '<text class="axt" x="'+(W-P)+'" y="'+(H-P+16)+'" text-anchor="end">'+entries[entries.length-1].date+'</text>'+
+  '<text class="axt" x="6" y="'+(P)+'">'+maxy.toFixed(1)+'kg</text>'+
+  '<text class="axt" x="6" y="'+(H-P)+'">'+miny.toFixed(1)+'kg</text>'+
+  tgt+line+dots+'</svg>';
+}
+function trendText(entries){
+ if(entries.length<2)return '記録が2件以上たまると増減の傾向を表示します。';
+ var a=entries[entries.length-2].kg,b=entries[entries.length-1].kg,diff=(b-a);
+ var cls=diff>0.05?'up':(diff<-0.05?'down':'flat');
+ var word=diff>0.05?'増加':(diff<-0.05?'減少':'横ばい');
+ var sign=diff>0?'+':'';
+ return '前回比 <span class="'+cls+'">'+sign+diff.toFixed(2)+'kg（'+word+'）</span>　最新 '+b+'kg / '+entries.length+'件';
+}
+function render(){
+ var s=load(),c=cat(s);
+ var sel=document.getElementById('catsel');
+ sel.innerHTML=s.cats.map(x=>'<option value="'+x.id+'"'+(x.id===s.active?' selected':'')+'>'+x.name+'</option>').join('')||'<option>（未登録）</option>';
+ document.getElementById('target').value=c?c.target:'';
+ document.getElementById('edate').value=today();
+ var entries=c?c.entries:[];
+ document.getElementById('chart').innerHTML=chartSVG(entries,c&&parseFloat(c.target)||0);
+ document.getElementById('trend').innerHTML=c?trendText(entries):'まず猫を登録してください。';
+ document.getElementById('elist').innerHTML=entries.length?
+  ('<tr><th>日付</th><th>体重</th><th></th></tr>'+entries.slice().reverse().map(e=>
+   '<tr><td>'+e.date+'</td><td>'+e.kg+' kg</td><td><button class="del" onclick="delEntry(\''+e.date+'\')">削除</button></td></tr>').join('')):'';
+}
+window.addEventListener('DOMContentLoaded',render);
+</script></main>
+<footer class="site"><div class="wrap">
+ <svg class="fcat" viewBox="0 0 120 130" aria-hidden="true"><g class="catsil"><path d="M60 56 C42 56 33 80 33 100 C33 118 47 123 60 123 C73 123 87 118 87 100 C87 80 78 56 60 56Z"/><path d="M86 112 C110 110 110 78 92 72 C103 83 95 102 82 103Z"/><circle cx="60" cy="42" r="22"/><path d="M45 28 L41 6 L60 23 Z"/><path d="M75 28 L79 6 L60 23 Z"/></g></svg>
+ <div>当サイトは総合順位・おすすめ度を付けません。目的ごとに見る指標と条件を明示し、公式表示を転記・乾物量換算した
+ 出典付きファクトと実値で示します。購入リンクから手数料を得る場合がありますが、掲載順・内容には一切影響しません。<br>
+ ※医療上の判断は必ずかかりつけの獣医師にご相談ください。本サイトは診断・治療の助言を行いません。
+ <br>最終更新 2026-06-23</div>
+</div></footer></body></html>
