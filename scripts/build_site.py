@@ -348,7 +348,7 @@ def build_index(cov: dict) -> str:
 <section class="bighero"><div class="wrap">
  <div class="htxt">
   <span class="eyebrow">出典つきファクト・非診断</span>
-  <h1>「こうしたい」から、<br>成分で選ぶ。</h1>
+  <h1>『あなたが大切』だから、<br>成分で選ぶ。</h1>
   <p class="sub">おすすめ度や総合順位という曖昧な点数は付けません。目的ごとに<b>見る指標と条件を明示</b>し、
   合う商品を<b>実際の数値つき</b>で。「なぜ合うか」が数字で見える——それがランキングサイトとの違いです。</p>
   <div class="btn-row">
