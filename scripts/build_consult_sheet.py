@@ -27,6 +27,7 @@ PROTO = ROOT / "prototype" / "consult"
 SHEET_COLS = ["maker", "product_name", "url", "form", "moisture_pct",
               "protein_asfed", "protein_dm", "fat_dm",
               "phosphorus_asfed", "phosphorus_dm",
+              "fiber_dm", "ash_dm", "nfe_dm",
               "fiber_pct", "ash_pct", "magnesium_pct", "magnesium_disclosed",
               "calorie_density_100g", "calorie_basis",
               "grain_free", "ingredients",
@@ -111,6 +112,15 @@ def build_rows() -> list[dict]:
         ash = num(r.get("crude_ash_value")) if is_pct(r.get("crude_ash_value")) else None
         mg = num(r.get("magnesium_value")) if is_pct(r.get("magnesium_value")) else None
         ingredients = r.get("ingredients_snippet", "")
+        # 乾物量換算（DM）と炭水化物(NFE=差分)。レーダー表示用。
+        pdm = dm(prot, moisture) if prot is not None else None
+        fdm = dm(fat, moisture) if fat is not None else None
+        fbdm = dm(fiber, moisture) if fiber is not None else None
+        adm = dm(ash, moisture) if ash is not None else None
+        nfe = None
+        if None not in (pdm, fdm, fbdm, adm):
+            rest = round(100 - (pdm + fdm + fbdm + adm), 1)
+            nfe = rest if rest >= 0 else 0.0
         out.append({
             "maker": r.get("maker", ""),
             "product_name": clean_name(r.get("product_name", "")),
@@ -118,10 +128,13 @@ def build_rows() -> list[dict]:
             "form": form_of(moisture),
             "moisture_pct": moisture if moisture is not None else "",
             "protein_asfed": prot if prot is not None else "",
-            "protein_dm": dm(prot, moisture) if prot is not None else "",
-            "fat_dm": dm(fat, moisture) if fat is not None else "",
+            "protein_dm": pdm if pdm is not None else "",
+            "fat_dm": fdm if fdm is not None else "",
             "phosphorus_asfed": r.get("phosphorus_value", ""),
             "phosphorus_dm": dm(phos, moisture) if phos is not None else "",
+            "fiber_dm": fbdm if fbdm is not None else "",
+            "ash_dm": adm if adm is not None else "",
+            "nfe_dm": nfe if nfe is not None else "",
             "fiber_pct": fiber if fiber is not None else "",
             "ash_pct": ash if ash is not None else "",
             "magnesium_pct": mg if mg is not None else "",

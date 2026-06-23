@@ -222,6 +222,17 @@ footer.site .fcat{width:40px;flex:none;opacity:.8}
 .elist td,.elist th{border-bottom:1px solid #efe7d8;padding:6px 8px;text-align:left}
 .elist .del{color:#a8421f;cursor:pointer;border:none;background:none;font-size:13px}
 .savednote{font-size:12px;color:#a3917c;margin-top:8px}
+
+/* ===== 成分レーダー（5角形）一覧 ===== */
+.fbar{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:12px 0}
+.fbtn{border:1px solid var(--line);background:#fffaf3;border-radius:999px;padding:5px 14px;cursor:pointer;font-size:13px;color:#6b4324}
+.fbtn.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.shapegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(212px,1fr));gap:16px;margin-top:12px}
+.shapecard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;text-align:center;box-shadow:0 2px 10px rgba(94,59,34,.05)}
+.shapecard .rname{font-size:13px;font-weight:700;line-height:1.4;min-height:54px;display:flex;flex-direction:column;justify-content:center}
+.radar{width:168px;height:168px;margin:2px auto;display:block}
+.rnums{font-size:11.5px;color:#6b5a48;margin:8px 0 6px;font-variant-numeric:tabular-nums}
+.rsrc{font-size:11px}.rsrc .buy a{margin-left:2px}
 """
 
 TABLE_JS = """
@@ -318,7 +329,7 @@ def coverage() -> dict:
 def page(active: str, title: str, body: str, desc: str = "", path: str = "index.html",
          wrap: bool = True) -> str:
     nav = [("index", "ホーム", "index.html"), ("find", "目的から選ぶ", "find.html"),
-           ("record", "体重記録", "record.html"),
+           ("shape", "成分のかたち", "shape.html"), ("record", "体重記録", "record.html"),
            ("weight", "体重管理", "weight.html"), ("kidney", "腎臓相談シート", "kidney.html"),
            ("coverage", "網羅性", "coverage.html"), ("about", "この調べ方", "about.html")]
     navhtml = "".join(
@@ -772,6 +783,64 @@ def build_record() -> str:
 """ + '<script type="module">' + js + "</script>")
 
 
+SHAPE_JS = r"""
+const DATA=__DATA__;
+const AX=['たんぱく質','脂肪','繊維','灰分','炭水化物'], MAX=[70,45,15,15,50], N=5;
+let filt='all';
+function buy(r){var q=encodeURIComponent(((r.maker||'')+' '+(r.name||'')).trim());
+ return [['楽天','https://search.rakuten.co.jp/search/mall/'+q+'/'],['Amazon','https://www.amazon.co.jp/s?k='+q]]
+  .map(c=>'<a href="'+c[1]+'" target="_blank" rel="noopener nofollow">'+c[0]+'</a>').join('');}
+function radar(v){
+ var S=168,c=S/2,R=58,P=Math.PI/180,g='',ax='',lb='',vp=[];
+ [0.5,1].forEach(function(f){var p=[];for(var i=0;i<N;i++){var a=(-90+i*72)*P;p.push((c+R*f*Math.cos(a)).toFixed(1)+','+(c+R*f*Math.sin(a)).toFixed(1));}g+='<polygon points="'+p.join(' ')+'" fill="none" stroke="var(--line)"/>';});
+ for(var i=0;i<N;i++){var a=(-90+i*72)*P,ex=c+R*Math.cos(a),ey=c+R*Math.sin(a);
+  ax+='<line x1="'+c+'" y1="'+c+'" x2="'+ex.toFixed(1)+'" y2="'+ey.toFixed(1)+'" stroke="var(--line)"/>';
+  var lx=c+(R+13)*Math.cos(a),ly=c+(R+13)*Math.sin(a);
+  lb+='<text x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'" font-size="9" fill="#8a7866" text-anchor="middle" dominant-baseline="middle">'+AX[i]+'</text>';
+  var rr=R*Math.min(v[i]/MAX[i],1);vp.push((c+rr*Math.cos(a)).toFixed(1)+','+(c+rr*Math.sin(a)).toFixed(1));}
+ return '<svg viewBox="0 0 '+S+' '+S+'" class="radar" role="img"><g>'+g+ax+
+  '<polygon points="'+vp.join(' ')+'" fill="var(--accent)" fill-opacity="0.22" stroke="var(--accent)" stroke-width="2"/>'+lb+'</g></svg>';}
+function render(){
+ var rows=DATA.filter(r=>filt==='all'||r.form===filt);
+ var lab=['P','脂','繊','灰','炭'];
+ document.getElementById('grid').innerHTML=rows.map(function(r){
+  var nums=r.v.map((x,i)=>lab[i]+' '+x+'%').join(' ・ ');
+  return '<div class="shapecard"><div class="rname">'+(r.name||'(無題)')+'<span class="mk">'+r.maker+'・'+r.form+'</span></div>'+
+   radar(r.v)+'<div class="rnums">'+nums+'</div>'+
+   '<div class="rsrc"><a href="'+r.url+'" target="_blank" rel="noopener">公式</a> <span class="na">'+r.fetched_at+'</span> <span class="buy">'+buy(r)+'</span></div></div>';
+ }).join('');
+ document.getElementById('scount').textContent=rows.length;}
+window.setFilt=function(f){filt=f;document.querySelectorAll('.fbtn').forEach(b=>b.classList.toggle('on',b.dataset.f===f));render();};
+render();
+"""
+
+
+def build_shape(products: list[dict]) -> str:
+    keys = ["protein_dm", "fat_dm", "fiber_dm", "ash_dm", "nfe_dm"]
+    items = []
+    for r in products:
+        if all(r.get(k) not in (None, "") for k in keys):
+            items.append({"name": r.get("product_name", ""), "maker": r.get("maker", ""),
+                          "url": r.get("url", ""), "fetched_at": r.get("fetched_at", ""),
+                          "form": r.get("form", ""),
+                          "v": [round(float(r[k]), 1) for k in keys]})
+    js = SHAPE_JS.replace("__DATA__", json.dumps(items, ensure_ascii=False))
+    body = pagehead("成分のかたち / 乾物量換算", "栄養成分を5角形で見る") + """
+<p class="lead">各フードの主要成分（たんぱく質・脂肪・繊維・灰分・炭水化物）を<b>乾物量換算</b>で5角形にしました。
+ウェットとドライを公平に比べられます。<b>これは"成分の構成（かたち）"の可視化で、良し悪しの点数ではありません</b>。
+炭水化物は差分（100−他4つ）で算出。5成分すべてが公式開示されている商品のみ表示しています。</p>
+<div class="disclaimer">各軸の最大目盛り＝たんぱく質70 / 脂肪45 / 繊維15 / 灰分15 / 炭水化物50（％・乾物量）。
+数値の解釈・適否は獣医師にご相談ください。</div>
+<div class="fbar">表示 <b id="scount">0</b> 商品：
+ <button class="fbtn on" data-f="all" onclick="setFilt('all')">すべて</button>
+ <button class="fbtn" data-f="ドライ" onclick="setFilt('ドライ')">ドライ</button>
+ <button class="fbtn" data-f="ウェット" onclick="setFilt('ウェット')">ウェット</button>
+</div>
+<div id="grid" class="shapegrid"></div>
+""" + '<script>' + js + '</script>'
+    return body
+
+
 def build_about() -> str:
     return (pagehead("方法と原則", "この調べ方") + _ABOUT_BODY).replace("__CREDITS__", _credits_html())
 
@@ -825,6 +894,8 @@ def main() -> None:
                        "キャットフードを広告やランキングではなく公式の保証成分・出典・乾物量換算のファクトで比較。目的から透明な条件で選べる。"),
         "find.html": ("find", "目的から選ぶ", build_find(products),
                       "「体重管理・高たんぱく・水分・穀物を避けたい・腎臓・尿路」など目的から、見る指標と条件を明示して合う商品を実値つきで表示。"),
+        "shape.html": ("shape", "成分のかたち", build_shape(products),
+                       "各キャットフードの主要成分(たんぱく質・脂肪・繊維・灰分・炭水化物)を乾物量換算の5角形レーダーで一覧。点数ではなく成分の構成。"),
         "record.html": ("record", "体重記録", build_record(),
                         "猫の体重を記録して増減の傾向をグラフで確認。記録は端末内に保存。体重管理フードへ連動。非診断。"),
         "weight.html": ("weight", "体重管理ビュー", build_weight(products),
