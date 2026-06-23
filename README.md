@@ -92,8 +92,14 @@ python -m venv .venv
 - → **縮小版＝リン開示メーカーに絞れば腎臓シート成立**（母体268ページ）。体重管理はカロリー94%・原材料98%で盤石
 - ⚠️ 6/20の「リン8%→見送り」はtail偏重の誤り。経緯と詳細は [docs/04](docs/04_acquisition_audit_results.md) 冒頭の追記
 
-**MVPプロトタイプ（実データ・ブラウザで開ける／公開UIではなく内部DBビュー）**
-- [prototype/consult/index.html](prototype/consult/index.html)：猫465商品の比較メモ。乾物量換算・4状態・**ランキング無し**・出典付き・リン開示フィルタ（腎臓ビュー）。設計は [docs/06](docs/06_mvp_design.md)
+**公開フロント（実プロダクトUI・実データから静的生成）**
+- [site/index.html](site/index.html)：多ページ公開サイト（`scripts/build_site.py`）。
+  ホーム＋**体重管理ビュー**＋**腎臓相談シート**（乾物量換算・印刷/PDF・リン開示フィルタ）＋
+  **網羅性ページ**（母集団79社／確定・取得・未取得・対象外を正直に開示＝②③）＋**この調べ方**（4状態・乾物量換算・アフィリ遮断）
+- 評価せず・順位を付けず・出典付き・非診断。設計は [docs/06](docs/06_mvp_design.md)
+
+**内部DBビュー（点検用・公開UIとは分離）**
+- [prototype/consult/index.html](prototype/consult/index.html)：猫465商品の生比較テーブル（`scripts/build_consult_sheet.py`）
 
 **次の一手**
 1. ~~データ0の32社＋ヒルズをPlaywright対応~~ → **検証の結果、汎用Playwright BFSでは不可と判明**（ヒルズ＝ドッグ一覧へ迷走、カラーズ＝SPAで詳細に到達せず）。JS-SPA社は**1社ずつのper-siteアダプタ or EC(楽天)フォールバック**が必要で費用対効果が低いため**保留**。リン開示の主力大手は取得済みなので事業判断には不要

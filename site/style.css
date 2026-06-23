@@ -1,0 +1,35 @@
+
+*{box-sizing:border-box}
+body{font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+ margin:0;color:#1f2937;background:#f7f7f5;line-height:1.65}
+a{color:#1565c0}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px}
+header.site{background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:5}
+header.site .wrap{display:flex;align-items:center;gap:18px;height:56px}
+.brand{font-weight:800;font-size:17px;color:#b1442f;text-decoration:none;white-space:nowrap}
+nav.main{display:flex;gap:14px;flex-wrap:wrap;font-size:14px}
+nav.main a{color:#374151;text-decoration:none;padding:4px 2px;border-bottom:2px solid transparent}
+nav.main a.active{color:#b1442f;border-bottom-color:#b1442f;font-weight:700}
+h1{font-size:26px;margin:24px 0 6px}
+h2{font-size:19px;margin:26px 0 8px;border-left:4px solid #b1442f;padding-left:10px}
+.lead{font-size:15px;color:#4b5563;margin:0 0 8px}
+.tag{display:inline-block;background:#eef2ff;color:#3730a3;border-radius:999px;padding:2px 10px;font-size:12px;margin:2px 6px 2px 0}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:16px 18px;margin:14px 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.disclaimer{background:#fff8e1;border:1px solid #ffe082;border-radius:8px;padding:12px 14px;font-size:13.5px;margin:14px 0}
+.controls{margin:12px 0;font-size:14px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.controls button{border:1px solid #cfd8dc;background:#fff;border-radius:6px;padding:5px 10px;cursor:pointer}
+table{border-collapse:collapse;width:100%;background:#fff;font-size:13.5px;border:1px solid #e5e7eb}
+th,td{border-bottom:1px solid #eef0f2;padding:7px 9px;text-align:left;vertical-align:top}
+th{background:#fafafa;cursor:pointer;white-space:nowrap;position:sticky;top:56px}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+.na{color:#9aa0a6;font-size:12px}
+.ther{color:#b71c1c;font-weight:700;font-size:12px}
+.buy a{display:inline-block;margin:0 3px 2px 0;padding:1px 6px;border:1px solid #cfd8dc;border-radius:4px;
+ color:#37474f;text-decoration:none;font-size:11px}
+.mk{color:#9aa0a6;font-size:11.5px}
+footer.site{margin-top:40px;background:#fff;border-top:1px solid #e5e7eb;font-size:12.5px;color:#6b7280}
+footer.site .wrap{padding:18px}
+.big{font-size:30px;font-weight:800;color:#b1442f}
+@media print{header.site,nav.main,.controls,.buy,footer.site nav,.noprint{display:none}
+ body{background:#fff} th{position:static} .disclaimer{border:1px solid #999;background:#fff}}
