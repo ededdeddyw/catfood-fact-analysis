@@ -565,6 +565,12 @@ def build_index(cov: dict) -> str:
   <div class="card"><h2 style="margin-top:4px">成分のかたち</h2>
    <p class="lead">主要成分を乾物量の5角形レーダーで一覧。点数ではなく構成を見る。</p>
    <a class="btn btn-ghost" href="shape.html">成分のかたち →</a></div>
+  <div class="card"><h2 style="margin-top:4px">2〜3商品を重ねて比較</h2>
+   <p class="lead">気になるフードを選んで5角形を重ね、主要な値を並べて見る。順位は付けない。</p>
+   <a class="btn btn-ghost" href="compare.html">重ねて比較 →</a></div>
+  <div class="card"><h2 style="margin-top:4px">メーカーから探す</h2>
+   <p class="lead">公式サイトを確定し成分を取得できた{len(cov['with_data'])}社を、社ごとに一覧。</p>
+   <a class="btn btn-ghost" href="makers.html">メーカー一覧 →</a></div>
   <div class="card"><h2 style="margin-top:4px">成分ツール（袋の数値）</h2>
    <p class="lead">手元のフードの数値を入れると、乾物量の形＋成分が近い商品が分かる。</p>
    <a class="btn btn-ghost" href="calc.html">成分ツール →</a></div>
