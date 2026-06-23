@@ -332,6 +332,7 @@ def page(active: str, title: str, body: str, desc: str = "", path: str = "index.
            ("shape", "成分のかたち", "shape.html"), ("calc", "成分ツール", "calc.html"),
            ("record", "体重記録", "record.html"),
            ("weight", "体重管理", "weight.html"), ("kidney", "腎臓シート", "kidney.html"),
+           ("blog", "読みもの", "blog.html"),
            ("coverage", "網羅性", "coverage.html"), ("about", "この調べ方", "about.html")]
     navhtml = "".join(
         f'<a class="{"active" if active==k else ""}" href="{href}">{label}</a>'
@@ -917,6 +918,158 @@ DBに無いフードでも使えます。<b>これは成分の可視化で、良
     return body
 
 
+def _floats(products, key):
+    out = []
+    for r in products:
+        v = r.get(key, "")
+        if v not in (None, ""):
+            try:
+                out.append(float(v))
+            except ValueError:
+                pass
+    return out
+
+
+def _median(xs):
+    xs = sorted(xs)
+    n = len(xs)
+    if not n:
+        return None
+    return round(xs[n // 2] if n % 2 else (xs[n // 2 - 1] + xs[n // 2]) / 2, 1)
+
+
+def cat_stats(products) -> dict:
+    phos = _floats(products, "phosphorus_dm")
+    prot_wet = [float(r["protein_dm"]) for r in products
+                if r.get("form") == "ウェット" and r.get("protein_dm") not in (None, "")]
+    prot_dry = [float(r["protein_dm"]) for r in products
+                if r.get("form") == "ドライ" and r.get("protein_dm") not in (None, "")]
+    cal = _floats(products, "calorie_density_100g")
+    gf = sum(1 for r in products if r.get("grain_free") == "yes")
+    return {
+        "n": len(products),
+        "p_n": len(phos), "p_med": _median(phos),
+        "p_min": round(min(phos), 2) if phos else None, "p_max": round(max(phos), 2) if phos else None,
+        "prot_wet_med": _median(prot_wet), "prot_dry_med": _median(prot_dry),
+        "cal_med": _median(cal), "cal_min": round(min(cal)) if cal else None,
+        "cal_max": round(max(cal)) if cal else None,
+        "gf_n": gf,
+    }
+
+
+_ARTICLE_RELATED = """
+<h2>このサイトで試す</h2>
+<div class="cards">
+ <div class="card"><b>成分ツール</b><p class="lead">手元の袋の数値を入れて乾物量で見る・近い商品を探す。</p><a class="btn btn-ghost" href="calc.html">成分ツール →</a></div>
+ <div class="card"><b>目的から選ぶ</b><p class="lead">体重・腎臓・尿路などの観点から、条件に合う商品を実値で。</p><a class="btn btn-ghost" href="find.html">目的から選ぶ →</a></div>
+ <div class="card"><b>体重記録</b><p class="lead">うちの子の体重を記録して増減の傾向をグラフで。</p><a class="btn btn-ghost" href="record.html">体重記録 →</a></div>
+</div>
+"""
+_ARTICLE_DISCLAIMER = """
+<div class="disclaimer" style="margin-top:18px">本記事は当サイトの掲載データと公的な表示ルールをもとに編集部が整理したものです。
+<b>獣医師による監修記事ではなく、診断・治療の助言でもありません</b>。数値の解釈や与え方は症例ごとに異なります。
+気になる症状や食事の変更は、必ずかかりつけの獣医師にご相談ください。</div>
+"""
+
+
+def article(slug, title, date, desc, body_html, sources_html) -> str:
+    jsonld = json.dumps({
+        "@context": "https://schema.org", "@type": "Article", "headline": title,
+        "datePublished": date, "dateModified": today_stamp(), "description": desc,
+        "author": {"@type": "Organization", "name": SITE_NAME},
+        "publisher": {"@type": "Organization", "name": SITE_NAME},
+        "mainEntityOfPage": f"{BASE_URL}/{slug}.html",
+    }, ensure_ascii=False)
+    return (pagehead("猫の健康を、ファクトで", title)
+            + f'<p class="mk">{date}・{SITE_NAME} 編集部（獣医監修ではありません／出典つき・非診断）</p>'
+            + body_html
+            + "<h2>出典</h2>" + sources_html
+            + _ARTICLE_RELATED + _ARTICLE_DISCLAIMER
+            + f'<script type="application/ld+json">{jsonld}</script>')
+
+
+def blog_pages(products) -> dict:
+    s = cat_stats(products)
+    SRC_LABEL = ('<ul class="credits"><li>各メーカー公式サイトの保証分析値（本サイト掲載分・取得日つき）</li>'
+                 '<li>ペットフード公正取引協議会／愛玩動物用飼料の表示ルール</li>'
+                 f'<li>本記事の集計＝当サイト掲載 {s["n"]} 商品（猫・公式開示分）より</li></ul>')
+    arts = []  # (slug, title, date, desc, body)
+
+    # 1) リン（データ駆動）
+    arts.append((
+        "blog-phosphorus", "キャットフードの『リン』、実際どれくらい？掲載データで見る", "2026-06-23",
+        "腎臓の食事管理で注目されるリン。公式に開示している商品の実値を、乾物量換算で集計しました。良し悪しは判断しません。",
+        f"""
+<p class="lead">腎臓の食事管理で獣医師がよく見る数値が「リン」です。ただし<b>保証分析値にリンを公式開示している商品は多くありません</b>。
+当サイト掲載の猫用 {s['n']} 商品のうち、<b>リンを開示しているのは {s['p_n']} 商品</b>でした。</p>
+<h2>開示されている商品のリン（乾物量換算）</h2>
+<p class="lead">開示分を乾物量換算で集計すると、中央値は <b>{s['p_med']}%</b>、範囲は {s['p_min']}〜{s['p_max']}% でした。
+ウェットとドライを公平に比べるため水分を除いた基準にしています。<b>数値が低い＝良い、とは限りません</b>（現代獣医学でも議論があり、当サイトは立場を取りません）。</p>
+<p class="lead">「記載なし」は「含まれない」ではなく「メーカーが公開していない」という意味です。
+リンを開示している商品だけを並べた <a href="kidney.html">腎臓相談シート</a> を、印刷して獣医師にお見せください。</p>
+"""))
+
+    # 2) ウェット vs ドライ たんぱく質（データ駆動）
+    arts.append((
+        "blog-wet-dry-protein", "ウェットとドライ、たんぱく質はどっちが高い？乾物量で比べる", "2026-06-23",
+        "生の数字だとウェットは低く見えますが、水分を除く（乾物量換算）と印象が変わります。掲載データで比較しました。",
+        f"""
+<p class="lead">ウェット（水分80%前後）とドライ（水分10%前後）を、袋の表示そのままで比べると<b>ウェットのたんぱく質が低く見えます</b>。
+でもそれは水分が多いだけ。水分を除いた<b>乾物量換算</b>で比べるのが公平です。</p>
+<h2>掲載データでの中央値（乾物量換算）</h2>
+<p class="lead">当サイト掲載の猫用フードで、たんぱく質（乾物量）の中央値は——
+ウェット <b>{s['prot_wet_med']}%</b> / ドライ <b>{s['prot_dry_med']}%</b>。
+生表示の印象とは別物になることが分かります。</p>
+<p class="lead">手元のフードでも試せます：袋の数値を <a href="calc.html">成分ツール</a> に入れると、乾物量換算した成分の形と、成分が近い商品が見られます。
+各商品の成分の形は <a href="shape.html">成分のかたち</a> で一覧できます。</p>
+"""))
+
+    # 3) グレインフリー（データ＋方法）
+    arts.append((
+        "blog-grain-free", "『グレインフリー』のキャットフード、原材料での見分け方", "2026-06-23",
+        "グレインフリーは原材料表示で見分けます。何を探せばいいか、掲載データの傾向とあわせて整理しました。",
+        f"""
+<p class="lead">「グレインフリー」は栄養成分でなく<b>原材料</b>で決まります。原材料表示の主要部に
+米・玄米・小麦・大麦・とうもろこし（コーン）・雑穀などの<b>穀物の表記が無いか</b>を見ます。</p>
+<h2>掲載データの傾向</h2>
+<p class="lead">当サイトでは原材料表示の主要部に穀物表記が無い商品を「グレインフリー（参考）」として扱っています。
+掲載 {s['n']} 商品のうち <b>{s['gf_n']} 商品</b>が該当しました（あくまで表示に基づく参考判定です）。</p>
+<p class="lead">グレインフリー＝健康に良い、と当サイトは評価しません。穀物にも役割があり、合う合わないは個体差です。
+「穀物を避けたい」を選ぶと該当商品を実値つきで見られます： <a href="find.html">目的から選ぶ</a>。</p>
+"""))
+
+    # 4) カロリー密度 × 体重（日次健康への回遊）
+    arts.append((
+        "blog-calorie-density", "体重が気になる猫に『カロリー密度』をどう使う？", "2026-06-23",
+        "体重管理はカロリー密度（kcal/100g）が手がかり。個包装おやつの落とし穴と、記録のすすめもあわせて。",
+        f"""
+<p class="lead">体重管理の手がかりのひとつが<b>カロリー密度（kcal/100g）</b>です。同じ量でもカロリー密度が低いほど、
+総カロリーを抑えやすくなります。当サイト掲載商品では、カロリー密度の中央値は <b>{s['cal_med']} kcal/100g</b>（範囲 {s['cal_min']}〜{s['cal_max']}）でした。</p>
+<h2>注意：個包装おやつの「1個◯kcal」</h2>
+<p class="lead">ウェットやおやつでよくある「1個あたり◯kcal」は、kcal/100g とは別物です。<b>密度の比較には使えない</b>ので、
+当サイトでは「個包装のため密度比較不可」と明示しています。</p>
+<p class="lead">カロリー密度の低い順は <a href="weight.html">体重管理ビュー</a> で並べ替えられます。
+そして大事なのは<b>続けて測ること</b>。<a href="record.html">体重記録</a>で毎週の増減をグラフにすると、フード選びの効果も見えてきます。
+適正体重・給与量は獣医師にご相談ください。</p>
+"""))
+
+    pages = {}
+    # index
+    cards = "".join(
+        f'<div class="card"><span class="mk">{d}</span><h2 style="margin-top:2px">{t}</h2>'
+        f'<p class="lead">{desc}</p><a class="btn btn-ghost" href="{slug}.html">読む →</a></div>'
+        for (slug, t, d, desc, _b) in arts)
+    idx_body = (pagehead("読みもの / データで見る猫の健康", "猫の健康を、ファクトで")
+                + '<p class="lead">口コミや推測ではなく、当サイトの掲載データ（出典つき・乾物量換算）と公的な表示ルールをもとに整理した読みものです。'
+                + '評価・順位は付けません。診断もしません。</p>'
+                + f'<div class="cards">{cards}</div>')
+    pages["blog.html"] = ("blog", "読みもの", idx_body,
+                          "当サイトの掲載データ（出典つき）と公的ルールをもとに、猫の健康と栄養を整理した読みもの。非診断・評価なし。")
+    for (slug, t, d, desc, body) in arts:
+        pages[f"{slug}.html"] = ("blog", t, article(slug, t, d, desc, body, SRC_LABEL), desc)
+    return pages
+
+
 def build_about() -> str:
     return (pagehead("方法と原則", "この調べ方") + _ABOUT_BODY).replace("__CREDITS__", _credits_html())
 
@@ -988,6 +1141,7 @@ def main() -> None:
         "about.html": ("about", "この調べ方", build_about(),
                        "4状態ラベル・乾物量換算・出典必須・アフィリエイト遮断・非診断。データの作り方を公開。"),
     }
+    pages.update(blog_pages(products))  # データ駆動の読みもの（SEO・回遊）
     for fname, (active, title, body, desc) in pages.items():
         (SITE / fname).write_text(
             page(active, title, body, desc, fname, wrap=(active != "index")),
