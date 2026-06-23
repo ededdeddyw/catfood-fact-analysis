@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import csv
 import json
+from collections import Counter
 
 from catfood_common import DATA_DIR, ROOT, safe_print, today_stamp
 
@@ -86,10 +87,24 @@ header.site .wrap{display:flex;align-items:center;gap:18px;height:60px}
 .brand{font-weight:800;font-size:18px;color:var(--accent-d);text-decoration:none;white-space:nowrap;
  display:flex;align-items:center;gap:7px}
 .brand svg{width:26px;height:26px;flex:none}
-nav.main{display:flex;gap:14px;flex-wrap:wrap;font-size:14px}
-nav.main a{color:#5b4a3a;text-decoration:none;padding:4px 2px;border-bottom:2px solid transparent}
-nav.main a:hover{color:var(--accent)}
-nav.main a.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:700}
+nav.main{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;align-items:center}
+nav.main>a{color:#5b4a3a;text-decoration:none;padding:4px 2px;border-bottom:2px solid transparent}
+nav.main>a:hover{color:var(--accent)}
+nav.main>a.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:700}
+.navgrp{position:relative}
+.navgrp>summary{list-style:none;cursor:pointer;color:#5b4a3a;padding:4px 2px;white-space:nowrap;
+ border-bottom:2px solid transparent;user-select:none}
+.navgrp>summary::-webkit-details-marker{display:none}
+.navgrp>summary::after{content:"▾";font-size:10px;color:#b07a4e;margin-left:4px}
+.navgrp[open]>summary,.navgrp>summary:hover{color:var(--accent)}
+.navgrp.active>summary{color:var(--accent);border-bottom-color:var(--accent);font-weight:700}
+.navmenu{position:absolute;top:calc(100% + 6px);left:0;background:#fffaf3;border:1px solid var(--line);
+ border-radius:12px;padding:7px;min-width:172px;box-shadow:0 12px 30px rgba(94,59,34,.18);
+ z-index:40;display:flex;flex-direction:column;gap:2px}
+.navmenu a{white-space:nowrap;padding:8px 11px;border-radius:9px;color:#5b4a3a;text-decoration:none;font-size:14px}
+.navmenu a:hover{background:#f1e3d2;color:var(--accent-d)}
+.navmenu a.active{color:var(--accent-d);font-weight:700;background:#f6ead8}
+@media(max-width:560px){.navmenu{right:0;left:auto}}
 h1{font-size:27px;margin:22px 0 8px;color:var(--accent-d);letter-spacing:.01em}
 h2{font-size:19px;margin:26px 0 8px;padding-left:30px;position:relative;color:var(--accent-d)}
 h2::before{content:"";position:absolute;left:0;top:3px;width:20px;height:20px;
@@ -233,6 +248,18 @@ footer.site .fcat{width:40px;flex:none;opacity:.8}
 .radar{width:168px;height:168px;margin:2px auto;display:block}
 .rnums{font-size:11.5px;color:#6b5a48;margin:8px 0 6px;font-variant-numeric:tabular-nums}
 .rsrc{font-size:11px}.rsrc .buy a{margin-left:2px}
+
+/* ===== メーカー一覧 ===== */
+.makergrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:14px;margin-top:14px}
+.makercard{display:block;background:var(--card);border:1px solid var(--line);border-radius:16px;
+ padding:16px 18px;text-decoration:none;color:inherit;box-shadow:0 2px 10px rgba(94,59,34,.05);
+ transition:transform .08s,box-shadow .2s}
+.makercard:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(94,59,34,.12);border-color:var(--accent)}
+.makercard .mname{font-weight:700;color:var(--accent-d);font-size:15px;line-height:1.4;margin-bottom:6px}
+.makercard .mmeta{font-size:13px;color:#6b5a48;margin-bottom:9px}
+.makercard .mbadges{display:flex;gap:6px;flex-wrap:wrap}
+.makercard .mb{font-size:12px;background:#f1e3d2;color:#6b4324;border-radius:999px;padding:3px 10px}
+.makercard .mb.ther{background:#e7d6c0}
 """
 
 TABLE_JS = """
@@ -252,6 +279,7 @@ function draw(){let rows=DATA.slice();
  let h='<tr>'+COLS.map(c=>'<th onclick=\"sortBy(\\''+c.k+'\\')\">'+c.t+'</th>').join('')+'</tr>';
  let b=rows.map(r=>{return '<tr>'+COLS.map(c=>{
    if(c.type==='name')return '<td>'+(r.product_name||'(無題)')+'<br><span class=\"mk\">'+r.maker+'</span></td>';
+   if(c.type==='pname')return '<td>'+(r.product_name||'(無題)')+'</td>';
    if(c.type==='cal'){return '<td class=\"num\">'+(r.calorie_basis==='per_piece'?'<span class=\"na\">個包装・密度比較不可</span>':cell(r.calorie_density_100g))+'</td>';}
    if(c.type==='ther')return '<td>'+(r.is_therapeutic==='True'?'<span class=\"ther\">療法食</span>':'—')+'</td>';
    if(c.type==='src')return '<td><a href=\"'+r.url+'\" target=\"_blank\" rel=\"noopener\">公式</a> <span class=\"na\">'+r.fetched_at+'</span></td>';
@@ -326,17 +354,51 @@ def coverage() -> dict:
             "p_open": sum(1 for r in prods if r.get("phosphorus_disclosed") == "yes")}
 
 
+# グループ化したグローバルナビ（§8: 10項目が過密だったのを5系統に整理）。
+# ("link", key, label, href) は単独リンク / ("group", label, [(key,label,href)...]) はドロップダウン。
+NAV = [
+    ("link", "index", "ホーム", "index.html"),
+    ("group", "選ぶ", [("find", "目的から選ぶ", "find.html"),
+                       ("shape", "成分のかたち", "shape.html"),
+                       ("calc", "成分ツール", "calc.html"),
+                       ("makers", "メーカー一覧", "makers.html")]),
+    ("group", "健康・記録", [("record", "体重記録", "record.html"),
+                             ("weight", "体重管理", "weight.html"),
+                             ("kidney", "腎臓シート", "kidney.html")]),
+    ("link", "blog", "読みもの", "blog.html"),
+    ("group", "サイトについて", [("coverage", "網羅性", "coverage.html"),
+                                 ("about", "この調べ方", "about.html")]),
+]
+
+# クリックで開いた他のドロップダウンを閉じる（モバイルでも動く軽量スクリプト）
+NAV_JS = ("<script>document.querySelectorAll('nav.main details').forEach(function(d){"
+          "d.addEventListener('toggle',function(){if(d.open)document.querySelectorAll("
+          "'nav.main details').forEach(function(o){if(o!==d)o.open=false;});});});"
+          "document.addEventListener('click',function(e){if(!e.target.closest('nav.main details'))"
+          "document.querySelectorAll('nav.main details[open]').forEach(function(o){o.open=false;});});</script>")
+
+
+def nav_html(active: str) -> str:
+    parts = []
+    for item in NAV:
+        if item[0] == "link":
+            _, key, label, href = item
+            cls = "active" if active == key else ""
+            parts.append(f'<a class="{cls}" href="{href}">{label}</a>')
+        else:
+            _, label, children = item
+            here = any(active == k for k, _, _ in children)
+            menu = "".join(
+                f'<a class="{"active" if active==k else ""}" href="{h}">{l}</a>'
+                for k, l, h in children)
+            parts.append(f'<details class="navgrp{" active" if here else ""}">'
+                         f'<summary>{label}</summary><div class="navmenu">{menu}</div></details>')
+    return "".join(parts)
+
+
 def page(active: str, title: str, body: str, desc: str = "", path: str = "index.html",
          wrap: bool = True) -> str:
-    nav = [("index", "ホーム", "index.html"), ("find", "目的から選ぶ", "find.html"),
-           ("shape", "成分のかたち", "shape.html"), ("calc", "成分ツール", "calc.html"),
-           ("record", "体重記録", "record.html"),
-           ("weight", "体重管理", "weight.html"), ("kidney", "腎臓シート", "kidney.html"),
-           ("blog", "読みもの", "blog.html"),
-           ("coverage", "網羅性", "coverage.html"), ("about", "この調べ方", "about.html")]
-    navhtml = "".join(
-        f'<a class="{"active" if active==k else ""}" href="{href}">{label}</a>'
-        for k, label, href in nav)
+    navhtml = nav_html(active)
     desc = desc or "キャットフードを広告やランキングではなく、公式の保証成分・出典・乾物量換算のファクトで比較。評価せず順位を付けず、判断は獣医師へ。"
     canonical = f"{BASE_URL}/{path}"
     return f"""<!doctype html><html lang="ja"><head><meta charset="utf-8">
@@ -363,7 +425,7 @@ def page(active: str, title: str, body: str, desc: str = "", path: str = "index.
  出典付きファクトと実値で示します。購入リンクから手数料を得る場合がありますが、掲載順・内容には一切影響しません。<br>
  ※医療上の判断は必ずかかりつけの獣医師にご相談ください。本サイトは診断・治療の助言を行いません。
  <br>最終更新 {today_stamp()}</div>
-</div></footer></body></html>"""
+</div></footer>{NAV_JS}</body></html>"""
 
 
 def table_block(products: list[dict], cols: list[dict], sort_key: str,
@@ -549,9 +611,110 @@ def _maker_address(name: str) -> str:
     return ""
 
 
-def build_coverage(cov: dict) -> str:
+# 日本のpublic suffix（co.jp等）の手前のラベルをSEOに優しいスラッグにする（外部依存なし）。
+_JP_SLD = {"co", "ne", "or", "ad", "go", "ac", "gr", "ed", "lg"}
+
+
+def maker_slug(domain: str) -> str:
+    parts = [p for p in domain.lower().strip().split(".") if p]
+    if parts and parts[0] == "www":
+        parts = parts[1:]
+    if len(parts) >= 3 and parts[-1] == "jp" and parts[-2] in _JP_SLD:
+        label = parts[-3]
+    elif len(parts) >= 2:
+        label = parts[-2]
+    else:
+        label = parts[0] if parts else ""
+    return label
+
+
+def maker_groups(products: list[dict]) -> list[dict]:
+    """メーカー単位の集計（収録数・開示率・形態）。評価/順位ではなく収録の事実。"""
+    sites = {r["company_name"]: r
+             for r in csv.DictReader(MAKERS.open(encoding="utf-8-sig", newline=""))}
+    by: dict[str, list[dict]] = {}
+    for p in products:
+        by.setdefault(p["maker"], []).append(p)
+    out, seen = [], set()
+    for maker, prods in by.items():
+        site = sites.get(maker, {})
+        slug = maker_slug(site.get("domain", "")) or "maker"
+        base = slug
+        i = 2
+        while slug in seen:  # スラッグ衝突回避
+            slug = f"{base}-{i}"
+            i += 1
+        seen.add(slug)
+        pdisc = sum(1 for p in prods if p.get("phosphorus_disclosed") == "yes")
+        forms = Counter(p["form"] for p in prods)
+        ther = sum(1 for p in prods if p.get("is_therapeutic") == "True")
+        out.append({
+            "maker": maker, "slug": slug, "page": f"maker-{slug}.html",
+            "url": site.get("official_url", ""), "domain": site.get("domain", ""),
+            "note": site.get("note", ""), "products": prods, "count": len(prods),
+            "p_disclosed": pdisc, "p_rate": round(100 * pdisc / len(prods)),
+            "forms": forms, "therapeutic": ther,
+        })
+    out.sort(key=lambda m: m["count"], reverse=True)  # 収録数（網羅の事実）順
+    return out
+
+
+def _forms_label(forms: Counter) -> str:
+    return "・".join(f"{f} {n}" for f, n in forms.most_common())
+
+
+def build_makers_index(groups: list[dict]) -> str:
+    cards = "".join(f"""
+ <a class="makercard" href="{g['page']}">
+  <div class="mname">{g['maker']}</div>
+  <div class="mmeta">収録 <b>{g['count']}</b> 商品｜{_forms_label(g['forms'])}</div>
+  <div class="mbadges"><span class="mb">リン開示 {g['p_rate']}%</span>{
+      f'<span class="mb ther">療法食 {g["therapeutic"]}</span>' if g['therapeutic'] else ''}</div>
+ </a>""" for g in groups)
+    return f"""
+{pagehead("メーカーから見る", "メーカー一覧")}
+<p class="lead">公式サイトを確定し成分データを取得できたメーカーを、<b>収録商品数</b>で並べています
+（これは「おすすめ順」ではなく、当サイトが何社・何商品を集めたかという網羅の事実です）。
+各社のページで、その社の商品を乾物量換算のファクトとして一覧できます。</p>
+<div class="disclaimer">「リン開示」はそのメーカーの商品のうち、公式にリンの数値を表示している割合です。
+開示率の高低はメーカーの方針差であり、品質の良し悪しを示すものではありません。</div>
+<div class="makergrid">{cards}</div>
+"""
+
+
+def build_maker_page(g: dict) -> str:
+    cols = [{"k": "product_name", "t": "商品名", "type": "pname"},
+            {"k": "form", "t": "種別"},
+            {"k": "protein_dm", "t": "たんぱく質%(乾物量)"},
+            {"k": "fat_dm", "t": "脂肪%(乾物量)"},
+            {"k": "phosphorus_dm", "t": "リン%(乾物量)"},
+            {"k": "calorie_density_100g", "t": "カロリー密度", "type": "cal"},
+            {"k": "url", "t": "出典", "type": "src"},
+            {"k": "buy", "t": "購入先（比較）", "type": "buy"}]
+    src = (f'<a href="{g["url"]}" target="_blank" rel="noopener">公式サイト（{g["domain"]}）</a>'
+           if g["url"] else "（公式URL未確定）")
+    note = f'<p class="lead">{g["note"]}</p>' if g["note"] else ""
+    return f"""
+{pagehead("メーカー", g['maker'])}
+<p class="lead">公式サイト：{src}<br>
+当サイト収録 <b>{g['count']}</b> 商品（{_forms_label(g['forms'])}）。
+うちリンを公式開示 <b>{g['p_disclosed']}</b> 商品（{g['p_rate']}%）。</p>
+{note}
+<div class="disclaimer">数値は各メーカー公式の保証分析値を転記し、乾物量に換算したファクトです。
+評価・順位は付けません。「記載なし」は「含まれない」という意味ではありません。
+健康上の判断は獣医師にご相談ください。</div>
+<div class="controls">表示 <b id="cnt">0</b> 商品｜並べ替えは列見出しをクリック｜
+<a href="makers.html">← メーカー一覧へ</a></div>
+{table_block(g['products'], cols, "product_name", True, False)}
+"""
+
+
+def build_coverage(cov: dict, maker_pages: dict[str, str] | None = None) -> str:
     # 取得済み / 未取得(確定だがデータ無) / 対象外(キャットフード無し)
-    got = "".join(f"<li>{m}</li>" for m in cov["with_data"])
+    mp = maker_pages or {}
+    got = "".join(
+        f'<li><a href="{mp[m]}">{m}</a></li>' if m in mp else f"<li>{m}</li>"
+        for m in cov["with_data"])
     nodata = "".join(f"<li>{m}</li>" for m in cov["no_data"])
     excl = "".join(f"<li>{r['company_name']}<span class='na'>（{r.get('note','')}）</span></li>"
                    for r in cov["excluded"])
@@ -1237,11 +1400,19 @@ def main() -> None:
                         "キャットフードをカロリー密度(kcal/100g)で並べ替えられる出典付き一覧。おすすめ・順位は出しません。"),
         "kidney.html": ("kidney", "腎臓相談シート", build_kidney(products),
                         "リンを公式開示しているキャットフードを乾物量換算で比較。印刷して獣医師にご相談ください。非診断。"),
-        "coverage.html": ("coverage", "網羅性", build_coverage(cov),
-                          "対象母集団とカバー率・未取得・対象外を正直に開示。宣言した範囲への網羅性。"),
         "about.html": ("about", "この調べ方", build_about(),
                        "4状態ラベル・乾物量換算・出典必須・アフィリエイト遮断・非診断。データの作り方を公開。"),
     }
+    groups = maker_groups(products)
+    pages["coverage.html"] = ("coverage", "網羅性",
+                              build_coverage(cov, {g["maker"]: g["page"] for g in groups}),
+                              "対象母集団とカバー率・未取得・対象外を正直に開示。宣言した範囲への網羅性。")
+    pages["makers.html"] = ("makers", "メーカー一覧", build_makers_index(groups),
+                            "公式サイトを確定し成分データを取得できたキャットフードのメーカー一覧。各社の収録商品をリン開示率・乾物量換算のファクトで見る。")
+    for g in groups:  # メーカー別ページ（新しいSEO面・社ごとに商品を一覧）
+        pages[g["page"]] = ("makers", f"{g['maker']}のキャットフード",
+                            build_maker_page(g),
+                            f"{g['maker']}のキャットフード{g['count']}商品を、たんぱく質・脂肪・リン(乾物量換算)・カロリー密度の出典付きファクトで一覧。評価・順位なし。")
     pages.update(blog_pages(products))  # データ駆動の読みもの（SEO・回遊）
     for fname, (active, title, body, desc) in pages.items():
         (SITE / fname).write_text(

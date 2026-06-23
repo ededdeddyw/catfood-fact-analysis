@@ -12,10 +12,24 @@ header.site .wrap{display:flex;align-items:center;gap:18px;height:60px}
 .brand{font-weight:800;font-size:18px;color:var(--accent-d);text-decoration:none;white-space:nowrap;
  display:flex;align-items:center;gap:7px}
 .brand svg{width:26px;height:26px;flex:none}
-nav.main{display:flex;gap:14px;flex-wrap:wrap;font-size:14px}
-nav.main a{color:#5b4a3a;text-decoration:none;padding:4px 2px;border-bottom:2px solid transparent}
-nav.main a:hover{color:var(--accent)}
-nav.main a.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:700}
+nav.main{display:flex;gap:14px;flex-wrap:wrap;font-size:14px;align-items:center}
+nav.main>a{color:#5b4a3a;text-decoration:none;padding:4px 2px;border-bottom:2px solid transparent}
+nav.main>a:hover{color:var(--accent)}
+nav.main>a.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:700}
+.navgrp{position:relative}
+.navgrp>summary{list-style:none;cursor:pointer;color:#5b4a3a;padding:4px 2px;white-space:nowrap;
+ border-bottom:2px solid transparent;user-select:none}
+.navgrp>summary::-webkit-details-marker{display:none}
+.navgrp>summary::after{content:"▾";font-size:10px;color:#b07a4e;margin-left:4px}
+.navgrp[open]>summary,.navgrp>summary:hover{color:var(--accent)}
+.navgrp.active>summary{color:var(--accent);border-bottom-color:var(--accent);font-weight:700}
+.navmenu{position:absolute;top:calc(100% + 6px);left:0;background:#fffaf3;border:1px solid var(--line);
+ border-radius:12px;padding:7px;min-width:172px;box-shadow:0 12px 30px rgba(94,59,34,.18);
+ z-index:40;display:flex;flex-direction:column;gap:2px}
+.navmenu a{white-space:nowrap;padding:8px 11px;border-radius:9px;color:#5b4a3a;text-decoration:none;font-size:14px}
+.navmenu a:hover{background:#f1e3d2;color:var(--accent-d)}
+.navmenu a.active{color:var(--accent-d);font-weight:700;background:#f6ead8}
+@media(max-width:560px){.navmenu{right:0;left:auto}}
 h1{font-size:27px;margin:22px 0 8px;color:var(--accent-d);letter-spacing:.01em}
 h2{font-size:19px;margin:26px 0 8px;padding-left:30px;position:relative;color:var(--accent-d)}
 h2::before{content:"";position:absolute;left:0;top:3px;width:20px;height:20px;
@@ -159,3 +173,15 @@ footer.site .fcat{width:40px;flex:none;opacity:.8}
 .radar{width:168px;height:168px;margin:2px auto;display:block}
 .rnums{font-size:11.5px;color:#6b5a48;margin:8px 0 6px;font-variant-numeric:tabular-nums}
 .rsrc{font-size:11px}.rsrc .buy a{margin-left:2px}
+
+/* ===== メーカー一覧 ===== */
+.makergrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:14px;margin-top:14px}
+.makercard{display:block;background:var(--card);border:1px solid var(--line);border-radius:16px;
+ padding:16px 18px;text-decoration:none;color:inherit;box-shadow:0 2px 10px rgba(94,59,34,.05);
+ transition:transform .08s,box-shadow .2s}
+.makercard:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(94,59,34,.12);border-color:var(--accent)}
+.makercard .mname{font-weight:700;color:var(--accent-d);font-size:15px;line-height:1.4;margin-bottom:6px}
+.makercard .mmeta{font-size:13px;color:#6b5a48;margin-bottom:9px}
+.makercard .mbadges{display:flex;gap:6px;flex-wrap:wrap}
+.makercard .mb{font-size:12px;background:#f1e3d2;color:#6b4324;border-radius:999px;padding:3px 10px}
+.makercard .mb.ther{background:#e7d6c0}
