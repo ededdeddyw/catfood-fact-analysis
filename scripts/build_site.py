@@ -94,6 +94,47 @@ draw();
 """
 
 
+# 観点（透明な条件マッチ）: docs/07。基準を明示し、合致商品＋実値を見せる（スコア化しない）。
+GOALS = [
+    {"key": "weight", "label": "体重を管理したい", "tier": "life",
+     "metric": "カロリー密度", "unit": "kcal/100g", "field": "calorie_density_100g",
+     "dir": "asc", "need": ["calorie_density_100g"],
+     "criterion": "カロリー密度が低い順",
+     "why": "1日の総カロリーを抑えやすい商品です。適正量・運動でも変わるので給与量は獣医へ。"},
+    {"key": "protein", "label": "高たんぱくにしたい", "tier": "life",
+     "metric": "たんぱく質(乾物量)", "unit": "%", "field": "protein_dm",
+     "dir": "desc", "need": ["protein_dm"],
+     "criterion": "たんぱく質(乾物量)が高い順",
+     "why": "筋肉維持を重視する方向け。腎臓に懸念がある場合は高たんぱくが適さないこともあるため獣医へ。"},
+    {"key": "moisture", "label": "水分を摂らせたい", "tier": "life",
+     "metric": "水分", "unit": "%", "field": "moisture_pct",
+     "dir": "desc", "need": ["moisture_pct"], "onlyForm": "ウェット",
+     "criterion": "ウェット（高水分）",
+     "why": "あまり水を飲まない子の水分補給に。ウェットを中心に表示しています。"},
+    {"key": "grainfree", "label": "穀物を避けたい", "tier": "life",
+     "metric": "穀物表記", "unit": "", "field": None, "flag": "grain_free", "flagval": "yes",
+     "criterion": "原材料の主要部に穀物表記なし（参考）",
+     "why": "原材料表示に基づく参考判定です（表示の主要部に米・小麦・とうもろこし等が無い商品）。"},
+    {"key": "fiber", "label": "毛玉・繊維を増やしたい", "tier": "life",
+     "metric": "粗繊維", "unit": "%", "field": "fiber_pct",
+     "dir": "desc", "need": ["fiber_pct"],
+     "criterion": "粗繊維が高い順",
+     "why": "毛玉・便通対策で繊維を増やしたい方向け。"},
+    {"key": "urinary", "label": "尿路が気になる", "tier": "health",
+     "metric": "マグネシウム", "unit": "%", "field": "magnesium_pct",
+     "dir": "asc", "need": ["magnesium_pct"],
+     "criterion": "マグネシウムが低い順（公式開示の商品のみ）",
+     "why": "ストルバイト尿石で見られる指標です。数値の良し悪しは判断しません。診断・療法食は獣医の指示が前提です。",
+     "vet": True},
+    {"key": "kidney", "label": "腎臓が気になる", "tier": "health",
+     "metric": "リン(乾物量)", "unit": "%", "field": "phosphorus_dm",
+     "dir": "asc", "need": ["phosphorus_dm"], "flag": "phosphorus_disclosed", "flagval": "yes",
+     "criterion": "リン(乾物量)が低い順（公式開示の商品のみ）",
+     "why": "腎臓の食事管理で獣医が見る値です。良し悪しは当サイトでは判断しません。この結果を獣医にお見せください。",
+     "vet": True},
+]
+
+
 def load_products() -> list[dict]:
     return list(csv.DictReader(CONSULT.open(encoding="utf-8-sig", newline="")))
 
@@ -114,8 +155,8 @@ def coverage() -> dict:
 
 
 def page(active: str, title: str, body: str, desc: str = "", path: str = "index.html") -> str:
-    nav = [("index", "ホーム", "index.html"), ("weight", "体重管理", "weight.html"),
-           ("kidney", "腎臓相談シート", "kidney.html"),
+    nav = [("index", "ホーム", "index.html"), ("find", "目的から選ぶ", "find.html"),
+           ("weight", "体重管理", "weight.html"), ("kidney", "腎臓相談シート", "kidney.html"),
            ("coverage", "網羅性", "coverage.html"), ("about", "この調べ方", "about.html")]
     navhtml = "".join(
         f'<a class="{"active" if active==k else ""}" href="{href}">{label}</a>'
@@ -162,21 +203,27 @@ def table_block(products: list[dict], cols: list[dict], sort_key: str,
 
 def build_index(cov: dict) -> str:
     return f"""
-<h1>キャットフードを、広告ではなく<br>成分・出典のファクトで。</h1>
-<p class="lead">ランキングも、おすすめ度も出しません。各メーカー公式の保証成分を転記し、
-水分を除いた<b>乾物量換算</b>で公平に並べ替えられるようにしただけのサイトです。
-判断するのではなく、<b>あなたと獣医師が判断できる状態</b>を準備します。</p>
+<h1>「こうしたい」から、<br>成分・出典のファクトで選ぶ。</h1>
+<p class="lead">おすすめ度や総合順位という<b>曖昧な点数は付けません</b>。代わりに、目的ごとに
+<b>見るべき指標と条件を明示</b>して、それに合う商品を<b>実際の数値つき</b>で示します。
+「なぜ合うか」が数字で見える状態にする——それがランキングサイトとの違いです。</p>
 <div>
- <span class="tag">評価・順位なし</span><span class="tag">全数値に公式出典＋取得日</span>
- <span class="tag">乾物量換算</span><span class="tag">4状態（記載なしを「無し」と断定しない）</span>
- <span class="tag">非診断</span>
+ <span class="tag">目的→明示した条件→合致商品</span><span class="tag">スコア化しない（基準を全部見せる）</span>
+ <span class="tag">公式出典＋取得日</span><span class="tag">乾物量換算</span>
+ <span class="tag">手数料は表示順に使わない</span><span class="tag">健康系は獣医併記・非診断</span>
+</div>
+<div class="card" style="background:#fff5f3;border-color:#f0c4ba">
+ <h2 style="margin-top:4px;border:none;padding:0">🎯 目的から選ぶ</h2>
+ <p class="lead">体重管理／高たんぱく／水分を摂らせたい／穀物を避けたい／毛玉・繊維／尿路／腎臓 …
+ 「こうしたい」を選ぶと、合う商品を理由（実値）つきで表示します。</p>
+ <a href="find.html"><b>→ 目的から選ぶ</b></a>
 </div>
 <div class="cards">
- <div class="card"><h2 style="margin-top:4px">体重管理で見る</h2>
-  <p class="lead">カロリー密度（kcal/100g）の低い順に並べ替え。「太った猫向け」とは言いません。</p>
-  <a href="weight.html">→ 体重管理ビュー</a></div>
- <div class="card"><h2 style="margin-top:4px">腎臓が気になる方へ</h2>
-  <p class="lead">リンを公式開示している商品だけを、乾物量換算で比較。印刷して獣医師にご相談ください。</p>
+ <div class="card"><h2 style="margin-top:4px">体重管理ビュー</h2>
+  <p class="lead">カロリー密度の低い順。「太った猫向け」とは言いません。</p>
+  <a href="weight.html">→ 体重管理</a></div>
+ <div class="card"><h2 style="margin-top:4px">腎臓相談シート</h2>
+  <p class="lead">リン開示商品を乾物量換算で。印刷して獣医師にご相談ください。</p>
   <a href="kidney.html">→ 腎臓相談シート</a></div>
 </div>
 <div class="disclaimer">
@@ -267,6 +314,69 @@ def build_coverage(cov: dict) -> str:
 """
 
 
+FIND_JS = """
+let DATA=__DATA__, GOALS=__GOALS__, g=GOALS[0];
+function cell(v,u){return (v===''||v==null)?'<span class=\"na\">記載なし（要確認）</span>':v+(u||'');}
+function buy(r){var q=encodeURIComponent(((r.maker||'')+' '+(r.product_name||'')).trim());
+ return [['楽天','https://search.rakuten.co.jp/search/mall/'+q+'/'],['Amazon','https://www.amazon.co.jp/s?k='+q],
+ ['Yahoo','https://shopping.yahoo.co.jp/search?p='+q]].map(c=>'<a href=\"'+c[1]+'\" target=\"_blank\" rel=\"noopener nofollow\">'+c[0]+'</a>').join('');}
+function matchOk(r){
+ if(g.need)for(const f of g.need){if(r[f]===''||r[f]==null)return false;}
+ if(g.onlyForm&&r.form!==g.onlyForm)return false;
+ if(g.flag&&r[g.flag]!==g.flagval)return false;
+ return true;}
+function pick(k){g=GOALS.find(x=>x.key===k);draw();}
+function draw(){
+ let btns=GOALS.map(x=>'<button class=\"goal'+(x.key===g.key?' on':'')+'\" onclick=\"pick(\\''+x.key+'\\')\">'+x.label+(x.tier==='health'?' ⚕':'')+'</button>').join('');
+ document.getElementById('goals').innerHTML=btns;
+ let rows=DATA.filter(matchOk);
+ if(g.field)rows.sort((a,b)=>{let x=Number(a[g.field]),y=Number(b[g.field]);return g.dir==='asc'?x-y:y-x;});
+ let vet=g.vet?'<div class=\"disclaimer\">⚕ これは健康に関わる観点です。数値の良し悪しは判断しません。'+
+  '療法食は獣医師の指示なく与えないでください。気になる症状は受診し、この結果を獣医師にご相談ください。</div>':'';
+ document.getElementById('banner').innerHTML=
+  '<div class=\"card\"><b>選んだ目的：'+g.label+'</b><br>'+
+  '見る指標 → <b>'+g.metric+'</b>　／　条件 → <b>'+g.criterion+'</b><br>'+
+  '<span class=\"mk\">'+g.why+'</span></div>'+vet;
+ let head=g.field
+  ? '<tr><th>商品 / メーカー</th><th>'+g.metric+(g.unit?'('+g.unit+')':'')+'<br><span class=\"mk\">なぜ合うか＝この値</span></th><th>種別</th><th>出典</th><th>購入先</th></tr>'
+  : '<tr><th>商品 / メーカー</th><th>判定</th><th>種別</th><th>原材料(先頭)</th><th>出典</th><th>購入先</th></tr>';
+ let body=rows.map(r=>{
+  let why=g.field?'<td class=\"num\"><b>'+cell(r[g.field],g.unit)+'</b></td>'
+                 :'<td><b style=\"color:#1b7a3d\">条件に合致</b></td>';
+  let extra=g.field?'':'<td><span class=\"mk\">'+(r.ingredients||'')+'</span></td>';
+  return '<tr><td>'+(r.product_name||'(無題)')+'<br><span class=\"mk\">'+r.maker+'</span></td>'+
+   why+'<td>'+r.form+'</td>'+extra+
+   '<td><a href=\"'+r.url+'\" target=\"_blank\" rel=\"noopener\">公式</a> <span class=\"na\">'+r.fetched_at+'</span></td>'+
+   '<td class=\"buy\">'+buy(r)+'</td></tr>';}).join('');
+ document.getElementById('thead').innerHTML=head;
+ document.getElementById('tbody').innerHTML=body;
+ document.getElementById('cnt').textContent=rows.length;
+}
+draw();
+"""
+
+
+def build_find(products: list[dict]) -> str:
+    js = (FIND_JS
+          .replace("__DATA__", json.dumps(products, ensure_ascii=False))
+          .replace("__GOALS__", json.dumps(GOALS, ensure_ascii=False)))
+    return """
+<h1>目的から選ぶ</h1>
+<p class="lead">「こうしたい」を選ぶと、<b>見るべき客観指標と条件を明示</b>したうえで、
+それに合う商品を<b>実際の数値つき</b>で並べます。おすすめ度や総合順位という曖昧な点数は付けません。
+「なぜ合うか」がそのまま数字で見える状態にします。</p>
+<style>
+ #goals{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+ .goal{border:1px solid #cfd8dc;background:#fff;border-radius:999px;padding:6px 14px;cursor:pointer;font-size:14px}
+ .goal.on{background:#b1442f;color:#fff;border-color:#b1442f;font-weight:700}
+</style>
+<div id="goals"></div>
+<div id="banner"></div>
+<div class="controls">合致 <b id="cnt">0</b> 商品｜⚕＝健康に関わる観点（獣医相談を併記）</div>
+<table><thead id="thead"></thead><tbody id="tbody"></tbody></table>
+""" + f"<script>{js}</script>"
+
+
 def build_about() -> str:
     return """
 <h1>この調べ方（方法と原則）</h1>
@@ -297,7 +407,9 @@ def main() -> None:
     cov = coverage()
     pages = {
         "index.html": ("index", "ホーム", build_index(cov),
-                       "キャットフードを広告やランキングではなく公式の保証成分・出典・乾物量換算のファクトで比較。評価せず順位を付けず判断は獣医師へ。"),
+                       "キャットフードを広告やランキングではなく公式の保証成分・出典・乾物量換算のファクトで比較。目的から透明な条件で選べる。"),
+        "find.html": ("find", "目的から選ぶ", build_find(products),
+                      "「体重管理・高たんぱく・水分・穀物を避けたい・腎臓・尿路」など目的から、見る指標と条件を明示して合う商品を実値つきで表示。"),
         "weight.html": ("weight", "体重管理ビュー", build_weight(products),
                         "キャットフードをカロリー密度(kcal/100g)で並べ替えられる出典付き一覧。おすすめ・順位は出しません。"),
         "kidney.html": ("kidney", "腎臓相談シート", build_kidney(products),

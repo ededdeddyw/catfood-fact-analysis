@@ -27,8 +27,21 @@ PROTO = ROOT / "prototype" / "consult"
 SHEET_COLS = ["maker", "product_name", "url", "form", "moisture_pct",
               "protein_asfed", "protein_dm", "fat_dm",
               "phosphorus_asfed", "phosphorus_dm",
+              "fiber_pct", "ash_pct", "magnesium_pct", "magnesium_disclosed",
               "calorie_density_100g", "calorie_basis",
+              "grain_free", "ingredients",
               "is_therapeutic", "phosphorus_disclosed", "fetched_at"]
+
+# 穀物の語（原材料スニペットの主要部にこれが無ければ grain-free 候補・参考）
+_GRAIN = ("米", "玄米", "白米", "小麦", "大麦", "麦", "とうもろこし", "コーン",
+          "トウモロコシ", "オーツ", "ライ麦", "雑穀", "コーングルテン", "小麦粉")
+
+
+def grain_free(ingredients: str) -> str:
+    """原材料スニペットの主要部に穀物表記が無ければ yes（参考）。空なら unknown。"""
+    if not ingredients:
+        return "unknown"
+    return "no" if any(g in ingredients for g in _GRAIN) else "yes"
 
 
 def num(s: str):
@@ -94,6 +107,10 @@ def build_rows() -> list[dict]:
         fat = num(r.get("crude_fat_value")) if is_pct(r.get("crude_fat_value")) else None
         p_pct = is_pct(r.get("phosphorus_value"))
         phos = num(r.get("phosphorus_value")) if p_pct else None
+        fiber = num(r.get("crude_fiber_value")) if is_pct(r.get("crude_fiber_value")) else None
+        ash = num(r.get("crude_ash_value")) if is_pct(r.get("crude_ash_value")) else None
+        mg = num(r.get("magnesium_value")) if is_pct(r.get("magnesium_value")) else None
+        ingredients = r.get("ingredients_snippet", "")
         out.append({
             "maker": r.get("maker", ""),
             "product_name": clean_name(r.get("product_name", "")),
@@ -105,8 +122,14 @@ def build_rows() -> list[dict]:
             "fat_dm": dm(fat, moisture) if fat is not None else "",
             "phosphorus_asfed": r.get("phosphorus_value", ""),
             "phosphorus_dm": dm(phos, moisture) if phos is not None else "",
+            "fiber_pct": fiber if fiber is not None else "",
+            "ash_pct": ash if ash is not None else "",
+            "magnesium_pct": mg if mg is not None else "",
+            "magnesium_disclosed": "yes" if mg is not None else "no",
             "calorie_density_100g": calorie_density(r.get("calorie_kcal"), r.get("calorie_basis")) or "",
             "calorie_basis": r.get("calorie_basis", ""),
+            "grain_free": grain_free(ingredients),
+            "ingredients": ingredients[:90],
             "is_therapeutic": r.get("is_therapeutic", ""),
             "phosphorus_disclosed": r.get("disclosed_phosphorus", "no"),
             "fetched_at": r.get("fetched_at", ""),
