@@ -112,6 +112,13 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
  padding:22px 24px;margin:18px 0;background-image:url("PAWBG"),linear-gradient(180deg,#fbf3e7,#f5ebdc);background-size:90px,auto}
 .hero .art{flex:none;width:170px;max-width:38vw}
 .hero .txt{flex:1;min-width:230px}
+.hero-photo{flex:none;width:250px;max-width:44vw;aspect-ratio:4/3;object-fit:cover;border-radius:16px;
+ box-shadow:0 5px 16px rgba(94,59,34,.16);border:3px solid #fffaf3}
+.pagephoto{width:100%;height:170px;object-fit:cover;border-radius:14px;margin:10px 0;
+ box-shadow:0 3px 12px rgba(94,59,34,.10)}
+.photo-accent{float:right;width:200px;max-width:40vw;aspect-ratio:4/3;object-fit:cover;border-radius:14px;
+ margin:0 0 12px 16px;box-shadow:0 3px 12px rgba(94,59,34,.10)}
+.credits{font-size:12px;color:#8a7866}.credits li{margin:3px 0}
 .pagehero{display:flex;align-items:center;gap:14px;margin-top:8px}
 .pagehero svg{width:54px;height:54px;flex:none}
 .catsil{fill:var(--accent)}
@@ -266,7 +273,7 @@ def table_block(products: list[dict], cols: list[dict], sort_key: str,
 def build_index(cov: dict) -> str:
     return f"""
 <div class="hero">
- <div class="art">{HERO_ART}</div>
+ <img class="hero-photo" src="img/hero.jpg" alt="キャットフードの皿を前にした黒猫" loading="eager">
  <div class="txt">
   <h1 style="margin-top:0">「こうしたい」から、<br>成分・出典のファクトで選ぶ。</h1>
   <p class="lead">おすすめ度や総合順位という<b>曖昧な点数は付けません</b>。代わりに、目的ごとに
@@ -315,6 +322,7 @@ def build_weight(products: list[dict]) -> str:
             {"k": "buy", "t": "購入先（比較）", "type": "buy"}]
     body = """
 <h1>体重管理ビュー</h1>
+<img class="photo-accent" src="img/tabby.jpg" alt="くつろぐ茶トラ猫" loading="lazy">
 <p class="lead">カロリー密度の低い順に並べ替えられる一覧です。順位やおすすめではありません。
 個包装おやつ（1個あたり表示）は密度比較ができないため「比較不可」と明示します。</p>
 <div class="disclaimer">体重管理は総摂取カロリーと運動・個体差で決まります。数値は選ぶための材料で、
@@ -429,6 +437,7 @@ def build_find(products: list[dict]) -> str:
           .replace("__GOALS__", json.dumps(GOALS, ensure_ascii=False)))
     return """
 <h1>目的から選ぶ</h1>
+<img class="pagephoto" src="img/eating.jpg" alt="ボウルからウェットフードを食べる猫" loading="lazy">
 <p class="lead">「こうしたい」を選ぶと、<b>見るべき客観指標と条件を明示</b>したうえで、
 それに合う商品を<b>実際の数値つき</b>で並べます。おすすめ度や総合順位という曖昧な点数は付けません。
 「なぜ合うか」がそのまま数字で見える状態にします。</p>
@@ -445,8 +454,11 @@ def build_find(products: list[dict]) -> str:
 
 
 def build_about() -> str:
-    return """
-<h1>この調べ方（方法と原則）</h1>
+    return ("""
+<h1>この調べ方（方法と原則）</h1>""" + _ABOUT_BODY).replace("__CREDITS__", _credits_html())
+
+
+_ABOUT_BODY = """
 <h2>4つの状態で扱う</h2>
 <p class="lead">肯定（公式に記載）／否定（公式に記載）／<b>不明・要確認</b>／矛盾。
 「情報がない」を「含まれない」と混同しません。空欄は「メーカーが公開していない」という意味です。</p>
@@ -464,7 +476,24 @@ def build_about() -> str:
 <h2>非診断</h2>
 <p class="lead">「この病気にはこのフード」とは言いません。療法食は獣医師の指示が前提です。
 出力の頂点は、印刷して獣医師に持っていく<b>相談シート</b>です。</p>
+<h2>写真クレジット</h2>
+<p class="lead">サイト内の写真は Wikimedia Commons のパブリックドメイン／CC0／CC BY 素材です（出典・作者・ライセンスを明記）。</p>
+__CREDITS__
 """
+
+
+def _credits_html() -> str:
+    p = SITE / "img" / "credits.json"
+    if not p.exists():
+        return ""
+    items = json.loads(p.read_text(encoding="utf-8"))
+    lis = "".join(
+        f'<li>{c["file"]}：「{c["title"]}」 / {c["license"]}'
+        + (f' / {c["author"]}' if c.get("author") else "")
+        + (f' / <a href="{c["source"]}" target="_blank" rel="noopener">出典</a>' if c.get("source") else "")
+        + "</li>"
+        for c in items)
+    return f'<ul class="credits">{lis}</ul>'
 
 
 def main() -> None:

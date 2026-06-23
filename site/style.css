@@ -44,6 +44,13 @@ td.num{text-align:right;font-variant-numeric:tabular-nums}
  padding:22px 24px;margin:18px 0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23b89a78' fill-opacity='0.18'%3E%3Cellipse cx='30' cy='34' rx='5' ry='7'/%3E%3Cellipse cx='50' cy='34' rx='5' ry='7'/%3E%3Cellipse cx='20' cy='44' rx='4.5' ry='6'/%3E%3Cellipse cx='60' cy='44' rx='4.5' ry='6'/%3E%3Cpath d='M40 42c7 0 13 6 13 12 0 5-6 6-13 6s-13-1-13-6c0-6 6-12 13-12z'/%3E%3C/g%3E%3C/svg%3E"),linear-gradient(180deg,#fbf3e7,#f5ebdc);background-size:90px,auto}
 .hero .art{flex:none;width:170px;max-width:38vw}
 .hero .txt{flex:1;min-width:230px}
+.hero-photo{flex:none;width:250px;max-width:44vw;aspect-ratio:4/3;object-fit:cover;border-radius:16px;
+ box-shadow:0 5px 16px rgba(94,59,34,.16);border:3px solid #fffaf3}
+.pagephoto{width:100%;height:170px;object-fit:cover;border-radius:14px;margin:10px 0;
+ box-shadow:0 3px 12px rgba(94,59,34,.10)}
+.photo-accent{float:right;width:200px;max-width:40vw;aspect-ratio:4/3;object-fit:cover;border-radius:14px;
+ margin:0 0 12px 16px;box-shadow:0 3px 12px rgba(94,59,34,.10)}
+.credits{font-size:12px;color:#8a7866}.credits li{margin:3px 0}
 .pagehero{display:flex;align-items:center;gap:14px;margin-top:8px}
 .pagehero svg{width:54px;height:54px;flex:none}
 .catsil{fill:var(--accent)}

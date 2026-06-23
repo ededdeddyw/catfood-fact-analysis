@@ -16,3 +16,4 @@ Thumbs.db
 logs/*.txt
 data/html_cache/
 .claude/launch.json
+data/stock_candidates/
