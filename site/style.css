@@ -185,3 +185,25 @@ footer.site .fcat{width:40px;flex:none;opacity:.8}
 .makercard .mbadges{display:flex;gap:6px;flex-wrap:wrap}
 .makercard .mb{font-size:12px;background:#f1e3d2;color:#6b4324;border-radius:999px;padding:3px 10px}
 .makercard .mb.ther{background:#e7d6c0}
+
+/* ===== 重ねて比較 ===== */
+.cchips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;min-height:22px;align-items:center}
+.cchip{display:inline-flex;align-items:center;gap:7px;border:2px solid var(--line);border-radius:999px;
+ padding:4px 6px 4px 12px;font-size:13px;background:#fff}
+.cchip i{width:10px;height:10px;border-radius:50%;display:inline-block;flex:none}
+.cchip button{border:none;background:#f1e3d2;border-radius:50%;width:20px;height:20px;cursor:pointer;
+ color:#6b4324;line-height:1;font-size:14px}
+.cmpwrap{display:flex;gap:26px;flex-wrap:wrap;align-items:flex-start;margin-top:6px;
+ background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 2px 10px rgba(94,59,34,.05)}
+.cmpradar{width:300px;height:300px;flex:none}
+.cmptable{border-collapse:collapse;font-size:13.5px;flex:1 1 320px}
+.cmptable th,.cmptable td{border-bottom:1px solid #efe7d8;padding:7px 10px;text-align:left;vertical-align:top}
+.cmptable td.num{font-variant-numeric:tabular-nums}
+.cmplist{display:grid;grid-template-columns:repeat(auto-fill,minmax(214px,1fr));gap:8px;max-height:344px;
+ overflow:auto;margin-top:10px;padding:2px}
+.citem{text-align:left;border:1px solid var(--line);background:#fffaf3;border-radius:10px;padding:8px 11px;
+ cursor:pointer;font-size:13px;color:#4a3a2c;line-height:1.4}
+.citem .mk{display:block;margin-top:2px}
+.citem.on{border-color:var(--accent);background:#f6ead8;font-weight:700}
+.citem:disabled{opacity:.4;cursor:not-allowed}
+@media(max-width:560px){.cmpradar{width:260px;height:260px;margin:0 auto}}

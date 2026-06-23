@@ -260,6 +260,28 @@ footer.site .fcat{width:40px;flex:none;opacity:.8}
 .makercard .mbadges{display:flex;gap:6px;flex-wrap:wrap}
 .makercard .mb{font-size:12px;background:#f1e3d2;color:#6b4324;border-radius:999px;padding:3px 10px}
 .makercard .mb.ther{background:#e7d6c0}
+
+/* ===== 重ねて比較 ===== */
+.cchips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;min-height:22px;align-items:center}
+.cchip{display:inline-flex;align-items:center;gap:7px;border:2px solid var(--line);border-radius:999px;
+ padding:4px 6px 4px 12px;font-size:13px;background:#fff}
+.cchip i{width:10px;height:10px;border-radius:50%;display:inline-block;flex:none}
+.cchip button{border:none;background:#f1e3d2;border-radius:50%;width:20px;height:20px;cursor:pointer;
+ color:#6b4324;line-height:1;font-size:14px}
+.cmpwrap{display:flex;gap:26px;flex-wrap:wrap;align-items:flex-start;margin-top:6px;
+ background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 2px 10px rgba(94,59,34,.05)}
+.cmpradar{width:300px;height:300px;flex:none}
+.cmptable{border-collapse:collapse;font-size:13.5px;flex:1 1 320px}
+.cmptable th,.cmptable td{border-bottom:1px solid #efe7d8;padding:7px 10px;text-align:left;vertical-align:top}
+.cmptable td.num{font-variant-numeric:tabular-nums}
+.cmplist{display:grid;grid-template-columns:repeat(auto-fill,minmax(214px,1fr));gap:8px;max-height:344px;
+ overflow:auto;margin-top:10px;padding:2px}
+.citem{text-align:left;border:1px solid var(--line);background:#fffaf3;border-radius:10px;padding:8px 11px;
+ cursor:pointer;font-size:13px;color:#4a3a2c;line-height:1.4}
+.citem .mk{display:block;margin-top:2px}
+.citem.on{border-color:var(--accent);background:#f6ead8;font-weight:700}
+.citem:disabled{opacity:.4;cursor:not-allowed}
+@media(max-width:560px){.cmpradar{width:260px;height:260px;margin:0 auto}}
 """
 
 TABLE_JS = """
@@ -360,6 +382,7 @@ NAV = [
     ("link", "index", "ホーム", "index.html"),
     ("group", "選ぶ", [("find", "目的から選ぶ", "find.html"),
                        ("shape", "成分のかたち", "shape.html"),
+                       ("compare", "重ねて比較", "compare.html"),
                        ("calc", "成分ツール", "calc.html"),
                        ("makers", "メーカー一覧", "makers.html")]),
     ("group", "健康・記録", [("record", "体重記録", "record.html"),
@@ -1018,6 +1041,86 @@ def build_shape(products: list[dict]) -> str:
     return body
 
 
+def compare_items(products: list[dict]) -> list[dict]:
+    """5マクロ(乾物量)が揃った商品＋比較表用の追加値（リン・水分・カロリー）。"""
+    keys = ["protein_dm", "fat_dm", "fiber_dm", "ash_dm", "nfe_dm"]
+    out = []
+    for r in products:
+        if all(r.get(k) not in (None, "") for k in keys):
+            cal = r.get("calorie_density_100g", "")
+            if r.get("calorie_basis") == "per_piece":
+                cal = ""  # 個包装は密度比較できない
+            out.append({
+                "name": r.get("product_name", ""), "maker": r.get("maker", ""),
+                "form": r.get("form", ""), "url": r.get("url", ""),
+                "v": [round(float(r[k]), 1) for k in keys],
+                "moisture": r.get("moisture_pct", ""),
+                "phosphorus_dm": r.get("phosphorus_dm", ""),
+                "calorie": cal,
+            })
+    return out
+
+
+COMPARE_JS = r"""
+const DATA=__DATA__;
+const AX=['たんぱく質','脂肪','繊維','灰分','炭水化物'], MAX=[70,45,15,15,50], N=5;
+const COL=['#8a5a3c','#2f7d6a','#b0531e'];
+let sel=[], q='';
+function overlay(){
+ var S=300,c=S/2,R=104,P=Math.PI/180,g='',ax='',lb='';
+ [0.5,1].forEach(function(f){var p=[];for(var i=0;i<N;i++){var a=(-90+i*72)*P;p.push((c+R*f*Math.cos(a)).toFixed(1)+','+(c+R*f*Math.sin(a)).toFixed(1));}g+='<polygon points="'+p.join(' ')+'" fill="none" stroke="var(--line)"/>';});
+ for(var i=0;i<N;i++){var a=(-90+i*72)*P,ex=c+R*Math.cos(a),ey=c+R*Math.sin(a);
+  ax+='<line x1="'+c+'" y1="'+c+'" x2="'+ex.toFixed(1)+'" y2="'+ey.toFixed(1)+'" stroke="var(--line)"/>';
+  var lx=c+(R+16)*Math.cos(a),ly=c+(R+16)*Math.sin(a);
+  lb+='<text x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'" font-size="11" fill="#8a7866" text-anchor="middle" dominant-baseline="middle">'+AX[i]+'</text>';}
+ var polys=sel.map(function(idx,k){var r=DATA[idx],vp=[];for(var i=0;i<N;i++){var a=(-90+i*72)*P,rr=R*Math.min(r.v[i]/MAX[i],1);vp.push((c+rr*Math.cos(a)).toFixed(1)+','+(c+rr*Math.sin(a)).toFixed(1));}return '<polygon points="'+vp.join(' ')+'" fill="'+COL[k]+'" fill-opacity="0.13" stroke="'+COL[k]+'" stroke-width="2.2"/>';}).join('');
+ return '<svg viewBox="0 0 '+S+' '+S+'" class="cmpradar" role="img"><g>'+g+ax+polys+lb+'</g></svg>';
+}
+function cell(v,u){return (v===''||v==null)?'<span class="na">記載なし</span>':v+(u||'');}
+function table(){
+ var def=[['たんぱく質(乾物量)',r=>r.v[0],'%'],['脂肪(乾物量)',r=>r.v[1],'%'],['繊維(乾物量)',r=>r.v[2],'%'],
+  ['灰分(乾物量)',r=>r.v[3],'%'],['炭水化物(乾物量)',r=>r.v[4],'%'],['リン(乾物量)',r=>r.phosphorus_dm,'%'],
+  ['水分',r=>r.moisture,'%'],['カロリー密度',r=>r.calorie,' kcal/100g']];
+ var head='<tr><th>項目</th>'+sel.map((idx,k)=>'<th style="color:'+COL[k]+'">'+(DATA[idx].name||'(無題)')+'<br><span class="mk">'+DATA[idx].maker+'・'+DATA[idx].form+'</span></th>').join('')+'</tr>';
+ var body=def.map(function(rd){return '<tr><td>'+rd[0]+'</td>'+sel.map(idx=>'<td class="num">'+cell(rd[1](DATA[idx]),rd[2])+'</td>').join('')+'</tr>';}).join('');
+ var src='<tr><td>出典</td>'+sel.map(idx=>'<td><a href="'+DATA[idx].url+'" target="_blank" rel="noopener">公式</a></td>').join('')+'</tr>';
+ return '<table class="cmptable">'+head+body+src+'</table>';
+}
+function render(){
+ document.getElementById('cchips').innerHTML=sel.length?sel.map((idx,k)=>'<span class="cchip" style="border-color:'+COL[k]+'"><i style="background:'+COL[k]+'"></i>'+(DATA[idx].name||'(無題)')+' <button onclick="cmpToggle('+idx+')" aria-label="外す">×</button></span>').join(''):'<span class="mk">下のリストから2〜3商品を選ぶと、成分のかたちを重ねて比較できます。</span>';
+ document.getElementById('cout').innerHTML=sel.length?'<div class="cmpwrap">'+overlay()+table()+'</div>':'';
+ var ql=q.trim().toLowerCase();
+ var rows=DATA.map((r,i)=>[r,i]).filter(p=>!ql||(p[0].name+' '+p[0].maker).toLowerCase().includes(ql));
+ var shown=rows.slice(0,80);
+ document.getElementById('clist').innerHTML=shown.map(function(p){var r=p[0],i=p[1],on=sel.includes(i),dis=!on&&sel.length>=3;
+  return '<button class="citem'+(on?' on':'')+'"'+(dis?' disabled':'')+' onclick="cmpToggle('+i+')">'+(r.name||'(無題)')+'<span class="mk">'+r.maker+'・'+r.form+'</span></button>';}).join('')+
+  (rows.length>shown.length?'<div class="mk" style="padding:8px">ほか '+(rows.length-shown.length)+' 件。検索で絞り込んでください。</div>':'');
+ document.getElementById('ccount').textContent=sel.length;
+}
+window.cmpToggle=function(i){var k=sel.indexOf(i);if(k>=0)sel.splice(k,1);else{if(sel.length>=3)return;sel.push(i);}render();};
+window.cmpSearch=function(v){q=v;render();};
+render();
+"""
+
+
+def build_compare(products: list[dict]) -> str:
+    items = compare_items(products)
+    js = COMPARE_JS.replace("__DATA__", json.dumps(items, ensure_ascii=False))
+    return pagehead("重ねて比較 / 乾物量換算", "2〜3商品を重ねて比較") + f"""
+<p class="lead">気になるフードを<b>2〜3つ</b>選ぶと、成分のかたち（5角形）を重ねて表示し、主要な値を並べて見られます。
+<b>どちらが良いという順位は付けません</b>——成分の違いを自分の目で確かめるための道具です。</p>
+<div class="disclaimer">数値は公式の保証分析値を乾物量に換算したファクトです。炭水化物は差分（100−他4成分）で算出。
+「記載なし」は「含まれない」ではありません。適否の判断は獣医師にご相談ください。</div>
+<div id="cchips" class="cchips"></div>
+<div id="cout"></div>
+<div class="fbar" style="margin-top:18px">商品を選ぶ（選択中 <b id="ccount">0</b>/3）：
+ <input id="cq" placeholder="商品名・メーカーで絞り込み" oninput="cmpSearch(this.value)"
+  style="padding:8px 12px;border:1px solid var(--line);border-radius:9px;font-size:14px;background:#fffaf3;min-width:240px">
+</div>
+<div id="clist" class="cmplist"></div>
+""" + '<script>' + js + '</script>'
+
+
 CALC_JS = r"""
 const DB=__DB__;
 const AX=['たんぱく質','脂肪','繊維','灰分','炭水化物'], MAX=[70,45,15,15,50], N=5;
@@ -1392,6 +1495,8 @@ def main() -> None:
                       "「体重管理・高たんぱく・水分・穀物を避けたい・腎臓・尿路」など目的から、見る指標と条件を明示して合う商品を実値つきで表示。"),
         "shape.html": ("shape", "成分のかたち", build_shape(products),
                        "各キャットフードの主要成分(たんぱく質・脂肪・繊維・灰分・炭水化物)を乾物量換算の5角形レーダーで一覧。点数ではなく成分の構成。"),
+        "compare.html": ("compare", "重ねて比較", build_compare(products),
+                         "気になるキャットフードを2〜3商品選んで、成分の5角形を重ね、たんぱく質・脂肪・リン・カロリーなどの実値を並べて比較。順位は付けません。"),
         "calc.html": ("calc", "成分ツール", build_calc(products),
                       "手元のフードの保証分析値を入れると乾物量換算の成分5角形・掲載商品内での位置・成分が近い商品が分かる。DBに無いフードでも使える。"),
         "record.html": ("record", "体重記録", build_record(),
