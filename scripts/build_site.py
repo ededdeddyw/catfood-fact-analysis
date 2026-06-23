@@ -938,22 +938,42 @@ def _median(xs):
     return round(xs[n // 2] if n % 2 else (xs[n // 2 - 1] + xs[n // 2]) / 2, 1)
 
 
+def _pctile(xs, q):
+    """外れ値に強い分位点（最頻レンジの提示用）。"""
+    xs = sorted(xs)
+    if not xs:
+        return None
+    i = min(len(xs) - 1, max(0, int(round(q * (len(xs) - 1)))))
+    return round(xs[i], 1)
+
+
+def _by_form(products, key, form):
+    return [float(r[key]) for r in products
+            if r.get("form") == form and r.get(key) not in (None, "")]
+
+
 def cat_stats(products) -> dict:
     phos = _floats(products, "phosphorus_dm")
-    prot_wet = [float(r["protein_dm"]) for r in products
-                if r.get("form") == "ウェット" and r.get("protein_dm") not in (None, "")]
-    prot_dry = [float(r["protein_dm"]) for r in products
-                if r.get("form") == "ドライ" and r.get("protein_dm") not in (None, "")]
     cal = _floats(products, "calorie_density_100g")
-    gf = sum(1 for r in products if r.get("grain_free") == "yes")
+    mg = _floats(products, "magnesium_pct")
+    ash = _floats(products, "ash_dm")
+    prot = _floats(products, "protein_dm")
     return {
         "n": len(products),
         "p_n": len(phos), "p_med": _median(phos),
         "p_min": round(min(phos), 2) if phos else None, "p_max": round(max(phos), 2) if phos else None,
-        "prot_wet_med": _median(prot_wet), "prot_dry_med": _median(prot_dry),
+        "prot_wet_med": _median(_by_form(products, "protein_dm", "ウェット")),
+        "prot_dry_med": _median(_by_form(products, "protein_dm", "ドライ")),
+        "prot_med": _median(prot),
+        "prot_p10": _pctile(prot, 0.1), "prot_p90": _pctile(prot, 0.9),
         "cal_med": _median(cal), "cal_min": round(min(cal)) if cal else None,
         "cal_max": round(max(cal)) if cal else None,
-        "gf_n": gf,
+        "gf_n": sum(1 for r in products if r.get("grain_free") == "yes"),
+        "mg_n": len(mg), "mg_med": _median(mg),
+        "ash_med": _median(ash),
+        "moist_wet_med": _median(_by_form(products, "moisture_pct", "ウェット")),
+        "moist_dry_med": _median(_by_form(products, "moisture_pct", "ドライ")),
+        "ther_n": sum(1 for r in products if r.get("is_therapeutic") == "True"),
     }
 
 
@@ -1051,6 +1071,87 @@ def blog_pages(products) -> dict:
 <p class="lead">カロリー密度の低い順は <a href="weight.html">体重管理ビュー</a> で並べ替えられます。
 そして大事なのは<b>続けて測ること</b>。<a href="record.html">体重記録</a>で毎週の増減をグラフにすると、フード選びの効果も見えてきます。
 適正体重・給与量は獣医師にご相談ください。</p>
+"""))
+
+    # 5) 尿路ケアとマグネシウム（データ駆動・健康系=獣医併記）
+    arts.append((
+        "blog-urinary-magnesium", "猫の尿路ケアと『マグネシウム』、表示で見るには", "2026-06-23",
+        "ストルバイト尿石で見られるマグネシウム。公式開示している商品の値と、見方の注意を整理しました。診断はしません。",
+        f"""
+<p class="lead">猫の下部尿路（ストルバイト尿石など）でしばしば話題になるのがマグネシウムです。ただし
+<b>保証分析値にマグネシウムを開示している商品は限られます</b>。当サイト掲載 {s['n']} 商品のうち
+公式開示は <b>{s['mg_n']} 商品</b>、その中央値は約 <b>{s['mg_med']}%</b>（公式表示値）でした。</p>
+<h2>数値の見方の注意</h2>
+<p class="lead">尿路の健康は、マグネシウム単独でなく水分摂取・尿pH・体質など複数の要因が関わります。
+<b>「低い＝安心」と単純化はできません</b>。当サイトは良し悪しを判断しません。気になる症状（頻尿・血尿・トイレでうずくまる等）は
+<b>緊急のこともあるため、すぐに動物病院へ</b>。</p>
+<p class="lead">「尿路が気になる」を選ぶと、マグネシウムを開示している商品を低い順で（開示分のみ）見られます：
+<a href="find.html">目的から選ぶ</a>。水分の摂らせ方は下の記事も参考に。</p>
+"""))
+
+    # 6) 水分（データ駆動）
+    arts.append((
+        "blog-water-intake", "猫に水分をどう摂らせる？ ウェットとドライの水分量", "2026-06-23",
+        "猫はもともと水をあまり飲まない動物。フードの水分量はウェットとドライで大きく違います。掲載データで比較。",
+        f"""
+<p class="lead">猫は砂漠出身の名残で、もともと積極的に水を飲まない動物といわれます。だからこそ
+<b>食事からの水分</b>も一つの手がかりになります。掲載データでの水分の中央値は——
+ウェット <b>{s['moist_wet_med']}%</b> / ドライ <b>{s['moist_dry_med']}%</b>。差は歴然です。</p>
+<h2>ウェットが万能というわけではない</h2>
+<p class="lead">水分が多いウェットは水分補給に向く一方、同じ重さあたりの栄養・カロリーは薄くなります（だから
+<a href="blog-wet-dry-protein.html">乾物量換算</a>で比べます）。コスト・歯みがき・嗜好性などトレードオフもあり、
+当サイトは「どちらが良い」とは言いません。</p>
+<p class="lead">ウェット中心で探したいときは「水分を摂らせたい」を： <a href="find.html">目的から選ぶ</a>。
+飲水量や体調の変化が気になるときは獣医師にご相談ください。</p>
+"""))
+
+    # 7) 高たんぱく（データ駆動）
+    arts.append((
+        "blog-high-protein", "猫は高たんぱくが基本？ たんぱく質の見方", "2026-06-23",
+        "猫は完全肉食動物。たんぱく質は重要ですが、数値の高さだけで決まりません。掲載データの分布で見ます。",
+        f"""
+<p class="lead">猫は完全肉食動物（obligate carnivore）で、犬より多くのたんぱく質を必要とするといわれます。
+掲載データでたんぱく質（乾物量）の中央値は <b>{s['prot_med']}%</b>。多くの商品は <b>{s['prot_p10']}〜{s['prot_p90']}%</b> に収まり、
+フリーズドライのトリーツなど一部はさらに高い値になります。</p>
+<h2>「高いほど良い」ではない</h2>
+<p class="lead">高たんぱくは筋肉維持などで重視される一方、<b>腎臓に懸念がある子では適さないこともあります</b>。
+ライフステージや健康状態で適量は変わるため、当サイトは数値の良し悪しを判断しません。</p>
+<p class="lead">高たんぱく順に見たいときは <a href="find.html">目的から選ぶ</a>、
+各商品の成分バランスは <a href="shape.html">成分のかたち</a> の5角形で一目で比べられます。</p>
+"""))
+
+    # 8) 療法食と総合栄養食・一般食（YMYL・強い非診断）
+    arts.append((
+        "blog-therapeutic-vs-complete", "『療法食』『総合栄養食』『一般食』はどう違う？", "2026-06-23",
+        "パッケージの区分表示の意味と、療法食の扱い方を整理。療法食は獣医師の指示が前提です。",
+        f"""
+<p class="lead">キャットフードの区分表示には主に次があります。</p>
+<ul class="lead">
+<li><b>総合栄養食</b>：それと水だけで必要な栄養がとれる基準を満たした主食用。</li>
+<li><b>一般食・副食・おやつ</b>：主食ではなく、トッピングや嗜好目的。これだけで完結しない。</li>
+<li><b>療法食</b>：特定の健康管理のために栄養を調整した食事。<b>獣医師の指導のもとで使うもの</b>。</li>
+</ul>
+<h2>療法食は自己判断で切り替えない</h2>
+<p class="lead">療法食は「効きそうだから」と自己判断で与えたり止めたりすると、かえって健康を損なう恐れがあります。
+<b>必ずかかりつけの獣医師の指示に従ってください</b>。当サイトは療法食を「この病気にはこれ」とは案内しません。
+掲載データで療法食として表示が確認できた商品は {s['ther_n']} 件ありましたが、選択・中止はあくまで獣医師の判断が前提です。</p>
+<p class="lead">獣医師に相談する際は、いま与えているフードの成分を整理しておくとスムーズです。
+<a href="calc.html">成分ツール</a>で袋の数値を乾物量換算しておくと話が早くなります。</p>
+"""))
+
+    # 9) 保証分析値の読み方（エバーグリーン・calcへ）
+    arts.append((
+        "blog-how-to-read-labels", "保証分析値の読み方 — 袋の数字を正しく比べる", "2026-06-23",
+        "粗たんぱく質・粗脂肪・粗繊維・粗灰分・水分。袋の数字の意味と、公平に比べるコツ（乾物量換算）。",
+        f"""
+<p class="lead">袋の「保証分析値（成分値）」には、粗たんぱく質・粗脂肪・粗繊維・粗灰分・水分などが並びます。
+「粗（そ）」は分析方法上の呼び方で、品質が粗いという意味ではありません。「◯%以上／以下」は保証の範囲を示します。</p>
+<h2>そのまま比べると不公平になる</h2>
+<p class="lead">水分量が違うフード同士を生の数字で比べると、水分の多いウェットが軒並み低く見えます。
+そこで<b>水分を除いた「乾物量（ドライマター）」</b>に換算してから比べるのが公平です：</p>
+<p class="lead"><code>乾物量の値(%) = 表示値(%) ÷ (100 − 水分%) × 100</code></p>
+<p class="lead">炭水化物は表示されないことが多いですが、<code>100 −（たんぱく質+脂肪+繊維+灰分+水分）</code>で概算できます。
+これらを自動でやるのが <a href="calc.html">成分ツール</a> です。掲載 {s['n']} 商品はすべてこの方法で揃えています。</p>
 """))
 
     pages = {}
