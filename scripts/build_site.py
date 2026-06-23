@@ -55,6 +55,12 @@ FOOTER_CAT = ('<svg class="fcat" viewBox="0 0 120 130" aria-hidden="true"><g cla
 # 公開先URL（GitHub Pages のプロジェクトページ既定。独自ドメイン時はここを変える）
 BASE_URL = "https://ededdeddyw.github.io/catfood-fact-analysis"
 SITE_NAME = "ねこごはんファクト"
+# Supabase（体重記録のクラウド保存）。anonは公開キーで RLS が守るため公開リポジトリでも安全。
+SUPABASE_URL = "https://yjfogfsgwylzrkksremm.supabase.co"
+SUPABASE_ANON = ("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9."
+                 "eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlqZm9nZnNnd3lsenJra3NyZW1tIiwicm9sZSI6ImFub24i"
+                 "LCJpYXQiOjE3ODIxNzM3NjYsImV4cCI6MjA5Nzc0OTc2Nn0."
+                 "qxxpf2Gmzntz6XefggwLItjX_odCWqE3r1ZsYgNdd6k")
 # 絵文字favicon（外部ファイル不要のSVGデータURI）
 FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' "
            "viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%BE%3C/text%3E%3C/svg%3E")
@@ -613,23 +619,76 @@ def build_find(products: list[dict]) -> str:
 
 
 RECORD_JS = r"""
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+const SB = createClient('__SB_URL__','__SB_ANON__');
 const KEY='nekogohan_weight_v1';
-function load(){try{return JSON.parse(localStorage.getItem(KEY))||{cats:[],active:null};}catch(e){return {cats:[],active:null};}}
-function save(s){localStorage.setItem(KEY,JSON.stringify(s));}
-function uid(){return 'c'+Math.random().toString(36).slice(2,8);}
-function cat(s){return s.cats.find(c=>c.id===s.active)||null;}
+let state={cats:[],active:null}, session=null;
+const cloud=()=>!!session;
+const $=id=>document.getElementById(id);
 function today(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function uid(){return 'c'+Math.random().toString(36).slice(2,8);}
+function gLoad(){try{return JSON.parse(localStorage.getItem(KEY))||{cats:[],active:null};}catch(e){return {cats:[],active:null};}}
+function gSave(){localStorage.setItem(KEY,JSON.stringify(state));}
+function cat(){return state.cats.find(c=>c.id===state.active)||null;}
 
-function addCat(){var n=document.getElementById('catname').value.trim();if(!n)return;
- var s=load();var id=uid();s.cats.push({id:id,name:n,target:'',entries:[]});s.active=id;save(s);document.getElementById('catname').value='';render();}
-function selCat(){var s=load();s.active=document.getElementById('catsel').value;save(s);render();}
-function setTarget(){var s=load();var c=cat(s);if(!c)return;c.target=document.getElementById('target').value;save(s);render();}
-function addEntry(){var s=load();var c=cat(s);if(!c){alert('先に猫を登録してください');return;}
- var d=document.getElementById('edate').value||today();var kg=parseFloat(document.getElementById('ekg').value);
- if(!(kg>0)){alert('体重(kg)を入力してください');return;}
- c.entries=c.entries.filter(e=>e.date!==d);c.entries.push({date:d,kg:kg});
- c.entries.sort((a,b)=>a.date<b.date?-1:1);save(s);document.getElementById('ekg').value='';render();}
-function delEntry(d){var s=load();var c=cat(s);if(!c)return;c.entries=c.entries.filter(e=>e.date!==d);save(s);render();}
+async function loadState(){
+ if(cloud()){
+  const {data:cats}=await SB.from('cats').select('*').order('created_at');
+  const {data:ents}=await SB.from('weight_entries').select('*');
+  state.cats=(cats||[]).map(c=>({id:c.id,name:c.name,target:(c.target!=null?String(c.target):''),
+   entries:(ents||[]).filter(e=>e.cat_id===c.id).map(e=>({date:e.entry_date,kg:Number(e.kg)})).sort((a,b)=>a.date<b.date?-1:1)}));
+  if(!state.active||!state.cats.find(c=>c.id===state.active))state.active=state.cats[0]?state.cats[0].id:null;
+ } else { state=gLoad(); }
+}
+
+window.addCat=async function(){var n=$('catname').value.trim();if(!n)return;
+ if(cloud()){const {data,error}=await SB.from('cats').insert({name:n}).select().single();
+  if(error)return alert('保存に失敗: '+error.message);state.cats.push({id:data.id,name:n,target:'',entries:[]});state.active=data.id;}
+ else {var id=uid();state.cats.push({id,name:n,target:'',entries:[]});state.active=id;gSave();}
+ $('catname').value='';render();};
+window.selCat=function(){state.active=$('catsel').value;if(!cloud())gSave();render();};
+window.setTarget=async function(){var c=cat();if(!c)return;var v=$('target').value;c.target=v;
+ if(cloud()){await SB.from('cats').update({target:v===''?null:Number(v)}).eq('id',c.id);}else gSave();render();};
+window.addEntry=async function(){var c=cat();if(!c)return alert('先に猫を登録してください');
+ var d=$('edate').value||today();var kg=parseFloat($('ekg').value);if(!(kg>0))return alert('体重(kg)を入力してください');
+ if(cloud()){const {error}=await SB.from('weight_entries').upsert({cat_id:c.id,entry_date:d,kg},{onConflict:'cat_id,entry_date'});
+  if(error)return alert('保存に失敗: '+error.message);}
+ c.entries=c.entries.filter(e=>e.date!==d);c.entries.push({date:d,kg});c.entries.sort((a,b)=>a.date<b.date?-1:1);
+ if(!cloud())gSave();$('ekg').value='';render();};
+window.delEntry=async function(d){var c=cat();if(!c)return;
+ if(cloud()){await SB.from('weight_entries').delete().eq('cat_id',c.id).eq('entry_date',d);}
+ c.entries=c.entries.filter(e=>e.date!==d);if(!cloud())gSave();render();};
+
+window.signUp=async function(){const {data,error}=await SB.auth.signUp({email:$('email').value.trim(),password:$('pw').value});
+ if(error)return alert('登録失敗: '+error.message);
+ if(!data.session)alert('確認メールを送信しました。メール内のリンクを開くとログインできます。');};
+window.signIn=async function(){const {error}=await SB.auth.signInWithPassword({email:$('email').value.trim(),password:$('pw').value});
+ if(error)return alert('ログイン失敗: '+error.message);};
+window.signOut=async function(){await SB.auth.signOut();};
+window.migrateLocal=async function(){const g=gLoad();if(!g.cats||!g.cats.length)return alert('この端末に記録はありません');
+ if(!confirm('この端末の記録をクラウドに移しますか？'))return;
+ for(const lc of g.cats){const {data:nc,error}=await SB.from('cats').insert({name:lc.name,target:lc.target?Number(lc.target):null}).select().single();
+  if(error){console.warn(error);continue;}
+  if(lc.entries&&lc.entries.length)await SB.from('weight_entries').upsert(lc.entries.map(e=>({cat_id:nc.id,entry_date:e.date,kg:e.kg})),{onConflict:'cat_id,entry_date'});}
+ localStorage.removeItem(KEY);await refresh();alert('クラウドへ移しました。');};
+
+function renderAuth(){var bar=$('authbar');if(!bar)return;
+ if(session){var g=gLoad();
+  bar.innerHTML='<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">'+
+   '<span>☁ クラウド保存中：<b>'+session.user.email+'</b></span>'+
+   '<button class="btn btn-ghost" style="padding:6px 14px" onclick="signOut()">ログアウト</button>'+
+   ((g.cats&&g.cats.length)?'<button class="btn btn-primary" style="padding:6px 14px" onclick="migrateLocal()">この端末の記録('+g.cats.length+'匹)をクラウドへ</button>':'')+'</div>';
+ } else {
+  bar.innerHTML='<div style="display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap">'+
+   '<div class="field" style="margin:0;min-width:180px"><label>メール</label><input id="email" type="email" placeholder="you@example.com"></div>'+
+   '<div class="field" style="margin:0;min-width:150px"><label>パスワード</label><input id="pw" type="password" placeholder="6文字以上"></div>'+
+   '<button class="btn btn-primary" style="padding:9px 16px" onclick="signIn()">ログイン</button>'+
+   '<button class="btn btn-ghost" style="padding:9px 16px" onclick="signUp()">新規登録</button>'+
+   '<span class="mk" style="flex-basis:100%">ログインするとどの端末からでも見られます。ログインせず<b>この端末だけ</b>で使うこともできます（下で記録）。</span></div>';
+ }}
+
+async function refresh(){const {data}=await SB.auth.getSession();session=data.session;await loadState();render();}
+window.addEventListener('DOMContentLoaded',()=>{refresh();SB.auth.onAuthStateChange((_e,s)=>{session=s;refresh();});});
 
 function chartSVG(entries,target){
  if(!entries.length)return '<p class="na">まだ記録がありません。右上で体重を追加してください。</p>';
@@ -662,27 +721,29 @@ function trendText(entries){
  return '前回比 <span class="'+cls+'">'+sign+diff.toFixed(2)+'kg（'+word+'）</span>　最新 '+b+'kg / '+entries.length+'件';
 }
 function render(){
- var s=load(),c=cat(s);
- var sel=document.getElementById('catsel');
- sel.innerHTML=s.cats.map(x=>'<option value="'+x.id+'"'+(x.id===s.active?' selected':'')+'>'+x.name+'</option>').join('')||'<option>（未登録）</option>';
- document.getElementById('target').value=c?c.target:'';
- document.getElementById('edate').value=today();
+ renderAuth();
+ var c=cat();
+ var sel=$('catsel');
+ sel.innerHTML=state.cats.map(x=>'<option value="'+x.id+'"'+(x.id===state.active?' selected':'')+'>'+x.name+'</option>').join('')||'<option>（未登録）</option>';
+ $('target').value=c?c.target:'';
+ $('edate').value=today();
  var entries=c?c.entries:[];
- document.getElementById('chart').innerHTML=chartSVG(entries,c&&parseFloat(c.target)||0);
- document.getElementById('trend').innerHTML=c?trendText(entries):'まず猫を登録してください。';
- document.getElementById('elist').innerHTML=entries.length?
+ $('chart').innerHTML=chartSVG(entries,c&&parseFloat(c.target)||0);
+ $('trend').innerHTML=c?trendText(entries):'まず猫を登録してください。';
+ $('elist').innerHTML=entries.length?
   ('<tr><th>日付</th><th>体重</th><th></th></tr>'+entries.slice().reverse().map(e=>
    '<tr><td>'+e.date+'</td><td>'+e.kg+' kg</td><td><button class="del" onclick="delEntry(\''+e.date+'\')">削除</button></td></tr>').join('')):'';
 }
-window.addEventListener('DOMContentLoaded',render);
 """
 
 
 def build_record() -> str:
+    js = RECORD_JS.replace("__SB_URL__", SUPABASE_URL).replace("__SB_ANON__", SUPABASE_ANON)
     return ("""
-""" + pagehead("うちの子の管理 / この端末に保存", "体重記録") + """
+""" + pagehead("うちの子の管理 / ログインでクラウド保存", "体重記録") + """
 <p class="lead">猫の体重を記録して、増減の傾向をグラフで確認できます。体重が増え気味なら
 <a href="weight.html">体重管理ビュー</a>でカロリー密度の低いフードを探せます。<b>適正体重・増減の評価は獣医師にご相談ください</b>（当サイトは診断を行いません）。</p>
+<div class="panel" id="authbar" style="margin-bottom:14px"></div>
 <div class="tracker">
  <div class="panel">
   <div class="field"><label>猫を選ぶ / 追加</label>
@@ -700,8 +761,7 @@ def build_record() -> str:
     <input id="ekg" type="number" step="0.01" placeholder="kg">
    </div></div>
   <button class="btn btn-primary" style="width:100%" onclick="addEntry()">この日の体重を記録</button>
-  <p class="savednote">🔒 記録はこの端末のブラウザ内にだけ保存されます（外部送信なし）。<br>
-  端末をまたいだ同期・ログインは近日対応予定です。</p>
+  <p class="savednote">🔒 未ログインのときはこの端末内だけに保存（外部送信なし）。ログインするとクラウドに保存され、どの端末からでも見られます。</p>
  </div>
  <div class="panel">
   <div class="chartwrap" id="chart"></div>
@@ -709,7 +769,7 @@ def build_record() -> str:
   <table class="elist" id="elist"></table>
  </div>
 </div>
-""" + "<script>" + RECORD_JS + "</script>")
+""" + '<script type="module">' + js + "</script>")
 
 
 def build_about() -> str:
