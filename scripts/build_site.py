@@ -329,8 +329,9 @@ def coverage() -> dict:
 def page(active: str, title: str, body: str, desc: str = "", path: str = "index.html",
          wrap: bool = True) -> str:
     nav = [("index", "ホーム", "index.html"), ("find", "目的から選ぶ", "find.html"),
-           ("shape", "成分のかたち", "shape.html"), ("record", "体重記録", "record.html"),
-           ("weight", "体重管理", "weight.html"), ("kidney", "腎臓相談シート", "kidney.html"),
+           ("shape", "成分のかたち", "shape.html"), ("calc", "成分ツール", "calc.html"),
+           ("record", "体重記録", "record.html"),
+           ("weight", "体重管理", "weight.html"), ("kidney", "腎臓シート", "kidney.html"),
            ("coverage", "網羅性", "coverage.html"), ("about", "この調べ方", "about.html")]
     navhtml = "".join(
         f'<a class="{"active" if active==k else ""}" href="{href}">{label}</a>'
@@ -475,6 +476,12 @@ def build_index(cov: dict) -> str:
 
 <section class="section"><div class="wrap">
  <div class="cards">
+  <div class="card"><h2 style="margin-top:4px">成分のかたち</h2>
+   <p class="lead">主要成分を乾物量の5角形レーダーで一覧。点数ではなく構成を見る。</p>
+   <a class="btn btn-ghost" href="shape.html">成分のかたち →</a></div>
+  <div class="card"><h2 style="margin-top:4px">成分ツール（袋の数値）</h2>
+   <p class="lead">手元のフードの数値を入れると、乾物量の形＋成分が近い商品が分かる。</p>
+   <a class="btn btn-ghost" href="calc.html">成分ツール →</a></div>
   <div class="card"><h2 style="margin-top:4px">体重管理ビュー</h2>
    <p class="lead">カロリー密度の低い順。「太った猫向け」とは言いません。</p>
    <a class="btn btn-ghost" href="weight.html">体重管理 →</a></div>
@@ -815,7 +822,8 @@ render();
 """
 
 
-def build_shape(products: list[dict]) -> str:
+def macro_items(products: list[dict]) -> list[dict]:
+    """5マクロ(乾物量)が揃った猫商品 → レーダー用の軽量リスト。"""
     keys = ["protein_dm", "fat_dm", "fiber_dm", "ash_dm", "nfe_dm"]
     items = []
     for r in products:
@@ -824,6 +832,11 @@ def build_shape(products: list[dict]) -> str:
                           "url": r.get("url", ""), "fetched_at": r.get("fetched_at", ""),
                           "form": r.get("form", ""),
                           "v": [round(float(r[k]), 1) for k in keys]})
+    return items
+
+
+def build_shape(products: list[dict]) -> str:
+    items = macro_items(products)
     js = SHAPE_JS.replace("__DATA__", json.dumps(items, ensure_ascii=False))
     body = pagehead("成分のかたち / 乾物量換算", "栄養成分を5角形で見る") + """
 <p class="lead">各フードの主要成分（たんぱく質・脂肪・繊維・灰分・炭水化物）を<b>乾物量換算</b>で5角形にしました。
@@ -837,6 +850,69 @@ def build_shape(products: list[dict]) -> str:
  <button class="fbtn" data-f="ウェット" onclick="setFilt('ウェット')">ウェット</button>
 </div>
 <div id="grid" class="shapegrid"></div>
+""" + '<script>' + js + '</script>'
+    return body
+
+
+CALC_JS = r"""
+const DB=__DB__;
+const AX=['たんぱく質','脂肪','繊維','灰分','炭水化物'], MAX=[70,45,15,15,50], N=5;
+function radar(v,big){
+ var S=big?200:150,c=S/2,R=big?72:52,P=Math.PI/180,g='',ax='',lb='',vp=[];
+ [0.5,1].forEach(function(f){var p=[];for(var i=0;i<N;i++){var a=(-90+i*72)*P;p.push((c+R*f*Math.cos(a)).toFixed(1)+','+(c+R*f*Math.sin(a)).toFixed(1));}g+='<polygon points="'+p.join(' ')+'" fill="none" stroke="var(--line)"/>';});
+ for(var i=0;i<N;i++){var a=(-90+i*72)*P,ex=c+R*Math.cos(a),ey=c+R*Math.sin(a);
+  ax+='<line x1="'+c+'" y1="'+c+'" x2="'+ex.toFixed(1)+'" y2="'+ey.toFixed(1)+'" stroke="var(--line)"/>';
+  var lx=c+(R+13)*Math.cos(a),ly=c+(R+13)*Math.sin(a);
+  lb+='<text x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'" font-size="'+(big?10:9)+'" fill="#8a7866" text-anchor="middle" dominant-baseline="middle">'+AX[i]+'</text>';
+  var rr=R*Math.min(v[i]/MAX[i],1);vp.push((c+rr*Math.cos(a)).toFixed(1)+','+(c+rr*Math.sin(a)).toFixed(1));}
+ return '<svg viewBox="0 0 '+S+' '+S+'" class="radar" style="width:'+S+'px;height:'+S+'px" role="img"><g>'+g+ax+
+  '<polygon points="'+vp.join(' ')+'" fill="var(--accent)" fill-opacity="0.22" stroke="var(--accent)" stroke-width="2"/>'+lb+'</g></svg>';}
+function pctBelow(idx,x){var n=DB.filter(d=>d.v[idx]<=x).length;return Math.round(100*n/DB.length);}
+function compute(){
+ var g=id=>parseFloat(document.getElementById(id).value);
+ var m=g('m'),asf=[g('p'),g('f'),g('fb'),g('a')];
+ if(isNaN(m)||m>=100||asf.some(isNaN)){document.getElementById('out').innerHTML='<div class="disclaimer">たんぱく質・脂肪・繊維・灰分・水分（%）を入力してください。</div>';return;}
+ var dm=asf.map(x=>Math.round(x/(100-m)*1000)/10);
+ var nfe=Math.round((100-dm.reduce((s,x)=>s+x,0))*10)/10; if(nfe<0)nfe=0;
+ var v=[dm[0],dm[1],dm[2],dm[3],nfe];
+ var rowsT=v.map((x,i)=>'<tr><td>'+AX[i]+'</td><td class="num"><b>'+x+'%</b></td><td class="mk">掲載商品の中で下から '+pctBelow(i,x)+'%</td></tr>').join('');
+ var kn=DB.map(d=>({d:d,dist:Math.sqrt(v.reduce((s,x,i)=>s+Math.pow((x-d.v[i])/MAX[i],2),0))})).sort((a,b)=>a.dist-b.dist).slice(0,6);
+ var sim=kn.map(function(o){var r=o.d;var nums=r.v.map((x,i)=>['P','脂','繊','灰','炭'][i]+' '+x+'%').join(' ・ ');
+  return '<div class="shapecard"><div class="rname">'+(r.name||'(無題)')+'<span class="mk">'+r.maker+'・'+r.form+'</span></div>'+
+   radar(r.v)+'<div class="rnums">'+nums+'</div><div class="rsrc"><a href="'+r.url+'" target="_blank" rel="noopener">公式</a></div></div>';}).join('');
+ document.getElementById('out').innerHTML=
+  '<div class="split" style="gap:24px"><div style="flex:0 0 auto;text-align:center">'+radar(v,true)+'<div class="mk">乾物量換算した成分のかたち</div></div>'+
+  '<div style="flex:1"><table class="elist"><tr><th>成分</th><th>乾物量</th><th>位置（非評価）</th></tr>'+rowsT+'</table>'+
+  '<p class="mk" style="margin-top:8px">※水分'+m+'%を除いた基準。炭水化物＝100−（たんぱく+脂肪+繊維+灰分）。「位置」は良し悪しでなく分布上の場所です。</p></div></div>'+
+  '<h2>成分が近い掲載商品</h2><p class="lead">入力した数値に<b>成分構成が近い</b>商品です（おすすめ順ではなく、近さ順）。</p><div class="shapegrid">'+sim+'</div>';
+ document.getElementById('out').scrollIntoView({behavior:'smooth',block:'nearest'});}
+window.compute=compute;
+window.demo=function(){var s={p:'30',f:'15',fb:'3',a:'7',m:'10'};for(var k in s)document.getElementById(k).value=s[k];compute();};
+"""
+
+
+def build_calc(products: list[dict]) -> str:
+    db = macro_items(products)
+    js = CALC_JS.replace("__DB__", json.dumps(db, ensure_ascii=False))
+    body = pagehead("乾物量ツール / どの袋でも", "お店の袋の数値を入れてみる") + """
+<p class="lead">いま手元にある（お店で見ている）フードの<b>保証分析値</b>を入れると、水分を除いた
+<b>本当の成分のかたち</b>と、掲載商品の中での位置、そして<b>成分が近い商品</b>が分かります。
+DBに無いフードでも使えます。<b>これは成分の可視化で、良し悪しの評価ではありません</b>（非診断）。</p>
+<div class="panel">
+ <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px">
+  <div class="field"><label>たんぱく質 %</label><input id="p" type="number" step="0.1" placeholder="例 30"></div>
+  <div class="field"><label>脂肪 %</label><input id="f" type="number" step="0.1" placeholder="例 15"></div>
+  <div class="field"><label>繊維 %</label><input id="fb" type="number" step="0.1" placeholder="例 3"></div>
+  <div class="field"><label>灰分 %</label><input id="a" type="number" step="0.1" placeholder="例 7"></div>
+  <div class="field"><label>水分 %</label><input id="m" type="number" step="0.1" placeholder="例 10"></div>
+ </div>
+ <div class="btn-row">
+  <button class="btn btn-primary" onclick="compute()">成分のかたちを見る</button>
+  <button class="btn btn-ghost" onclick="demo()">例を入れてみる</button>
+ </div>
+ <p class="mk">袋の「保証分析値（成分値）」に書いてある％をそのまま入力してください（as-fed）。</p>
+</div>
+<div id="out" style="margin-top:18px"></div>
 """ + '<script>' + js + '</script>'
     return body
 
@@ -863,6 +939,9 @@ _ABOUT_BODY = """
 <h2>非診断</h2>
 <p class="lead">「この病気にはこのフード」とは言いません。療法食は獣医師の指示が前提です。
 出力の頂点は、印刷して獣医師に持っていく<b>相談シート</b>です。</p>
+<h2>データを公開しています</h2>
+<p class="lead">掲載キャットフードの成分データ（乾物量換算・出典付き）を、そのまま誰でも見られる形で公開します。
+ファクトを名乗る以上、中身を隠しません。<a href="data/cat_products.json" download>📥 全データ（JSON）をダウンロード</a></p>
 <h2>写真クレジット</h2>
 <p class="lead">サイト内の写真は Wikimedia Commons のパブリックドメイン／CC0／CC BY 素材です（出典・作者・ライセンスを明記）。</p>
 __CREDITS__
@@ -896,6 +975,8 @@ def main() -> None:
                       "「体重管理・高たんぱく・水分・穀物を避けたい・腎臓・尿路」など目的から、見る指標と条件を明示して合う商品を実値つきで表示。"),
         "shape.html": ("shape", "成分のかたち", build_shape(products),
                        "各キャットフードの主要成分(たんぱく質・脂肪・繊維・灰分・炭水化物)を乾物量換算の5角形レーダーで一覧。点数ではなく成分の構成。"),
+        "calc.html": ("calc", "成分ツール", build_calc(products),
+                      "手元のフードの保証分析値を入れると乾物量換算の成分5角形・掲載商品内での位置・成分が近い商品が分かる。DBに無いフードでも使える。"),
         "record.html": ("record", "体重記録", build_record(),
                         "猫の体重を記録して増減の傾向をグラフで確認。記録は端末内に保存。体重管理フードへ連動。非診断。"),
         "weight.html": ("weight", "体重管理ビュー", build_weight(products),
@@ -911,6 +992,14 @@ def main() -> None:
         (SITE / fname).write_text(
             page(active, title, body, desc, fname, wrap=(active != "index")),
             encoding="utf-8")
+
+    # 全データの公開（ファクトDBとしての透明性）。誰でも監査・再利用できる。
+    (SITE / "data").mkdir(parents=True, exist_ok=True)
+    (SITE / "data" / "cat_products.json").write_text(
+        json.dumps({"updated": today_stamp(), "count": len(products),
+                    "note": "ねこごはんファクト 掲載キャットフードの成分データ（乾物量換算含む・出典付き）。評価・順位は含みません。",
+                    "products": products}, ensure_ascii=False, indent=1),
+        encoding="utf-8")
 
     # sitemap.xml / robots.txt
     locs = "".join(f"<url><loc>{BASE_URL}/{f}</loc><lastmod>{today_stamp()}</lastmod></url>"
