@@ -19,6 +19,7 @@ from urllib.parse import urljoin, urlparse
 
 from bs4 import BeautifulSoup
 
+import html_cache
 from catfood_common import DATA_DIR, log_line, safe_print, today_stamp
 from catfood_nutrition_patterns import EXTRACT_FIELDS, extract_nutrition
 from extract_product_facts import LINK_KEYWORDS, PAGE_TEXT_MIN_FIELDS, _link_score, _page_text
@@ -64,8 +65,9 @@ def crawl_site_pw(start: str, maker: str, max_pages: int, *, nav_timeout: int = 
                 safe_print(f"   [skip] {type(exc).__name__} {url[:70]}")
                 continue
 
+            html_cache.write_cache(url, html)  # レンダリング済みHTMLもキャッシュ（再抽出・再開用）
             title, text = _page_text(html)
-            data = extract_nutrition(text)
+            data = extract_nutrition(text, url=url, name=title)
             if data["fields_found"] >= PAGE_TEXT_MIN_FIELDS:
                 found.append({"maker": maker, "product_name": title[:80],
                               "url": url, "fetched_at": stamp, **data})
