@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ededdeddyw.github.io/catfood-fact-analysis/sitemap.xml

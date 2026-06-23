@@ -19,6 +19,13 @@ SITE = ROOT / "site"
 CONSULT = DATA_DIR / "consult_sheet_cat.csv"
 MAKERS = DATA_DIR / "maker_sites.csv"
 
+# 公開先URL（GitHub Pages のプロジェクトページ既定。独自ドメイン時はここを変える）
+BASE_URL = "https://ededdeddyw.github.io/catfood-fact-analysis"
+SITE_NAME = "ねこごはんファクト"
+# 絵文字favicon（外部ファイル不要のSVGデータURI）
+FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' "
+           "viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%BE%3C/text%3E%3C/svg%3E")
+
 CSS = """
 *{box-sizing:border-box}
 body{font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
@@ -106,16 +113,27 @@ def coverage() -> dict:
             "p_open": sum(1 for r in prods if r.get("phosphorus_disclosed") == "yes")}
 
 
-def page(active: str, title: str, body: str) -> str:
+def page(active: str, title: str, body: str, desc: str = "", path: str = "index.html") -> str:
     nav = [("index", "ホーム", "index.html"), ("weight", "体重管理", "weight.html"),
            ("kidney", "腎臓相談シート", "kidney.html"),
            ("coverage", "網羅性", "coverage.html"), ("about", "この調べ方", "about.html")]
     navhtml = "".join(
         f'<a class="{"active" if active==k else ""}" href="{href}">{label}</a>'
         for k, label, href in nav)
+    desc = desc or "キャットフードを広告やランキングではなく、公式の保証成分・出典・乾物量換算のファクトで比較。評価せず順位を付けず、判断は獣医師へ。"
+    canonical = f"{BASE_URL}/{path}"
     return f"""<!doctype html><html lang="ja"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{title}｜ねこごはんファクト</title>
+<title>{title}｜{SITE_NAME}</title>
+<meta name="description" content="{desc}">
+<link rel="canonical" href="{canonical}">
+<link rel="icon" href="{FAVICON}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{SITE_NAME}">
+<meta property="og:title" content="{title}｜{SITE_NAME}">
+<meta property="og:description" content="{desc}">
+<meta property="og:url" content="{canonical}">
+<meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="style.css"></head><body>
 <header class="site"><div class="wrap">
  <a class="brand" href="index.html">🐾 ねこごはんファクト</a>
@@ -278,16 +296,34 @@ def main() -> None:
     products = load_products()
     cov = coverage()
     pages = {
-        "index.html": ("index", "ホーム", build_index(cov)),
-        "weight.html": ("weight", "体重管理ビュー", build_weight(products)),
-        "kidney.html": ("kidney", "腎臓相談シート", build_kidney(products)),
-        "coverage.html": ("coverage", "網羅性", build_coverage(cov)),
-        "about.html": ("about", "この調べ方", build_about()),
+        "index.html": ("index", "ホーム", build_index(cov),
+                       "キャットフードを広告やランキングではなく公式の保証成分・出典・乾物量換算のファクトで比較。評価せず順位を付けず判断は獣医師へ。"),
+        "weight.html": ("weight", "体重管理ビュー", build_weight(products),
+                        "キャットフードをカロリー密度(kcal/100g)で並べ替えられる出典付き一覧。おすすめ・順位は出しません。"),
+        "kidney.html": ("kidney", "腎臓相談シート", build_kidney(products),
+                        "リンを公式開示しているキャットフードを乾物量換算で比較。印刷して獣医師にご相談ください。非診断。"),
+        "coverage.html": ("coverage", "網羅性", build_coverage(cov),
+                          "対象母集団とカバー率・未取得・対象外を正直に開示。宣言した範囲への網羅性。"),
+        "about.html": ("about", "この調べ方", build_about(),
+                       "4状態ラベル・乾物量換算・出典必須・アフィリエイト遮断・非診断。データの作り方を公開。"),
     }
-    for fname, (active, title, body) in pages.items():
-        (SITE / fname).write_text(page(active, title, body), encoding="utf-8")
-    safe_print(f"[site] {len(pages)}ページ生成 / 掲載{cov['products']}商品 / 取得{len(cov['with_data'])}社")
-    safe_print(f"  -> {SITE / 'index.html'}（ブラウザで開く）")
+    for fname, (active, title, body, desc) in pages.items():
+        (SITE / fname).write_text(page(active, title, body, desc, fname), encoding="utf-8")
+
+    # sitemap.xml / robots.txt
+    locs = "".join(f"<url><loc>{BASE_URL}/{f}</loc><lastmod>{today_stamp()}</lastmod></url>"
+                   for f in pages)
+    (SITE / "sitemap.xml").write_text(
+        f'<?xml version="1.0" encoding="UTF-8"?>\n'
+        f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{locs}</urlset>',
+        encoding="utf-8")
+    (SITE / "robots.txt").write_text(
+        f"User-agent: *\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n", encoding="utf-8")
+    # GitHub Pages: Jekyll処理を無効化（_や記号ファイルをそのまま配信）
+    (SITE / ".nojekyll").write_text("", encoding="utf-8")
+
+    safe_print(f"[site] {len(pages)}ページ + sitemap/robots 生成 / 掲載{cov['products']}商品 / 取得{len(cov['with_data'])}社")
+    safe_print(f"  -> {SITE / 'index.html'}（ブラウザで開く）/ 公開先 {BASE_URL}/")
 
 
 if __name__ == "__main__":

@@ -50,6 +50,17 @@ def dm(asfed, moisture):
     return round(asfed / (100 - moisture) * 100, 1)
 
 
+def clean_name(title: str) -> str:
+    """ページタイトルから商品名を整形（「｜商品詳細｜商品を探す…」等を除去）。"""
+    if not title:
+        return ""
+    # 全角/半角の縦棒・ダッシュ・中黒区切りの先頭セグメントを採用
+    for sep in ("｜", "|", " - ", "—", "／"):
+        if sep in title:
+            title = title.split(sep)[0]
+    return title.strip().strip("・-　 ") or ""
+
+
 def form_of(moisture):
     if moisture is None:
         return "不明"
@@ -85,7 +96,7 @@ def build_rows() -> list[dict]:
         phos = num(r.get("phosphorus_value")) if p_pct else None
         out.append({
             "maker": r.get("maker", ""),
-            "product_name": r.get("product_name", ""),
+            "product_name": clean_name(r.get("product_name", "")),
             "url": r.get("url", ""),
             "form": form_of(moisture),
             "moisture_pct": moisture if moisture is not None else "",
