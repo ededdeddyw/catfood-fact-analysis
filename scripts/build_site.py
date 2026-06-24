@@ -11,6 +11,7 @@
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 from collections import Counter
 
@@ -20,6 +21,10 @@ SITE = ROOT / "site"
 CONSULT = DATA_DIR / "consult_sheet_cat.csv"
 MAKERS = DATA_DIR / "maker_sites.csv"
 PRODUCT_IMAGES = DATA_DIR / "product_images.csv"  # fetch_product_images.py が生成（自前ホスト画像の対応表）
+
+# style.css のキャッシュバスティング用バージョン（main で実CSSの内容ハッシュに更新）。
+# CSSを変えた時だけURLが変わり、再訪問者にも確実に新CSSが届く。
+CSS_VER = "0"
 
 # 肉球マスク（h2見出しのアクセント用・単色）
 _PAW_MASK = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E"
@@ -462,7 +467,7 @@ def page(active: str, title: str, body: str, desc: str = "", path: str = "index.
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{canonical}">
 <meta name="twitter:card" content="summary">
-<link rel="stylesheet" href="style.css"></head><body>
+<link rel="stylesheet" href="style.css?v={CSS_VER}"></head><body>
 <header class="site"><div class="wrap">
  <a class="brand" href="index.html">{BRAND_CAT}ねこごはんファクト</a>
  <nav class="main">{navhtml}</nav>
@@ -1526,8 +1531,10 @@ def _credits_html() -> str:
 
 
 def main() -> None:
+    global CSS_VER
     SITE.mkdir(parents=True, exist_ok=True)
     css = CSS.replace("PAWMASK", _PAW_MASK).replace("PAWBG", _PAW_BG)
+    CSS_VER = hashlib.md5(css.encode("utf-8")).hexdigest()[:8]  # 内容ハッシュでキャッシュ無効化
     (SITE / "style.css").write_text(css, encoding="utf-8")
     products = load_products()
     cov = coverage()
