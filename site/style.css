@@ -180,6 +180,8 @@ footer.site .fcat{width:40px;flex:none;opacity:.8}
  border:1px solid var(--line)}
 .pthumb-card{width:60px;height:60px;border-radius:10px;display:block;margin:0 auto 4px}
 .shapecard{position:relative}
+.unof{display:inline-block;font-size:10.5px;font-weight:700;color:#8a5a2a;background:#fbe8cf;
+ border:1px solid #ecd3a6;border-radius:999px;padding:1px 7px;margin-left:5px;white-space:nowrap;vertical-align:middle;cursor:help}
 
 /* ===== メーカー一覧 ===== */
 .makergrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:14px;margin-top:14px}

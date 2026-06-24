@@ -261,6 +261,8 @@ footer.site .fcat{width:40px;flex:none;opacity:.8}
  border:1px solid var(--line)}
 .pthumb-card{width:60px;height:60px;border-radius:10px;display:block;margin:0 auto 4px}
 .shapecard{position:relative}
+.unof{display:inline-block;font-size:10.5px;font-weight:700;color:#8a5a2a;background:#fbe8cf;
+ border:1px solid #ecd3a6;border-radius:999px;padding:1px 7px;margin-left:5px;white-space:nowrap;vertical-align:middle;cursor:help}
 
 /* ===== メーカー一覧 ===== */
 .makergrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:14px;margin-top:14px}
@@ -303,6 +305,8 @@ TABLE_JS = """
 let DATA=__DATA__, COLS=__COLS__, sortKey=__SORT__, asc=__ASC__, ponly=__PONLY__;
 function cell(v,u){return (v===''||v==null)?'<span class=\"na\">記載なし（要確認）</span>':v+(u||'');}
 function thumb(r){return r.img?'<img class=\"pthumb\" src=\"'+r.img+'\" alt=\"\" loading=\"lazy\">':'';}
+function unof(r){return r.source==='rakuten'?' <span class=\"unof\" title=\"出典は楽天商品ページ＝公式の保証分析値の転記。公式ページ未確認です。\">公式未確認</span>':'';}
+function srcCell(r){var rk=r.source==='rakuten';return '<td><a href=\"'+r.url+'\" target=\"_blank\" rel=\"noopener'+(rk?' nofollow':'')+'\">'+(rk?'楽天':'公式')+'</a> <span class=\"na\">'+r.fetched_at+'</span></td>';}
 function buy(r){var q=encodeURIComponent(((r.maker||'')+' '+(r.product_name||'')).trim());
  return [['楽天','https://search.rakuten.co.jp/search/mall/'+q+'/'],['Amazon','https://www.amazon.co.jp/s?k='+q],
  ['Yahoo','https://shopping.yahoo.co.jp/search?p='+q]].map(c=>'<a href=\"'+c[1]+'\" target=\"_blank\" rel=\"noopener nofollow\">'+c[0]+'</a>').join('');}
@@ -316,11 +320,11 @@ function draw(){let rows=DATA.slice();
   x=(x||'').toString();y=(y||'').toString();return asc?x.localeCompare(y,'ja'):y.localeCompare(x,'ja');});
  let h='<tr>'+COLS.map(c=>'<th onclick=\"sortBy(\\''+c.k+'\\')\">'+c.t+'</th>').join('')+'</tr>';
  let b=rows.map(r=>{return '<tr>'+COLS.map(c=>{
-   if(c.type==='name')return '<td><span class=\"pcell\">'+thumb(r)+'<span>'+(r.product_name||'(無題)')+'<br><span class=\"mk\">'+r.maker+'</span></span></span></td>';
-   if(c.type==='pname')return '<td><span class=\"pcell\">'+thumb(r)+'<span>'+(r.product_name||'(無題)')+'</span></span></td>';
+   if(c.type==='name')return '<td><span class=\"pcell\">'+thumb(r)+'<span>'+(r.product_name||'(無題)')+unof(r)+'<br><span class=\"mk\">'+r.maker+'</span></span></span></td>';
+   if(c.type==='pname')return '<td><span class=\"pcell\">'+thumb(r)+'<span>'+(r.product_name||'(無題)')+unof(r)+'</span></span></td>';
    if(c.type==='cal'){return '<td class=\"num\">'+(r.calorie_basis==='per_piece'?'<span class=\"na\">個包装・密度比較不可</span>':cell(r.calorie_density_100g))+'</td>';}
    if(c.type==='ther')return '<td>'+(r.is_therapeutic==='True'?'<span class=\"ther\">療法食</span>':'—')+'</td>';
-   if(c.type==='src')return '<td><a href=\"'+r.url+'\" target=\"_blank\" rel=\"noopener\">公式</a> <span class=\"na\">'+r.fetched_at+'</span></td>';
+   if(c.type==='src')return srcCell(r);
    if(c.type==='buy')return '<td class=\"buy\">'+buy(r)+'</td>';
    return '<td class=\"num\">'+cell(r[c.k])+'</td>';
  }).join('')+'</tr>';}).join('');
@@ -399,11 +403,15 @@ def coverage() -> dict:
     excluded = [r for r in rows if r.get("method") == "excluded_no_catfood"]
     prods = load_products()
     with_data = sorted(set(r["maker"] for r in prods))
+    # 公式未確認（楽天転記のみ）のメーカー＝大手の暫定補完。正直に区別する。
+    makers_official = set(r["maker"] for r in prods if r.get("source") != "rakuten")
+    rakuten_only = sorted(set(with_data) - makers_official)
     confirmed_names = set(r["company_name"] for r in confirmed)
-    no_data = sorted(confirmed_names - set(with_data))
+    no_data = sorted(confirmed_names - set(with_data) - set(rakuten_only))
     return {"pop": seisei, "confirmed": confirmed, "excluded": excluded,
-            "with_data": with_data, "no_data": no_data,
+            "with_data": with_data, "no_data": no_data, "rakuten_only": rakuten_only,
             "products": len(prods),
+            "rakuten_products": sum(1 for r in prods if r.get("source") == "rakuten"),
             "p_open": sum(1 for r in prods if r.get("phosphorus_disclosed") == "yes")}
 
 
@@ -709,9 +717,11 @@ def maker_groups(products: list[dict]) -> list[dict]:
         forms = Counter(p["form"] for p in prods)
         ther = sum(1 for p in prods if p.get("is_therapeutic") == "True")
         thumb = next((p["img"] for p in prods if p.get("img")), "")  # 代表サムネ
+        n_rakuten = sum(1 for p in prods if p.get("source") == "rakuten")
         out.append({
             "maker": maker, "slug": slug, "page": f"maker-{slug}.html", "thumb": thumb,
             "url": site.get("official_url", ""), "domain": site.get("domain", ""),
+            "n_rakuten": n_rakuten, "rakuten_only": n_rakuten == len(prods),
             "note": site.get("note", ""), "products": prods, "count": len(prods),
             "p_disclosed": pdisc, "p_rate": round(100 * pdisc / len(prods)),
             "forms": forms, "therapeutic": ther,
@@ -731,7 +741,8 @@ def build_makers_index(groups: list[dict]) -> str:
    <div class="mname">{g['maker']}</div></div>
   <div class="mmeta">収録 <b>{g['count']}</b> 商品｜{_forms_label(g['forms'])}</div>
   <div class="mbadges"><span class="mb">リン開示 {g['p_rate']}%</span>{
-      f'<span class="mb ther">療法食 {g["therapeutic"]}</span>' if g['therapeutic'] else ''}</div>
+      f'<span class="mb ther">療法食 {g["therapeutic"]}</span>' if g['therapeutic'] else ''}{
+      '<span class="unof">公式未確認</span>' if g.get('n_rakuten') else ''}</div>
  </a>""" for g in groups)
     return f"""
 {pagehead("メーカーから見る", "メーカー一覧")}
@@ -756,12 +767,22 @@ def build_maker_page(g: dict) -> str:
     src = (f'<a href="{g["url"]}" target="_blank" rel="noopener">公式サイト（{g["domain"]}）</a>'
            if g["url"] else "（公式URL未確定）")
     note = f'<p class="lead">{g["note"]}</p>' if g["note"] else ""
+    # 楽天転記（公式未確認）が含まれる場合は明示する
+    rk_banner = ""
+    if g.get("n_rakuten"):
+        whole = "このメーカーの成分データは" + ("すべて" if g["rakuten_only"] else f"{g['n_rakuten']}商品が")
+        rk_banner = (f'<div class="disclaimer">⚠️ {whole}<b>楽天市場の商品ページに転記された保証分析値</b>'
+                     'をもとにしています（<span class="unof">公式未確認</span>）。公式サイトが'
+                     'JavaScript描画等で自動取得できないための暫定措置です。出典リンクは楽天商品ページを指します。'
+                     '公式から直接取得でき次第、公式優先で差し替えます。値は出品者の転記のため、'
+                     '正確な最新値は各メーカー公式でご確認ください。</div>')
     return f"""
 {pagehead("メーカー", g['maker'])}
 <p class="lead">公式サイト：{src}<br>
 当サイト収録 <b>{g['count']}</b> 商品（{_forms_label(g['forms'])}）。
 うちリンを公式開示 <b>{g['p_disclosed']}</b> 商品（{g['p_rate']}%）。</p>
 {note}
+{rk_banner}
 <div class="disclaimer">数値は各メーカー公式の保証分析値を転記し、乾物量に換算したファクトです。
 評価・順位は付けません。「記載なし」は「含まれない」という意味ではありません。
 健康上の判断は獣医師にご相談ください。</div>
@@ -772,25 +793,39 @@ def build_maker_page(g: dict) -> str:
 
 
 def build_coverage(cov: dict, maker_pages: dict[str, str] | None = None) -> str:
-    # 取得済み / 未取得(確定だがデータ無) / 対象外(キャットフード無し)
+    # 公式取得 / 楽天転記(公式未確認) / 未取得 / 対象外
     mp = maker_pages or {}
-    got = "".join(
-        f'<li><a href="{mp[m]}">{m}</a></li>' if m in mp else f"<li>{m}</li>"
-        for m in cov["with_data"])
+    rk = set(cov.get("rakuten_only", []))
+
+    def li(m):
+        return f'<li><a href="{mp[m]}">{m}</a></li>' if m in mp else f"<li>{m}</li>"
+    official_makers = [m for m in cov["with_data"] if m not in rk]
+    got = "".join(li(m) for m in official_makers)
+    rakuten = "".join(li(m) for m in cov.get("rakuten_only", []))
     nodata = "".join(f"<li>{m}</li>" for m in cov["no_data"])
     excl = "".join(f"<li>{r['company_name']}<span class='na'>（{r.get('note','')}）</span></li>"
                    for r in cov["excluded"])
+    rk_section = ""
+    if cov.get("rakuten_only"):
+        rk_section = f"""
+<h2>公式未確認・楽天転記で暫定補完したメーカー（{len(cov['rakuten_only'])}社／{cov.get('rakuten_products',0)}商品）</h2>
+<p class="lead">公式サイトがJavaScript描画等で自動取得できない大手について、
+<b>楽天市場の商品ページに転記された保証分析値</b>を暫定的に収録したものです
+（<span class="unof">公式未確認</span>と明示し、出典は楽天商品ページを指します）。
+出品者の転記のため誤差があり得ます。公式から直接取得でき次第、公式優先で差し替えます。</p>
+<ul>{rakuten}</ul>"""
     return f"""
 {pagehead("網羅性 / ②③", "宣言した母集団へのカバー率")}
 <p class="lead">「日本のキャットフードを網羅」とは言いません（全商品の公的リストが存在しないため）。
 代わりに<b>収録範囲を宣言し、その中のカバー率と未取得を正直に報告</b>します。これが当サイトの網羅性の定義です。</p>
 <div class="cards">
  <div class="card"><div class="big">{cov['pop']}</div>対象母集団（公正取引協議会 正会員）</div>
- <div class="card"><div class="big">{len(cov['confirmed'])}</div>公式サイト確定メーカー</div>
- <div class="card"><div class="big">{len(cov['with_data'])}</div>成分データ取得メーカー</div>
+ <div class="card"><div class="big">{len(official_makers)}</div>公式から成分取得</div>
+ <div class="card"><div class="big">{len(cov.get('rakuten_only',[]))}</div>楽天転記で暫定補完（公式未確認）</div>
  <div class="card"><div class="big">{cov['products']}</div>掲載商品（うちリン開示 {cov['p_open']}）</div>
 </div>
-<h2>データ取得済みメーカー（{len(cov['with_data'])}社）</h2><ul>{got}</ul>
+<h2>公式から成分を取得したメーカー（{len(official_makers)}社）</h2><ul>{got}</ul>
+{rk_section}
 <h2>未取得メーカー（公式は確定したが成分が静的に取れない／{len(cov['no_data'])}社）</h2>
 <p class="lead">製品一覧がJavaScript描画のため自動取得が困難な社です。順次対応します（未取得であることを隠しません）。</p>
 <ul>{nodata}</ul>
@@ -802,6 +837,7 @@ FIND_JS = """
 let DATA=__DATA__, GOALS=__GOALS__, g=GOALS[0];
 function cell(v,u){return (v===''||v==null)?'<span class=\"na\">記載なし（要確認）</span>':v+(u||'');}
 function thumb(r){return r.img?'<img class=\"pthumb\" src=\"'+r.img+'\" alt=\"\" loading=\"lazy\">':'';}
+function unof(r){return r.source==='rakuten'?' <span class=\"unof\" title=\"出典は楽天商品ページ＝公式の保証分析値の転記。公式ページ未確認です。\">公式未確認</span>':'';}
 function buy(r){var q=encodeURIComponent(((r.maker||'')+' '+(r.product_name||'')).trim());
  return [['楽天','https://search.rakuten.co.jp/search/mall/'+q+'/'],['Amazon','https://www.amazon.co.jp/s?k='+q],
  ['Yahoo','https://shopping.yahoo.co.jp/search?p='+q]].map(c=>'<a href=\"'+c[1]+'\" target=\"_blank\" rel=\"noopener nofollow\">'+c[0]+'</a>').join('');}
@@ -829,9 +865,10 @@ function draw(){
   let why=g.field?'<td class=\"num\"><b>'+cell(r[g.field],g.unit)+'</b></td>'
                  :'<td><b style=\"color:#1b7a3d\">条件に合致</b></td>';
   let extra=g.field?'':'<td><span class=\"mk\">'+(r.ingredients||'')+'</span></td>';
-  return '<tr><td><span class=\"pcell\">'+thumb(r)+'<span>'+(r.product_name||'(無題)')+'<br><span class=\"mk\">'+r.maker+'</span></span></span></td>'+
+  var rk=r.source==='rakuten';
+  return '<tr><td><span class=\"pcell\">'+thumb(r)+'<span>'+(r.product_name||'(無題)')+unof(r)+'<br><span class=\"mk\">'+r.maker+'</span></span></span></td>'+
    why+'<td>'+r.form+'</td>'+extra+
-   '<td><a href=\"'+r.url+'\" target=\"_blank\" rel=\"noopener\">公式</a> <span class=\"na\">'+r.fetched_at+'</span></td>'+
+   '<td><a href=\"'+r.url+'\" target=\"_blank\" rel=\"noopener'+(rk?' nofollow':'')+'\">'+(rk?'楽天':'公式')+'</a> <span class=\"na\">'+r.fetched_at+'</span></td>'+
    '<td class=\"buy\">'+buy(r)+'</td></tr>';}).join('');
  document.getElementById('thead').innerHTML=head;
  document.getElementById('tbody').innerHTML=body;
@@ -1040,7 +1077,8 @@ function render(){
  document.getElementById('grid').innerHTML=rows.map(function(r){
   var nums=r.v.map((x,i)=>lab[i]+' '+x+'%').join(' ・ ');
   var th=r.img?'<img class="pthumb pthumb-card" src="'+r.img+'" alt="" loading="lazy">':'';
-  return '<div class="shapecard">'+th+'<div class="rname">'+(r.name||'(無題)')+'<span class="mk">'+r.maker+'・'+r.form+'</span></div>'+
+  var uf=r.source==='rakuten'?'<span class="unof">公式未確認</span>':'';
+  return '<div class="shapecard">'+th+'<div class="rname">'+(r.name||'(無題)')+uf+'<span class="mk">'+r.maker+'・'+r.form+'</span></div>'+
    radar(r.v)+'<div class="rnums">'+nums+'</div>'+
    '<div class="rsrc"><a href="'+r.url+'" target="_blank" rel="noopener">公式</a> <span class="na">'+r.fetched_at+'</span> <span class="buy">'+buy(r)+'</span></div></div>';
  }).join('');
@@ -1059,6 +1097,7 @@ def macro_items(products: list[dict]) -> list[dict]:
             items.append({"name": r.get("product_name", ""), "maker": r.get("maker", ""),
                           "url": r.get("url", ""), "fetched_at": r.get("fetched_at", ""),
                           "form": r.get("form", ""), "img": r.get("img", ""),
+                          "source": r.get("source", ""),
                           "v": [round(float(r[k]), 1) for k in keys]})
     return items
 
@@ -1094,6 +1133,7 @@ def compare_items(products: list[dict]) -> list[dict]:
             out.append({
                 "name": r.get("product_name", ""), "maker": r.get("maker", ""),
                 "form": r.get("form", ""), "url": r.get("url", ""), "img": r.get("img", ""),
+                "source": r.get("source", ""),
                 "v": [round(float(r[k]), 1) for k in keys],
                 "moisture": r.get("moisture_pct", ""),
                 "phosphorus_dm": r.get("phosphorus_dm", ""),
@@ -1122,9 +1162,9 @@ function table(){
  var def=[['たんぱく質(乾物量)',r=>r.v[0],'%'],['脂肪(乾物量)',r=>r.v[1],'%'],['繊維(乾物量)',r=>r.v[2],'%'],
   ['灰分(乾物量)',r=>r.v[3],'%'],['炭水化物(乾物量)',r=>r.v[4],'%'],['リン(乾物量)',r=>r.phosphorus_dm,'%'],
   ['水分',r=>r.moisture,'%'],['カロリー密度',r=>r.calorie,' kcal/100g']];
- var head='<tr><th>項目</th>'+sel.map((idx,k)=>'<th style="color:'+COL[k]+'">'+(DATA[idx].name||'(無題)')+'<br><span class="mk">'+DATA[idx].maker+'・'+DATA[idx].form+'</span></th>').join('')+'</tr>';
+ var head='<tr><th>項目</th>'+sel.map((idx,k)=>'<th style="color:'+COL[k]+'">'+(DATA[idx].name||'(無題)')+(DATA[idx].source==='rakuten'?' <span class="unof">公式未確認</span>':'')+'<br><span class="mk">'+DATA[idx].maker+'・'+DATA[idx].form+'</span></th>').join('')+'</tr>';
  var body=def.map(function(rd){return '<tr><td>'+rd[0]+'</td>'+sel.map(idx=>'<td class="num">'+cell(rd[1](DATA[idx]),rd[2])+'</td>').join('')+'</tr>';}).join('');
- var src='<tr><td>出典</td>'+sel.map(idx=>'<td><a href="'+DATA[idx].url+'" target="_blank" rel="noopener">公式</a></td>').join('')+'</tr>';
+ var src='<tr><td>出典</td>'+sel.map(function(idx){var rk=DATA[idx].source==='rakuten';return '<td><a href="'+DATA[idx].url+'" target="_blank" rel="noopener'+(rk?' nofollow':'')+'">'+(rk?'楽天':'公式')+'</a></td>';}).join('')+'</tr>';
  return '<table class="cmptable">'+head+body+src+'</table>';
 }
 function render(){
@@ -1135,7 +1175,8 @@ function render(){
  var shown=rows.slice(0,80);
  document.getElementById('clist').innerHTML=shown.map(function(p){var r=p[0],i=p[1],on=sel.includes(i),dis=!on&&sel.length>=3;
   var th=r.img?'<img class="pthumb" src="'+r.img+'" alt="" loading="lazy">':'';
-  return '<button class="citem'+(on?' on':'')+'"'+(dis?' disabled':'')+' onclick="cmpToggle('+i+')"><span class="pcell">'+th+'<span>'+(r.name||'(無題)')+'<span class="mk">'+r.maker+'・'+r.form+'</span></span></span></button>';}).join('')+
+  var uf=r.source==='rakuten'?' <span class="unof">公式未確認</span>':'';
+  return '<button class="citem'+(on?' on':'')+'"'+(dis?' disabled':'')+' onclick="cmpToggle('+i+')"><span class="pcell">'+th+'<span>'+(r.name||'(無題)')+uf+'<span class="mk">'+r.maker+'・'+r.form+'</span></span></span></button>';}).join('')+
   (rows.length>shown.length?'<div class="mk" style="padding:8px">ほか '+(rows.length-shown.length)+' 件。検索で絞り込んでください。</div>':'');
  document.getElementById('ccount').textContent=sel.length;
 }
@@ -1504,6 +1545,14 @@ _ABOUT_BODY = """
 <h2>データを公開しています</h2>
 <p class="lead">掲載キャットフードの成分データ（乾物量換算・出典付き）を、そのまま誰でも見られる形で公開します。
 ファクトを名乗る以上、中身を隠しません。<a href="data/cat_products.json" download>📥 全データ（JSON）をダウンロード</a></p>
+<h2>大手メーカーのデータについて（公式未確認・楽天転記）</h2>
+<p class="lead">一部の大手（公式サイトがJavaScript描画等で自動取得できないメーカー）については、
+<b>楽天市場の商品ページに転記された公式の保証分析値</b>を暫定的に収録し、
+<span class="unof">公式未確認</span>と明示しています。これらは出品者による転記のため、
+メーカー公式ページからの一次取得ではありません（出典リンクも楽天商品ページを指します）。
+誤差があり得るため、正確な最新値は各メーカー公式でご確認ください。
+公式から直接取得できるようになり次第、<b>公式優先で差し替え</b>ます。
+「公式の数値しか見たくない」場合は、この表示が付いていない商品をご覧ください。</p>
 <h2>商品画像について</h2>
 <p class="lead">各商品のサムネイル画像は、楽天市場の商品ページから取得し<b>当サイトのサーバーで自前ホスト</b>しています
 （閲覧時に楽天へ通信・トラッキングを発生させないため）。画像はあくまで商品の識別用で、価格や購入を促す表示は付けません。

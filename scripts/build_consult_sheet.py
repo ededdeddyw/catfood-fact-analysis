@@ -20,7 +20,8 @@ from pathlib import Path
 
 from catfood_common import DATA_DIR, ROOT, safe_print, today_stamp
 
-FACTS = DATA_DIR / "product_facts_raw.csv"
+FACTS = DATA_DIR / "product_facts_raw.csv"              # 公式一次取得（source=official）
+FACTS_RAKUTEN = DATA_DIR / "product_facts_rakuten.csv"  # 楽天転記の大手（source=rakuten・公式未確認）
 OUT_CSV = DATA_DIR / "consult_sheet_cat.csv"
 PROTO = ROOT / "prototype" / "consult"
 
@@ -31,7 +32,7 @@ SHEET_COLS = ["maker", "product_name", "url", "form", "moisture_pct",
               "fiber_pct", "ash_pct", "magnesium_pct", "magnesium_disclosed",
               "calorie_density_100g", "calorie_basis",
               "grain_free", "ingredients",
-              "is_therapeutic", "phosphorus_disclosed", "fetched_at"]
+              "is_therapeutic", "phosphorus_disclosed", "source", "fetched_at"]
 
 # 穀物の語（原材料スニペットの主要部にこれが無ければ grain-free 候補・参考）
 _GRAIN = ("米", "玄米", "白米", "小麦", "大麦", "麦", "とうもろこし", "コーン",
@@ -97,31 +98,28 @@ def calorie_density(kcal_str, basis):
     return None  # per_piece / per_g / unknown は密度比較不可
 
 
-def build_rows() -> list[dict]:
-    rows = list(csv.DictReader(FACTS.open(encoding="utf-8-sig", newline="")))
-    out = []
-    for r in rows:
-        if r.get("species") == "dog":
-            continue
-        moisture = num(r.get("moisture_value"))
-        prot = num(r.get("crude_protein_value")) if is_pct(r.get("crude_protein_value")) else None
-        fat = num(r.get("crude_fat_value")) if is_pct(r.get("crude_fat_value")) else None
-        p_pct = is_pct(r.get("phosphorus_value"))
-        phos = num(r.get("phosphorus_value")) if p_pct else None
-        fiber = num(r.get("crude_fiber_value")) if is_pct(r.get("crude_fiber_value")) else None
-        ash = num(r.get("crude_ash_value")) if is_pct(r.get("crude_ash_value")) else None
-        mg = num(r.get("magnesium_value")) if is_pct(r.get("magnesium_value")) else None
-        ingredients = r.get("ingredients_snippet", "")
-        # 乾物量換算（DM）と炭水化物(NFE=差分)。レーダー表示用。
-        pdm = dm(prot, moisture) if prot is not None else None
-        fdm = dm(fat, moisture) if fat is not None else None
-        fbdm = dm(fiber, moisture) if fiber is not None else None
-        adm = dm(ash, moisture) if ash is not None else None
-        nfe = None
-        if None not in (pdm, fdm, fbdm, adm):
-            rest = round(100 - (pdm + fdm + fbdm + adm), 1)
-            nfe = rest if rest >= 0 else 0.0
-        out.append({
+def _sheet_row(r: dict, default_source: str) -> dict | None:
+    if r.get("species") == "dog":
+        return None
+    moisture = num(r.get("moisture_value"))
+    prot = num(r.get("crude_protein_value")) if is_pct(r.get("crude_protein_value")) else None
+    fat = num(r.get("crude_fat_value")) if is_pct(r.get("crude_fat_value")) else None
+    p_pct = is_pct(r.get("phosphorus_value"))
+    phos = num(r.get("phosphorus_value")) if p_pct else None
+    fiber = num(r.get("crude_fiber_value")) if is_pct(r.get("crude_fiber_value")) else None
+    ash = num(r.get("crude_ash_value")) if is_pct(r.get("crude_ash_value")) else None
+    mg = num(r.get("magnesium_value")) if is_pct(r.get("magnesium_value")) else None
+    ingredients = r.get("ingredients_snippet", "")
+    # 乾物量換算（DM）と炭水化物(NFE=差分)。レーダー表示用。
+    pdm = dm(prot, moisture) if prot is not None else None
+    fdm = dm(fat, moisture) if fat is not None else None
+    fbdm = dm(fiber, moisture) if fiber is not None else None
+    adm = dm(ash, moisture) if ash is not None else None
+    nfe = None
+    if None not in (pdm, fdm, fbdm, adm):
+        rest = round(100 - (pdm + fdm + fbdm + adm), 1)
+        nfe = rest if rest >= 0 else 0.0
+    return {
             "maker": r.get("maker", ""),
             "product_name": clean_name(r.get("product_name", "")),
             "url": r.get("url", ""),
@@ -145,8 +143,32 @@ def build_rows() -> list[dict]:
             "ingredients": ingredients[:90],
             "is_therapeutic": r.get("is_therapeutic", ""),
             "phosphorus_disclosed": r.get("disclosed_phosphorus", "no"),
+            "source": r.get("source") or default_source,
             "fetched_at": r.get("fetched_at", ""),
-        })
+        }
+
+
+def _norm_name(maker: str, name: str) -> str:
+    return f"{maker}|{re.sub(r'[\s　・/|,.。、]+', '', (name or '').lower())}"
+
+
+def build_rows() -> list[dict]:
+    """公式(product_facts_raw)＋楽天転記(product_facts_rakuten)をマージ。
+    同一商品が両方にあれば公式を優先する（楽天転記は公式が無い大手の補完）。"""
+    sources = [(FACTS, "official")]
+    if FACTS_RAKUTEN.exists():
+        sources.append((FACTS_RAKUTEN, "rakuten"))
+    seen, out = set(), []
+    for path, default_source in sources:  # 公式を先に処理＝公式優先
+        for r in csv.DictReader(path.open(encoding="utf-8-sig", newline="")):
+            row = _sheet_row(r, default_source)
+            if row is None:
+                continue
+            k = _norm_name(row["maker"], row["product_name"])
+            if k in seen:
+                continue
+            seen.add(k)
+            out.append(row)
     return out
 
 
