@@ -48,7 +48,7 @@ def analysis_block(text: str) -> tuple[str, bool]:
 
 # 各栄養素のラベル別名（| で連結して正規表現化）
 FIELD_LABELS: dict[str, list[str]] = {
-    "crude_protein": ["粗たんぱく質", "粗タンパク質", "粗蛋白質", "たんぱく質", "蛋白質", "粗蛋白"],
+    "crude_protein": ["粗たんぱく質", "粗タンパク質", "粗蛋白質", "たんぱく質", "タンパク質", "蛋白質", "粗蛋白"],
     "crude_fat": ["粗脂肪", "脂質"],
     "crude_fiber": ["粗繊維", "粗せんい", "食物繊維"],
     "crude_ash": ["粗灰分", "灰分"],

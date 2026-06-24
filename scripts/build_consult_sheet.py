@@ -21,6 +21,7 @@ from pathlib import Path
 from catfood_common import DATA_DIR, ROOT, safe_print, today_stamp
 
 FACTS = DATA_DIR / "product_facts_raw.csv"              # 公式一次取得（source=official）
+FACTS_MARS = DATA_DIR / "product_facts_mars.csv"        # マース ブランド公式から直接取得（source=official）
 FACTS_RAKUTEN = DATA_DIR / "product_facts_rakuten.csv"  # 楽天転記の大手（source=rakuten・公式未確認）
 OUT_CSV = DATA_DIR / "consult_sheet_cat.csv"
 PROTO = ROOT / "prototype" / "consult"
@@ -156,6 +157,8 @@ def build_rows() -> list[dict]:
     """公式(product_facts_raw)＋楽天転記(product_facts_rakuten)をマージ。
     同一商品が両方にあれば公式を優先する（楽天転記は公式が無い大手の補完）。"""
     sources = [(FACTS, "official")]
+    if FACTS_MARS.exists():
+        sources.append((FACTS_MARS, "official"))   # マース公式（カルカン等）も一次取得
     if FACTS_RAKUTEN.exists():
         sources.append((FACTS_RAKUTEN, "rakuten"))
     seen, out = set(), []
