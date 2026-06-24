@@ -94,6 +94,22 @@ def upscale(img_url: str) -> str:
     return re.sub(r"_ex=\d+x\d+", "_ex=300x300", img_url)
 
 
+def read_app_id() -> str:
+    """env優先、無ければ gitignore 済みの .env から RAKUTEN_APP_ID を読む（鍵をリポに残さない）。"""
+    v = os.environ.get("RAKUTEN_APP_ID", "").strip()
+    if v:
+        return v
+    from pathlib import Path
+    cands = [ROOT / ".env"] + [p / ".env" for p in ROOT.parents[:3]] + [Path.cwd() / ".env"]
+    for envf in cands:
+        if envf.exists():
+            for line in envf.read_text(encoding="utf-8", errors="replace").splitlines():
+                line = line.strip()
+                if line.startswith("RAKUTEN_APP_ID") and "=" in line:
+                    return line.split("=", 1)[1].strip().strip('"').strip("'")
+    return ""
+
+
 def load_map() -> dict[str, dict]:
     if not MAP_CSV.exists():
         return {}
@@ -107,11 +123,12 @@ def main() -> None:
     ap.add_argument("--refresh", action="store_true", help="既存判定を無視して取り直す")
     args = ap.parse_args()
 
-    app_id = os.environ.get("RAKUTEN_APP_ID", "").strip()
+    app_id = read_app_id()
     if not app_id:
-        safe_print("[STOP] 環境変数 RAKUTEN_APP_ID が未設定です。")
+        safe_print("[STOP] RAKUTEN_APP_ID が見つかりません（環境変数 / リポジトリ直下の .env のどちらか）。")
         safe_print("  楽天デベロッパー(https://webservice.rakuten.co.jp/)で applicationId を取得し、")
-        safe_print("  RAKUTEN_APP_ID=xxxx を設定してから再実行してください（鍵はリポジトリに保存しません）。")
+        safe_print("  リポジトリ直下に .env を作り `RAKUTEN_APP_ID=xxxx` と書くか、環境変数で設定して再実行してください。")
+        safe_print("  （.env は .gitignore 済み＝公開リポジトリには残りません）")
         sys.exit(2)
 
     products = list(csv.DictReader(CONSULT.open(encoding="utf-8-sig", newline="")))
