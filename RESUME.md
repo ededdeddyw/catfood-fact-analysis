@@ -90,6 +90,12 @@ PYTHONUTF8=1 $PY -u scripts/reextract_from_cache.py      # 抽出ロジック変
 - `build_site.py`：`product_images.csv`→各商品 `img`。商品テーブル/find/重ね比較/成分のかたち/メーカーカードにサムネ(`.pthumb`/`.mthumb`)。画像無し75商品はテキストのみ。about「商品画像について」節。
 - **再取得/追加**：`.env` に2鍵→ `PYTHONUTF8=1 $PY scripts/fetch_product_images.py`(再開) or `--refresh`(全件)。プルーニング基準は `accept()`。
 
+## 8.6 大手メーカーの取り込み（楽天転記・公式未確認）— 実装済み（2026-06-24）
+- 公式がJS描画で取れない大手は **楽天商品検索の itemCaption に転記された保証分析値**を抽出（`scripts/harvest_rakuten_majors.py`→`data/product_facts_rakuten.csv`, source=rakuten）。既存 `extract_nutrition()` がそのままパース。
+- **ブランド帰属が確実な4社のみ**: 日本ヒルズ(サイエンスダイエット)/ネスレ ピュリナ(モンプチ/ピュリナワン/プロプラン/フィリックス)/はごろも(無一物)/ユニチャーム(銀のスプーン)=**約85商品**。スペクトラムは公式が8in1のみと判明し除外、マースはwet中心で0件（設定だけ残置）。追加は `MAJORS` にブランド確実な社だけ足して再ハーベスト。
+- `build_consult_sheet.py` が公式＋楽天を `source` 列付きでマージ（**同一商品は公式優先**）。`build_site.py` が全ビューに **「公式未確認」バッジ**＋出典「楽天」表記、メーカーページに注意バナー、網羅性に独立セクション、aboutに説明。**公式が取れ次第 公式優先で差し替わる**設計。
+- 偵察ツール `scripts/probe_maker_coverage.py`（sitemap/静的成分の有無を粗く調べる。NUTRI判定が宣伝文に誤反応する点に注意）。
+
 ## 9. 次の一手候補
 - ~~ナビ整理／2-3商品の重ね比較／メーカー別ページ~~ ← **2026-06-23 実装済(本ブランチ)**
 - **商品画像の本取得**（§8.5・鍵待ち）
