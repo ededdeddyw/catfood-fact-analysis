@@ -9,8 +9,11 @@
 <meta property="og:title" content="株式会社ビルバックジャパンのキャットフード｜ねこごはんファクト">
 <meta property="og:description" content="株式会社ビルバックジャパンのキャットフード1商品を、たんぱく質・脂肪・リン(乾物量換算)・カロリー密度の出典付きファクトで一覧。評価・順位なし。">
 <meta property="og:url" content="https://ededdeddyw.github.io/catfood-fact-analysis/maker-virbac.html">
-<meta name="twitter:card" content="summary">
-<link rel="stylesheet" href="style.css?v=7e657e24"></head><body>
+<meta property="og:image" content="https://ededdeddyw.github.io/catfood-fact-analysis/img/hero.jpg">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ededdeddyw.github.io/catfood-fact-analysis/img/hero.jpg">
+<link rel="stylesheet" href="style.css?v=1748239d"></head><body>
 <header class="site"><div class="wrap">
  <a class="brand" href="index.html"><svg viewBox="0 0 48 48" aria-hidden="true"><g fill="#8a5a3c"><path d="M14 14 L11 3 L24 12 Z"/><path d="M34 14 L37 3 L24 12 Z"/><circle cx="24" cy="27" r="16"/></g><circle cx="18" cy="25" r="2.4" fill="#fffaf3"/><circle cx="30" cy="25" r="2.4" fill="#fffaf3"/><path d="M21 31 l3 3 l3 -3 z" fill="#d98c7a"/></svg>ねこごはんファクト</a>
  <nav class="main"><a class="" href="index.html">ホーム</a><details class="navgrp active"><summary>選ぶ</summary><div class="navmenu"><a class="" href="find.html">目的から選ぶ</a><a class="" href="shape.html">成分のかたち</a><a class="" href="compare.html">重ねて比較</a><a class="" href="calc.html">成分ツール</a><a class="active" href="makers.html">メーカー一覧</a></div></details><details class="navgrp"><summary>健康・記録</summary><div class="navmenu"><a class="" href="record.html">体重記録</a><a class="" href="weight.html">体重管理</a><a class="" href="kidney.html">腎臓シート</a></div></details><a class="" href="blog.html">読みもの</a><details class="navgrp"><summary>サイトについて</summary><div class="navmenu"><a class="" href="coverage.html">網羅性</a><a class="" href="about.html">この調べ方</a></div></details></nav>
@@ -27,7 +30,7 @@
 健康上の判断は獣医師にご相談ください。</div>
 <div class="controls">表示 <b id="cnt">0</b> 商品｜並べ替えは列見出しをクリック｜
 <a href="makers.html">← メーカー一覧へ</a></div>
-<table><thead id="thead"></thead><tbody id="tbody"></tbody></table><script>
+<div class="tablewrap"><table><thead id="thead"></thead><tbody id="tbody"></tbody></table></div><script>
 let DATA=[{"maker": "株式会社ビルバックジャパン", "product_name": "C.E.T.®インテリデント", "url": "https://jp.virbac.com/home/cat/functional-snacks.html", "form": "ドライ", "moisture_pct": "9.0", "protein_asfed": "", "protein_dm": "", "fat_dm": "7.7", "phosphorus_asfed": "", "phosphorus_dm": "", "fiber_dm": "2.7", "ash_dm": "13.7", "nfe_dm": "", "fiber_pct": "2.5", "ash_pct": "12.5", "magnesium_pct": "", "magnesium_disclosed": "no", "calorie_density_100g": "", "calorie_basis": "per_piece", "grain_free": "no", "ingredients": "穀物粉ブレンド(玄米、トウモロコシ粉、コーングルテンミール、チキンミール、フィッシュミール、ゼラチン(牛由来)、塩、硫酸カルシウム、ビール酵母、セルロース)、グリセリン(植物由来)", "is_therapeutic": "False", "phosphorus_disclosed": "no", "source": "official", "fetched_at": "2026-06-23", "img": ""}], COLS=[{"k": "product_name", "t": "商品名", "type": "pname"}, {"k": "form", "t": "種別"}, {"k": "protein_dm", "t": "たんぱく質%(乾物量)"}, {"k": "fat_dm", "t": "脂肪%(乾物量)"}, {"k": "phosphorus_dm", "t": "リン%(乾物量)"}, {"k": "calorie_density_100g", "t": "カロリー密度", "type": "cal"}, {"k": "url", "t": "出典", "type": "src"}, {"k": "buy", "t": "購入先（比較）", "type": "buy"}], sortKey="product_name", asc=true, ponly=false;
 function cell(v,u){return (v===''||v==null)?'<span class="na">記載なし（要確認）</span>':v+(u||'');}
 function thumb(r){return r.img?'<img class="pthumb" src="'+r.img+'" alt="" loading="lazy">':'';}

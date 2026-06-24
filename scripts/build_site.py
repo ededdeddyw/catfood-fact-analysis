@@ -124,6 +124,8 @@ h2::before{content:"";position:absolute;left:0;top:3px;width:20px;height:20px;
 .controls{margin:12px 0;font-size:14px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
 .controls button{border:1px solid var(--line);background:#fffaf3;color:#5b4a3a;border-radius:8px;padding:5px 11px;cursor:pointer}
 .controls button:hover{background:#f0e6d6}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:10px;border:1px solid var(--line)}
+.tablewrap table{border:none;border-radius:0;min-width:560px}
 table{border-collapse:collapse;width:100%;background:var(--card);font-size:13.5px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
 th,td{border-bottom:1px solid #efe7d8;padding:8px 10px;text-align:left;vertical-align:top}
 th{background:#f3e9da;cursor:pointer;white-space:nowrap;position:sticky;top:60px;color:#6b4324}
@@ -474,7 +476,10 @@ def page(active: str, title: str, body: str, desc: str = "", path: str = "index.
 <meta property="og:title" content="{title}｜{SITE_NAME}">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{canonical}">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="{BASE_URL}/img/hero.jpg">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{BASE_URL}/img/hero.jpg">
 <link rel="stylesheet" href="style.css?v={CSS_VER}"></head><body>
 <header class="site"><div class="wrap">
  <a class="brand" href="index.html">{BRAND_CAT}ねこごはんファクト</a>
@@ -498,7 +503,7 @@ def table_block(products: list[dict], cols: list[dict], sort_key: str,
           .replace("__SORT__", json.dumps(sort_key))
           .replace("__ASC__", "true" if asc else "false")
           .replace("__PONLY__", "true" if ponly else "false"))
-    return ('<table><thead id="thead"></thead><tbody id="tbody"></tbody></table>'
+    return ('<div class="tablewrap"><table><thead id="thead"></thead><tbody id="tbody"></tbody></table></div>'
             f'<script>{js}</script>')
 
 
@@ -509,7 +514,17 @@ def pagehead(eyebrow: str, title: str) -> str:
 def build_index(cov: dict) -> str:
     g_chips = "".join(f'<a href="find.html">{x["label"]}</a>'
                       for x in GOALS if x["tier"] == "life")
+    ld = json.dumps({
+        "@context": "https://schema.org",
+        "@graph": [
+            {"@type": "Organization", "name": SITE_NAME, "url": f"{BASE_URL}/",
+             "logo": f"{BASE_URL}/img/hero.jpg",
+             "description": "広告やランキングでなく、公式の保証成分・出典・乾物量換算のファクトでキャットフードを比較する非営利・非診断のサイト。"},
+            {"@type": "WebSite", "name": SITE_NAME, "url": f"{BASE_URL}/", "inLanguage": "ja"},
+        ],
+    }, ensure_ascii=False)
     return f"""
+<script type="application/ld+json">{ld}</script>
 <section class="bighero"><div class="wrap">
  <div class="htxt">
   <span class="eyebrow">出典つきファクト・非診断</span>
@@ -896,7 +911,7 @@ def build_find(products: list[dict]) -> str:
 <div id="goals"></div>
 <div id="banner"></div>
 <div class="controls">合致 <b id="cnt">0</b> 商品｜⚕＝健康に関わる観点（獣医相談を併記）</div>
-<table><thead id="thead"></thead><tbody id="tbody"></tbody></table>
+<div class="tablewrap"><table><thead id="thead"></thead><tbody id="tbody"></tbody></table></div>
 """ + f"<script>{js}</script>"
 
 
