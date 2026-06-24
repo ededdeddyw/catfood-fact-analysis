@@ -1,6 +1,6 @@
 {
  "updated": "2026-06-24",
- "count": 586,
+ "count": 583,
  "note": "ねこごはんファクト 掲載キャットフードの成分データ（乾物量換算含む・出典付き）。評価・順位は含みません。",
  "products": [
   {
@@ -10812,34 +10812,6 @@
    "img": ""
   },
   {
-   "maker": "アダプトゲン製薬九州株式会社",
-   "product_name": "OEM（受託製造）ー ペットフード ー",
-   "url": "https://adaptgen-kyushu.com/oem-petfood/",
-   "form": "ドライ",
-   "moisture_pct": "10.0",
-   "protein_asfed": "",
-   "protein_dm": "",
-   "fat_dm": "",
-   "phosphorus_asfed": "",
-   "phosphorus_dm": "",
-   "fiber_dm": "",
-   "ash_dm": "",
-   "nfe_dm": "",
-   "fiber_pct": "",
-   "ash_pct": "",
-   "magnesium_pct": "",
-   "magnesium_disclosed": "no",
-   "calorie_density_100g": "",
-   "calorie_basis": "",
-   "grain_free": "yes",
-   "ingredients": "を使用しています。 【 6 】　原料素材の手配(または栽培)からパッケージ(完成品)まで一貫製造できます。 総合栄養食をはじめ様々な形状に対応 ドライフード 製品水分10%程度以下",
-   "is_therapeutic": "False",
-   "phosphorus_disclosed": "no",
-   "source": "official",
-   "fetched_at": "2026-06-22",
-   "img": ""
-  },
-  {
    "maker": "ヴォイス株式会社",
    "product_name": "Cat's voice セミモイスト　国産スーパープレミアム　新食感半生フード",
    "url": "https://www.voice-pet.com/catsvoice_pro.html",
@@ -10978,34 +10950,6 @@
    "source": "official",
    "fetched_at": "2026-06-22",
    "img": "img/products/ad04949ded995d6e.jpg"
-  },
-  {
-   "maker": "九州ペットフード株式会社",
-   "product_name": "製品詳細",
-   "url": "https://kyushupet.co.jp/product_detail?id=2050",
-   "form": "セミモイスト",
-   "moisture_pct": "25.0",
-   "protein_asfed": "",
-   "protein_dm": "",
-   "fat_dm": "1.3",
-   "phosphorus_asfed": "",
-   "phosphorus_dm": "",
-   "fiber_dm": "0.7",
-   "ash_dm": "8.7",
-   "nfe_dm": "",
-   "fiber_pct": "0.5",
-   "ash_pct": "6.5",
-   "magnesium_pct": "0.08",
-   "magnesium_disclosed": "yes",
-   "calorie_density_100g": "",
-   "calorie_basis": "",
-   "grain_free": "yes",
-   "ingredients": "鶏ささみ肉 20g JANコード:4941605020566 インターネットでの購入はこちら 給与量/栄養成分 給与量/栄養成分 エネルギー 100g当り 250kcal 給与量 ",
-   "is_therapeutic": "False",
-   "phosphorus_disclosed": "no",
-   "source": "official",
-   "fetched_at": "2026-06-22",
-   "img": ""
   },
   {
    "maker": "株式会社サンユー研究所",
@@ -11314,34 +11258,6 @@
    "source": "official",
    "fetched_at": "2026-06-22",
    "img": "img/products/6ba67e86e5c4df62.jpg"
-  },
-  {
-   "maker": "株式会社食糧",
-   "product_name": "商品紹介",
-   "url": "https://www.shokuryo.jp/products/",
-   "form": "不明",
-   "moisture_pct": "",
-   "protein_asfed": "",
-   "protein_dm": "",
-   "fat_dm": "",
-   "phosphorus_asfed": "",
-   "phosphorus_dm": "",
-   "fiber_dm": "",
-   "ash_dm": "",
-   "nfe_dm": "",
-   "fiber_pct": "3.0",
-   "ash_pct": "",
-   "magnesium_pct": "",
-   "magnesium_disclosed": "no",
-   "calorie_density_100g": "",
-   "calorie_basis": "unknown",
-   "grain_free": "no",
-   "ingredients": "> 豚肉、牛肉、魚(カタクチイワシ・カツオ)、オートミール、うるち米、鰹節、大麦、ポテト、ライ麦、黒大豆、アルファルファミール、小麦、胡麻油、昆布、リノール酸、ビール酵母、果肉、消",
-   "is_therapeutic": "False",
-   "phosphorus_disclosed": "no",
-   "source": "official",
-   "fetched_at": "2026-06-22",
-   "img": ""
   },
   {
    "maker": "株式会社スマック",
@@ -12797,7 +12713,7 @@
    "phosphorus_disclosed": "no",
    "source": "official",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/4aa1cbf1d970ec99.jpg"
   },
   {
    "maker": "マース・ジャパン・リミテッド",
@@ -12825,7 +12741,7 @@
    "phosphorus_disclosed": "no",
    "source": "official",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/bb62fd64526c9118.jpg"
   },
   {
    "maker": "マース・ジャパン・リミテッド",
@@ -13441,7 +13357,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/8fdc062ae3185d4a.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -13469,7 +13385,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/3994ddb398884407.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -13497,7 +13413,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/9890c2e9aee9fe2c.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -13525,7 +13441,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/dc6ea6dd04471742.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -13553,7 +13469,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/e95a011580908e37.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -13581,7 +13497,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/045e19162dd4f3d6.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -13609,7 +13525,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/faeb8f9700f5cfcb.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -13637,7 +13553,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/5c8a1be8c3541e33.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -13665,7 +13581,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/11ff50ff909643bb.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -13693,7 +13609,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/afbe3e8278e5644b.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -13721,7 +13637,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/6555448941f02daa.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -13749,7 +13665,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/507e7daaee96be71.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -13777,7 +13693,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/a2f706379ae7a15c.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -13805,7 +13721,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/e4d42604610d5dd2.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -13833,7 +13749,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/2945f35284f5cb2e.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -13861,7 +13777,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/475483fced9415fb.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -13889,7 +13805,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/019465cff9025185.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -13917,7 +13833,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/6eb5249bc27e4825.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -13945,7 +13861,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/c5882dc2a351e6d6.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -13973,7 +13889,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/a7cecb8e636d029e.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -14029,7 +13945,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/35dd664ea344e026.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -14057,7 +13973,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/9ad75bf461bab245.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -14085,7 +14001,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/9da55a8d869e61c3.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -14113,7 +14029,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/ffd03de0919274b2.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -14141,7 +14057,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/ac18ba23de3bdc24.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -14169,7 +14085,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/bd25c4a563774e22.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -14197,7 +14113,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/395a35c068790631.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -14225,7 +14141,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/71439248337346a4.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -14253,7 +14169,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/f81f5b29cde5e9ef.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -14281,7 +14197,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/96fa238cc3702e59.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -14309,7 +14225,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/1e08ab9e980c0113.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -14337,7 +14253,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/87cff5ad8ede3024.jpg"
   },
   {
    "maker": "日本ヒルズ・コルゲート株式会社",
@@ -14393,7 +14309,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/3e3279ae30485b7a.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -14421,7 +14337,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/be8557dd9e24a23c.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -14449,7 +14365,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/899f0f8060acf7dd.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -14477,7 +14393,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/495d2f3ded7717b2.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -14505,7 +14421,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/2fe7cf9daa5c99da.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -14533,7 +14449,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/ef7f916e73db660a.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -14561,7 +14477,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/70f3c78e84e1782e.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -14589,7 +14505,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/800ebed44a6f4599.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -14617,7 +14533,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/c4bd6df5002ffe39.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -14645,7 +14561,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/0adf06b9bfb1e334.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -14673,7 +14589,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/845f6902d1d73743.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -14701,7 +14617,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/6c0e0c87d70c988f.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -14729,7 +14645,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/06a6fb3cc3b834cc.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -14757,7 +14673,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/2728d1403a4c2799.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -14785,7 +14701,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/267fc79311b52409.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -14813,7 +14729,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/bceaac0318fe3d04.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -14841,7 +14757,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/9b4e5f747ceb6370.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -14869,7 +14785,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/a5e96ee659244bcb.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -14897,7 +14813,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/6fa4383527e8068c.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -14925,7 +14841,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/f2eb1ed28acadf1e.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -14953,7 +14869,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/8d294bcda24cda91.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -14981,7 +14897,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/cf6c7da3591eaf83.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -15009,7 +14925,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/a7f309800b80ee75.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -15037,7 +14953,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/eb8f20a3c4815a25.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -15065,7 +14981,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/83e7509646f92277.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -15093,7 +15009,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/4562f66ea1f04b4d.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -15121,7 +15037,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/e56701cc5dd14964.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -15149,7 +15065,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/8c004ad9c5750c34.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -15177,7 +15093,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/543949b3e26ef0f0.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -15205,7 +15121,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/f1837ab9f9352970.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -15233,7 +15149,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/1d32e4d48b75c030.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -15261,7 +15177,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/c80254939107645b.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -15317,7 +15233,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/65e170bd87acafd2.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -15345,7 +15261,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/84541eb581b71c7e.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -15373,7 +15289,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/75dd3306559671aa.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -15401,7 +15317,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/5cb710e7a6c22b20.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -15429,7 +15345,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/784e37c3924ba238.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -15457,7 +15373,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/de74fd52a1d5ca9a.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -15485,7 +15401,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/678eb85fcdfa532c.jpg"
   },
   {
    "maker": "ネスレ日本株式会社　ネスレピュリナペットケア",
@@ -15513,7 +15429,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/b0cee0bfbb855506.jpg"
   },
   {
    "maker": "ユニ・チャーム株式会社",
@@ -15541,7 +15457,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/82ce4126fb5b4b07.jpg"
   },
   {
    "maker": "ユニ・チャーム株式会社",
@@ -15569,7 +15485,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/87a5fa1408176c66.jpg"
   },
   {
    "maker": "ユニ・チャーム株式会社",
@@ -15597,7 +15513,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/1ed08a148cc1f0fb.jpg"
   },
   {
    "maker": "はごろもフーズ株式会社",
@@ -15625,7 +15541,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/55aa61e93da11191.jpg"
   },
   {
    "maker": "はごろもフーズ株式会社",
@@ -15653,7 +15569,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/8d7f0bcf8db54cb1.jpg"
   },
   {
    "maker": "はごろもフーズ株式会社",
@@ -15681,7 +15597,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/45747f8e18f80042.jpg"
   },
   {
    "maker": "はごろもフーズ株式会社",
@@ -15709,7 +15625,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/a9bffef0f8439594.jpg"
   },
   {
    "maker": "はごろもフーズ株式会社",
@@ -15737,7 +15653,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/0c24c3bdaa329c8a.jpg"
   },
   {
    "maker": "はごろもフーズ株式会社",
@@ -15765,7 +15681,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/8e70d2db3f5ec6cc.jpg"
   },
   {
    "maker": "はごろもフーズ株式会社",
@@ -15793,7 +15709,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/81c1b72d07a4c6fe.jpg"
   },
   {
    "maker": "はごろもフーズ株式会社",
@@ -15821,7 +15737,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/0a71b48b3829e7fe.jpg"
   },
   {
    "maker": "デビフペット株式会社",
@@ -15849,7 +15765,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/f05ac56b05259708.jpg"
   },
   {
    "maker": "デビフペット株式会社",
@@ -15877,7 +15793,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/212491fe66d73949.jpg"
   },
   {
    "maker": "デビフペット株式会社",
@@ -15905,7 +15821,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/d293a8f980eca9fb.jpg"
   },
   {
    "maker": "デビフペット株式会社",
@@ -15933,7 +15849,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/08fef07a5096a795.jpg"
   },
   {
    "maker": "デビフペット株式会社",
@@ -15961,7 +15877,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/f3b009e531b38f61.jpg"
   },
   {
    "maker": "デビフペット株式会社",
@@ -15989,7 +15905,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/539040c16261e63c.jpg"
   },
   {
    "maker": "デビフペット株式会社",
@@ -16017,7 +15933,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/13f830f469218b67.jpg"
   },
   {
    "maker": "株式会社ペティオ",
@@ -16045,7 +15961,7 @@
    "phosphorus_disclosed": "yes",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/6568769d6573a44a.jpg"
   },
   {
    "maker": "ライオンペット株式会社",
@@ -16073,7 +15989,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/29ef4e6e837adee2.jpg"
   },
   {
    "maker": "ライオンペット株式会社",
@@ -16101,7 +16017,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/4fbd22a03fc0cf2c.jpg"
   },
   {
    "maker": "ライオンペット株式会社",
@@ -16129,7 +16045,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/c5f719db6dea38e4.jpg"
   },
   {
    "maker": "ライオンペット株式会社",
@@ -16157,7 +16073,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/543af0ec6f04ce44.jpg"
   },
   {
    "maker": "ライオンペット株式会社",
@@ -16185,7 +16101,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/477a7135175517d9.jpg"
   },
   {
    "maker": "ライオンペット株式会社",
@@ -16213,7 +16129,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/e8883098e0d2f1b6.jpg"
   },
   {
    "maker": "ライオンペット株式会社",
@@ -16241,7 +16157,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/7a64643daf3887a3.jpg"
   },
   {
    "maker": "ライオンペット株式会社",
@@ -16269,7 +16185,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/fa75f07ec322ea5c.jpg"
   },
   {
    "maker": "ライオンペット株式会社",
@@ -16297,7 +16213,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/818a6ae70fc947f6.jpg"
   },
   {
    "maker": "ライオンペット株式会社",
@@ -16325,7 +16241,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/e549c9fcbefd9c9f.jpg"
   },
   {
    "maker": "ライオンペット株式会社",
@@ -16353,7 +16269,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/7442f646b51ca18b.jpg"
   },
   {
    "maker": "ライオンペット株式会社",
@@ -16381,7 +16297,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/bb8cd733be2789cb.jpg"
   },
   {
    "maker": "ライオンペット株式会社",
@@ -16409,7 +16325,7 @@
    "phosphorus_disclosed": "no",
    "source": "rakuten",
    "fetched_at": "2026-06-24",
-   "img": ""
+   "img": "img/products/740ac3d34e4b8b98.jpg"
   }
  ]
 }

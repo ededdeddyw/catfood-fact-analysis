@@ -99,8 +99,23 @@ def calorie_density(kcal_str, basis):
     return None  # per_piece / per_g / unknown は密度比較不可
 
 
+# 商品名でなくナビ/サービスページのタイトルを誤って拾ったゴミを除外する。
+_JUNK_EXACT = {"製品詳細", "商品詳細", "商品紹介", "製品紹介", "製品情報", "商品情報",
+               "商品一覧", "製品一覧", "ラインアップ", "ペットフード", "キャットフード", "TOP"}
+_JUNK_SUB = ("OEM", "受託製造", "について", "お問い合わせ")
+
+
+def _is_junk_name(name: str) -> bool:
+    n = (name or "").strip()
+    if len(n) < 2 or n in _JUNK_EXACT:
+        return True
+    return any(s in n for s in _JUNK_SUB)
+
+
 def _sheet_row(r: dict, default_source: str) -> dict | None:
     if r.get("species") == "dog":
+        return None
+    if _is_junk_name(clean_name(r.get("product_name", ""))):
         return None
     moisture = num(r.get("moisture_value"))
     prot = num(r.get("crude_protein_value")) if is_pct(r.get("crude_protein_value")) else None
