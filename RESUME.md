@@ -83,10 +83,12 @@ PYTHONUTF8=1 $PY -u scripts/reextract_from_cache.py      # 抽出ロジック変
 - いなば/アイシアのsitemapは犬猫混在 → product_facts に犬製品も含む（猫サイトは species!=dog で除外、犬は将来用に保持）
 - 起動中の preview サーバが**別worktreeのsite/を配信していて404**になることがある → `preview_stop`→`preview_start`で貼り直す
 
-## 8.5 商品画像（楽天API→自前ホスト）— 基盤済み・取得待ち（2026-06-24）
-- `scripts/fetch_product_images.py`：楽天商品検索APIで商品名→候補、**保守的マッチ(識別トークン2つ以上)**で誤画像排除、一致分のサムネのみDLして `site/img/products/` に**自前ホスト**（閲覧時に楽天へ通信させない＝アフィリ/トラッキング感ゼロ）。出典は `data/product_images.csv`。鍵 `RAKUTEN_APP_ID` は env か **gitignore済 `.env`** から読む（リポに残さない）。再開可能・bounded timeout・LLM不使用。
-- `build_site.py`：`product_images.csv`→各商品に `img` 付与。商品テーブル/find/重ね比較ピッカー/成分のかたち/メーカーカードにサムネ描画。画像無し商品はテキストのみ（**未マッチは画像を出さない**方針＝ユーザー合意）。about に「商品画像について」節。
-- **実行待ち**：リポ直下に `.env`(`RAKUTEN_APP_ID=xxxx`) を置く→ `PYTHONUTF8=1 $PY scripts/fetch_product_images.py`（~465件/約9分）→ 生成画像を build_site→commit。テスト描画は tabby.jpg を仮マッピングして確認済(その後削除)。
+## 8.5 商品画像（楽天API→自前ホスト）— 取得完了（2026-06-24）
+- `scripts/fetch_product_images.py`：**新 Rakuten Developers API(2026-04-01)** 対応。エンドポイント `openapi.rakuten.co.jp/ichibams/.../20260401`、認証＝`applicationId`(UUID)＋`accessKey`(pk_…)＋**`Referer`/`Origin` 必須**（登録URL一致。無いと403）。鍵は env か **gitignore済 `.env`**（`RAKUTEN_APP_ID`/`RAKUTEN_ACCESS_KEY`、任意で `RAKUTEN_REFERER`）から読む＝リポに残さない。
+- マッチングは保守的：識別トークン2つ以上＋**犬用除外**(`is_dog_only`)＋スコア2の弱マッチは会社名/サブブランド(`SUB_BRANDS`: CIAO/MiawMiaw/コンボ等)一致必須。出典URLから rafcid 等アフィリ追跡を除去(`clean_item_url`)。429/5xxリトライ・再開可能。
+- **結果：465商品中 390点を採用(84%)**。誤マッチ11点(犬用7・別ブランド/汎用サプリ4)は除外。画像は `site/img/products/`(11MB・自前ホスト＝閲覧時に楽天へ通信させない)、対応表 `data/product_images.csv`。
+- `build_site.py`：`product_images.csv`→各商品 `img`。商品テーブル/find/重ね比較/成分のかたち/メーカーカードにサムネ(`.pthumb`/`.mthumb`)。画像無し75商品はテキストのみ。about「商品画像について」節。
+- **再取得/追加**：`.env` に2鍵→ `PYTHONUTF8=1 $PY scripts/fetch_product_images.py`(再開) or `--refresh`(全件)。プルーニング基準は `accept()`。
 
 ## 9. 次の一手候補
 - ~~ナビ整理／2-3商品の重ね比較／メーカー別ページ~~ ← **2026-06-23 実装済(本ブランチ)**
