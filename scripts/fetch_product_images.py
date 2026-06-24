@@ -81,9 +81,44 @@ def score_item(prod_name: str, brand: str, item_name: str, shop: str) -> int:
     return hit
 
 
-def accept(prod_name: str, brand: str, item_name: str, shop: str) -> bool:
-    """保守的に採用判定：識別トークン2つ以上一致（ブランド一致を含めて可）。"""
-    return score_item(prod_name, brand, item_name, shop) >= 2
+# 会社名に出てこないサブブランド（CIAO/MiawMiaw/コンボ等）。スコア2の弱マッチを
+# 「ちゃんとそのメーカーの商品か」で絞るための辞書。会社名一致 or これらで brand_ok。
+SUB_BRANDS = {
+    "アイシア株式会社": ["miawmiaw", "ミャウミャウ", "健康缶", "黒缶", "金缶", "純缶", "旨缶"],
+    "日本ペットフード株式会社": ["コンボ", "combo", "ラシーネ", "ミオ", "mio", "ビューティープロ", "金のスープ"],
+    "いなばペットフード株式会社": ["ciao", "チャオ", "ちゃお", "ちゅーる", "ちゅ〜る", "ちゅ~る",
+                                   "ちゅるビ", "前浜", "焼かつお", "焼ささみ", "金のだし", "とろみ"],
+    "ロイヤルカナンジャポン合同会社": ["royalcanin", "royal canin"],
+    "ペットライン株式会社": ["メディファス", "キャネット", "medyfas"],
+}
+
+
+def is_dog_only(text: str) -> bool:
+    """候補が明らかに犬用（猫の表記が無い）なら True。猫DBに対する誤マッチを弾く。"""
+    t = norm(text)
+    return ("犬" in (text or "")) and not any(k in (text or "") for k in ("猫", "キャット", "ｷｬｯﾄ")) and ("cat" not in t)
+
+
+def brand_ok(maker: str, cand: str) -> bool:
+    """候補に会社名核 or サブブランド名が含まれるか（弱マッチの裏取り）。"""
+    c = norm(cand)
+    if norm(brand_token(maker)) in c:
+        return True
+    return any(norm(a) in c for a in SUB_BRANDS.get(maker, []))
+
+
+def accept(prod_name: str, maker: str, item_name: str, shop: str) -> bool:
+    """採用判定。犬用は除外。識別トークン2つ以上。スコア2の弱マッチは
+    会社名/サブブランド一致を必須にして誤画像（別ブランド・汎用サプリ）を弾く。"""
+    cand = f"{item_name} {shop}"
+    if is_dog_only(cand):
+        return False
+    sc = score_item(prod_name, brand_token(maker), item_name, shop)
+    if sc < 2:
+        return False
+    if sc == 2 and not brand_ok(maker, cand):
+        return False
+    return True
 
 
 def img_id(url: str) -> str:
@@ -93,6 +128,12 @@ def img_id(url: str) -> str:
 def upscale(img_url: str) -> str:
     """楽天サムネのサイズ指定(_ex=128x128)を少し大きめに。"""
     return re.sub(r"_ex=\d+x\d+", "_ex=300x300", img_url)
+
+
+def clean_item_url(item_url: str) -> str:
+    """itemUrl からクエリ（rafcid 等のアフィリ/トラッキングID）を除去して素のURLにする。
+    出典は素の商品ページだけ残す＝アフィリ遮断の方針に沿う。"""
+    return (item_url or "").split("?", 1)[0]
 
 
 def read_env_value(name: str) -> str:
@@ -151,8 +192,17 @@ def main() -> None:
     IMG_DIR.mkdir(parents=True, exist_ok=True)
     done = {} if args.refresh else load_map()
 
+    # 新APIは登録済み「許可されたWebサイト」と一致する Referer ＋ Origin が必須（無いと403）。
+    # 既定はアプリ登録URL。別アプリなら .env の RAKUTEN_REFERER で上書き可能。
+    referer = read_env_value("RAKUTEN_REFERER") or "https://spontaneous-cupcake-03e95a.netlify.app/"
+    m = re.match(r"(https?://[^/]+)", referer)
+    origin = m.group(1) if m else referer.rstrip("/")
+
     sess = requests.Session()
-    sess.headers.update({"User-Agent": "CatFoodFactBot/0.1 (research; self-hosted thumbnails)"})
+    sess.headers.update({
+        "User-Agent": "CatFoodFactBot/0.1 (research; self-hosted thumbnails)",
+        "Referer": referer, "Origin": origin,
+    })
 
     n_new = n_img = n_skip = n_nomatch = 0
     for i, p in enumerate(products, 1):
@@ -166,16 +216,30 @@ def main() -> None:
         rec = {"product_url": url, "image_file": "", "source_item_url": "",
                "source_shop": "", "matched_name": "", "score": "0",
                "fetched_at": today_stamp()}
-        try:
-            r = sess.get(API, params={
-                "applicationId": app_id, "accessKey": access_key,
-                "keyword": keyword, "hits": 10,
-                "format": "json", "formatVersion": 2,
-            }, timeout=15)
-            data = r.json() if r.status_code == 200 else {}
-        except (requests.RequestException, ValueError) as exc:
-            safe_print(f"[FAIL] {name[:30]} ({type(exc).__name__})")
-            data = {}
+        data, http_err = {}, False
+        for attempt in range(2):  # 429/5xx は一度だけ長め sleep でリトライ
+            try:
+                r = sess.get(API, params={
+                    "applicationId": app_id, "accessKey": access_key,
+                    "keyword": keyword, "hits": 10,
+                    "format": "json", "formatVersion": 2,
+                }, timeout=15)
+                if r.status_code == 200:
+                    data = r.json()
+                    break
+                if r.status_code in (429, 500, 502, 503) and attempt == 0:
+                    time.sleep(3.0)
+                    continue
+                http_err = True
+                safe_print(f"[HTTP {r.status_code}] {name[:28]}")
+                break
+            except (requests.RequestException, ValueError) as exc:
+                http_err = True
+                safe_print(f"[FAIL] {name[:30]} ({type(exc).__name__})")
+                break
+        if http_err:  # 通信失敗は記録しない＝再実行(--refreshなし)で再挑戦できる
+            time.sleep(1.1)
+            continue
         # 新APIは items(小文字)。旧形式 Items も一応見る。
         items = (data.get("items") or data.get("Items") or []) if isinstance(data, dict) else []
 
@@ -184,7 +248,7 @@ def main() -> None:
             sc = score_item(name, brand, it.get("itemName", ""), it.get("shopName", ""))
             if sc > best_sc:
                 best, best_sc = it, sc
-        if best and accept(name, brand, best.get("itemName", ""), best.get("shopName", "")):
+        if best and accept(name, p.get("maker", ""), best.get("itemName", ""), best.get("shopName", "")):
             imgs = best.get("mediumImageUrls") or best.get("smallImageUrls") or []
             img_url = ""
             if imgs:
@@ -198,7 +262,7 @@ def main() -> None:
                     if ir.status_code == 200 and ir.content:
                         (IMG_DIR / fname).write_bytes(ir.content)
                         rec.update({"image_file": f"img/products/{fname}",
-                                    "source_item_url": best.get("itemUrl", ""),
+                                    "source_item_url": clean_item_url(best.get("itemUrl", "")),
                                     "source_shop": best.get("shopName", ""),
                                     "matched_name": best.get("itemName", "")[:120],
                                     "score": str(best_sc)})
