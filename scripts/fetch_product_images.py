@@ -36,7 +36,8 @@ from catfood_common import DATA_DIR, ROOT, safe_print, today_stamp, write_csv
 CONSULT = DATA_DIR / "consult_sheet_cat.csv"
 MAP_CSV = DATA_DIR / "product_images.csv"
 IMG_DIR = ROOT / "site" / "img" / "products"
-API = "https://app.rakuten.co.jp/services/api/IchibaItem/Search/20220601"
+# 新 Rakuten Developers API（2026-04-01）。認証は applicationId(UUID)＋accessKey(pk_…)の2つ。
+API = "https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20260401"
 
 MAP_FIELDS = ["product_url", "image_file", "source_item_url", "source_shop",
               "matched_name", "score", "fetched_at"]
@@ -94,9 +95,9 @@ def upscale(img_url: str) -> str:
     return re.sub(r"_ex=\d+x\d+", "_ex=300x300", img_url)
 
 
-def read_app_id() -> str:
-    """env優先、無ければ gitignore 済みの .env から RAKUTEN_APP_ID を読む（鍵をリポに残さない）。"""
-    v = os.environ.get("RAKUTEN_APP_ID", "").strip()
+def read_env_value(name: str) -> str:
+    """env優先、無ければ gitignore 済みの .env から name の値を読む（鍵をリポに残さない）。"""
+    v = os.environ.get(name, "").strip()
     if v:
         return v
     from pathlib import Path
@@ -106,9 +107,19 @@ def read_app_id() -> str:
             # utf-8-sig で BOM を除去（PowerShell の -Encoding utf8 が付けても読めるように）
             for line in envf.read_text(encoding="utf-8-sig", errors="replace").splitlines():
                 line = line.strip().lstrip("﻿")
-                if line.startswith("RAKUTEN_APP_ID") and "=" in line:
-                    return line.split("=", 1)[1].strip().strip('"').strip("'")
+                if line.startswith(name) and "=" in line:
+                    k, val = line.split("=", 1)
+                    if k.strip() == name:
+                        return val.strip().strip('"').strip("'")
     return ""
+
+
+def read_app_id() -> str:
+    return read_env_value("RAKUTEN_APP_ID")
+
+
+def read_access_key() -> str:
+    return read_env_value("RAKUTEN_ACCESS_KEY")
 
 
 def load_map() -> dict[str, dict]:
@@ -125,10 +136,12 @@ def main() -> None:
     args = ap.parse_args()
 
     app_id = read_app_id()
-    if not app_id:
-        safe_print("[STOP] RAKUTEN_APP_ID が見つかりません（環境変数 / リポジトリ直下の .env のどちらか）。")
-        safe_print("  楽天デベロッパー(https://webservice.rakuten.co.jp/)で applicationId を取得し、")
-        safe_print("  リポジトリ直下に .env を作り `RAKUTEN_APP_ID=xxxx` と書くか、環境変数で設定して再実行してください。")
+    access_key = read_access_key()
+    if not app_id or not access_key:
+        safe_print("[STOP] 認証情報が不足しています（新 Rakuten Developers API は2つ必要）。")
+        safe_print(f"  RAKUTEN_APP_ID     : {'OK' if app_id else '未設定'}（Application ID = UUID）")
+        safe_print(f"  RAKUTEN_ACCESS_KEY : {'OK' if access_key else '未設定'}（Access Key = pk_…）")
+        safe_print("  リポジトリ直下の .env に2行とも書くか、環境変数で設定して再実行してください。")
         safe_print("  （.env は .gitignore 済み＝公開リポジトリには残りません）")
         sys.exit(2)
 
@@ -155,15 +168,16 @@ def main() -> None:
                "fetched_at": today_stamp()}
         try:
             r = sess.get(API, params={
-                "applicationId": app_id, "keyword": keyword, "hits": 10,
-                "imageFlag": 1, "format": "json", "formatVersion": 2,
-                "elements": "itemName,itemUrl,shopName,mediumImageUrls,smallImageUrls",
+                "applicationId": app_id, "accessKey": access_key,
+                "keyword": keyword, "hits": 10,
+                "format": "json", "formatVersion": 2,
             }, timeout=15)
             data = r.json() if r.status_code == 200 else {}
         except (requests.RequestException, ValueError) as exc:
             safe_print(f"[FAIL] {name[:30]} ({type(exc).__name__})")
             data = {}
-        items = data.get("Items", []) if isinstance(data, dict) else []
+        # 新APIは items(小文字)。旧形式 Items も一応見る。
+        items = (data.get("items") or data.get("Items") or []) if isinstance(data, dict) else []
 
         best, best_sc = None, 1  # しきい値未満は不採用（=画像なし）
         for it in items:
