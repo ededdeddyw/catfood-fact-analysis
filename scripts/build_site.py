@@ -19,6 +19,7 @@ from catfood_common import DATA_DIR, ROOT, safe_print, today_stamp
 SITE = ROOT / "site"
 CONSULT = DATA_DIR / "consult_sheet_cat.csv"
 MAKERS = DATA_DIR / "maker_sites.csv"
+PRODUCT_IMAGES = DATA_DIR / "product_images.csv"  # fetch_product_images.py が生成（自前ホスト画像の対応表）
 
 # 肉球マスク（h2見出しのアクセント用・単色）
 _PAW_MASK = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E"
@@ -249,8 +250,17 @@ footer.site .fcat{width:40px;flex:none;opacity:.8}
 .rnums{font-size:11.5px;color:#6b5a48;margin:8px 0 6px;font-variant-numeric:tabular-nums}
 .rsrc{font-size:11px}.rsrc .buy a{margin-left:2px}
 
+/* ===== 商品サムネイル（楽天→自前ホスト・出典はproduct_images.csv） ===== */
+.pcell{display:flex;gap:10px;align-items:center;text-align:left}
+.pthumb{width:42px;height:42px;flex:none;object-fit:cover;border-radius:8px;background:#f1e3d2;
+ border:1px solid var(--line)}
+.pthumb-card{width:60px;height:60px;border-radius:10px;display:block;margin:0 auto 4px}
+.shapecard{position:relative}
+
 /* ===== メーカー一覧 ===== */
 .makergrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:14px;margin-top:14px}
+.makercard .mhead{display:flex;align-items:center;gap:11px;margin-bottom:6px}
+.mthumb{width:44px;height:44px;flex:none;object-fit:cover;border-radius:9px;background:#f1e3d2;border:1px solid var(--line)}
 .makercard{display:block;background:var(--card);border:1px solid var(--line);border-radius:16px;
  padding:16px 18px;text-decoration:none;color:inherit;box-shadow:0 2px 10px rgba(94,59,34,.05);
  transition:transform .08s,box-shadow .2s}
@@ -287,6 +297,7 @@ footer.site .fcat{width:40px;flex:none;opacity:.8}
 TABLE_JS = """
 let DATA=__DATA__, COLS=__COLS__, sortKey=__SORT__, asc=__ASC__, ponly=__PONLY__;
 function cell(v,u){return (v===''||v==null)?'<span class=\"na\">記載なし（要確認）</span>':v+(u||'');}
+function thumb(r){return r.img?'<img class=\"pthumb\" src=\"'+r.img+'\" alt=\"\" loading=\"lazy\">':'';}
 function buy(r){var q=encodeURIComponent(((r.maker||'')+' '+(r.product_name||'')).trim());
  return [['楽天','https://search.rakuten.co.jp/search/mall/'+q+'/'],['Amazon','https://www.amazon.co.jp/s?k='+q],
  ['Yahoo','https://shopping.yahoo.co.jp/search?p='+q]].map(c=>'<a href=\"'+c[1]+'\" target=\"_blank\" rel=\"noopener nofollow\">'+c[0]+'</a>').join('');}
@@ -300,8 +311,8 @@ function draw(){let rows=DATA.slice();
   x=(x||'').toString();y=(y||'').toString();return asc?x.localeCompare(y,'ja'):y.localeCompare(x,'ja');});
  let h='<tr>'+COLS.map(c=>'<th onclick=\"sortBy(\\''+c.k+'\\')\">'+c.t+'</th>').join('')+'</tr>';
  let b=rows.map(r=>{return '<tr>'+COLS.map(c=>{
-   if(c.type==='name')return '<td>'+(r.product_name||'(無題)')+'<br><span class=\"mk\">'+r.maker+'</span></td>';
-   if(c.type==='pname')return '<td>'+(r.product_name||'(無題)')+'</td>';
+   if(c.type==='name')return '<td><span class=\"pcell\">'+thumb(r)+'<span>'+(r.product_name||'(無題)')+'<br><span class=\"mk\">'+r.maker+'</span></span></span></td>';
+   if(c.type==='pname')return '<td><span class=\"pcell\">'+thumb(r)+'<span>'+(r.product_name||'(無題)')+'</span></span></td>';
    if(c.type==='cal'){return '<td class=\"num\">'+(r.calorie_basis==='per_piece'?'<span class=\"na\">個包装・密度比較不可</span>':cell(r.calorie_density_100g))+'</td>';}
    if(c.type==='ther')return '<td>'+(r.is_therapeutic==='True'?'<span class=\"ther\">療法食</span>':'—')+'</td>';
    if(c.type==='src')return '<td><a href=\"'+r.url+'\" target=\"_blank\" rel=\"noopener\">公式</a> <span class=\"na\">'+r.fetched_at+'</span></td>';
@@ -357,8 +368,23 @@ GOALS = [
 ]
 
 
+def load_image_map() -> dict[str, str]:
+    """product url -> 自前ホストの画像パス（無ければ空 dict）。出典は product_images.csv に保持。"""
+    if not PRODUCT_IMAGES.exists():
+        return {}
+    out = {}
+    for r in csv.DictReader(PRODUCT_IMAGES.open(encoding="utf-8-sig", newline="")):
+        if r.get("image_file"):
+            out[r["product_url"]] = r["image_file"]
+    return out
+
+
 def load_products() -> list[dict]:
-    return list(csv.DictReader(CONSULT.open(encoding="utf-8-sig", newline="")))
+    products = list(csv.DictReader(CONSULT.open(encoding="utf-8-sig", newline="")))
+    imgmap = load_image_map()
+    for p in products:  # 商品行に img を付与（全描画面・公開JSONで使える）
+        p["img"] = imgmap.get(p["url"], "")
+    return products
 
 
 def coverage() -> dict:
@@ -677,8 +703,9 @@ def maker_groups(products: list[dict]) -> list[dict]:
         pdisc = sum(1 for p in prods if p.get("phosphorus_disclosed") == "yes")
         forms = Counter(p["form"] for p in prods)
         ther = sum(1 for p in prods if p.get("is_therapeutic") == "True")
+        thumb = next((p["img"] for p in prods if p.get("img")), "")  # 代表サムネ
         out.append({
-            "maker": maker, "slug": slug, "page": f"maker-{slug}.html",
+            "maker": maker, "slug": slug, "page": f"maker-{slug}.html", "thumb": thumb,
             "url": site.get("official_url", ""), "domain": site.get("domain", ""),
             "note": site.get("note", ""), "products": prods, "count": len(prods),
             "p_disclosed": pdisc, "p_rate": round(100 * pdisc / len(prods)),
@@ -695,7 +722,8 @@ def _forms_label(forms: Counter) -> str:
 def build_makers_index(groups: list[dict]) -> str:
     cards = "".join(f"""
  <a class="makercard" href="{g['page']}">
-  <div class="mname">{g['maker']}</div>
+  <div class="mhead">{f'<img class="mthumb" src="{g["thumb"]}" alt="" loading="lazy">' if g['thumb'] else ''}
+   <div class="mname">{g['maker']}</div></div>
   <div class="mmeta">収録 <b>{g['count']}</b> 商品｜{_forms_label(g['forms'])}</div>
   <div class="mbadges"><span class="mb">リン開示 {g['p_rate']}%</span>{
       f'<span class="mb ther">療法食 {g["therapeutic"]}</span>' if g['therapeutic'] else ''}</div>
@@ -768,6 +796,7 @@ def build_coverage(cov: dict, maker_pages: dict[str, str] | None = None) -> str:
 FIND_JS = """
 let DATA=__DATA__, GOALS=__GOALS__, g=GOALS[0];
 function cell(v,u){return (v===''||v==null)?'<span class=\"na\">記載なし（要確認）</span>':v+(u||'');}
+function thumb(r){return r.img?'<img class=\"pthumb\" src=\"'+r.img+'\" alt=\"\" loading=\"lazy\">':'';}
 function buy(r){var q=encodeURIComponent(((r.maker||'')+' '+(r.product_name||'')).trim());
  return [['楽天','https://search.rakuten.co.jp/search/mall/'+q+'/'],['Amazon','https://www.amazon.co.jp/s?k='+q],
  ['Yahoo','https://shopping.yahoo.co.jp/search?p='+q]].map(c=>'<a href=\"'+c[1]+'\" target=\"_blank\" rel=\"noopener nofollow\">'+c[0]+'</a>').join('');}
@@ -795,7 +824,7 @@ function draw(){
   let why=g.field?'<td class=\"num\"><b>'+cell(r[g.field],g.unit)+'</b></td>'
                  :'<td><b style=\"color:#1b7a3d\">条件に合致</b></td>';
   let extra=g.field?'':'<td><span class=\"mk\">'+(r.ingredients||'')+'</span></td>';
-  return '<tr><td>'+(r.product_name||'(無題)')+'<br><span class=\"mk\">'+r.maker+'</span></td>'+
+  return '<tr><td><span class=\"pcell\">'+thumb(r)+'<span>'+(r.product_name||'(無題)')+'<br><span class=\"mk\">'+r.maker+'</span></span></span></td>'+
    why+'<td>'+r.form+'</td>'+extra+
    '<td><a href=\"'+r.url+'\" target=\"_blank\" rel=\"noopener\">公式</a> <span class=\"na\">'+r.fetched_at+'</span></td>'+
    '<td class=\"buy\">'+buy(r)+'</td></tr>';}).join('');
@@ -1005,7 +1034,8 @@ function render(){
  var lab=['P','脂','繊','灰','炭'];
  document.getElementById('grid').innerHTML=rows.map(function(r){
   var nums=r.v.map((x,i)=>lab[i]+' '+x+'%').join(' ・ ');
-  return '<div class="shapecard"><div class="rname">'+(r.name||'(無題)')+'<span class="mk">'+r.maker+'・'+r.form+'</span></div>'+
+  var th=r.img?'<img class="pthumb pthumb-card" src="'+r.img+'" alt="" loading="lazy">':'';
+  return '<div class="shapecard">'+th+'<div class="rname">'+(r.name||'(無題)')+'<span class="mk">'+r.maker+'・'+r.form+'</span></div>'+
    radar(r.v)+'<div class="rnums">'+nums+'</div>'+
    '<div class="rsrc"><a href="'+r.url+'" target="_blank" rel="noopener">公式</a> <span class="na">'+r.fetched_at+'</span> <span class="buy">'+buy(r)+'</span></div></div>';
  }).join('');
@@ -1023,7 +1053,7 @@ def macro_items(products: list[dict]) -> list[dict]:
         if all(r.get(k) not in (None, "") for k in keys):
             items.append({"name": r.get("product_name", ""), "maker": r.get("maker", ""),
                           "url": r.get("url", ""), "fetched_at": r.get("fetched_at", ""),
-                          "form": r.get("form", ""),
+                          "form": r.get("form", ""), "img": r.get("img", ""),
                           "v": [round(float(r[k]), 1) for k in keys]})
     return items
 
@@ -1058,7 +1088,7 @@ def compare_items(products: list[dict]) -> list[dict]:
                 cal = ""  # 個包装は密度比較できない
             out.append({
                 "name": r.get("product_name", ""), "maker": r.get("maker", ""),
-                "form": r.get("form", ""), "url": r.get("url", ""),
+                "form": r.get("form", ""), "url": r.get("url", ""), "img": r.get("img", ""),
                 "v": [round(float(r[k]), 1) for k in keys],
                 "moisture": r.get("moisture_pct", ""),
                 "phosphorus_dm": r.get("phosphorus_dm", ""),
@@ -1099,7 +1129,8 @@ function render(){
  var rows=DATA.map((r,i)=>[r,i]).filter(p=>!ql||(p[0].name+' '+p[0].maker).toLowerCase().includes(ql));
  var shown=rows.slice(0,80);
  document.getElementById('clist').innerHTML=shown.map(function(p){var r=p[0],i=p[1],on=sel.includes(i),dis=!on&&sel.length>=3;
-  return '<button class="citem'+(on?' on':'')+'"'+(dis?' disabled':'')+' onclick="cmpToggle('+i+')">'+(r.name||'(無題)')+'<span class="mk">'+r.maker+'・'+r.form+'</span></button>';}).join('')+
+  var th=r.img?'<img class="pthumb" src="'+r.img+'" alt="" loading="lazy">':'';
+  return '<button class="citem'+(on?' on':'')+'"'+(dis?' disabled':'')+' onclick="cmpToggle('+i+')"><span class="pcell">'+th+'<span>'+(r.name||'(無題)')+'<span class="mk">'+r.maker+'・'+r.form+'</span></span></span></button>';}).join('')+
   (rows.length>shown.length?'<div class="mk" style="padding:8px">ほか '+(rows.length-shown.length)+' 件。検索で絞り込んでください。</div>':'');
  document.getElementById('ccount').textContent=sel.length;
 }
@@ -1468,6 +1499,12 @@ _ABOUT_BODY = """
 <h2>データを公開しています</h2>
 <p class="lead">掲載キャットフードの成分データ（乾物量換算・出典付き）を、そのまま誰でも見られる形で公開します。
 ファクトを名乗る以上、中身を隠しません。<a href="data/cat_products.json" download>📥 全データ（JSON）をダウンロード</a></p>
+<h2>商品画像について</h2>
+<p class="lead">各商品のサムネイル画像は、楽天市場の商品ページから取得し<b>当サイトのサーバーで自前ホスト</b>しています
+（閲覧時に楽天へ通信・トラッキングを発生させないため）。画像はあくまで商品の識別用で、価格や購入を促す表示は付けません。
+商品名が確実に一致しない場合は<b>誤った画像を出さず、あえて画像なし</b>にしています（「記載なし」と同じ正直さ）。
+どの商品ページから取得したかの出典は内部データ（product_images.csv）に残しています。
+購入リンクは引き続き全商品・全チャネルに等しく付け、<b>掲載順・内容には手数料を一切反映しません</b>。</p>
 <h2>写真クレジット</h2>
 <p class="lead">サイト内の写真は Wikimedia Commons のパブリックドメイン／CC0／CC BY 素材です（出典・作者・ライセンスを明記）。</p>
 __CREDITS__

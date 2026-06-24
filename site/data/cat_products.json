@@ -1,5 +1,5 @@
 {
- "updated": "2026-06-23",
+ "updated": "2026-06-24",
  "count": 465,
  "note": "ねこごはんファクト 掲載キャットフードの成分データ（乾物量換算含む・出典付き）。評価・順位は含みません。",
  "products": [
@@ -27,7 +27,8 @@
    "ingredients": "魚介類(マグロ、まぐろエキス)、でん粉類、たんぱく加水分解物、果糖ぶどう糖液糖、増粘多糖類、グリシン、クエン酸Na 成分 たんぱく質:6.1%以上、脂質:0.2%以上、粗繊維:0.",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -53,7 +54,8 @@
    "ingredients": "魚介類(マグロ、まぐろエキス)、でん粉類、たんぱく加水分解物、果糖ぶどう糖液糖、増粘多糖類、グリシン、クエン酸Na 成分 たんぱく質:6.1%以上、脂質:0.2%以上、粗繊維:0.",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -79,7 +81,8 @@
    "ingredients": "魚介類(マグロ、まぐろエキス)、たんぱく加水分解物、果糖ぶどう糖液糖、増粘多糖類、グリシン、クエン酸Na 成分 たんぱく質:8.4%以上、脂質:0.3%以上、粗繊維:0.1%以下、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -105,7 +108,8 @@
    "ingredients": "魚介類(カツオ、まぐろエキス)、でん粉類、たんぱく加水分解物、果糖ぶどう糖液糖、増粘多糖類、グリシン、クエン酸Na 成分 たんぱく質:6.1%以上、脂質:0.2%以上、粗繊維:0.",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -131,7 +135,8 @@
    "ingredients": "鶏ササミ、まぐろエキス、でん粉類、たんぱく加水分解物、果糖ぶどう糖液糖、増粘多糖類、グリシン、クエン酸Na 成分 たんぱく質:6.1%以上、脂質:0.2%以上、粗繊維:0.1%以下",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -157,7 +162,8 @@
    "ingredients": "魚介類(マグロ、フィッシュペプチド等)、たんぱく加水分解物、酵母エキス、オリゴ糖、増粘多糖類、調味料、ビタミンE 成分 たんぱく質:10.0%以上、脂質:0.4%以上、粗繊維:0.",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -183,7 +189,8 @@
    "ingredients": "魚介類(マグロ、フィッシュペプチド等)、鶏ささみ、たんぱく加水分解物、酵母エキス、オリゴ糖、増粘多糖類、調味料、ビタミンE 成分 たんぱく質:10.0%以上、脂質:0.4%以上、粗",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -209,7 +216,8 @@
    "ingredients": "魚介類(マグロ、フィッシュペプチド、しらす等)、たんぱく加水分解物、酵母エキス、オリゴ糖、増粘多糖類、調味料、ビタミンE 成分 たんぱく質:10.0%以上、脂質:0.4%以上、粗繊",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -235,7 +243,8 @@
    "ingredients": "魚介類(マグロ、フィッシュペプチド、そうだがつお削りぶし(おかか)等)、たんぱく加水分解物、酵母エキス、オリゴ糖、増粘多糖類、調味料、ビタミンE 成分 たんぱく質:10.0%以上、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -261,7 +270,8 @@
    "ingredients": "肉類(鶏ササミ、丸鶏エキス、とりささみペプチド等)、酵母エキス、オリゴ糖、増粘多糖類、調味料、ビタミンE 成分 たんぱく質:8.2%以上、脂質:0.4%以上、粗繊維:0.1%以下、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -287,7 +297,8 @@
    "ingredients": "肉類(鶏ササミ、丸鶏エキス、とりささみペプチド等)、しらす、酵母エキス、オリゴ糖、増粘多糖類、調味料、ビタミンE 成分 たんぱく質:8.2%以上、脂質:0.4%以上、粗繊維:0.1",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -313,7 +324,8 @@
    "ingredients": "魚介類(マグロ、フィッシュペプチド(コラーゲンペプチドを含む)等)、たんぱく加水分解物、酵母エキス、オリゴ糖、増粘多糖類、調味料、ビタミン類(ビタミンB群を含む) 成分 たんぱく質",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -339,7 +351,8 @@
    "ingredients": "魚介類(マグロ、フィッシュペプチド(コラーゲンペプチドを含む)等)、鶏ささみ、たんぱく加水分解物、酵母エキス、オリゴ糖、増粘多糖類、調味料、ビタミン類(ビタミンB群を含む) 成分 ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -365,7 +378,8 @@
    "ingredients": "マグロ、油脂類(動物性油脂、ひまわり油、DHA・EPA含有精製魚油、ココナッツオイル)、でん粉、たんぱく加水分解物、オリゴ糖、増粘安定剤(加工でん粉、増粘多糖類)、ビタミン類(A、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -391,7 +405,8 @@
    "ingredients": "マグロ、油脂類(動物性油脂、ひまわり油、DHA・EPA含有精製魚油、ココナッツオイル)、でん粉、たんぱく加水分解物、オリゴ糖(フラクトオリゴ糖、ラクトスクロース)、増粘安定剤(加工",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -417,7 +432,8 @@
    "ingredients": "マグロ、油脂類(動物性油脂、ひまわり油、DHA・EPA含有精製魚油、ココナッツオイル)、でん粉、たんぱく加水分解物、オリゴ糖、増粘安定剤(加工でん粉、増粘多糖類)、ビタミン類(A、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -443,7 +459,8 @@
    "ingredients": "魚介類(マグロ、フィッシュコラーゲンペプチド)、油脂類(動物性油脂、ひまわり油、DHA・EPA含有精製魚油、ココナッツオイル)、でん粉、たんぱく加水分解物、オリゴ糖、増粘安定剤(加",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -469,7 +486,8 @@
    "ingredients": "マグロ、油脂類(動物性油脂、ひまわり油、DHA・EPA含有精製魚油、ココナッツオイル)、でん粉、たんぱく加水分解物、オリゴ糖、増粘安定剤(加工でん粉、増粘多糖類(食物繊維を含む))",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -495,7 +513,8 @@
    "ingredients": "魚介類(マグロ、カツオ)、油脂類(植物性油脂、DHA含有精製魚油)、でん粉、オリゴ糖、増粘安定剤(加工でん粉、キサンタンガム)、カゼインNa、ミネラル類(Ca、P)、タウリン、ビタ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -521,7 +540,8 @@
    "ingredients": "魚介類(マグロ、カツオ)、油脂類(植物性油脂、DHA含有精製魚油)、でん粉、オリゴ糖、増粘安定剤(加工でん粉、増粘多糖類)、ビタミン類(A、D、E、K、B1、B2、B6、B12、ナ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -547,7 +567,8 @@
    "ingredients": "魚介類(マグロ、カツオ)、油脂類(植物性油脂、DHA含有精製魚油)、でん粉、オリゴ糖、増粘安定剤(加工でん粉、増粘多糖類)、ビタミン類(A、D、E、K、B1、B2、B6、B12、ナ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -573,7 +594,8 @@
    "ingredients": "魚介類(マグロ、カツオ、フィッシュコラーゲンペプチド)、油脂類(植物性油脂、DHA含有精製魚油)、でん粉、オリゴ糖、増粘安定剤(加工でん粉、増粘多糖類)、ビタミン類(A、D、E、K",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -599,7 +621,8 @@
    "ingredients": "マグロ 成分 たんぱく質:13.3%以上、脂質:0.2%以上、粗繊維:0.1%以下、灰分:1.6%以下、水分:85.3%以下 カロリー 42kcal/缶 賞味期限 製造より3年 印",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -625,7 +648,8 @@
    "ingredients": "カツオ 成分 たんぱく質:13.3%以上、脂質:0.2%以上、粗繊維:0.1%以下、灰分:1.6%以下、水分:85.3%以下 カロリー 42kcal/缶 賞味期限 製造より3年 印",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -651,7 +675,8 @@
    "ingredients": "鶏ササミ 成分 たんぱく質:15.0%以上、脂質:0.2%以上、粗繊維:0.1%以下、灰分:0.9%以下、水分:84.1%以下 カロリー 48kcal/缶 賞味期限 製造より3年 ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -677,7 +702,8 @@
    "ingredients": "魚介類(マグロ、カツオ、ホタテエキス、フィッシュペプチド)、鶏ササミ、でん粉類、オリゴ糖、乳加工品、増粘多糖類、ビタミンE 成分 たんぱく質:5.2%以上、脂質:0.4%以上、粗繊",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -703,7 +729,8 @@
    "ingredients": "魚介類(マグロ、カツオ、※カニペースト、フィッシュペプチド)、鶏ササミ、でん粉類、オリゴ糖、乳加工品、増粘多糖類、ビタミンE※原材料にズワイガニを含む。 成分 たんぱく質:5.2%",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -729,7 +756,8 @@
    "ingredients": "魚介類(マグロ、カツオ、※エビペースト、フィッシュペプチド)、鶏ササミ、でん粉類、オリゴ糖、乳加工品、増粘多糖類、ビタミンE※原材料に甘エビを含む。 成分 たんぱく質:5.2%以上",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -755,7 +783,8 @@
    "ingredients": "魚介類(マグロ、カツオ、フィッシュペプチド、鰹本枯節粉末)、鶏ササミ、でん粉類、オリゴ糖、乳加工品、増粘多糖類、ビタミンE 成分 たんぱく質:5.2%以上、脂質:0.4%以上、粗繊",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -781,7 +810,8 @@
    "ingredients": "魚介類(マグロ、カツオ、フィッシュペプチド)、肉類(鶏ササミ、※鶏ガラエキス)、でん粉類、オリゴ糖、乳加工品、増粘多糖類、ビタミンE ※鶏ガラエキスに使用されている鶏の品種は名古屋",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -807,7 +837,8 @@
    "ingredients": "魚介類(マグロ、カツオ、フィッシュペプチド)、肉類(鶏ササミ、和牛エキス)、でん粉類、たんぱく加水分解物、オリゴ糖、乳加工品、増粘多糖類、ビタミンE 成分 たんぱく質:5.2%以上",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -833,7 +864,8 @@
    "ingredients": "魚介類(マグロ、カツオ、ホタテエキス、フィッシュペプチド)、鶏ササミ、でん粉類、乳加工品、DHA含有精製魚油、オリゴ糖、増粘多糖類、ビタミン類(A、D、E、K、B1、B2、B6、B",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -859,7 +891,8 @@
    "ingredients": "穀類(とうもろこし、コーングルテンミール、小麦粉)、肉類(ビーフミール、ポークミール、チキンレバーパウダー)、魚介類(魚粉、かつおペプチド、フィッシュエキス、かつお節パウダー、まぐ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -885,7 +918,8 @@
    "ingredients": "穀類(とうもろこし、コーングルテンミール、小麦粉)、肉類(ビーフミール、ポークミール、チキンレバーパウダー)、魚介類(魚粉、かつおペプチド、フィッシュエキス、まぐろ節パウダー、まぐ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -911,7 +945,8 @@
    "ingredients": "穀類(とうもろこし、コーングルテンミール、小麦粉)、肉類(ビーフミール、ポークミール、チキンレバーパウダー、ローストチキンパウダー)、魚介類(魚粉、かつおペプチド、フィッシュエキス",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -937,7 +972,8 @@
    "ingredients": "穀類(とうもろこし、コーングルテンミール、小麦粉)、肉類(ビーフミール、ポークミール、チキンレバーパウダー)、魚介類(魚粉、かつおペプチド、フィッシュエキス、ローストエビパウダー、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -963,7 +999,8 @@
    "ingredients": "穀類(とうもろこし、コーングルテンミール、小麦粉)、肉類(ビーフミール、ポークミール、チキンレバーパウダー、ビーフエキスパウダー)、魚介類(魚粉、かつおペプチド、フィッシュエキス、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -989,7 +1026,8 @@
    "ingredients": "穀類(とうもろこし、コーングルテンミール、小麦粉)、肉類(ビーフミール、ポークミール、チキンレバーパウダー)、魚介類(魚粉、かつおペプチド、フィッシュエキス、まぐろ節パウダー、かつ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アイシア株式会社",
@@ -1015,7 +1053,8 @@
    "ingredients": "穀類(とうもろこし、コーングルテンミール、小麦粉)、肉類(ビーフミール、ポークミール、チキンレバーパウダー、ビーフエキスパウダー、ローストチキンパウダー)、魚介類(魚粉、かつおペプ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1041,7 +1080,8 @@
    "ingredients": "Ingredients 穀類(とうもろこし、小麦粉、パン粉等)、魚介類(フィッシュミール(オメガ3脂肪酸含有)、フィッシュエキス(オメガ3脂肪酸含有)、かつお節、フィッシュパウダー",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1067,7 +1107,8 @@
    "ingredients": "Ingredients 穀類(とうもろこし、小麦粉、パン粉等)、魚介類(フィッシュミール(オメガ3脂肪酸含有)、フィッシュエキス(オメガ3脂肪酸含有)、かつお節、かつお節パウダー、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1093,7 +1134,8 @@
    "ingredients": "Ingredients 穀類(とうもろこし、小麦粉、パン粉等)、魚介類(フィッシュミール(オメガ3脂肪酸含有)、フィッシュエキス(オメガ3脂肪酸含有)、かつお節、まぐろ節パウダー、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1119,7 +1161,8 @@
    "ingredients": "Ingredients 【まぐろ】まぐろ、糖類(オリゴ糖等)、まぐろエキス、タンパク加水分解物、殺菌乳酸菌、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類(Na、P、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1145,7 +1188,8 @@
    "ingredients": "Ingredients 【まぐろ白身】まぐろ、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類(Na、P、Cl)、調味料(アミノ酸)、ビタミンE、緑",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1171,7 +1215,8 @@
    "ingredients": "Ingredients 【まぐろ】まぐろ、まぐろエキス、タンパク加水分解物、糖類(オリゴ糖等)、植物性油脂、ミネラル類、増粘安定剤(加工でん粉、増粘多糖類)、ビタミン類(Na、P、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1197,7 +1242,8 @@
    "ingredients": "Ingredients かつお節 形状 Type ふりかけ 保証成分値 Nutriton Facts たんぱく質65.0%以上、脂質2.9%以上、粗繊維0.1%以下、灰分6.5%以",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1223,7 +1269,8 @@
    "ingredients": "Ingredients かつお節、片口鰯 形状 Type ふりかけ 保証成分値 Nutriton Facts 粗たんぱく質65.0%以上、粗脂肪2.9%以上、粗繊維0.1%以下、粗",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1249,7 +1296,8 @@
    "ingredients": "Ingredients かつお節 形状 Type ふりかけ 保証成分値 Nutriton Facts 粗たんぱく質65.0%以上、粗脂肪2.9%以上、粗繊維0.1%以下、粗灰分6.",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1275,7 +1323,8 @@
    "ingredients": "Ingredients 【まぐろ】鶏肉(ささみ)、まぐろ、かつお節、鶏脂、糖類(オリゴ糖等)、まぐろエキス、タンパク加水分解物、寒天、卵白粉末、酵母エキス、植物性油脂、増粘安定剤(",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1301,7 +1350,8 @@
    "ingredients": "Ingredients 【まぐろ】鶏肉(ささみ)、まぐろ、かつお節、鶏脂、糖類(オリゴ糖等)、まぐろエキス、タンパク加水分解物、寒天、卵白粉末、酵母エキス、植物性油脂、増粘安定剤(",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1327,7 +1377,8 @@
    "ingredients": "Ingredients まぐろ、鶏肉(ささみ)、チーズ、まぐろエキス、増粘多糖類、ビタミンE、緑茶エキス 形状 Type ゼリー 保証成分値 Nutriton Facts 粗たん白",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1353,7 +1404,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、まぐろ、しらす、かつお節エキス、糖類(オリゴ糖等)、植物性油脂、ミネラル類(Na、P、Cl)、増粘安定剤(加工でん粉、増粘多糖類)、調味料(",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1379,7 +1431,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、ほたて貝柱、ほたてエキス、糖類(オリゴ糖等)、植物性油脂、ミネラル類(Na、P、Cl)、増粘安定剤(加工でん粉、増粘多糖類)、調味料(アミノ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1405,7 +1458,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、かつお、かつお節、かつお節エキス、糖類(オリゴ糖等)、植物性油脂、ミネラル類(Na、P、Cl)、増粘安定剤(加工でん粉、増粘多糖類)、調味料",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1431,7 +1485,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、まぐろ、かつお節エキス、糖類(オリゴ糖等)、植物性油脂、ミネラル類(Na、P、Cl)、増粘安定剤(加工でん粉、増粘多糖類)、調味料(アミノ酸",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1457,7 +1512,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、ほたてエキス、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類(Na、P、Cl)、調味料(アミノ酸)、ビタミ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1483,7 +1539,8 @@
    "ingredients": "Ingredients かつお、かつお節エキス、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類(Na、P、Cl)、調味料(アミノ酸)、ビタミンE、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1509,7 +1566,8 @@
    "ingredients": "Ingredients まぐろ、まぐろエキス、タンパク加水分解物、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類(Na、P、C)、調味料(アミノ酸",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1535,7 +1593,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、かに風味かまぼこ、ほたてエキス、しらす、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類(Na、P、Cl)、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1561,7 +1620,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、かに風味かまぼこ、ほたてエキス、かつお節、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類(Na、P、Cl)",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1587,7 +1647,8 @@
    "ingredients": "Ingredients まぐろ、果糖ぶどう糖液糖、まぐろエキス、酵母エキス、タンパク加水分解物、増粘安定剤(加工でん粉、増粘多糖類)、ビタミンE、クエン酸ナトリウム、緑茶エキス、紅",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1613,7 +1674,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、鶏脂、ほたてエキス、糖類(オリゴ糖等)、植物性油脂、増粘剤(加工でん粉)、ミネラル類、(Ca、Cu、Mn、Zn、I、Fe、Na、P、Cl、K",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1639,7 +1701,8 @@
    "ingredients": "Ingredients まぐろ、鶏脂、まぐろエキス、タンパク加水分解物、糖類(オリゴ糖等)、植物性油脂、増粘剤(加工でん粉)、ミネラル類、(Ca、Cu、Mn、Zn、I、Fe、Na、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1665,7 +1728,8 @@
    "ingredients": "Ingredients まぐろ、糖類(オリゴ糖等)、まぐろエキス、タンパク加水分解物、殺菌乳酸菌、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、キトサン、ミネラル類、セルロース",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1691,7 +1755,8 @@
    "ingredients": "Ingredients かつお、まぐろ、ほたてエキス、増粘多糖類、調味料(アミノ酸) 形状 Type ゼリー 保証成分値 Nutriton Facts たんぱく質8.0%以上、脂質",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1717,7 +1782,8 @@
    "ingredients": "Ingredients かつお、まぐろ、かつお節、増粘多糖類、調味料(アミノ酸) 形状 Type ゼリー 保証成分値 Nutriton Facts たんぱく質8.0%以上、脂質0.",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1743,7 +1809,8 @@
    "ingredients": "Ingredients かつお、まぐろ、鶏肉(ささみ)、増粘多糖類、調味料(アミノ酸) 形状 Type ゼリー 保証成分値 Nutriton Facts たんぱく質8.0%以上、脂",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1769,7 +1836,8 @@
    "ingredients": "Ingredients かつお、まぐろ、しらす、増粘多糖類、調味料(アミノ酸) 形状 Type ゼリー 保証成分値 Nutriton Facts たんぱく質8.0%以上、脂質0.5",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1795,7 +1863,8 @@
    "ingredients": "Ingredients かつお、まぐろ、増粘多糖類、調味料(アミノ酸) 形状 Type ゼリー 保証成分値 Nutriton Facts たんぱく質8.0%以上、脂質0.5%以上、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1821,7 +1890,8 @@
    "ingredients": "Ingredients 穀類(とうもろこし、コーングルテンミール、小麦粉、小麦ふすま等)、肉類(ミートミール、チキンミール、ポークミール、チキンレバーパウダー、チキンエキスパウダー",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1847,7 +1917,8 @@
    "ingredients": "Ingredients まぐろ、鶏脂、チキンエキス、糖類(オリゴ糖等)、まぐろエキス、魚肉抽出物、殺菌乳酸菌、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類(Na、P",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1873,7 +1944,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、鶏脂、チキンエキス、ほたてエキス、糖類(オリゴ糖等)、魚肉抽出物、殺菌乳酸菌、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類(",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1899,7 +1971,8 @@
    "ingredients": "Ingredients まぐろ、鶏脂、チキンエキス、糖類(オリゴ糖等)、魚肉抽出物、殺菌乳酸菌、まぐろエキス、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ビタミンE、ミネラル",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1925,7 +1998,8 @@
    "ingredients": "Ingredients まぐろ、鶏脂、チキンエキス、オリゴ糖、魚肉抽出物、DHA・EPA含有精製魚油、まぐろエキス、殺菌乳酸菌、ミルクカルシウム、増粘安定剤(加工でん粉、増粘多糖類",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1951,7 +2025,8 @@
    "ingredients": "Ingredients まぐろ、ほたてエキス、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類(Na、P、Cl)、調味料(アミノ酸)、ビタミンE、緑",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -1977,7 +2052,8 @@
    "ingredients": "Ingredients 【まぐろ＆贅沢本まぐろ】まぐろ、まぐろエキス、タンパク加水分解物、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類(Na、P",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2003,7 +2079,8 @@
    "ingredients": "Ingredients 【まぐろ】まぐろ、まぐろエキス、タンパク加水分解物、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類(Na、P、Cl)、調味",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2029,7 +2106,8 @@
    "ingredients": "Ingredients 【まぐろ 本格まぐろだし仕立て】まぐろ、鶏脂、まぐろエキス、タンパク加水分解物、糖類(オリゴ糖等)、コラーゲンペプチド、植物性油脂、増粘剤(加工でん粉)、ミ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2055,7 +2133,8 @@
    "ingredients": "Ingredients 【まぐろ しらす・ほたて貝柱入り】まぐろ、しらす、ほたて貝柱、まぐろエキス、タンパク加水分解物、糖類(オリゴ糖等)、コラーゲンペプチド、植物性油脂、増粘剤(",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2081,7 +2160,8 @@
    "ingredients": "Ingredients 【とりささみ かつお節・ほたて貝柱入り】鶏肉(ささみ)、ほたてエキス、かつお節、ほたて貝柱、糖類(オリゴ糖等)、コラーゲンペプチド、植物性油脂、増粘剤(加工",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2107,7 +2187,8 @@
    "ingredients": "Ingredients 【かつお かつお節・ほたて貝柱入り】かつお、かつお節エキス、かつお節、ほたて貝柱、糖類(オリゴ糖等)、コラーゲンペプチド、植物性油脂、増粘剤(加工でん粉)、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2133,7 +2214,8 @@
    "ingredients": "Ingredients 【まぐろ しらす・ほたて貝柱入り】まぐろ、しらす、ほたて貝柱、まぐろエキス、タンパク加水分解物、糖類(オリゴ糖等)、コラーゲンペプチド、植物性油脂、増粘剤(",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2159,7 +2241,8 @@
    "ingredients": "Ingredients 【かつお節・ほたて貝柱入り】かつお、鶏脂、ほたてエキス、かつお節、ほたて貝柱、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2185,7 +2268,8 @@
    "ingredients": "Ingredients 【まぐろ＆贅沢本まぐろ】まぐろ、まぐろエキス、タンパク加水分解物、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類(Na、P",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2211,7 +2295,8 @@
    "ingredients": "Ingredients 【まぐろ 海鮮ミックス味】まぐろ、ほたてエキス、かつお節エキス、まぐろエキス、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2237,7 +2322,8 @@
    "ingredients": "Ingredients 【まぐろ】まぐろ、まぐろエキス、タンパク加水分解物、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類(Na、P、Cl)、調味",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2263,7 +2349,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、まぐろ、かつお節、鶏脂、でん粉、卵白粉末、ほたてエキス、かにエキス、いかエキス、酵母エキス、寒天、カゼインナトリウム、増粘多糖類、ビタミンE",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2289,7 +2376,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、まぐろ、かつお、かつお節、鶏脂、でん粉、卵白粉末、ほたてエキス、かにエキス、いかエキス、酵母エキス、寒天、カゼインナトリウム、増粘多糖類、ビ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2315,7 +2403,8 @@
    "ingredients": "Ingredients 【まぐろと焼かつお】鶏肉(ささみ)、まぐろ、かつお、かつお節、鶏脂、でん粉、卵白粉末、まぐろエキス、酵母エキス、寒天、カゼインナトリウム、増粘多糖類、ビタミ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2341,7 +2430,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、かつお節、鶏脂、でん粉、卵白粉末、チキンエキス、酵母エキス、寒天、カゼインナトリウム、増粘多糖類、ビタミンE、緑茶エキス、紅麹色素 形状 T",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2367,7 +2457,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、かつお、かつお節、鶏脂、でん粉、卵白粉末、チキンエキス、酵母エキス、寒天、カゼインナトリウム、増粘多糖類、ビタミンE、紅麹色素、緑茶エキス ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2393,7 +2484,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、まぐろ、かつお節、鶏脂、でん粉、卵白粉末、まぐろエキス、酵母エキス、寒天、カゼインナトリウム、増粘多糖類、ビタミンE、緑茶エキス、紅麹色素 ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2419,7 +2511,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、まぐろ、かつお、かつお節、鶏脂、でん粉、卵白粉末、まぐろエキス、酵母エキス、寒天、カゼインナトリウム、増粘多糖類、ビタミンE、紅麹色素、緑茶",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2445,7 +2538,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、鶏脂、かつお節、卵白粉末、糖類(オリゴ糖等)、ほたてエキス、酵母エキス、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、カゼインナトリウム",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2471,7 +2565,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、まぐろ、鶏脂、かつお節、卵白粉末、糖類(オリゴ糖等)、まぐろエキス、酵母エキス、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、カゼインナ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2497,7 +2592,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、鶏脂、まぐろ、卵白粉末、かにエキス、ほたてエキス、まぐろエキス、糖類(オリゴ糖等)、植物性油脂、カゼインナトリウム、増粘安定剤(加工でん粉、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2523,7 +2619,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、鶏脂、まぐろ、卵白粉末、いかエキス、ほたてエキス、まぐろエキス、糖類(オリゴ糖等)、植物性油脂、カゼインナトリウム、増粘安定剤(加工でん粉、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2549,7 +2646,8 @@
    "ingredients": "Ingredients かつお、かつお節エキス、ほたてエキス、でん粉、コラーゲンペプチド、増粘多糖類、ビタミンE、緑茶エキス 形状 Type スティック 保証成分値 Nutrito",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2575,7 +2673,8 @@
    "ingredients": "Ingredients かつお、ほたてエキス、カニエキス、ビタミンE、緑茶エキス 形状 Type スティック 保証成分値 Nutriton Facts たんぱく質26.5%以上　脂",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2601,7 +2700,8 @@
    "ingredients": "Ingredients かつお、しらすエキス、ほたてエキス、ビタミンE、緑茶エキス 形状 Type スティック 保証成分値 Nutriton Facts たんぱく質26.5%以上　",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2627,7 +2727,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、魚介類エキス、でん粉、コラーゲンペプチド、増粘多糖類(グァーガム)、ビタミンE、緑茶エキス 形状 Type スティック 保証成分値 Nutr",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2653,7 +2754,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、かつお節エキス、ビタミンE、緑茶エキス 形状 Type スティック 保証成分値 Nutriton Facts たんぱく質23.0%以上、脂質",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2679,7 +2781,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、チキンエキス、ビタミンE、緑茶エキス 形状 Type スティック 保証成分値 Nutriton Facts たんぱく質23.0%以上、脂質1",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2705,7 +2808,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、ほたてエキス、カニエキス、いかエキス、ビタミンE、緑茶エキス 形状 Type スティック 保証成分値 Nutriton Facts たんぱく",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2731,7 +2835,8 @@
    "ingredients": "Ingredients かつお、かつお節エキス、ほたてエキス、ビタミンE、緑茶エキス 形状 Type スティック 保証成分値 Nutriton Facts たんぱく質26.5%以上",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2757,7 +2862,8 @@
    "ingredients": "Ingredients 宗田鰹、魚介類エキス、でん粉、コラーゲンペプチド、増粘多糖類、ビタミンE、緑茶エキス 形状 Type スティック 保証成分値 Nutriton Facts ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2783,7 +2889,8 @@
    "ingredients": "Ingredients 宗田鰹、かつお節エキス、煮干しエキス、ビタミンE、緑茶エキス 形状 Type スティック 保証成分値 Nutriton Facts たんぱく質28.0%以上",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2809,7 +2916,8 @@
    "ingredients": "Ingredients 宗田鰹、ほたてエキス、カニエキス、ビタミンE、緑茶エキス 形状 Type スティック 保証成分値 Nutriton Facts たんぱく質28.0%以上、脂",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2835,7 +2943,8 @@
    "ingredients": "Ingredients 宗田鰹、かつお節エキス、ビタミンE、緑茶エキス 形状 Type スティック 保証成分値 Nutriton Facts たんぱく質28.0%以上、脂質1.2%",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2861,7 +2970,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、ほたてエキス、植物性油脂、鶏油、卵黄粉末、糖類(オリゴ糖等)、コラーゲンペプチド、サメ軟骨抽出物(コンドロイチン硫酸含有)、酵母、殺菌乳酸菌",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2887,7 +2997,8 @@
    "ingredients": "Ingredients まぐろ、まぐろエキス、植物性油脂、鶏油、卵黄粉末、糖類(オリゴ糖等)、コラーゲンペプチド、サメ軟骨抽出物(コンドロイチン硫酸含有)、酵母、殺菌乳酸菌、ミネラ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2913,7 +3024,8 @@
    "ingredients": "Ingredients かつお、まぐろ、まぐろエキス、オリゴ糖、増粘多糖類、ビタミンE、タウリン、緑茶エキス 形状 Type ゼリー 保証成分値 Nutriton Facts たん",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2939,7 +3051,8 @@
    "ingredients": "Ingredients かつお、まぐろ、まぐろエキス、オリゴ糖、増粘多糖類、ビタミンE、緑茶エキス 形状 Type ゼリー 保証成分値 Nutriton Facts たんぱく質9.",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2965,7 +3078,8 @@
    "ingredients": "Ingredients かつお、まぐろ、しらす、フィッシュエキス、かつお節エキス、増粘多糖類、タウリン、ビタミンE、緑茶エキス 形状 Type ゼリー 保証成分値 Nutriton",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -2991,7 +3105,8 @@
    "ingredients": "Ingredients かつお、まぐろ、鶏肉(ささみ)、フィッシュエキス、かつお節エキス、増粘多糖類、タウリン、ビタミンE、緑茶エキス 形状 Type ゼリー 保証成分値 Nutr",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3017,7 +3132,8 @@
    "ingredients": "Ingredients かつお、まぐろ、かつお節、フィッシュエキス、かつお節エキス、増粘多糖類、タウリン、ビタミンE、緑茶エキス 形状 Type ゼリー 保証成分値 Nutrito",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3043,7 +3159,8 @@
    "ingredients": "Ingredients かつお、まぐろエキス、しらす、オリゴ糖、増粘多糖類、ビタミンE、緑茶エキス 形状 Type ゼリー 保証成分値 Nutriton Facts たんぱく質9.",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3069,7 +3186,8 @@
    "ingredients": "Ingredients かつお、まぐろエキス、にぼし、オリゴ糖、増粘多糖類、ビタミンE、緑茶エキス 形状 Type ゼリー 保証成分値 Nutriton Facts たんぱく質9.",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3095,7 +3213,8 @@
    "ingredients": "Ingredients かつお、まぐろエキス、オリゴ糖、増粘多糖類、ビタミンE、緑茶エキス 形状 Type ゼリー 保証成分値 Nutriton Facts たんぱく質9.0%以上",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3121,7 +3240,8 @@
    "ingredients": "Ingredients かつお、まぐろ、フィッシュエキス、かつお節、増粘安定剤(加工でん粉、増粘多糖類)、ビタミンE、緑茶エキス 形状 Type とろみ 保証成分値 Nutrito",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3147,7 +3267,8 @@
    "ingredients": "Ingredients かつお、まぐろ、鶏肉(ささみ)、フィッシュエキス、増粘安定剤(加工でん粉、増粘多糖類)、ビタミンE、緑茶エキス 形状 Type とろみ 保証成分値 Nutr",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3173,7 +3294,8 @@
    "ingredients": "Ingredients かつお、まぐろ、フィッシュエキス、しらす、増粘安定剤(加工でん粉、増粘多糖類)、ビタミンE、緑茶エキス 形状 Type とろみ 保証成分値 Nutriton",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3199,7 +3321,8 @@
    "ingredients": "Ingredients かつお、まぐろ、フィッシュエキス、増粘安定剤(加工でん粉、増粘多糖類)、ビタミンE、緑茶エキス 形状 Type とろみ 保証成分値 Nutriton Fac",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3225,7 +3348,8 @@
    "ingredients": "Ingredients かつお、まぐろ、フィッシュエキス、かつお節、増粘多糖類、ビタミンE、緑茶エキス 形状 Type ゼリー 保証成分値 Nutriton Facts たんぱく質",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3251,7 +3375,8 @@
    "ingredients": "Ingredients かつお、まぐろ、鶏肉(ささみ)、フィッシュエキス、増粘多糖類、ビタミンE、緑茶エキス 形状 Type ゼリー 保証成分値 Nutriton Facts たん",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3277,7 +3402,8 @@
    "ingredients": "Ingredients かつお、まぐろ、フィッシュエキス、しらす、増粘多糖類、ビタミンE、緑茶エキス 形状 Type ゼリー 保証成分値 Nutriton Facts たんぱく質9",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3303,7 +3429,8 @@
    "ingredients": "Ingredients かつお、まぐろ、フィッシュエキス、増粘多糖類、ビタミンE、緑茶エキス 形状 Type ゼリー 保証成分値 Nutriton Facts たんぱく質9.0%以",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3329,7 +3456,8 @@
    "ingredients": "Ingredients かつお、まぐろ、鶏肉(ささみ)、フィッシュエキス、増粘剤(加工でん粉)、ビタミンE、緑茶エキス 形状 Type 水煮 保証成分値 Nutriton Fact",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3355,7 +3483,8 @@
    "ingredients": "Ingredients かつお、まぐろ、しらす、フィッシュエキス、増粘剤(加工でん粉)、ビタミンE、緑茶エキス 形状 Type 水煮 保証成分値 Nutriton Facts たん",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3381,7 +3510,8 @@
    "ingredients": "Ingredients かつお、まぐろ、フィッシュエキス、増粘剤(加工でん粉)、ビタミンＥ、緑茶エキス 形状 Type 水煮 保証成分値 Nutriton Facts たんぱく質1",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3407,7 +3537,8 @@
    "ingredients": "Ingredients まぐろ(本まぐろを含む)、しらす、まぐろエキス、ガラクトオリゴ糖、増粘安定剤(加工でん粉、増粘多糖類)、ビタミンE、緑茶エキス 形状 Type とろみ 保証",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3433,7 +3564,8 @@
    "ingredients": "Ingredients まぐろ(本まぐろを含む)、ほたてエキス、ガラクトオリゴ糖、増粘安定剤(加工でん粉、増粘多糖類)、ビタミンE、緑茶エキス 形状 Type とろみ 保証成分値 ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3459,7 +3591,8 @@
    "ingredients": "Ingredients まぐろ(本まぐろを含む)、かつお節、まぐろエキス、ガラクトオリゴ糖、増粘安定剤(加工でん粉、増粘多糖類)、ビタミンE、緑茶エキス 形状 Type とろみ 保",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3485,7 +3618,8 @@
    "ingredients": "Ingredients まぐろ(本まぐろを含む)、まぐろエキス、ガラクトオリゴ糖、増粘安定剤(加工でん粉、増粘多糖類)、ビタミンE、緑茶エキス 形状 Type とろみ 保証成分値 ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3511,7 +3645,8 @@
    "ingredients": "Ingredients 魚介類(かつお、まぐろ、フィッシュエキス、かつお節)、増粘安定剤(加工でん粉)、オリゴ糖、ビタミンE 形状 Type 水煮 保証成分値 Nutriton F",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3537,7 +3672,8 @@
    "ingredients": "Ingredients 魚介類(かつお、まぐろ、しらす、フィッシュエキス)、増粘安定剤(加工でん粉)、ビタミンE 形状 Type 水煮 保証成分値 Nutriton Facts た",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3563,7 +3699,8 @@
    "ingredients": "Ingredients 魚介類(かつお、まぐろ、フィッシュエキス、かつお節)、増粘安定剤(加工でん粉)、ビタミンE 形状 Type 水煮 保証成分値 Nutriton Facts ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3589,7 +3726,8 @@
    "ingredients": "Ingredients 魚介類(かつお、まぐろ、フィッシュエキス)、鶏肉(ささみ)、増粘安定剤(加工でん粉)、ビタミンE 形状 Type 水煮 保証成分値 Nutriton Fac",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3615,7 +3753,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、まぐろ、かつお節、ほたてエキス、まぐろエキス、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類(Na、P、C",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3641,7 +3780,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、まぐろ、しらす、ほたてエキス、まぐろエキス、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類(Na、P、Cl",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3667,7 +3807,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、まぐろ、貝柱、ほたてエキス、まぐろエキス、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類(Na、P、Cl)",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3693,7 +3834,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、まぐろ、ほたてエキス、まぐろエキス、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類( Na、P、Cl)、調",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3719,7 +3861,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、宗田鰹、ほたてエキス、ほたて貝柱、糖類(オリゴ糖)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)ミネラル類(Na、P、Cl)、調味料(ア",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3745,7 +3888,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、宗田鰹、ほたてエキス、ほたて貝柱、かつお節、糖類(オリゴ糖)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類(Na、P、Cl)",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3771,7 +3915,8 @@
    "ingredients": "Ingredients まぐろ、かに風味かまぼこ、しらす、まぐろエキス、タンパク加水分解物、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類(Na、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3797,7 +3942,8 @@
    "ingredients": "Ingredients まぐろ、かに風味かまぼこ、かつお節、まぐろエキス、タンパク加水分解物、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類(Na",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3823,7 +3969,8 @@
    "ingredients": "Ingredients かつお、まぐろ、鶏肉(ささみ)、かつお節エキス、糖類(オリゴ糖等)、殺菌乳酸菌、植物性油脂、増粘多糖類、ミネラル類(Na、P、Cl)、調味料(アミノ酸)、ビ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3849,7 +3996,8 @@
    "ingredients": "Ingredients かつお、まぐろ、かつお節、かつお節エキス、糖類(オリゴ糖等)、殺菌乳酸菌、植物性油脂、増粘多糖類、ミネラル類(Na、P、Cl)、調味料(アミノ酸)、ビタミン",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3875,7 +4023,8 @@
    "ingredients": "Ingredients かつお、まぐろ、かつお節エキス、糖類(オリゴ糖等)、殺菌乳酸菌、植物性油脂、増粘多糖類、ミネラル類(Na、P、Cl)、調味料(アミノ酸)、ビタミンE、緑茶エ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3901,7 +4050,8 @@
    "ingredients": "Ingredients 【かつお節入り】かつお、まぐろ、かつお節、かつお節エキス、糖類(オリゴ糖等)、殺菌乳酸菌、植物性油脂、増粘多糖類、ミネラル類(Na、P、Cl)、調味料(アミ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3927,7 +4077,8 @@
    "ingredients": "Ingredients 【まぐろ】かつお、まぐろ、かつお節エキス、糖類(オリゴ糖等)、殺菌乳酸菌、植物性油脂、増粘多糖類、ミネラル類(Na、P、Cl)、調味料(アミノ酸)、ビタミン",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3953,7 +4104,8 @@
    "ingredients": "Ingredients 【ささみ入り】かつお、まぐろ、鶏肉(ささみ)、かつお節エキス、糖類(オリゴ糖等)、殺菌乳酸菌、植物性油脂、増粘多糖類、ミネラル類(Na、P、Cl)、調味料(",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -3979,7 +4131,8 @@
    "ingredients": "Ingredients 【ささみ かつお節入り】鶏肉(ささみ)、かつお、まぐろ、かつお節、かつお節エキス、チキンエキス、糖類(オリゴ糖等)、殺菌乳酸菌、植物性油脂、増粘多糖類、ミネ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4005,7 +4158,8 @@
    "ingredients": "Ingredients 【まぐろ】かつお、まぐろ、かつお節エキス、糖類(オリゴ糖等)、殺菌乳酸菌、植物性油脂、増粘多糖類、ミネラル類(Na、P、Cl)、調味料(アミノ酸)、ビタミン",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4031,7 +4185,8 @@
    "ingredients": "Ingredients かつお、まぐろ、鶏肉(ささみ)、かつお節エキス、オリゴ糖、増粘多糖類、ビタミンE、タウリン、緑茶エキス 形状 Type とろみ 保証成分値 Nutriton",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4057,7 +4212,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、ほたてエキス、糖類(オリゴ糖等)、殺菌乳酸菌、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類、調味料(アミノ酸)、ミルクカルシ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4083,7 +4239,8 @@
    "ingredients": "Ingredients まぐろ、ほたてエキス、ほたて貝柱、糖類(オリゴ糖等)、殺菌乳酸菌、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類、調味料(アミノ酸)、ミルクカ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4109,7 +4266,8 @@
    "ingredients": "Ingredients まぐろ、糖類(オリゴ糖等)、まぐろエキス、タンパク加水分解物、殺菌乳酸菌、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類、調味料(アミノ酸)、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4135,7 +4293,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、かつお節、でん粉、ほたてエキス、タンパク加水分解物、増粘多糖類、ビタミンE、緑茶エキス、紅麹色素 形状 Type ペースト 保証成分値 Nu",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4161,7 +4320,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、まぐろ、でん粉、ほたてエキス、タンパク加水分解物、増粘多糖類、ビタミンE、緑茶エキス、紅麹色素 形状 Type ペースト 保証成分値 Nut",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4187,7 +4347,8 @@
    "ingredients": "Ingredients かつお、まぐろ、かつお節エキス、かつお節、糖類(オリゴ糖等)、植物性油脂、増粘多糖類、ミネラル類(Na、P、Cl)、調味料(アミノ酸)、ビタミンE、紅麹色素",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4213,7 +4374,8 @@
    "ingredients": "Ingredients かつお、かつお節エキス、糖類(オリゴ糖等)、植物性油脂、増粘多糖類、ミネラル類(Na、P、Cl)、調味料(アミノ酸)、ビタミンE、紅麹色素、緑茶エキス 形状",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4239,7 +4401,8 @@
    "ingredients": "Ingredients かつお、まぐろ、かつお節エキス、糖類(オリゴ糖等)、植物性油脂、増粘多糖類、ミネラル類(Na、P、Cl)、調味料(アミノ酸)、ビタミンE、紅麹色素、緑茶エキ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4265,7 +4428,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、ほたて貝柱、かつお節だし、かつお節エキス、ほたてエキス、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(増粘多糖類、加工でん粉)、ミネラル類(N",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4291,7 +4455,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、かつお、ほたて貝柱、かつお節だし、かつお節エキス、ほたてエキス、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(増粘多糖類、加工でん粉)、ミネラ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4317,7 +4482,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、まぐろ、ほたて貝柱、かつお節だし、かつお節エキス、ほたてエキス、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(増粘多糖類、加工でん粉)、ミネラ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4343,7 +4509,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、ほたてエキス、煮干だし、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類(Na、P、Cl)、調味料(アミノ酸",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4369,7 +4536,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、かつお、かつお節、かつお節エキス、煮干だし、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類(Na、P、Cl",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4395,7 +4563,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、まぐろ、ほたてエキス、煮干だし、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類(Na、P、Cl)、調味料(",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4421,7 +4590,8 @@
    "ingredients": "Ingredients 【まぐろ】かつお、まぐろ、かつお節エキス、糖類(オリゴ糖等)、植物性油脂、増粘多糖類、ミネラル類(Na、P、Cl)、調味料(アミノ酸)、ビタミンE、紅麹色素",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4447,7 +4617,8 @@
    "ingredients": "Ingredients 【まぐろ ほたて貝柱・ささみ入り】鶏肉(ささみ)、まぐろ、ほたて貝柱、かつお節だし、かつお節エキス、ほたてエキス、糖類(オリゴ糖等)、植物性油脂、増粘安定剤",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4473,7 +4644,8 @@
    "ingredients": "Ingredients 【まぐろ ほたて貝柱・ささみ入り】鶏肉(ささみ)、まぐろ、ほたて貝柱、かつお節だし、かつお節エキス、ほたてエキス、糖類(オリゴ糖等)、植物性油脂、増粘安定剤",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4499,7 +4671,8 @@
    "ingredients": "Ingredients 【まぐろ ほたて貝柱・ささみ入り】鶏肉(ささみ)、まぐろ、ほたて貝柱、かつお節だし、かつお節エキス、ほたてエキス、糖類(オリゴ糖等)、植物性油脂、増粘安定剤",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4525,7 +4698,8 @@
    "ingredients": "Ingredients 【まぐろ ささみ入り ほたて味】鶏肉(ささみ)、まぐろ、ほたてエキス、煮干だし、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4551,7 +4725,8 @@
    "ingredients": "Ingredients 【まぐろ ささみ入り ほたて味】鶏肉(ささみ)、まぐろ、ほたてエキス、煮干だし、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4577,7 +4752,8 @@
    "ingredients": "Ingredients 【まぐろ ささみ入り ほたて味】鶏肉(ささみ)、まぐろ、ほたてエキス、煮干だし、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4603,7 +4779,8 @@
    "ingredients": "Ingredients 【かつお】かつお、かつお節エキス、糖類(オリゴ糖等)、植物性油脂、増粘多糖類、ミネラル類(Na、P、Cl)、調味料(アミノ酸)、ビタミンE、紅麹色素、緑茶エ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4629,7 +4806,8 @@
    "ingredients": "Ingredients 【まぐろ】かつお、まぐろ、かつお節エキス、糖類(オリゴ糖等)、植物性油脂、増粘多糖類、ミネラル類(Na、P、Cl)、調味料(アミノ酸)、ビタミンE、紅麹色素",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4655,7 +4833,8 @@
    "ingredients": "Ingredients 【まぐろ】かつお、まぐろ、かつお節エキス、糖類(オリゴ糖等)、植物性油脂、増粘多糖類、ミネラル類(Na、P、Cl)、調味料(アミノ酸)、ビタミンE、紅麹色素",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4681,7 +4860,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、まぐろ、牛肉、ビーフエキス、タンパク加水分解物、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類(Na、P、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4707,7 +4887,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、まぐろ、キングサーモン、紅鮭、鮭エキス、タンパク加水分解物、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4733,7 +4914,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、まぐろ、ほたて貝柱、ほたてエキス、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類(Na、P、Cl)、調味料",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4759,7 +4941,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、まぐろ(本まぐろを含む)、まぐろエキス、タンパク加水分解物、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類)、ミネラル類",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4785,7 +4968,8 @@
    "ingredients": "Ingredients 【贅沢 ほたて貝柱 まぐろ・とりささみ】鶏肉(ささみ)、まぐろ、ほたて貝柱、ほたてエキス、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(加工でん粉、増粘多糖類",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4811,7 +4995,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、まぐろ、ほたてエキス、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(増粘多糖類、加工でん粉)、ミネラル類(Na、P、Cl)、調味料(アミノ酸)",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4837,7 +5022,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、まぐろ、かつお節エキス、かつお節、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(増粘多糖類、加工でん粉)、ミネラル類(Na、P、Cl)、調味料",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "いなばペットフード株式会社",
@@ -4863,7 +5049,8 @@
    "ingredients": "Ingredients 鶏肉(ささみ)、まぐろ、かに風味かまぼこ、かつお節エキス、糖類(オリゴ糖等)、植物性油脂、増粘安定剤(増粘多糖類、加工でん粉)、ミネラル類(Na、P、Cl)",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -4889,7 +5076,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(牛肉粉、チキンミール、豚肉粉)、油脂類(動物性油脂、植物性油脂)、魚介類(フィッシュパウダー、マリンコラ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -4915,7 +5103,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(牛肉粉、チキンミール、豚肉粉)、油脂類(動物性油脂、植物性油脂)、魚介類(フィッシュパウダー、マリンコラ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -4941,7 +5130,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(牛肉粉、チキンミール、豚肉粉、チキンレバーパウダー)、油脂類(動物性油脂、植物性油脂)、魚介類(フィッシ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -4967,7 +5157,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(牛肉粉、チキンミール、豚肉粉)、油脂類(植物性油脂、動物性油脂)、魚介類(フィッシュパウダー、マリンコラ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -4993,7 +5184,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(牛肉粉、チキンミール、豚肉粉)、α化でん粉、油脂類(動物性油脂、植物性油脂)、魚介類(フィッシュパウダー",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5019,7 +5211,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(牛肉粉、チキンミール、豚肉粉、チキンレバーパウダー)、α化でん粉、油脂類(動物性油脂、植物性油脂)、魚介",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5045,7 +5238,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、パン粉、小麦粉)、肉類(牛肉粉、豚肉粉)、α化でん粉、油脂類(動物性油脂、植物性油脂)、魚介類(フィッシュパウダー、マリンコラー",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5071,7 +5265,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、パン粉、小麦粉)、肉類(牛肉粉、チキンミール、豚肉粉)、α化でん粉、油脂類(植物性油脂、動物性油脂)、魚介類(フィッシュパウダー",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5097,7 +5292,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、パン粉、小麦粉)、肉類(牛肉粉、チキンミール、豚肉粉、チキンレバーパウダー)、α化でん粉、油脂類(植物性油脂、動物性油脂)、魚介",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5123,7 +5319,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、小麦粉、コーングルテンミール、パン粉)、肉類(牛肉粉、豚肉粉)、油脂類(植物性油脂、動物性油脂)、フィッシュパウダー、オリゴ糖、アップルファイバー(セ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5149,7 +5346,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、小麦粉、コーングルテンミール、パン粉)、肉類(牛肉粉、豚肉粉)、油脂類(植物性油脂、動物性油脂)、フィッシュパウダー、オリゴ糖、海藻粉末(ＤＨＡ源)、",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5175,7 +5373,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、小麦粉、コーングルテンミール、パン粉)、肉類(牛肉粉、豚肉粉)、油脂類(動物性油脂、植物性油脂)、フィッシュパウダー、オリゴ糖、アップルファイバー(セ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5201,7 +5400,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(牛肉粉、チキンミール、豚肉粉)、油脂類(植物性油脂、動物性油脂)、魚介類(フィッシュパウダー、マリンコラ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5227,7 +5427,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(牛肉粉、チキンミール、豚肉粉)、油脂類(動物性油脂、植物性油脂)、魚介類(フィッシュパウダー、マリンコラ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5253,7 +5454,8 @@
    "ingredients": "表示する 魚介類(マグロ、フィッシュエキスパウダー、マリンコラーゲン)、油脂類(植物性油脂、動物性油脂(ＤＨＡ含む))、大豆タンパク、グラニュー糖、セレン酵母、乳酸菌加熱菌体、ＧＡ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5279,7 +5481,8 @@
    "ingredients": "表示する 魚介類(マグロ、フィッシュエキスパウダー、マリンコラーゲン)、鶏ササミ、大豆タンパク、油脂類(植物性油脂、動物性油脂(ＤＨＡ含む))、小麦タンパク、グラニュー糖、セレン酵",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5305,7 +5508,8 @@
    "ingredients": "表示する 魚介類(カツオ、フィッシュエキスパウダー、マリンコラーゲン)、鶏ササミ、大豆タンパク、油脂類(植物性油脂、動物性油脂(ＤＨＡ含む))、小麦タンパク、グラニュー糖、セレン酵",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5331,7 +5535,8 @@
    "ingredients": "表示する 魚介類(マグロ、フィッシュエキスパウダー、マリンコラーゲン)、鶏ササミ、油脂類(植物性油脂、動物性油脂(ＤＨＡ含む))、大豆タンパク、コーンスターチ、グラニュー糖、セレン",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5357,7 +5562,8 @@
    "ingredients": "表示する 魚介類(マグロ、フィッシュエキスパウダー、マリンコラーゲン)、鶏ササミ、油脂類(植物性油脂、動物性油脂(ＤＨＡ含む))、大豆タンパク、コーンスターチ、グラニュー糖、セレン",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5383,7 +5589,8 @@
    "ingredients": "表示する 魚介類(マグロ、フィッシュエキスパウダー、マリンコラーゲン)、鶏ササミ、油脂類(植物性油脂、動物性油脂(ＤＨＡ含む))、糖類(ブドウ糖、グラニュー糖)、大豆タンパク、コー",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5409,7 +5616,8 @@
    "ingredients": "表示する 【まぐろ味カニチップ＆まぐろ節添え】穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉、小麦タンパク)、肉類(チキンミール、牛肉粉、豚肉粉)、魚介類(フィッシュミー",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5435,7 +5643,8 @@
    "ingredients": "表示する 【まぐろ味かつお節＆小魚添え】穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉)、魚介類(小魚、フィッシュミール、カツオブシ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5461,7 +5670,8 @@
    "ingredients": "表示する 【まぐろ味減塩かつお節添え】穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(牛肉粉、豚肉粉、チキンミール)、魚介類(カツオブシ、フィッシュパウダー、フィ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5487,7 +5697,8 @@
    "ingredients": "表示する 【まぐろ味かつお節＆ささみ味チップ添え】穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉、丸鶏エキス(鶏ササミを含む))、魚",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5513,7 +5724,8 @@
    "ingredients": "表示する 【かつお味細切りかつおチップ＆かつお節添え】穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉、小麦タンパク)、肉類(チキンミール、牛肉粉、豚肉粉)、魚介類(フィッ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5539,7 +5751,8 @@
    "ingredients": "表示する 【かつお味やわらか焼きタラチップ＆ちりめん添え】穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉)、魚介類(フィッシュミール",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5565,7 +5778,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉、小麦タンパク)、肉類(チキンミール、牛肉粉、豚肉粉)、魚介類(フィッシュミール、フィッシュパウダー、魚肉すり身、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5591,7 +5805,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉、小麦タンパク)、肉類(チキンミール、牛肉粉、豚肉粉)、魚介類(フィッシュミール、マグロブシ、フィッシュパウダー、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5617,7 +5832,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉)、魚介類(小魚、フィッシュミール、カツオブシ、フィッシュパウダー、マグロエ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5643,7 +5859,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉)、魚介類(フィッシュミール、カツオブシ、フィッシュパウダー、魚肉すり身、鮭",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5669,7 +5886,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉)、魚介類(フィッシュミール、カツオ加工品(熟成カツオ)、フィッシュパウダー",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5695,7 +5913,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉、小麦タンパク)、肉類(チキンミール、牛肉粉、豚肉粉)、魚介類(フィッシュミール、カツオブシ、フィッシュパウダー、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5721,7 +5940,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(牛肉粉、豚肉粉、チキンミール)、魚介類(カツオブシ、フィッシュパウダー、フィッシュミール、マグロエキス、",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5747,7 +5967,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、小麦粉、コーングルテンミール、パン粉)、肉類(牛肉粉、豚肉粉)、魚介類(フィッシュミール、フィッシュパウダー、カツオブシ、マグロブシ、マグロエキス、カ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5773,7 +5994,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉、丸鶏エキス(鶏ササミを含む))、魚介類(フィッシュミール、カツオブシ、フィ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5799,7 +6021,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉)、魚介類(フィッシュミール、フィッシュパウダー、マグロブシ、カツオブシ、マ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5825,7 +6048,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉、小麦タンパク)、肉類(チキンミール、牛肉粉、豚肉粉)、魚介類(フィッシュミール、カツオブシ、フィッシュパウダー、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5851,7 +6075,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉)、魚介類(フィッシュミール、ちりめん、フィッシュパウダー、マグロエキス、小",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5877,7 +6102,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉、小麦タンパク)、肉類(チキンミール、牛肉粉、豚肉粉)、魚介類(フィッシュミール、フィッシュパウダー、魚肉すり身、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5903,7 +6129,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉、小麦タンパク)、肉類(チキンミール、牛肉粉、豚肉粉)、魚介類(フィッシュミール、マグロブシ、フィッシュパウダー、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5929,7 +6156,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉)、魚介類(小魚、フィッシュミール、カツオブシ、フィッシュパウダー、マグロエ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5955,7 +6183,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉)、魚介類(フィッシュミール、カツオブシ、フィッシュパウダー、魚肉すり身、鮭",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -5981,7 +6210,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉)、魚介類(フィッシュミール、カツオ加工品(熟成カツオ)、フィッシュパウダー",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6007,7 +6237,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(牛肉粉、豚肉粉、チキンミール)、魚介類(カツオブシ、フィッシュパウダー、フィッシュミール、マグロエキス、",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6033,7 +6264,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、小麦粉、コーングルテンミール、パン粉)、肉類(牛肉粉、豚肉粉)、魚介類(フィッシュミール、フィッシュパウダー、カツオブシ、マグロブシ、マグロエキス、カ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6059,7 +6291,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉、丸鶏エキス(鶏ササミを含む))、魚介類(フィッシュミール、カツオブシ、フィ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6085,7 +6318,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉)、魚介類(フィッシュミール、フィッシュパウダー、マグロブシ、カツオブシ、マ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6111,7 +6345,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉、小麦タンパク)、肉類(チキンミール、牛肉粉、豚肉粉)、魚介類(フィッシュミール、カツオブシ、フィッシュパウダー、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6137,7 +6372,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(牛肉粉、豚肉粉、チキンミール、フリーズドライ鶏肉、チキンレバーパウダー)、α化でん粉、油脂類(動物性油脂",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6163,7 +6399,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(牛肉粉、豚肉粉、チキンミール、フリーズドライ鶏肉、チキンレバーパウダー)、α化でん粉、油脂類(動物性油脂",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6189,7 +6426,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(牛肉粉、豚肉粉、チキンミール、チキンレバーパウダー)、α化でん粉、油脂類(動物性油脂、植物性油脂(ピュア",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6215,7 +6453,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(牛肉粉、豚肉粉、チキンミール、チキンレバーパウダー)、α化でん粉、油脂類(動物性油脂、植物性油脂(ピュア",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6241,7 +6480,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(牛肉粉、豚肉粉、チキンミール、チキンレバーパウダー)、α化でん粉、油脂類(動物性油脂、植物性油脂(ピュア",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6267,7 +6507,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉、フリーズドライ鶏肉、チキンレバーパウダー)、魚介類(フィッシュミール、カツ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6293,7 +6534,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉、フリーズドライ鶏肉、チキンレバーパウダー)、魚介類(フィッシュミール、カツ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6319,7 +6561,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(牛肉粉、豚肉粉、チキンミール、フリーズドライ鶏肉、チキンレバーパウダー)、魚介類(フィッシュミール、カツ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6345,7 +6588,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(牛肉粉、豚肉粉、チキンミール、チキンレバーパウダー)、α化でん粉、油脂類(動物性油脂、植物性油脂(ピュア",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6371,7 +6615,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(牛肉粉、豚肉粉、チキンミール、チキンレバーパウダー)、α化でん粉、油脂類(動物性油脂、植物性油脂(ピュア",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6397,7 +6642,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(牛肉粉、豚肉粉、チキンミール、フリーズドライ鶏パウダー、チキンレバーパウダー)、α化でん粉、油脂類(動物",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6423,7 +6669,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(牛肉粉、豚肉粉、チキンミール、フリーズドライ鶏パウダー、チキンレバーパウダー)、α化でん粉、油脂類(動物",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6449,7 +6696,8 @@
    "ingredients": "表示する 魚介類(カツオ、国産カツオダシ)、でん粉、酵母エキス 保証成分 表示する たんぱく質5.5 %以上、脂質0.1 %以上、粗繊維0.5 %以下、灰分1.0 %以下、水分91",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6475,7 +6723,8 @@
    "ingredients": "表示する 魚介類(カツオ、国産マダイダシ)、でん粉、酵母エキス 保証成分 表示する たんぱく質5.5 %以上、脂質0.1 %以上、粗繊維0.5 %以下、灰分1.0 %以下、水分91",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6501,7 +6750,8 @@
    "ingredients": "表示する 魚介類(マグロ、国産ニボシダシ)、でん粉、酵母エキス 保証成分 表示する たんぱく質5.5 %以上、脂質0.1 %以上、粗繊維0.5 %以下、灰分1.0 %以下、水分91",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6527,7 +6777,8 @@
    "ingredients": "表示する 魚介類(マグロ、国産カツオダシ)、でん粉、酵母エキス、国産コンブダシ 保証成分 表示する たんぱく質5.5 %以上、脂質0.1 %以上、粗繊維0.5 %以下、灰分1.0 ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6553,7 +6804,8 @@
    "ingredients": "表示する カツオ、肉類(鶏肉、国産鶏ダシ)、でん粉、酵母エキス 保証成分 表示する たんぱく質5.5 %以上、脂質0.1 %以上、粗繊維0.5 %以下、灰分1.0 %以下、水分91",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6579,7 +6831,8 @@
    "ingredients": "表示する カツオ、鶏肉、でん粉、国産コンブダシ、酵母エキス 保証成分 表示する たんぱく質5.5 %以上、脂質0.1 %以上、粗繊維0.5 %以下、灰分1.0 %以下、水分91.0",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6605,7 +6858,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(牛肉粉、チキンミール、チキンレバーパウダー、豚肉粉)、油脂類(動物性油脂、植物性油脂)、魚介類(フィッシ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6631,7 +6885,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(牛肉粉、チキンミール、豚肉粉、チキンレバーパウダー)、油脂類(動物性油脂、植物性油脂)、魚介類(フィッシ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6657,7 +6912,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(牛肉粉、チキンミール、豚肉粉、チキンレバーパウダー)、油脂類(動物性油脂、植物性油脂)、魚介類(フィッシ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6683,7 +6939,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉、チキンレバーパウダー)、油脂類(動物性油脂、植物性油脂)、魚介類(フィッシ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6709,7 +6966,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉、チキンレバーパウダー)、魚介類(フィッシュミール、フィッシュパウダー、エビ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6735,7 +6993,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉、チキンレバーパウダー)、油脂類(動物性油脂、植物性油脂)、魚介類(フィッシ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6761,7 +7020,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉、チキンレバーパウダー、ビーフエキスパウダー)、油脂類(動物性油脂、植物性油",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6787,7 +7047,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(牛肉粉、豚肉粉、チキンミール、チキンレバーパウダー)、油脂類(動物性油脂、植物性油脂)、魚介類(フィッシ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6813,7 +7074,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉、チキンレバーパウダー)、油脂類(動物性油脂、植物性油脂)、魚介類(フィッシ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6839,7 +7101,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉、チキンレバーパウダー、ビーフエキスパウダー)、油脂類(動物性油脂、植物性油",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6865,7 +7128,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉、チキンレバーパウダー)、油脂類(動物性油脂、植物性油脂)、魚介類(フィッシ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6891,7 +7155,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉、チキンレバーパウダー)、油脂類(動物性油脂、植物性油脂)、魚介類(フィッシ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6917,7 +7182,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉、チキンレバーパウダー)、油脂類(動物性油脂、植物性油脂)、魚介類(フィッシ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6943,7 +7209,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉、チキンレバーパウダー)、油脂類(動物性油脂、植物性油脂)、魚介類(フィッシ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6969,7 +7236,8 @@
    "ingredients": "表示する 【シーフードミックス味】穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉、チキンレバーパウダー)、油脂類(動物性油脂、植物性",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -6995,7 +7263,8 @@
    "ingredients": "表示する 【シーフードミックス味】穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(牛肉粉、豚肉粉、チキンミール、チキンレバーパウダー)、油脂類(動物性油脂、植物性",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -7021,7 +7290,8 @@
    "ingredients": "表示する 【シーフードミックス味】穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉、チキンレバーパウダー)、油脂類(動物性油脂、植物性",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -7047,7 +7317,8 @@
    "ingredients": "表示する 【シーフードミックス味】穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉、チキンレバーパウダー)、油脂類(動物性油脂、植物性",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -7073,7 +7344,8 @@
    "ingredients": "表示する 【シーフードミックス味】穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉、チキンレバーパウダー)、油脂類(動物性油脂、植物性",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -7099,7 +7371,8 @@
    "ingredients": "表示する 【サーモン味】穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉、チキンレバーパウダー)、油脂類(動物性油脂、植物性油脂)、魚",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -7125,7 +7398,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉)、魚介類(フィッシュミール、フィッシュパウダー、カツオブシ、マグロブシ、マ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -7151,7 +7425,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉)、魚介類(フィッシュミール、フィッシュパウダー、カツオブシ、マグロブシ、マ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -7177,7 +7452,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉)、魚介類(フィッシュミール、ニボシ削り(ＤＨＡ、ＥＰＡ含む)、フィッシュパ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -7203,7 +7479,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、小麦粉、コーングルテンミール、パン粉)、肉類(牛肉粉、豚肉粉)、魚介類(フィッシュミール、フィッシュパウダー、カツオブシ、マグロブシ、マリンコラーゲン",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -7229,7 +7506,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉)、動物性油脂、魚介類(フィッシュパウダー、フィッシュミール、カツオ粉末、マ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -7255,7 +7533,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉)、動物性油脂、魚介類(フィッシュパウダー、マグロ節粉、カツオ粉末、小魚粉末",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -7281,7 +7560,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉)、動物性油脂、魚介類(フィッシュパウダー、カツオ粉末、マグロ節粉、小魚粉末",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -7307,7 +7587,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉、ササミパウダー)、動物性油脂、魚介類(フィッシュパウダー、カツオ粉末、マグ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -7333,7 +7614,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉)、動物性油脂、魚介類(フィッシュパウダー、カツオ粉末、マグロ節粉、小魚粉末",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "日本ペットフード株式会社",
@@ -7359,7 +7641,8 @@
    "ingredients": "表示する 穀類(トウモロコシ、コーングルテンミール、小麦粉、パン粉)、肉類(チキンミール、牛肉粉、豚肉粉)、動物性油脂、魚介類(フィッシュパウダー、カツオ粉末、マグロ節粉、小魚粉末",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -7385,7 +7668,8 @@
    "ingredients": "肉類(鶏、七面鳥)、とうもろこし、植物性分離タンパク*、動物性脂肪、コーングルテン、米、小麦、植物性繊維、加水分解タンパク(鶏、七面鳥、豚)、小麦粉、チコリパルプ、魚油(オメガ3系",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -7411,7 +7695,8 @@
    "ingredients": "肉類(鶏、七面鳥)、超高消化性植物性タンパク(消化率90%以上)、小麦、動物性油脂、コーングルテン、コーン、加水分解タンパク(鶏、七面鳥、魚)、米、植物性繊維、チコリー、大豆油(オ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -7437,7 +7722,8 @@
    "ingredients": "肉類(鶏、七面鳥)、コーン、米、超高消化性植物性タンパク(消化率90%以上)、動物性油脂、小麦、加水分解タンパク(鶏、七面鳥、魚、豚)、植物性繊維、小麦粉、コーングルテン、チコリー",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -7463,7 +7749,8 @@
    "ingredients": "肉類(鶏、七面鳥、ダック)、超高消化性小麦タンパク(消化率90%以上)、コーン、動物性油脂、小麦、米、コーングルテン、小麦粉、植物性繊維、チコリー、加水分解タンパク(鶏、七面鳥、魚",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -7489,7 +7776,8 @@
    "ingredients": "肉類(鶏、七面鳥)、米、超高消化性植物性タンパク(消化率90%以上)、動物性油脂、コーン、加水分解タンパク(鶏、七面鳥)、小麦粉、コーングルテン、ビートパルプ、植物性繊維、魚油、大",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -7515,7 +7803,8 @@
    "ingredients": "肉類(鶏、七面鳥)、米、動物性油脂、コーン、超高消化性植物性タンパク(消化率90%以上)、加水分解タンパク(鶏、七面鳥、魚)、植物性繊維、ビートパルプ、酵母および酵母エキス、魚油(",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -7541,7 +7830,8 @@
    "ingredients": "肉類(鶏、七面鳥、ダック)、動物性油脂、超高消化性小麦タンパク(消化率90%以上)、米、コーン、コーンフラワー、植物性繊維、コーングルテン、小麦粉、酵母および酵母エキス、加水分解タ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -7567,7 +7857,8 @@
    "ingredients": "肉類(鶏、七面鳥、ダック)、米、コーン、動物性油脂、コーングルテン、超高消化性小麦タンパク(消化率90%以上)、植物性繊維、加水分解タンパク(鶏、七面鳥、魚)、ビートパルプ、魚油(",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -7593,7 +7884,8 @@
    "ingredients": "肉類(鶏、七面鳥)、超高消化性植物性タンパク(消化率90%以上)、コーン、小麦、動物性油脂、加水分解タンパク(鶏、七面鳥、魚、豚)、コーングルテン、米、ビートパルプ、魚油(オメガ3",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -7619,7 +7911,8 @@
    "ingredients": "肉類(鶏、七面鳥)、動物性油脂、米、超高消化性植物性タンパク(消化率90%以上)、コーン、加水分解タンパク(鶏、七面鳥)、小麦粉、植物性繊維、ビートパルプ、酵母および酵母エキス、魚",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -7645,7 +7938,8 @@
    "ingredients": "肉類(鶏、七面鳥、ダック)、超高消化性小麦タンパク(消化率90%以上)、米、コーン、動物性油脂、植物性繊維、コーングルテン、加水分解タンパク(鶏、七面鳥、魚)、チコリー、大豆油、魚",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -7671,7 +7965,8 @@
    "ingredients": "鶏肉、豚肉、米粉、セルロース、コーンスターチ、小麦タンパク、調味料(アミノ酸類)、酵母エキス、アミノ酸類(グリシン、タウリン、メチオニン、L- カルニチン)、増粘安定剤(増粘多糖類",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -7697,7 +7992,8 @@
    "ingredients": "肉類(鶏、豚)、コーンフラワー、豚タンパク、セルロース、コーングルテン、魚油(オメガ3系不飽和脂肪酸〔EPA + DHA〕源)、調味料(アミノ酸類)、グルコサミン、酵母エキス、マリ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -7723,7 +8019,8 @@
    "ingredients": "超高消化性小麦タンパク(消化率90%以上)、コーン、肉類(鶏、七面鳥)、米、小麦、動物性油脂、植物性繊維、コーングルテン、加水分解タンパク(鶏、七面鳥、魚)、コーンフラワー、ビート",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -7749,7 +8046,8 @@
    "ingredients": "肉類(鶏、豚)、セルロース、小麦タンパク、コーンスターチ、サンフラワーオイル、トマト(リコピン源)、魚油(オメガ3系不飽和脂肪酸〔EPA + DHA〕源)、調味料(アミノ酸類)、ア",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -7775,7 +8073,8 @@
    "ingredients": "肉類(鶏、豚)、コーンフラワー、豚タンパク、セルロース、サンフラワーオイル、魚油(オメガ3系不飽和脂肪酸〔EPA + DHA〕源)、調味料(アミノ酸類)、酵母エキス、アミノ酸類(グ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -7801,7 +8100,8 @@
    "ingredients": "肉類、コーンスターチ、カゼインカルシウム、セルロース、小麦グルテン、魚油、ひまわり油、酵母抽出物(マンナンオリゴ糖源)、調味料(アミノ酸等)、ルテイン、アミノ酸類、増粘安定剤(増粘",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -7827,7 +8127,8 @@
    "ingredients": "肉類(鶏、豚)、コーンフラワー、豚タンパク、セルロース、コーングルテン、魚油(オメガ3系不飽和脂肪酸〔EPA + DHA〕源)、調味料(アミノ酸類)、グルコサミン、酵母エキス、マリ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -7853,7 +8154,8 @@
    "ingredients": "鶏肉、豚肉、小麦タンパク、セルロース、魚油(EPA/DHA源)、加水分解酵母(マンナンオリゴ糖及びβｰグルカン源)、調味料(アミノ酸類)、マリーゴールド、酵母、β-カロテン、アミノ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -7879,7 +8181,8 @@
    "ingredients": "豚肉、鶏肉、小麦粉、コーンスターチ、セルロース、加水分解鶏レバー、豚タンパク、調味料(アミノ酸類)、マリーゴールド(ルテイン源)、酵母エキス、アミノ酸類(グリシン、タウリン、メチオ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -7905,7 +8208,8 @@
    "ingredients": "鶏肉、豚肉、小麦タンパク、コーンスターチ、セルロース、トマト(リコピン源)、魚油(EPA/DHA源)、加水分解酵母(マンナンオリゴ糖及びβｰグルカン源)、調味料(アミノ酸類)、マリ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -7931,7 +8235,8 @@
    "ingredients": "肉類(鶏、豚)、セルロース、コーンスターチ、加水分解鶏レバー、トマト(リコピン源)、小麦タンパク、調味料(アミノ酸類)、アミノ酸類(メチオニン、タウリン、グリシン)、増粘安定剤(増",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -7957,7 +8262,8 @@
    "ingredients": "肉類(鶏、豚)、コーンフラワー、豚タンパク、セルロース、コーンスターチ、サンフラワーオイル、魚油(オメガ3系不飽和脂肪酸〔EPA + DHA〕源)、調味料(アミノ酸類)、酵母エキス",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -7983,7 +8289,8 @@
    "ingredients": "豚肉、鶏肉、サーモン、小麦タンパク、加水分解鶏レバー、コーンスターチ、セルロース、小麦粉、調味料(アミノ酸類)、加水分解酵母(マンナンオリゴ糖源)、サイリウム、酵母エキス、アミノ酸",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8009,7 +8316,8 @@
    "ingredients": "肉類(鶏、豚)、小麦粉、豚タンパク、セルロース、調味料(アミノ酸類)、酵母エキス、アミノ酸類(グリシン、タウリン、メチオニン、L-カルニチン)、増粘安定剤(増粘多糖類)、ゼオライト",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8035,7 +8343,8 @@
    "ingredients": "肉類(豚、鶏)、コーンフラワー、サンフラワーオイル、コーンスターチ、超高消化性小麦タンパク(消化率90%以上)、セルロース、藻類油(オメガ3系不飽和脂肪酸〔EPA+DHA〕源)、ト",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8061,7 +8370,8 @@
    "ingredients": "[セイバー エクシジェント]コーン、肉類(鶏、七面鳥、ダック)、米、動物性油脂、超高消化性小麦タンパク(消化率90%以上)、超高消化性大豆タンパク(消化率90%以上)、コーングルテ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8087,7 +8397,8 @@
    "ingredients": "小麦、超高消化性小麦タンパク(消化率90%以上)、肉類(鶏、七面鳥、ダック)、コーン、動物性油脂、加水分解タンパク(鶏、七面鳥、魚)、ビートパルプ、コーングルテン、大豆油(オメガ6",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8113,7 +8424,8 @@
    "ingredients": "コーン、小麦、肉類(鶏、七面鳥、ダック)、超高消化性小麦タンパク(消化率90%以上)、動物性油脂、加水分解タンパク(鶏、七面鳥、魚)、ビートパルプ、コーングルテン、大豆油(オメガ6",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8139,7 +8451,8 @@
    "ingredients": "コーン、超高消化性植物性タンパク(消化率90%以上)、肉類(鶏、七面鳥)、加水分解タンパク(鶏、七面鳥、魚、豚)、コーングルテン、植物性繊維、動物性油脂、小麦、米、酵母および酵母エ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8165,7 +8478,8 @@
    "ingredients": "肉類(鶏、七面鳥)、米、超高消化性小麦タンパク(消化率90%以上)、動物性油脂、コーン、コーンフラワー、植物性繊維、加水分解タンパク(鶏、七面鳥)、小麦、コーングルテン、ビートパル",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8191,7 +8505,8 @@
    "ingredients": "肉類(鶏、七面鳥)、超高消化性小麦タンパク(消化率90%以上)、コーン、植物性繊維、米、動物性油脂、加水分解タンパク(鶏、七面鳥)、小麦、コーンフラワー、コーングルテン、ビートパル",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8217,7 +8532,8 @@
    "ingredients": "コーン、肉類(鶏、七面鳥、ダック)、小麦、超高消化性小麦タンパク(消化率90%以上)、大麦、コーンフラワー、コーングルテン、動物性油脂、加水分解タンパク(鶏、七面鳥、魚)、植物性繊",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8243,7 +8559,8 @@
    "ingredients": "肉類(鶏、七面鳥)、コーン、超高消化性小麦タンパク(消化率90%以上)、植物性繊維、動物性油脂、加水分解タンパク(鶏、七面鳥、魚)、米、小麦、ビートパルプ、コーングルテン、酵母およ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8269,7 +8586,8 @@
    "ingredients": "コーン、肉類(鶏、七面鳥、ダック)、米、動物性油脂、超高消化性小麦タンパク(消化率90%以上)、超高消化性大豆タンパク(消化率90%以上)、コーングルテン、植物性繊維、加水分解タン",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8295,7 +8613,8 @@
    "ingredients": "肉類(鶏、七面鳥、ダック)、動物性油脂、米、超高消化性小麦タンパク(消化率90%以上)、コーンフラワー、加水分解タンパク(鶏、七面鳥、魚)、酵母および酵母エキス、ビートパルプ、植物",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8321,7 +8640,8 @@
    "ingredients": "肉類(鶏、七面鳥)、コーン、超高消化性植物性タンパク(消化率90%以上)、加水分解タンパク(鶏、七面鳥、豚)、小麦、動物性油脂、コーングルテン、ビートパルプ、植物性繊維、酵母および",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8347,7 +8667,8 @@
    "ingredients": "肉類(鶏、七面鳥、ダック)、米、超高消化性植物性タンパク(消化率90%以上)、小麦、コーン、動物性油脂、小麦粉、加水分解タンパク(鶏、七面鳥、魚)、植物性繊維、コーングルテン、酵母",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8373,7 +8694,8 @@
    "ingredients": "コーン、魚肉、動物性油脂、肉類(鶏、七面鳥)、小麦、コーングルテン、超高消化性植物性タンパク(消化率90%以上)、加水分解タンパク(鶏、七面鳥、魚)、コーンフラワー、植物性繊維、ビ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8399,7 +8721,8 @@
    "ingredients": "ミルクプロテイン、乳脂肪、パームオイル、乳清タンパク、大豆油、コプラ油、レシチン、フラクトオリゴ糖、魚油(DHA源)、アラキドン酸含有油、調味料、アミノ酸類 (DL-メチオニン、タ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8425,7 +8748,8 @@
    "ingredients": "肉類(鶏、七面鳥)、コーン、米、超高消化性植物性タンパク(消化率90%以上)、小麦、動物性油脂、加水分解タンパク(鶏、七面鳥、魚)、小麦粉、植物性繊維、大豆油、ビートパルプ、酵母お",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8451,7 +8775,8 @@
    "ingredients": "肉類(鶏、七面鳥)、植物性繊維、コーン、超高消化性小麦タンパク(消化率90%以上)、小麦、コーングルテン、加水分解タンパク(鶏、七面鳥)、動物性油脂、米、ビートパルプ、酵母および酵",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8477,7 +8802,8 @@
    "ingredients": "肉類(鶏、豚)、セルロース、小麦タンパク、トマト(リコピン源)、コーンスターチ、魚油(オメガ3系不飽和脂肪酸〔EPA + DHA〕源)、調味料(アミノ酸類)、マリーゴールド(ルテイ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8503,7 +8829,8 @@
    "ingredients": "小麦、コーン、超高消化性小麦タンパク(消化率90%以上)、肉類(鶏、七面鳥、ダック)、コーンフラワー、加水分解タンパク(鶏、七面鳥、魚)、植物性繊維、動物性油脂、大豆油(オメガ6系",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8529,7 +8856,8 @@
    "ingredients": "鶏肉、豚肉、米粉、豚タンパク、セルロース、小麦タンパク、調味料(アミノ酸類)、酵母エキス、アミノ酸類(グリシン、タウリン、メチオニン、L-カルニチン)、増粘安定剤(増粘多糖類)、ミ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8555,7 +8883,8 @@
    "ingredients": "肉類(鶏、豚)、サーモン、小麦タンパク、コーンフラワー、コーンスターチ、セルロース、コーングルテン、加水分解魚肉、酵母、調味料(アミノ酸類)、アミノ酸類(タウリン、メチオニン、グリ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8581,7 +8910,8 @@
    "ingredients": "肉類(鶏、七面鳥)、動物性油脂、超高消化性小麦タンパク(消化率90%以上)、米、植物性繊維、コーン、加水分解タンパク(鶏、七面鳥)、小麦、酵母および酵母エキス、コーンフラワー、コー",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8607,7 +8937,8 @@
    "ingredients": "を使用して胃腸の健康を維持】 ＜センシブル＞は、健康的な消化をサポートするために独自の栄養成分(L.I.P.*)と、プレバイオティックス(フラクトオリゴ糖)を配合し、健康な腸内細菌",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8633,7 +8964,8 @@
    "ingredients": "小麦、米、肉類(鶏、七面鳥、ダック)、超高消化性植物性タンパク(消化率90%以上)、コーン、動物性油脂、加水分解タンパク(鶏、七面鳥、魚)、小麦粉、植物性繊維、ビートパルプ、大豆油",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8659,7 +8991,8 @@
    "ingredients": "肉類(鶏、七面鳥)、植物性繊維、超高消化性小麦タンパク(消化率90%以上)、コーン、コーングルテン、米、加水分解タンパク(鶏、七面鳥)、コーンフラワー、小麦、動物性油脂、ビートパル",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8685,7 +9018,8 @@
    "ingredients": "肉類(鶏、七面鳥、ダック)、米、超高消化性小麦タンパク(消化率90%以上)、動物性油脂、コーンフラワー、加水分解タンパク(鶏、七面鳥、魚)、小麦粉、コーングルテン、酵母および酵母エ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8711,7 +9045,8 @@
    "ingredients": "肉類(豚、鶏)、米粉、超高消化性小麦タンパク(消化率90%以上)、豚タンパク、セルロース、ポリリン酸ナトリウム、調味料(アミノ酸類)、マリーゴールド(ルテイン源)、グルコサミン、酵",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8737,7 +9072,8 @@
    "ingredients": "超高消化性小麦タンパク(消化率90%以上)、肉類(鶏、七面鳥)、小麦粉、米、動物性油脂、コーングルテン、魚肉、加水分解タンパク(鶏、七面鳥)、コーンフラワー、植物性繊維、チコリー、",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8763,7 +9099,8 @@
    "ingredients": "鶏肉、豚肉、サーモン、小麦粉、豚タンパク、セルロース、小麦タンパク、加水分解鶏レバー、サンフラワーオイル(オメガ6系不飽和脂肪酸源)、コーンスターチ、魚油(オメガ3系不飽和脂肪酸〔",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8789,7 +9126,8 @@
    "ingredients": "肉類(豚、鶏)、コーンフラワー、超高消化性小麦タンパク(消化率90%以上)、サンフラワーオイル、コーンスターチ、セルロース、藻類油(オメガ3系不飽和脂肪酸〔EPA+DHA〕源)、ト",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8815,7 +9153,8 @@
    "ingredients": "肉類(鶏、豚)、豚タンパク、小麦タンパク、サンフラワーオイル、セルロース、調味料(アミノ酸類)、酵母エキス、アミノ酸類(グリシン、タウリン、メチオニン)、増粘安定剤(増粘多糖類)、",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8841,7 +9180,8 @@
    "ingredients": "肉類(豚、鶏)、サーモン、小麦タンパク、小麦粉、加水分解鶏レバー、コーンスターチ、セルロース、調味料(アミノ酸類)、酵母エキス、アミノ酸類(グリシン、タウリン、メチオニン)、増粘安",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8867,7 +9207,8 @@
    "ingredients": "鶏肉、豚肉、小麦タンパク、豚タンパク、コーンスターチ、セルロース、魚油(オメガ3系不飽和脂肪酸〔EPA + DHA〕源)、米粉、加水分解酵母(マンナンオリゴ糖及びβｰグルカン源)、",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8893,7 +9234,8 @@
    "ingredients": "原材料:鶏肉、豚肉、小麦粉、サーモン、セルロース、コーンスターチ、サンフラワーオイル、魚油(オメガ3系不飽和脂肪酸〔EPA+DHA〕源)、フラクトオリゴ糖、調味料(アミノ酸等)、マ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8919,7 +9261,8 @@
    "ingredients": "原材料:鶏肉、豚肉、小麦粉、セルロース、コーンスターチ、サンフラワーオイル、魚油(オメガ3系不飽和脂肪酸〔EPA+DHA〕源)、超高消化性小麦タンパク、レシチン、トマト(リコピン源",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8945,7 +9288,8 @@
    "ingredients": "原材料:動物性油脂、米、加熱処理済み小麦粉、超高消化性豚タンパク(消化率90%以上)、小麦粉、超高消化性小麦タンパク(消化率90%以上)、植物性繊維、コーングルテン、加水分解タンパ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8971,7 +9315,8 @@
    "ingredients": "原材料:鶏肉、豚肉、小麦粉、サンフラワーオイル、コーンスターチ、コーンフラワー、魚油(オメガ3系不飽和脂肪酸〔EPA+DHA〕源)、セルロース、フラクトオリゴ糖、調味料(アミノ酸等",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -8997,7 +9342,8 @@
    "ingredients": "肉類(鶏、七面鳥)、超高消化性植物性タンパク(消化率90%以上)、コーン、コーンフラワー、小麦、植物性繊維、加水分解タンパク(鶏、七面鳥、魚、豚)、米、コーングルテン、動物性油脂、",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9023,7 +9369,8 @@
    "ingredients": "原材料:コーンスターチ、加水分解フェザーミール(アミノ酸およびオリゴペプチド)、コプラ油、大豆油、植物性繊維、動物性油脂、チコリー、魚油(オメガ3系不飽和脂肪酸〔EPA+DHA〕源",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9049,7 +9396,8 @@
    "ingredients": "肉類(豚、鶏)、サーモン、小麦粉、セルロース、超高消化性小麦タンパク(消化率90%以上)、コーンスターチ、魚油(オメガ3系不飽和脂肪酸〔EPA+DHA〕源)、調味料(アミノ酸類)、",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9075,7 +9423,8 @@
    "ingredients": "原材料:コーン、超高消化性小麦タンパク(消化率90%以上)、肉類(鶏、七面鳥)、植物性繊維、米、コーングルテン、加水分解タンパク(鶏、七面鳥)、小麦、チコリー、動物性油脂、魚油(オ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9101,7 +9450,8 @@
    "ingredients": "肉類(鶏、豚)、セルロース、コーンスターチ、加水分解鶏レバー、超高消化性小麦タンパク(消化率90%以上)、コーンフラワー、コーングルテン、魚油(オメガ3系不飽和脂肪酸〔EPA+DH",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9127,7 +9477,8 @@
    "ingredients": "を使用し、可溶性食物繊維の含有量を適切に調整しています。 詳細を表示 製品のメリット 【健康的な腸管内輸送の維持】 便秘に配慮してサイリウムなどの可溶性食物繊維を豊富に配合。 【適",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9153,7 +9504,8 @@
    "ingredients": "原材料:肉類(鶏、七面鳥)、コーン、超高消化性小麦タンパク(消化率90%以上)、米、小麦、コーングルテン、植物性繊維、加水分解タンパク(鶏、七面鳥)、チコリー、動物性油脂、魚油(オ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9179,7 +9531,8 @@
    "ingredients": "原材料:肉類(鶏、七面鳥)、超高消化性小麦タンパク(消化率90%以上)、植物性繊維、小麦粉、動物性油脂、加水分解タンパク(鶏、七面鳥)、コーンフラワー、米、コーン、コーングルテン、",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9205,7 +9558,8 @@
    "ingredients": "原材料:鶏肉、豚肉、小麦粉、セルロース、コーンスターチ、小麦タンパク、魚油(オメガ3系不飽和脂肪酸〔EPA+DHA〕源)、調味料(アミノ酸類)、加水分解酵母(マンナンオリゴ糖源)、",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9231,7 +9585,8 @@
    "ingredients": "原材料:米、肉類(鶏、七面鳥、ダック)、コーンフラワー、動物性油脂、超高消化性小麦タンパク(消化率90%以上)、魚肉、加水分解タンパク(鶏、七面鳥)、植物性繊維、コーングルテン、酵",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9257,7 +9612,8 @@
    "ingredients": "原材料:コーン、超高消化性小麦タンパク(消化率90%以上)、コーンフラワー、小麦、コーングルテン、動物性油脂、肉類(鶏、七面鳥)、植物性繊維、米、加水分解タンパク(鶏、七面鳥)、チ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9283,7 +9639,8 @@
    "ingredients": "原材料:肉類(鶏、七面鳥)、コーン、植物性繊維、超高消化性小麦タンパク(消化率90%以上)、小麦、コーングルテン、加水分解タンパク(鶏、七面鳥)、動物性油脂、チコリー、魚油(オメガ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9309,7 +9666,8 @@
    "ingredients": "を使用し、少ない食事量でも必要なカロリーや栄養素が充分に摂取できるように調整されています。また、健康的な腸内細菌バランスに配慮して可溶性食物繊維(マンナンオリゴ糖)を配合しています",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9335,7 +9693,8 @@
    "ingredients": "肉類(鶏、豚)、セルロース、米粉、コーンスターチ、調味料(アミノ酸類)、酵母エキス、マリーゴールド(ルテイン源)、グルコサミン、加水分解軟骨(コンドロイチン硫酸源)、アミノ酸類(グ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9361,7 +9720,8 @@
    "ingredients": "を使用し、可溶性食物繊維の含有量を適切に調整しています。 詳細を表示 製品のメリット 【高消化性】 消化管の健康維持に配慮して高消化性に設計。さらにプレバイオティクスを含む複数の食",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9387,7 +9747,8 @@
    "ingredients": "米、小麦粉、超高消化性小麦タンパク(消化率90%以上)、動物性油脂、コーンフラワー、植物性繊維、コーン、超高消化性植物性タンパク(消化率90%以上)、加水分解タンパク(鶏、七面鳥、",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9413,7 +9774,8 @@
    "ingredients": "肉類(鶏、豚)、小麦粉、サンフラワーオイル、コーンフラワー、コーンスターチ、藻類油(オメガ3系不飽和脂肪酸〔EPA+DHA〕源)、魚油(オメガ3系不飽和脂肪酸〔EPA+DHA〕源)",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9439,7 +9801,8 @@
    "ingredients": "原材料:魚肉、米、コーンフラワー、植物性繊維、超高消化性小麦タンパク(消化率90%以上)、動物性油脂、コーングルテン、加水分解タンパク(鶏、七面鳥)、大豆油、フラクトオリゴ糖、マリ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9465,7 +9828,8 @@
    "ingredients": "コーン、超高消化性植物性タンパク(消化率90%以上)、小麦、肉類(鶏、七面鳥、ダック)、小麦粉、コーングルテン、加水分解タンパク(鶏、七面鳥、魚、豚)、動物性油脂、米、チコリー、酵",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9491,7 +9855,8 @@
    "ingredients": "肉類(鶏、豚)、小麦粉、超高消化性小麦タンパク(消化率90%以上)、セルロース、魚油(オメガ3系不飽和脂肪酸〔EPA+DHA〕源)、レシチン、トマト(リコピン源)、調味料(アミノ酸",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9517,7 +9882,8 @@
    "ingredients": "を使用し、少ない食事量でも必要なカロリーや栄養素が充分に摂取できるように調整されています。 詳細を表示 製品のメリット 【健康的な消化を維持】 消化器の健康維持に配慮して高消化性に",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9543,7 +9909,8 @@
    "ingredients": "水、カゼインカルシウム、マルトデキストリン、サンフラワーオイル、菜種油、加水分解大豆タンパク、魚油(オメガ3系不飽和脂肪酸〔EPA+DHA〕源)、コーン油、グリセリン、マリーゴール",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9569,7 +9936,8 @@
    "ingredients": "原材料:肉類(鶏、七面鳥)、米、コーン、コーングルテン、植物性繊維、超高消化性小麦タンパク(消化率90%以上)、加水分解レバー(鶏、七面鳥)、動物性油脂、魚油、卵パウダー、大豆油、",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9595,7 +9963,8 @@
    "ingredients": "肉類(鶏、豚、牛)、小麦粉、サンフラワーオイル、コーンフラワー、コーンスターチ、魚油(オメガ3系不飽和脂肪酸〔EPA+DHA〕源)、セルロース、フラクトオリゴ糖、調味料(アミノ酸類",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9621,7 +9990,8 @@
    "ingredients": "原材料:コーン、肉類(鶏、七面鳥)、超高消化性小麦タンパク(消化率90%以上)、米、コーングルテン、動物性油脂、加水分解レバー(鶏、七面鳥)、植物性繊維、ビートパルプ、魚油(オメガ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9647,7 +10017,8 @@
    "ingredients": "原材料:鶏肉、豚肉、コーンスターチ、ポークプロテイン、セルロース、魚油、調味料(アミノ酸等)、マリーゴールドエキス(ルテイン源)、アミノ酸類(タウリン、メチオニン、L-カルニチン)",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9673,7 +10044,8 @@
    "ingredients": "として使用。 皮膚の健康維持 皮膚の健康を維持するために、ビオチン、パントテン酸、ナイアシン、コリン、亜鉛を配合。 EPA/DHA ω3系不飽和脂肪酸(EPA、DHA)を配合。 腸",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9699,7 +10071,8 @@
    "ingredients": "米、動物性油脂、コーン、超高消化性小麦タンパク(消化率90%以上)、コーングルテン、植物性繊維、加水分解タンパク(鶏、七面鳥、魚)、超高消化性加水分解大豆タンパク(消化率90%以上",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9725,7 +10098,8 @@
    "ingredients": "原材料:肉類(鶏、七面鳥)、植物性繊維、タピオカ、超高消化性小麦タンパク(消化率90%以上)、コーングルテン、小麦粉、加水分解タンパク(鶏、七面鳥)、動物性油脂、チコリーパルプ、魚",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9751,7 +10125,8 @@
    "ingredients": "原材料:肉類(鶏、七面鳥)、小麦、タピオカ、超高消化性小麦タンパク(消化率90%以上)、コーングルテン、加水分解タンパク(鶏、七面鳥)、チコリー、動物性油脂、サイリウム、魚油、加水",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9777,7 +10152,8 @@
    "ingredients": "原材料:米、超高消化性小麦タンパク(消化率90%以上)、肉類(鶏、七面鳥、ダック)、コーンフラワー、動物性油脂、加水分解タンパク(鶏、七面鳥)、植物性繊維、コーングルテン、魚油、大",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9803,7 +10179,8 @@
    "ingredients": "原材料:米、肉類(鶏、七面鳥、ダック)、超高消化性小麦タンパク(消化率90%以上)、植物性繊維、コーンフラワー、動物性油脂、コーングルテン、加水分解タンパク(鶏、七面鳥)、魚油、大",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9829,7 +10206,8 @@
    "ingredients": "成分(保証分析値):",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9855,7 +10233,8 @@
    "ingredients": "原材料:米、加水分解大豆タンパク(消化率90%以上)、動物性油脂、植物性繊維、ビートパルプ、大豆油、加水分解レバー(鶏、七面鳥)、魚油(オメガ3系不飽和脂肪酸〔EPA + DHA〕",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9881,7 +10260,8 @@
    "ingredients": "原材料:コーンフラワー、米、動物性油脂、超高消化性小麦タンパク(消化率90%以上)、コーン、超高消化性大豆タンパク(消化率90%以上)、植物性繊維、コーングルテン、加水分解タンパク",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9907,7 +10287,8 @@
    "ingredients": "原材料:米、ダック、植物性繊維、加水分解タンパク(鶏、七面鳥)、動物性油脂、魚油(オメガ3系不飽和脂肪酸〔EPA+DHA〕源)、大豆油、マリーゴールド(ルテイン源)、アミノ酸類(D",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9933,7 +10314,8 @@
    "ingredients": "原材料:コーンフラワー、米、超高消化性豚タンパク(消化率90%以上)、動物性油脂、コーングルテン、植物性繊維、コーン、加水分解タンパク(鶏、七面鳥)、超高消化性小麦タンパク(消化率",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9959,7 +10341,8 @@
    "ingredients": "原材料:肉類(鶏、七面鳥、ダック)、植物性繊維、タピオカ、小麦粉、超高消化性植物性タンパク(消化率90%以上)、コーングルテン、加水分解タンパク(鶏、七面鳥、魚)、動物性油脂、チコ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -9985,7 +10368,8 @@
    "ingredients": "原材料:グリセリン、肉類(鶏)、小麦粉、超高消化性小麦タンパク、パームオイル、コーンシロップ、アラビアガム、酵母および酵母エキス、加水分解魚肉、フラクトオリゴ糖、フマル酸、糖類、ビ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -10011,7 +10395,8 @@
    "ingredients": "を使用し、少ない食事量でも必要なカロリーや栄養素が充分に摂取できるように調整されています。また、健康的な腸内細菌バランスに配慮して可溶性食物繊維(サイリウム、フラクトオリゴ糖、マン",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ロイヤルカナンジャポン合同会社",
@@ -10037,7 +10422,8 @@
    "ingredients": "肉類(鶏、豚)、コーンフラワー、サーモン、セルロース、トマト(リコピン源)、サンフラワーオイル、魚油(オメガ3系不飽和脂肪酸〔EPA+DHA〕源)、サイリウム、調味料(アミノ酸類)",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "アダプトゲン製薬九州株式会社",
@@ -10063,7 +10449,8 @@
    "ingredients": "を使用しています。 【 6 】　原料素材の手配(または栽培)からパッケージ(完成品)まで一貫製造できます。 総合栄養食をはじめ様々な形状に対応 ドライフード 製品水分10%程度以下",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ヴォイス株式会社",
@@ -10089,7 +10476,8 @@
    "ingredients": "鮪(きはだ鮪、黒鮪)、鮪エキス、こんにゃく粉、オリゴ糖、ビタミンE ● 保証成分:タンパク質:14.7%以上、脂質:3.5%以上、 粗繊維:0.1%以下、灰分:0.9%以下、水分:",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ヴォイス株式会社",
@@ -10115,7 +10503,8 @@
    "ingredients": "猪肉 原産国名: 日本 内容量: 20g 標準小売価格: 550円(税込) JANコード:　4580313728007 保証成分 たんぱく質 32.4%以上 脂質 34.2%以上 ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ヴォイス株式会社",
@@ -10141,7 +10530,8 @@
    "ingredients": "脱塩ホエイパウダー、乳清蛋白凝縮物、スキムミルク、ミルクカルシウム、ブドウ糖、ミネラル類(Ca、P、K、Na、Cl、Mg、Fe、Cu、Mn、I、Se、三価Cr、S)、ビーフ抽出物、",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ヴォイス株式会社",
@@ -10167,7 +10557,8 @@
    "ingredients": "小麦粉、グリセリン、ソルビトール、チキンエキス、乾燥全卵、鰹節粉末、コーン油、魚類粉末、剥離米粉、フィッシュペプチド、ホエイパウダー、コーンスターチ、クランベリーパウダー、精製漁油",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "ヴォイス株式会社",
@@ -10193,7 +10584,8 @@
    "ingredients": "ジャガイモ澱粉、糖蜜、グルシトール、魚油、キサンタンガム、リン酸カルシウム、ビタミンＥ、ベーキングパウダー、香料、フラクトオリゴ糖、ポテトファイバー、豚エキス抽出物、ホエイパウダー",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "九州ペットフード株式会社",
@@ -10219,7 +10611,8 @@
    "ingredients": "鶏ささみ肉 20g JANコード:4941605020566 インターネットでの購入はこちら 給与量/栄養成分 給与量/栄養成分 エネルギー 100g当り 250kcal 給与量 ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "九州ペットフード株式会社",
@@ -10245,7 +10638,8 @@
    "ingredients": "鶏砂肝、鶏ささみ肉 20g JANコード:4941605020573 インターネットでの購入はこちら 給与量/栄養成分 給与量/栄養成分 エネルギー 100g当り 256kcal ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "九州ペットフード株式会社",
@@ -10271,7 +10665,8 @@
    "ingredients": "鶏ささみ肉、焼きあご、ほたてエキス、グリセリン、乳酸Na、ｐH調整剤、リン酸塩(Na、K)、タウリン、香料、酸化防止剤(亜硫酸Ｎa) 40g JANコード:494160502055",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "九州ペットフード株式会社",
@@ -10297,7 +10692,8 @@
    "ingredients": "鶏ささみ肉、かつおエキス、ほたてエキス、グリセリン、乳酸Na、ｐH調整剤、リン酸塩(Na、K)、タウリン、香料、酸化防止剤(亜硫酸Ｎa) 40g JANコード:4941605020",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "九州ペットフード株式会社",
@@ -10323,7 +10719,8 @@
    "ingredients": "鶏ささみ肉、小麦粉、ショートニング、コーンスターチ、脱脂粉乳、トレハロース、乳酸Na、pH調整剤、グリセリン、増粘剤(メチルセルロース)、膨張剤、香料、乳化剤、酸化防止剤(ローズマ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "九州ペットフード株式会社",
@@ -10349,7 +10746,8 @@
    "ingredients": "鶏ささみ肉、小麦粉、ショートニング、コーンスターチ、チーズ、トレハロース、乳酸Na、pH調整剤、グリセリン、増粘剤(メチルセルロース)、膨張剤、香料、乳化剤、酸化防止剤(ローズマリ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "九州ペットフード株式会社",
@@ -10375,7 +10773,8 @@
    "ingredients": "チキン(ささみ含む)、小麦粉、コーンスターチ、脱脂大豆、動物性油脂、食物繊維、植物性油脂、チキンレバーパウダー、オリゴ糖、えごま油(オメガ3＆6脂肪酸含有)、粉末魚油(DHA、EP",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "九州ペットフード株式会社",
@@ -10401,7 +10800,8 @@
    "ingredients": "チキン(ささみ含む)、小麦粉、コーンスターチ、脱脂大豆、動物性油脂、食物繊維、植物性油脂、チキンレバーパウダー、オリゴ糖、えごま油(オメガ3＆6脂肪酸含有)、乳酸菌(殺菌)末、加工",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "九州ペットフード株式会社",
@@ -10427,7 +10827,8 @@
    "ingredients": "ビーフ、小麦粉、コーンスターチ、脱脂大豆、動物性油脂、酵母エキス、食物繊維、植物性油脂、オリゴ糖、えごま油(オメガ3＆6脂肪酸含有)、粉末魚油(DHA、EPA含有)、乳酸菌(殺菌)",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社サンユー研究所",
@@ -10453,7 +10854,8 @@
    "ingredients": "玄米、豚骨カルシウム、馬鈴薯、豚骨スープ、海洋性コラーゲン(タラ・カレイ由来)、Ｎ-アセチルグルコサミン(エビ・カニ由来) ■　原産国:日本 ■　与え方 そのまま与えるか、食事と一",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社サンユー研究所",
@@ -10479,7 +10881,8 @@
    "ingredients": "をわかりやすく具体的な素材名で100%表示しています。 ■ご使用に際して - 国産原材料のため､天候や収穫状況､製造上の都合により素材産地が変わる場合があります。 - 製法上フード",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社サンユー研究所",
@@ -10505,7 +10908,8 @@
    "ingredients": "牛骨カルシウム、豚骨カルシウム、炭酸カルシウム、大豆たんぱく、酵母細胞壁、ポークエキス、ビーフエキス ■　原産国:日本 ■　与え方 毎日の食事にふりかけるか混ぜて与えて下さい ■　",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社サンユー研究所",
@@ -10531,7 +10935,8 @@
    "ingredients": "カルシウム、グルコサミン塩酸塩、ビール酵母細胞壁、ポークエキス、ムコ多糖類(コンドロイチン・ヒアルロン酸) ■　原産国:日本 ■　与え方 毎日の食事にふりかけるか混ぜて与えて下さい",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社サンユー研究所",
@@ -10557,7 +10962,8 @@
    "ingredients": "のお肉や脂肪、 繊維分だけでなく犬が苦手とする穀物類の消化をサポート。 乳酸菌が大豆を発酵してつくるスポンジ状のおからが、 体内の余分な資質やコレステロールの排出をサポートします。",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社サンユー研究所",
@@ -10583,7 +10989,8 @@
    "ingredients": "国産さば(九州近海) ■水揚げおよび加工地:九州および長崎県 ■賞味期限:製造より3年 ■原産国:日本 ■与え方 ドッグフードの副食やおかずまたは手作りフード食材としてお使い下さい",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社サンユー研究所",
@@ -10609,7 +11016,8 @@
    "ingredients": "国産いわし(九州および西日本近海) ■水揚げ地:九州および西日本近海　加工地:長崎県 ■賞味期限:製造より3年 ■原産国:日本 ■与え方 ドッグフードの副食やおかずまたは手作りフー",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社サンユー研究所",
@@ -10635,7 +11043,8 @@
    "ingredients": "割り大豆、ビール酵母、納豆菌 ※上記の材料のみでつくられており、保存料や着色料、防腐剤は一切使用しておりません。 ■　原産国:日本 ■  栄養成分(標準) 水分　4.9% たんぱく",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社ジャパンペットニュートリション",
@@ -10661,7 +11070,8 @@
    "ingredients": "アメリカ) 内容量: 7g 原材料: オーガニックストロベリー 保証分析値 粗タンパク質:7%以上 粗脂肪:0% 粗繊維:16%以下 水分:4%以下 カロリー:381kcal/10",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社ジャパンペットニュートリション",
@@ -10687,7 +11097,8 @@
    "ingredients": "に、獲れたての新鮮なうちにフリーズドライ加工したミラクルトリーツです！！ 100%天然。添加物一切不使用。 犬猫用おやつ アラスカンワイルドフリーズドライの特長 AD.DOG ＆ ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社ジャパンペットニュートリション",
@@ -10713,7 +11124,8 @@
    "ingredients": "国産天然ヨシキリザメ 保証分析値: 粗蛋白質-82%以上 粗脂肪-2%以上 粗繊維質-1%以下 水分-6%以下 カロリー:357kcal/100g 1日の目安量 犬 小型犬:3-5",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社食糧",
@@ -10739,7 +11151,8 @@
    "ingredients": "> 豚肉、牛肉、魚(カタクチイワシ・カツオ)、オートミール、うるち米、鰹節、大麦、ポテト、ライ麦、黒大豆、アルファルファミール、小麦、胡麻油、昆布、リノール酸、ビール酵母、果肉、消",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社食糧",
@@ -10765,7 +11178,8 @@
    "ingredients": "> 豚肉、牛肉、魚(カタクチイワシ・カツオ)、うるち米、大麦、鰹節、オートミール、ポテト、ライ麦、黒大豆、アルファルファミール、胡麻油、昆布、小麦、リノール酸、ビール酵母、果肉、消",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社食糧",
@@ -10791,7 +11205,8 @@
    "ingredients": "> 豚肉、牛肉、イワシ、小麦ふすま、米粉、オートミール、コーン、大麦、動物性油脂、植物性油脂、カルシウム、脱脂粉乳、大豆、亜麻仁抽出(リノール酸、α-リノレン酸)、消化酵素、コンド",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社スマック",
@@ -10817,7 +11232,8 @@
    "ingredients": "肉類(チキンミール、チキンレバーパウダー)、小麦粉、油脂類、魚介類(フィッシュミール、フィッシュエキス、フィッシュパウダー)、でん粉類、卵白粉末、脱脂大豆、ビール酵母、ビートパルプ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社スマック",
@@ -10843,7 +11259,8 @@
    "ingredients": "穀類(とうもろこし、小麦粉、パン粉等)、魚介類(フィッシュミール、かつおエキス、フィッシュパウダー)、肉類(ミートミール、チキンレバーパウダー)、動物性油脂、豆類(脱脂大豆等)、ビ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社スマック",
@@ -10869,7 +11286,8 @@
    "ingredients": "は使用していません。 分類: 成猫用総合栄養食 原産国名: 日本 容量: 160g / 600g(100g×6) エネルギー: 350kcal/100g JANコード(160g):",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社スマック",
@@ -10895,7 +11313,8 @@
    "ingredients": "穀類(とうもろこし、コーングルテンミール、小麦粉、小麦ふすま等)、肉類(ミートミール、チキンミール、ポークミール、チキンレバーパウダー)、豆類(乾燥おから、脱脂大豆)、魚介類(フィ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社スマック",
@@ -10921,7 +11340,8 @@
    "ingredients": "穀類(とうもろこし、コーングルテンミール、小麦粉、小麦ふすま等)、肉類(チキンミール、ポークミール、ミートミール、チキンレバーパウダー、阿波尾鶏エキス)、豆類(乾燥おから、脱脂大豆",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社スマック",
@@ -10947,7 +11367,8 @@
    "ingredients": "かつお節(国産) NEW 無着色 ネコリズム　トッピングだけ　国産まぐろチップ　12g ねこちゃんは数回にわけてちょこっと食べたり、いろいろな味を食べるのが大好きです。好きな味を好",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社スマック",
@@ -10973,7 +11394,8 @@
    "ingredients": "穀類(とうもろこし、小麦粉、パン粉、コーングルテンミール等)、魚介類(フィッシュミール、フィッシュエキス、かつお節、フィッシュパウダー)、肉類(ミートミール、チキンミール、ポークミ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社スマック",
@@ -10999,7 +11421,8 @@
    "ingredients": "肉類(ミートミール、チキンミール、ポークミール、チキンレバーパウダー)、とうもろこし、でん粉類、 魚介類(かつお節、フィッシュミール、フィッシュエキス、フィッシュパウダー)、動物性",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社スマック",
@@ -11025,7 +11448,8 @@
    "ingredients": "魚介類(フィッシュミール、かつお節、フィッシュエキス、フィッシュパウダー)、肉類(ミートミール、チキンレバーパウダー)、 でん粉類、甘藷ミール、動物性油脂、酵母、セルロース粉末(食",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社スマック",
@@ -11051,7 +11475,8 @@
    "ingredients": "穀類(とうもろこし、小麦粉、パン粉、コーングルテンミール等)、魚介類(フィッシュミール、フィッシュエキス、かつお節、フィッシュパウダー)、肉類(ミートミール、チキンミール、ポークミ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社スマック",
@@ -11077,7 +11502,8 @@
    "ingredients": "穀類(とうもろこし、小麦粉、パン粉、コーングルテンミール等)、魚介類(フィッシュミール、かつお節、フィッシュエキス、フィッシュパウダー)、肉類(ミートミール、チキンミール、ポークミ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社スマック",
@@ -11103,7 +11529,8 @@
    "ingredients": "穀類(とうもろこし、コーングルテンミール、小麦粉、小麦ふすま等)、肉類(チキンミール、ポークミール、ミートミール、チキンレバーパウダー)、豆類(乾燥おから、脱脂大豆等)、魚介類(か",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社スマック",
@@ -11129,7 +11556,8 @@
    "ingredients": "は素材のみ 無着色 Quoli フリーズドライ CAT 国産ささみ 1本 日本で暮らす、愛猫のための理想の食事である猫用ドライフード「Quoli/クオリ」ブランドの猫用おやつです。",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社スマック",
@@ -11155,7 +11583,8 @@
    "ingredients": "かつお、まぐろ、食塩 無着色 どうぞお納めください　まぐろ　40g 国産まぐろを樽で約半年間じっくりと寝かせた樽仕込み熟成。そこから燻製することで高い香りと旨み成分をひき出した、保",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社スマック",
@@ -11181,7 +11610,8 @@
    "ingredients": "穀類(とうもろこし、小麦粉、パン粉等)、魚介類(フィッシュミール、かつお節粉末)、ミートミール、油脂類(動物性油脂、魚油(DHA・EPA源として))、豆類(脱脂大豆等)、ビール酵母",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社スマック",
@@ -11207,7 +11637,8 @@
    "ingredients": "またたび(虫癭果純末)",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "株式会社スマック",
@@ -11233,7 +11664,8 @@
    "ingredients": "またたび(虫癭果純末)、タウリン、DHAパウダー ※透明な棒状の物はタウリンの結晶ですので、安心してご使用ください。 ※魚油由来のDHAパウダーを使用しています。油臭がすることがあ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-22"
+   "fetched_at": "2026-06-22",
+   "img": ""
   },
   {
    "maker": "天然素材株式会社",
@@ -11259,7 +11691,8 @@
    "ingredients": "グルテンフリー(※ウェットタイプのみ) 全品内袋は便利なファスナータイプ 有機ミネラル酵母(亜鉛酵母、鉄酵母)を配合 「目ヤニ」(眼脂)改善・シニア期の目の健康サポート(ルテイン含",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "天然素材株式会社",
@@ -11285,7 +11718,8 @@
    "ingredients": "グルテンフリー(※ウェットタイプのみ) 全品内袋は便利なファスナータイプ 有機ミネラル酵母(亜鉛酵母、鉄酵母)を配合 「目ヤニ」(眼脂)改善・シニア期の目の健康サポート(ルテイン含",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "天然素材株式会社",
@@ -11311,7 +11745,8 @@
    "ingredients": "グルテンフリー(※ウェットタイプのみ) 全品内袋は便利なファスナータイプ 有機ミネラル酵母(亜鉛酵母、鉄酵母)を配合 「目ヤニ」(眼脂)改善・シニア期の目の健康サポート(ルテイン含",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "株式会社パーパス",
@@ -11337,7 +11772,8 @@
    "ingredients": "馬肉、玄米、大麦、鰹節、ビール酵母、大麦ぬか、ラード、甜菜繊維、卵黄粉末、米たんぱく、ごま油、昆布、クランベリー粉末、セレン酵母、ミネラル類(カルシウム、塩素、銅、鉄、カリウム、亜",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "株式会社パーパス",
@@ -11363,7 +11799,8 @@
    "ingredients": "馬肉、玄米、大麦、鰹節、ビール酵母、大麦ぬか、ラード、甜菜繊維、卵黄粉末、米たんぱく、ごま油、昆布、クランベリー粉末、セレン酵母、ミネラル類(カルシウム、塩素、銅、鉄、カリウム、亜",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "株式会社パーパス",
@@ -11389,7 +11826,8 @@
    "ingredients": "】 鶏肉、鶏肉粉、乾燥えんどう豆、七面鳥肉粉、乾燥じゃがいも、鶏脂、ナチュラルフレーバー、塩、サーモンオイル、クランベリー、酵母培養液、塩化カリウム、ミネラル類(亜鉛、鉄、銅、マン",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "株式会社ビルバックジャパン",
@@ -11415,7 +11853,8 @@
    "ingredients": "穀物粉ブレンド(玄米、トウモロコシ粉、コーングルテンミール、チキンミール、フィッシュミール、ゼラチン(牛由来)、塩、硫酸カルシウム、ビール酵母、セルロース)、グリセリン(植物由来)",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "ペットアイ株式会社",
@@ -11441,7 +11880,8 @@
    "ingredients": "",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "ペットアイ株式会社",
@@ -11467,7 +11907,8 @@
    "ingredients": "",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "ペットアイ株式会社",
@@ -11493,7 +11934,8 @@
    "ingredients": "",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "ペットアイ株式会社",
@@ -11519,7 +11961,8 @@
    "ingredients": "",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "ペットアイ株式会社",
@@ -11545,7 +11988,8 @@
    "ingredients": "",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "ペットアイ株式会社",
@@ -11571,7 +12015,8 @@
    "ingredients": "",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "ペットアイ株式会社",
@@ -11597,7 +12042,8 @@
    "ingredients": "",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "ペットライン株式会社",
@@ -11623,7 +12069,8 @@
    "ingredients": "穀類(とうもろこし、コーングルテンミール、小麦粉)、肉類(ミートミール、チキンミール、チキンレバーパウダー)、豆類(おから)、油脂類(動物性油脂)、セルロース、魚介類(フィッシュミ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "yes",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "ペットライブラリー株式会社",
@@ -11649,7 +12096,8 @@
    "ingredients": "脱脂粉乳、乳たんぱく、生クリーム、乳酸菌 原産国 日本 成分表 たんぱく質 10.0%以上 脂質 0.1%以上 粗繊維 0.1%以下 灰分 2.0%以下 水分 82.0%以下 エネ",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "ペットライブラリー株式会社",
@@ -11675,7 +12123,8 @@
    "ingredients": "牛乳、ガラクトオリゴ糖、脱脂粉乳、いちご果汁、香料、乳酸菌、着色料(モナスカス) 原産国 日本 成分表 たんぱく質 2.5%以上 脂質 1.8%以上 粗繊維 0.1%以下 灰分 1",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "マルトモ株式会社",
@@ -11701,7 +12150,8 @@
    "ingredients": "かつおのふし(国内製造) 栄養成分表示 (1g当たり) エネルギー 4 kcal たんぱく質 0.8 g 脂質 0.03 g 炭水化物 0.004 g 食塩相当量 0.01 g ア",
    "is_therapeutic": "False",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "株式会社森乳サンワールド",
@@ -11727,7 +12177,8 @@
    "ingredients": "で溶解性考慮した哺乳期猫用総合栄養食です。 猫の母乳に近づけ、乳糖を調整したおなかにやさしいミルクです。生まれたばかりの幼猫を哺育することができます。 免疫グロブリンを含む初乳(牛",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "株式会社森乳サンワールド",
@@ -11753,7 +12204,8 @@
    "ingredients": "で溶解性を考慮した特殊調製粉乳(哺乳期猫用総合栄養食)です。 猫の母乳に近づけ、生まれたばかりの幼猫をゴールデンキャットミルクだけで哺育することができます。乳糖を調節しているおなか",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "株式会社森乳サンワールド",
@@ -11779,7 +12231,8 @@
    "ingredients": "で作られ、成分を猫の母乳に近づけたミルクです。 内容量:270g 原産国名:日本 ミルクの作り方与え方～キャット編～ 猫イラスト変更のお知らせ 商品説明 厳選された原材料で溶解性を",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "株式会社森乳サンワールド",
@@ -11805,7 +12258,8 @@
    "ingredients": "で溶解性を考慮した特殊調製粉乳(総合栄養食)です。 猫の母乳に近づけ、生まれたばかりの幼猫をキャットミルクで哺育することができます。乳糖を調節しているおなかに優しいミルクです。 体",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "株式会社森乳サンワールド",
@@ -11831,7 +12285,8 @@
    "ingredients": "乳類(カゼイン、脱脂粉乳、乳清たんぱく)、でん粉分解物、油脂類(動物性油脂、植物性油脂)、難消化性デキストリン(水溶性食物繊維)、乾燥酵母、ミルクオリゴ糖、ミネラル類(Ｃa、Ｐ、Ｋ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "株式会社森乳サンワールド",
@@ -11857,7 +12312,8 @@
    "ingredients": "カゼイン、油脂類(動物性油脂、植物性油脂)、脱脂粉乳、乳清たんぱく、乳糖、卵黄粉末、DHA粉末、乾燥酵母、ミルクオリゴ糖、ミネラル類(Ｃa、Ｐ、Ｋ、Ｎa、Ｃl、Ｍg、Ｆｅ、Ｃｕ、Ｚ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "株式会社森乳サンワールド",
@@ -11883,7 +12339,8 @@
    "ingredients": "水(鉱水) 成分 たんぱく質 0.0%以上 脂質 0.0%以上 粗繊維 0.0%以下 灰分 0.0%以下 水分 100.0%以下 代謝エネルギー(ＭＥ) 0kcal/100ml カ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "株式会社森乳サンワールド",
@@ -11909,7 +12366,8 @@
    "ingredients": "穀類(コーン、米、オートミール、コーングルテンミール)、乳類、油脂類(動物性油脂、植物性油脂)、肉類(チキンミール、チキンダイジェスト)、乳糖、卵類(乾燥卵、卵黄粉末)、トマト(ト",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "株式会社森乳サンワールド",
@@ -11935,7 +12393,8 @@
    "ingredients": "の特性から、ロットにより製品の色調や硬さが異なることがあります。 原材料名 小麦粉、蔗糖、油脂類(植物性油脂、動物性油脂)、乳類(脱脂粉乳、チーズ、乳清たんぱく)、卵穀カルシウム、",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "株式会社森乳サンワールド",
@@ -11961,7 +12420,8 @@
    "ingredients": "初乳(牛) 成分 たんぱく質 55.0%以上 脂質 0.5%以上 粗繊維 1.0%以下 灰分 10.0%以下 水分 7.0%以下 標準給与量 給与量の目安(1日当り):犬・猫・小動",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "株式会社森乳サンワールド",
@@ -11987,7 +12447,8 @@
    "ingredients": "ブドウ糖、初乳(牛)、α化でん粉、ミルクオリゴ糖、ラクトフェリン、動物用ビフィズス生菌末、リン酸三カルシウム、香料、ミネラル類(Ｃa、Ｋ、Ｎa、Ｃl、Ｍg、Ｆｅ、Ｃｕ、Ｍｎ、Ｚｎ、",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "株式会社森乳サンワールド",
@@ -12013,7 +12474,8 @@
    "ingredients": "ブドウ糖、ミルクオリゴ糖、コーンスターチ、動物用ビフィズス生菌末、リン酸三カルシウム 成分 たんぱく質 0.0%以上 脂質 0.0%以上 粗繊維 0.1%以下 灰分 2.0%以下 ",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "株式会社森乳サンワールド",
@@ -12039,7 +12501,8 @@
    "ingredients": "ブドウ糖、プロポリス抽出粉末 成分 たんぱく質 0.0%以上 脂質 0.8%以上 粗繊維 10.0%以下 灰分 0.3%以下 水分 5.0%以下 代謝エネルギー(ＭＥ) 300kc",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "株式会社森乳サンワールド",
@@ -12065,7 +12528,8 @@
    "ingredients": "コーンスターチ、蔗糖、乳類(脱脂粉乳、ヨーグルト粉末、乳清たんぱく)、ココナッツオイル、ブドウ糖、ミルクオリゴ糖、クエン酸、動物用ビフィズス生菌末、香料 成分 たんぱく質 13.0",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   },
   {
    "maker": "株式会社森乳サンワールド",
@@ -12091,7 +12555,8 @@
    "ingredients": "中鎖脂肪酸(ＭＣＴ)含有粉末油脂、乳類、でん粉分解物、蔗糖、ココナッツオイル、アミノ酸類(Ｌ－アルギニン、ＤＬ－メチオニン、Ｌ－トレオニン、Ｌ－トリプトファン)、ブドウ糖、乾燥酵母",
    "is_therapeutic": "True",
    "phosphorus_disclosed": "no",
-   "fetched_at": "2026-06-23"
+   "fetched_at": "2026-06-23",
+   "img": ""
   }
  ]
 }
