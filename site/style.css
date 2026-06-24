@@ -8,7 +8,7 @@ a{color:var(--accent)}
 .wrap{max-width:1040px;margin:0 auto;padding:0 18px}
 header.site{background:#fffaf3;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;
  box-shadow:0 1px 0 rgba(94,59,34,.04)}
-header.site .wrap{display:flex;align-items:center;gap:18px;height:60px}
+header.site .wrap{display:flex;align-items:center;gap:14px;min-height:60px;flex-wrap:wrap;padding-top:7px;padding-bottom:7px}
 .brand{font-weight:800;font-size:18px;color:var(--accent-d);text-decoration:none;white-space:nowrap;
  display:flex;align-items:center;gap:7px}
 .brand svg{width:26px;height:26px;flex:none}
@@ -184,6 +184,24 @@ footer.site .fcat{width:40px;flex:none;opacity:.8}
 .shapecard{position:relative}
 .unof{display:inline-block;font-size:10.5px;font-weight:700;color:#8a5a2a;background:#fbe8cf;
  border:1px solid #ecd3a6;border-radius:999px;padding:1px 7px;margin-left:5px;white-space:nowrap;vertical-align:middle;cursor:help}
+
+/* ===== 気になる（ウォッチリスト） ===== */
+.watchbtn{flex:none;border:none;background:none;cursor:pointer;font-size:18px;line-height:1;color:#caa46f;padding:2px 5px;border-radius:7px}
+.watchbtn:hover{background:#f6ead8}
+.watchbtn.on{color:#e6a417}
+.pcell .watchbtn{margin-left:auto}
+.shapecard .watchbtn{position:absolute;top:6px;right:6px;font-size:21px;z-index:2}
+.watchlink{margin-left:auto;white-space:nowrap;color:#6b4324;text-decoration:none;font-size:13.5px;font-weight:700;
+ border:1px solid var(--line);border-radius:999px;padding:5px 12px;background:#fff;display:inline-flex;align-items:center;gap:6px}
+.watchlink:hover{border-color:var(--accent);color:var(--accent-d)}
+.watchlink.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.watchbadge{background:var(--accent);color:#fff;border-radius:999px;font-size:11px;font-weight:800;min-width:18px;
+ height:18px;display:inline-flex;align-items:center;justify-content:center;padding:0 5px}
+.watchlink.active .watchbadge{background:#fff;color:var(--accent-d)}
+.watchempty{background:var(--card);border:1px dashed var(--line);border-radius:14px;padding:26px;text-align:center;color:#6b5a48;font-size:15px;line-height:1.8}
+.del{border:1px solid var(--line);background:#fff;border-radius:7px;padding:3px 9px;cursor:pointer;font-size:12px;color:#a8421f;white-space:nowrap}
+.del:hover{background:#fbeae6}
+@media print{.watchbtn,.watchlink{display:none}}
 
 /* ===== メーカー一覧 ===== */
 .makergrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:14px;margin-top:14px}

@@ -89,7 +89,7 @@ a{color:var(--accent)}
 .wrap{max-width:1040px;margin:0 auto;padding:0 18px}
 header.site{background:#fffaf3;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;
  box-shadow:0 1px 0 rgba(94,59,34,.04)}
-header.site .wrap{display:flex;align-items:center;gap:18px;height:60px}
+header.site .wrap{display:flex;align-items:center;gap:14px;min-height:60px;flex-wrap:wrap;padding-top:7px;padding-bottom:7px}
 .brand{font-weight:800;font-size:18px;color:var(--accent-d);text-decoration:none;white-space:nowrap;
  display:flex;align-items:center;gap:7px}
 .brand svg{width:26px;height:26px;flex:none}
@@ -266,6 +266,24 @@ footer.site .fcat{width:40px;flex:none;opacity:.8}
 .unof{display:inline-block;font-size:10.5px;font-weight:700;color:#8a5a2a;background:#fbe8cf;
  border:1px solid #ecd3a6;border-radius:999px;padding:1px 7px;margin-left:5px;white-space:nowrap;vertical-align:middle;cursor:help}
 
+/* ===== 気になる（ウォッチリスト） ===== */
+.watchbtn{flex:none;border:none;background:none;cursor:pointer;font-size:18px;line-height:1;color:#caa46f;padding:2px 5px;border-radius:7px}
+.watchbtn:hover{background:#f6ead8}
+.watchbtn.on{color:#e6a417}
+.pcell .watchbtn{margin-left:auto}
+.shapecard .watchbtn{position:absolute;top:6px;right:6px;font-size:21px;z-index:2}
+.watchlink{margin-left:auto;white-space:nowrap;color:#6b4324;text-decoration:none;font-size:13.5px;font-weight:700;
+ border:1px solid var(--line);border-radius:999px;padding:5px 12px;background:#fff;display:inline-flex;align-items:center;gap:6px}
+.watchlink:hover{border-color:var(--accent);color:var(--accent-d)}
+.watchlink.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.watchbadge{background:var(--accent);color:#fff;border-radius:999px;font-size:11px;font-weight:800;min-width:18px;
+ height:18px;display:inline-flex;align-items:center;justify-content:center;padding:0 5px}
+.watchlink.active .watchbadge{background:#fff;color:var(--accent-d)}
+.watchempty{background:var(--card);border:1px dashed var(--line);border-radius:14px;padding:26px;text-align:center;color:#6b5a48;font-size:15px;line-height:1.8}
+.del{border:1px solid var(--line);background:#fff;border-radius:7px;padding:3px 9px;cursor:pointer;font-size:12px;color:#a8421f;white-space:nowrap}
+.del:hover{background:#fbeae6}
+@media print{.watchbtn,.watchlink{display:none}}
+
 /* ===== メーカー一覧 ===== */
 .makergrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:14px;margin-top:14px}
 .makercard .mhead{display:flex;align-items:center;gap:11px;margin-bottom:6px}
@@ -308,6 +326,8 @@ let DATA=__DATA__, COLS=__COLS__, sortKey=__SORT__, asc=__ASC__, ponly=__PONLY__
 function cell(v,u){return (v===''||v==null)?'<span class=\"na\">記載なし（要確認）</span>':v+(u||'');}
 function thumb(r){return r.img?'<img class=\"pthumb\" src=\"'+r.img+'\" alt=\"\" loading=\"lazy\">':'';}
 function unof(r){return r.source==='rakuten'?' <span class=\"unof\" title=\"出典は楽天商品ページ＝公式の保証分析値の転記。公式ページ未確認です。\">公式未確認</span>':'';}
+function witem(r){return {url:r.url,name:r.product_name,maker:r.maker,form:r.form,img:r.img||'',protein_dm:r.protein_dm,fat_dm:r.fat_dm,phosphorus_dm:r.phosphorus_dm,moisture:r.moisture_pct,calorie:(r.calorie_basis==='per_piece'?'':r.calorie_density_100g),source:r.source};}
+function star(r){return (window.wbtn?window.wbtn(witem(r)):'');}
 function srcCell(r){var rk=r.source==='rakuten';return '<td><a href=\"'+r.url+'\" target=\"_blank\" rel=\"noopener'+(rk?' nofollow':'')+'\">'+(rk?'楽天':'公式')+'</a> <span class=\"na\">'+r.fetched_at+'</span></td>';}
 function buy(r){var q=encodeURIComponent(((r.maker||'')+' '+(r.product_name||'')).trim());
  return [['楽天','https://search.rakuten.co.jp/search/mall/'+q+'/'],['Amazon','https://www.amazon.co.jp/s?k='+q],
@@ -322,8 +342,8 @@ function draw(){let rows=DATA.slice();
   x=(x||'').toString();y=(y||'').toString();return asc?x.localeCompare(y,'ja'):y.localeCompare(x,'ja');});
  let h='<tr>'+COLS.map(c=>'<th onclick=\"sortBy(\\''+c.k+'\\')\">'+c.t+'</th>').join('')+'</tr>';
  let b=rows.map(r=>{return '<tr>'+COLS.map(c=>{
-   if(c.type==='name')return '<td><span class=\"pcell\">'+thumb(r)+'<span>'+(r.product_name||'(無題)')+unof(r)+'<br><span class=\"mk\">'+r.maker+'</span></span></span></td>';
-   if(c.type==='pname')return '<td><span class=\"pcell\">'+thumb(r)+'<span>'+(r.product_name||'(無題)')+unof(r)+'</span></span></td>';
+   if(c.type==='name')return '<td><span class=\"pcell\">'+thumb(r)+'<span>'+(r.product_name||'(無題)')+unof(r)+'<br><span class=\"mk\">'+r.maker+'</span></span>'+star(r)+'</span></td>';
+   if(c.type==='pname')return '<td><span class=\"pcell\">'+thumb(r)+'<span>'+(r.product_name||'(無題)')+unof(r)+'</span>'+star(r)+'</span></td>';
    if(c.type==='cal'){return '<td class=\"num\">'+(r.calorie_basis==='per_piece'?'<span class=\"na\">個包装・密度比較不可</span>':cell(r.calorie_density_100g))+'</td>';}
    if(c.type==='ther')return '<td>'+(r.is_therapeutic==='True'?'<span class=\"ther\">療法食</span>':'—')+'</td>';
    if(c.type==='src')return srcCell(r);
@@ -333,6 +353,7 @@ function draw(){let rows=DATA.slice();
  document.getElementById('thead').innerHTML=h;
  document.getElementById('tbody').innerHTML=b;
  document.getElementById('cnt').textContent=rows.length;
+ if(window.NWatch)window.NWatch.refresh();
 }
 draw();
 """
@@ -441,6 +462,39 @@ NAV_JS = ("<script>document.querySelectorAll('nav.main details').forEach(functio
           "document.addEventListener('click',function(e){if(!e.target.closest('nav.main details'))"
           "document.querySelectorAll('nav.main details[open]').forEach(function(o){o.open=false;});});</script>")
 
+# 「気になるフード」ウォッチリスト（端末内localStorage・ログイン不要・継続価値の中核）。
+# 全ページの <body> 直後に注入し、各描画スクリプトより前に window.wbtn / window.NWatch を定義する。
+WATCH_JS = r"""<script>
+(function(){
+ var KEY='nekogohan_watch_v1';
+ function load(){try{return JSON.parse(localStorage.getItem(KEY))||[]}catch(e){return []}}
+ function save(a){try{localStorage.setItem(KEY,JSON.stringify(a))}catch(e){}}
+ var NW={
+  list:load,
+  has:function(u){return load().some(function(x){return x.url===u})},
+  count:function(){return load().length},
+  add:function(it){var a=load();if(!a.some(function(x){return x.url===it.url}))a.unshift(it);save(a);NW.refresh();},
+  remove:function(u){save(load().filter(function(x){return x.url!==u}));NW.refresh();},
+  clear:function(){save([]);NW.refresh();},
+  toggle:function(it){if(NW.has(it.url))NW.remove(it.url);else NW.add(it);},
+  refresh:function(){
+    var n=load().length;
+    document.querySelectorAll('[data-watchcount]').forEach(function(e){e.textContent=n;if(n)e.removeAttribute('hidden');else e.setAttribute('hidden','');});
+    document.querySelectorAll('.watchbtn').forEach(function(b){
+      var o; try{o=JSON.parse(decodeURIComponent(b.dataset.it));}catch(e){return;}
+      var on=NW.has(o.url); b.classList.toggle('on',on); b.setAttribute('aria-pressed',on?'true':'false'); b.textContent=on?'★':'☆';
+    });
+    if(window.onWatchRefresh)try{window.onWatchRefresh();}catch(e){}
+  }
+ };
+ window.NWatch=NW;
+ // 商品データから★ボタンのHTMLを返す（itにurl/name/maker/form/img＋主要値を持たせ、watch.htmlで使う）
+ window.wbtn=function(it){var s=encodeURIComponent(JSON.stringify(it));return '<button class="watchbtn" data-it="'+s+'" title="気になるに保存／解除" aria-pressed="false">☆</button>';};
+ document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.watchbtn');if(!b)return;e.preventDefault();e.stopPropagation();var o;try{o=JSON.parse(decodeURIComponent(b.dataset.it));}catch(err){return;}NW.toggle(o);});
+ if(document.readyState!=='loading')NW.refresh();else document.addEventListener('DOMContentLoaded',NW.refresh);
+})();
+</script>"""
+
 
 def nav_html(active: str) -> str:
     parts = []
@@ -481,9 +535,11 @@ def page(active: str, title: str, body: str, desc: str = "", path: str = "index.
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="{BASE_URL}/img/hero.jpg">
 <link rel="stylesheet" href="style.css?v={CSS_VER}"></head><body>
+{WATCH_JS}
 <header class="site"><div class="wrap">
  <a class="brand" href="index.html">{BRAND_CAT}ねこごはんファクト</a>
  <nav class="main">{navhtml}</nav>
+ <a class="watchlink{' active' if active=='watch' else ''}" href="watch.html" title="気になるフード（端末内に保存）">★ 気になる<span class="watchbadge" data-watchcount hidden>0</span></a>
 </div></header>
 <main class="{'wrap' if wrap else ''}">{body}</main>
 <footer class="site"><div class="wrap">
@@ -853,6 +909,7 @@ let DATA=__DATA__, GOALS=__GOALS__, g=GOALS[0];
 function cell(v,u){return (v===''||v==null)?'<span class=\"na\">記載なし（要確認）</span>':v+(u||'');}
 function thumb(r){return r.img?'<img class=\"pthumb\" src=\"'+r.img+'\" alt=\"\" loading=\"lazy\">':'';}
 function unof(r){return r.source==='rakuten'?' <span class=\"unof\" title=\"出典は楽天商品ページ＝公式の保証分析値の転記。公式ページ未確認です。\">公式未確認</span>':'';}
+function star(r){return (window.wbtn?window.wbtn({url:r.url,name:r.product_name,maker:r.maker,form:r.form,img:r.img||'',protein_dm:r.protein_dm,fat_dm:r.fat_dm,phosphorus_dm:r.phosphorus_dm,moisture:r.moisture_pct,calorie:(r.calorie_basis==='per_piece'?'':r.calorie_density_100g),source:r.source}):'');}
 function buy(r){var q=encodeURIComponent(((r.maker||'')+' '+(r.product_name||'')).trim());
  return [['楽天','https://search.rakuten.co.jp/search/mall/'+q+'/'],['Amazon','https://www.amazon.co.jp/s?k='+q],
  ['Yahoo','https://shopping.yahoo.co.jp/search?p='+q]].map(c=>'<a href=\"'+c[1]+'\" target=\"_blank\" rel=\"noopener nofollow\">'+c[0]+'</a>').join('');}
@@ -881,13 +938,14 @@ function draw(){
                  :'<td><b style=\"color:#1b7a3d\">条件に合致</b></td>';
   let extra=g.field?'':'<td><span class=\"mk\">'+(r.ingredients||'')+'</span></td>';
   var rk=r.source==='rakuten';
-  return '<tr><td><span class=\"pcell\">'+thumb(r)+'<span>'+(r.product_name||'(無題)')+unof(r)+'<br><span class=\"mk\">'+r.maker+'</span></span></span></td>'+
+  return '<tr><td><span class=\"pcell\">'+thumb(r)+'<span>'+(r.product_name||'(無題)')+unof(r)+'<br><span class=\"mk\">'+r.maker+'</span></span>'+star(r)+'</span></td>'+
    why+'<td>'+r.form+'</td>'+extra+
    '<td><a href=\"'+r.url+'\" target=\"_blank\" rel=\"noopener'+(rk?' nofollow':'')+'\">'+(rk?'楽天':'公式')+'</a> <span class=\"na\">'+r.fetched_at+'</span></td>'+
    '<td class=\"buy\">'+buy(r)+'</td></tr>';}).join('');
  document.getElementById('thead').innerHTML=head;
  document.getElementById('tbody').innerHTML=body;
  document.getElementById('cnt').textContent=rows.length;
+ if(window.NWatch)window.NWatch.refresh();
 }
 draw();
 """
@@ -1093,11 +1151,14 @@ function render(){
   var nums=r.v.map((x,i)=>lab[i]+' '+x+'%').join(' ・ ');
   var th=r.img?'<img class="pthumb pthumb-card" src="'+r.img+'" alt="" loading="lazy">':'';
   var uf=r.source==='rakuten'?'<span class="unof">公式未確認</span>':'';
-  return '<div class="shapecard">'+th+'<div class="rname">'+(r.name||'(無題)')+uf+'<span class="mk">'+r.maker+'・'+r.form+'</span></div>'+
+  var rk=r.source==='rakuten';
+  var st=window.wbtn?window.wbtn({url:r.url,name:r.name,maker:r.maker,form:r.form,img:r.img||'',protein_dm:r.v[0],fat_dm:r.v[1],phosphorus_dm:'',moisture:'',calorie:'',source:r.source}):'';
+  return '<div class="shapecard">'+st+th+'<div class="rname">'+(r.name||'(無題)')+uf+'<span class="mk">'+r.maker+'・'+r.form+'</span></div>'+
    radar(r.v)+'<div class="rnums">'+nums+'</div>'+
-   '<div class="rsrc"><a href="'+r.url+'" target="_blank" rel="noopener">公式</a> <span class="na">'+r.fetched_at+'</span> <span class="buy">'+buy(r)+'</span></div></div>';
+   '<div class="rsrc"><a href="'+r.url+'" target="_blank" rel="noopener'+(rk?' nofollow':'')+'">'+(rk?'楽天':'公式')+'</a> <span class="na">'+r.fetched_at+'</span> <span class="buy">'+buy(r)+'</span></div></div>';
  }).join('');
- document.getElementById('scount').textContent=rows.length;}
+ document.getElementById('scount').textContent=rows.length;
+ if(window.NWatch)window.NWatch.refresh();}
 window.setFilt=function(f){filt=f;document.querySelectorAll('.fbtn').forEach(b=>b.classList.toggle('on',b.dataset.f===f));render();};
 render();
 """
@@ -1197,6 +1258,11 @@ function render(){
 }
 window.cmpToggle=function(i){var k=sel.indexOf(i);if(k>=0)sel.splice(k,1);else{if(sel.length>=3)return;sel.push(i);}render();};
 window.cmpSearch=function(v){q=v;render();};
+// 「気になる」から渡された商品URLがあれば自動で選択する
+(function(){try{var h=localStorage.getItem('nekogohan_compare_handoff');if(!h)return;
+ localStorage.removeItem('nekogohan_compare_handoff');var urls=JSON.parse(h)||[];
+ urls.forEach(function(u){var i=DATA.findIndex(function(d){return d.url===u;});if(i>=0&&sel.length<3&&sel.indexOf(i)<0)sel.push(i);});
+}catch(e){}})();
 render();
 """
 
@@ -1217,6 +1283,67 @@ def build_compare(products: list[dict]) -> str:
 </div>
 <div id="clist" class="cmplist"></div>
 """ + '<script>' + js + '</script>'
+
+
+WATCHPAGE_JS = r"""
+function fmtW(v,u){return (v===''||v==null||v===undefined)?'<span class="na">—</span>':v+(u||'');}
+function buyW(r){var q=encodeURIComponent(((r.maker||'')+' '+(r.name||'')).trim());
+ return [['楽天','https://search.rakuten.co.jp/search/mall/'+q+'/'],['Amazon','https://www.amazon.co.jp/s?k='+q],
+ ['Yahoo','https://shopping.yahoo.co.jp/search?p='+q]].map(c=>'<a href="'+c[1]+'" target="_blank" rel="noopener nofollow">'+c[0]+'</a>').join('');}
+function avgW(a){var x=a.filter(function(v){return !isNaN(v);});return x.length?(x.reduce(function(s,v){return s+v;},0)/x.length).toFixed(1):'—';}
+function renderWatch(){
+ var a=(window.NWatch?NWatch.list():[]);
+ var emp=document.getElementById('watchempty'),ctl=document.getElementById('watchctrl'),tb=document.getElementById('wtable');
+ if(emp)emp.hidden=a.length>0; if(ctl)ctl.hidden=a.length===0; if(tb)tb.hidden=a.length===0;
+ var wn=document.getElementById('wn'); if(wn)wn.textContent=a.length;
+ var sum=document.getElementById('watchsummary');
+ if(sum)sum.innerHTML=a.length?('<div class="card"><b>あなたのリストの傾向（'+a.length+'品）</b><br>'+
+   'たんぱく質(乾物量) 平均 <b>'+avgW(a.map(function(x){return parseFloat(x.protein_dm);}))+'%</b>　／　'+
+   'カロリー密度 平均 <b>'+avgW(a.map(function(x){return parseFloat(x.calorie);}))+'</b> kcal/100g　／　'+
+   'リンを開示 <b>'+a.filter(function(x){return x.phosphorus_dm&&x.phosphorus_dm!=="";}).length+'</b>品<br>'+
+   '<span class="mk">※平均は値が分かる商品のみ。おすすめではなく、あなたが選んだ商品の傾向です。</span></div>'):'';
+ var body=document.getElementById('wbody');
+ if(body)body.innerHTML=a.map(function(r){var rk=r.source==='rakuten';
+   var uf=rk?' <span class="unof">公式未確認</span>':'';
+   var th=r.img?'<img class="pthumb" src="'+r.img+'" alt="" loading="lazy">':'';
+   return '<tr><td><span class="pcell">'+th+'<span>'+(r.name||'(無題)')+uf+'<br><span class="mk">'+(r.maker||'')+'</span></span></span></td>'+
+    '<td>'+(r.form||'')+'</td><td class="num">'+fmtW(r.protein_dm,'%')+'</td><td class="num">'+fmtW(r.phosphorus_dm,'%')+'</td>'+
+    '<td class="num">'+fmtW(r.calorie)+'</td>'+
+    '<td><a href="'+r.url+'" target="_blank" rel="noopener'+(rk?' nofollow':'')+'">'+(rk?'楽天':'公式')+'</a></td>'+
+    '<td class="buy">'+buyW(r)+'</td>'+
+    '<td><button class="del" data-rm="'+encodeURIComponent(r.url)+'">外す</button></td></tr>';
+ }).join('');
+}
+window.onWatchRefresh=renderWatch;
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-rm]');if(b&&window.NWatch){NWatch.remove(decodeURIComponent(b.dataset.rm));}});
+window.cmpSel=function(){var a=(window.NWatch?NWatch.list():[]).slice(0,3);if(!a.length)return;
+ try{localStorage.setItem('nekogohan_compare_handoff',JSON.stringify(a.map(function(x){return x.url;})));}catch(e){}
+ location.href='compare.html';};
+window.clearWatch=function(){if(confirm('気になるリストを全て消去しますか？')&&window.NWatch)NWatch.clear();};
+renderWatch();
+"""
+
+
+def build_watch() -> str:
+    return pagehead("気になる / 端末内に保存", "気になるフード") + """
+<p class="lead">各ページで商品の <b>☆</b> を押すと、ここに集まります。保存は<b>この端末の中だけ</b>
+（ログイン不要・外部送信なし）。気になった商品を貯めて、いつでも見返し・<b>重ねて比較</b>できます。</p>
+<div class="disclaimer">これはあなた専用のメモです。当サイトはこのリストに順位やおすすめを付けません。
+端末やブラウザを変えると引き継がれません（後日ログイン同期に対応予定）。</div>
+<div id="watchsummary"></div>
+<div id="watchempty" class="watchempty" hidden>まだ何も保存されていません。
+ 各ページの商品名の横にある <b>☆</b> を押すと、ここに貯まっていきます。
+ <div class="btn-row" style="margin-top:14px">
+  <a class="btn btn-primary" href="find.html">🎯 目的から選ぶ</a>
+  <a class="btn btn-ghost" href="shape.html">成分のかたち</a></div></div>
+<div id="watchctrl" class="controls" hidden>保存 <b id="wn">0</b> 商品｜
+ <button onclick="cmpSel()">★上位3つを重ねて比較 →</button>
+ <button onclick="clearWatch()">全消去</button></div>
+<div class="tablewrap"><table id="wtable" hidden><thead><tr>
+ <th>商品 / メーカー</th><th>種別</th><th>たんぱく質%(乾物量)</th><th>リン%(乾物量)</th>
+ <th>カロリー密度</th><th>出典</th><th>購入先（比較）</th><th></th></tr></thead>
+ <tbody id="wbody"></tbody></table></div>
+""" + '<script>' + WATCHPAGE_JS + '</script>'
 
 
 CALC_JS = r"""
@@ -1611,6 +1738,8 @@ def main() -> None:
                        "各キャットフードの主要成分(たんぱく質・脂肪・繊維・灰分・炭水化物)を乾物量換算の5角形レーダーで一覧。点数ではなく成分の構成。"),
         "compare.html": ("compare", "重ねて比較", build_compare(products),
                          "気になるキャットフードを2〜3商品選んで、成分の5角形を重ね、たんぱく質・脂肪・リン・カロリーなどの実値を並べて比較。順位は付けません。"),
+        "watch.html": ("watch", "気になるフード", build_watch(),
+                       "気になったキャットフードを端末内に保存して見返せるリスト。リストの成分傾向の確認や、ワンクリックでの重ね比較も。ログイン不要・非診断。"),
         "calc.html": ("calc", "成分ツール", build_calc(products),
                       "手元のフードの保証分析値を入れると乾物量換算の成分5角形・掲載商品内での位置・成分が近い商品が分かる。DBに無いフードでも使える。"),
         "record.html": ("record", "体重記録", build_record(),
