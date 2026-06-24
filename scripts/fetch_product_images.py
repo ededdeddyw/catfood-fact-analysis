@@ -103,8 +103,9 @@ def read_app_id() -> str:
     cands = [ROOT / ".env"] + [p / ".env" for p in ROOT.parents[:3]] + [Path.cwd() / ".env"]
     for envf in cands:
         if envf.exists():
-            for line in envf.read_text(encoding="utf-8", errors="replace").splitlines():
-                line = line.strip()
+            # utf-8-sig で BOM を除去（PowerShell の -Encoding utf8 が付けても読めるように）
+            for line in envf.read_text(encoding="utf-8-sig", errors="replace").splitlines():
+                line = line.strip().lstrip("﻿")
                 if line.startswith("RAKUTEN_APP_ID") and "=" in line:
                     return line.split("=", 1)[1].strip().strip('"').strip("'")
     return ""
