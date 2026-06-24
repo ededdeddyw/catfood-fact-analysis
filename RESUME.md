@@ -83,8 +83,14 @@ PYTHONUTF8=1 $PY -u scripts/reextract_from_cache.py      # 抽出ロジック変
 - いなば/アイシアのsitemapは犬猫混在 → product_facts に犬製品も含む（猫サイトは species!=dog で除外、犬は将来用に保持）
 - 起動中の preview サーバが**別worktreeのsite/を配信していて404**になることがある → `preview_stop`→`preview_start`で貼り直す
 
+## 8.5 商品画像（楽天API→自前ホスト）— 基盤済み・取得待ち（2026-06-24）
+- `scripts/fetch_product_images.py`：楽天商品検索APIで商品名→候補、**保守的マッチ(識別トークン2つ以上)**で誤画像排除、一致分のサムネのみDLして `site/img/products/` に**自前ホスト**（閲覧時に楽天へ通信させない＝アフィリ/トラッキング感ゼロ）。出典は `data/product_images.csv`。鍵 `RAKUTEN_APP_ID` は env か **gitignore済 `.env`** から読む（リポに残さない）。再開可能・bounded timeout・LLM不使用。
+- `build_site.py`：`product_images.csv`→各商品に `img` 付与。商品テーブル/find/重ね比較ピッカー/成分のかたち/メーカーカードにサムネ描画。画像無し商品はテキストのみ（**未マッチは画像を出さない**方針＝ユーザー合意）。about に「商品画像について」節。
+- **実行待ち**：リポ直下に `.env`(`RAKUTEN_APP_ID=xxxx`) を置く→ `PYTHONUTF8=1 $PY scripts/fetch_product_images.py`（~465件/約9分）→ 生成画像を build_site→commit。テスト描画は tabby.jpg を仮マッピングして確認済(その後削除)。
+
 ## 9. 次の一手候補
 - ~~ナビ整理／2-3商品の重ね比較／メーカー別ページ~~ ← **2026-06-23 実装済(本ブランチ)**
+- **商品画像の本取得**（§8.5・鍵待ち）
 - 記事をさらに量産（同方式）／成分分布グラフ（ヒストグラム）／メーカー別ページに開示率の文脈解説／PWA化
 - Pet-ER 公開を仕上げる → 共有プロフィール基盤を流す → Daily Lens 着手
 - 抽出のさらなる精緻化（per-site Playwrightで未取得32社・ヒルズ）
