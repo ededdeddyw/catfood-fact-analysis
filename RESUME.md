@@ -90,6 +90,14 @@ PYTHONUTF8=1 $PY -u scripts/reextract_from_cache.py      # 抽出ロジック変
 - `build_site.py`：`product_images.csv`→各商品 `img`。商品テーブル/find/重ね比較/成分のかたち/メーカーカードにサムネ(`.pthumb`/`.mthumb`)。画像無し75商品はテキストのみ。about「商品画像について」節。
 - **再取得/追加**：`.env` に2鍵→ `PYTHONUTF8=1 $PY scripts/fetch_product_images.py`(再開) or `--refresh`(全件)。プルーニング基準は `accept()`。
 
+## 8.7 精緻化（2026-06-24）
+- **掲載634商品**（公式476＋楽天158）。**商品画像86%**（`fetch_product_images` を新規大手にも再実行＋画像マッチャ `SUB_BRANDS` に大手ブランド追加→マース画像2→27/55）。
+- 楽天転記名のクリーンアップ強化（`harvest_rakuten_majors.clean_title`：SEO境界◆/で切る・連続重複畳み・カタカナSEO読み除去・語境界切り詰め。dedupキーは味を残しノイズ語で畳む）。カルカンは公式取得済みのため楽天MAJORSから除外。
+- モバイル: データ表を `.tablewrap` で横スクロール化（ページは溢れない）。
+- SEO: 全ページ og:image(hero)＋`summary_large_image`＋og:locale、トップに Organization/WebSite の JSON-LD。
+- ゴミ商品名フィルタ（`build_consult_sheet._is_junk_name`：製品詳細/商品紹介/OEM等を除外）。
+- **マース＝カルカンのみ公式取得可**（kalkan.jp・静的・`harvest_mars.py`）。シーバは成分が**サイト非掲載**で取得不可確定（Playwrightでも無理）。他31社のブラウザヘッダ再チェックでも新規クリーン公式社なし。
+
 ## 8.6 大手メーカーの取り込み（楽天転記・公式未確認）— 実装済み（2026-06-24）
 - 公式がJS描画で取れない大手は **楽天商品検索の itemCaption に転記された保証分析値**を抽出（`scripts/harvest_rakuten_majors.py`→`data/product_facts_rakuten.csv`, source=rakuten）。既存 `extract_nutrition()` がそのままパース。
 - **ブランド帰属が確実な4社のみ**: 日本ヒルズ(サイエンスダイエット)/ネスレ ピュリナ(モンプチ/ピュリナワン/プロプラン/フィリックス)/はごろも(無一物)/ユニチャーム(銀のスプーン)=**約85商品**。スペクトラムは公式が8in1のみと判明し除外、マースはwet中心で0件（設定だけ残置）。追加は `MAJORS` にブランド確実な社だけ足して再ハーベスト。
