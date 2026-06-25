@@ -38,3 +38,29 @@ create policy cats_own on public.cats
 drop policy if exists entries_own on public.weight_entries;
 create policy entries_own on public.weight_entries
   for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+
+-- ===== 気になるフード（ウォッチリスト）のクラウド同期（2026-06-25） =====
+-- 端末内localStorageと同期。ユーザーごとに自分の行だけ読み書き（RLS）。
+create table if not exists public.watch_items (
+  id           uuid primary key default gen_random_uuid(),
+  user_id      uuid not null default auth.uid() references auth.users(id) on delete cascade,
+  product_url  text not null,
+  name         text,
+  maker        text,
+  form         text,
+  img          text,
+  protein_dm   text,
+  phosphorus_dm text,
+  calorie      text,
+  source       text,
+  created_at   timestamptz not null default now(),
+  unique (user_id, product_url)            -- 同じ商品は1件
+);
+
+create index if not exists idx_watch_user on public.watch_items(user_id);
+
+alter table public.watch_items enable row level security;
+
+drop policy if exists watch_own on public.watch_items;
+create policy watch_own on public.watch_items
+  for all using (auth.uid() = user_id) with check (auth.uid() = user_id);

@@ -13,7 +13,7 @@
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://ededdeddyw.github.io/catfood-fact-analysis/img/hero.jpg">
-<link rel="stylesheet" href="style.css?v=c3443f69"></head><body>
+<link rel="stylesheet" href="style.css?v=c707633b"></head><body>
 <script>
 (function(){
  var KEY='nekogohan_watch_v1';
@@ -24,8 +24,8 @@
   has:function(u){return load().some(function(x){return x.url===u})},
   count:function(){return load().length},
   add:function(it){var a=load();if(!a.some(function(x){return x.url===it.url}))a.unshift(it);save(a);NW.refresh();},
-  remove:function(u){save(load().filter(function(x){return x.url!==u}));NW.refresh();},
-  clear:function(){save([]);NW.refresh();},
+  remove:function(u){save(load().filter(function(x){return x.url!==u}));if(window.onWatchRemove)try{window.onWatchRemove(u);}catch(e){}NW.refresh();},
+  clear:function(){var a=load();save([]);if(window.onWatchClear)try{window.onWatchClear(a);}catch(e){}NW.refresh();},
   toggle:function(it){if(NW.has(it.url))NW.remove(it.url);else NW.add(it);},
   refresh:function(){
     var n=load().length;

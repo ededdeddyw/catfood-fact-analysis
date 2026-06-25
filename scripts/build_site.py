@@ -282,7 +282,11 @@ footer.site .fcat{width:40px;flex:none;opacity:.8}
 .watchempty{background:var(--card);border:1px dashed var(--line);border-radius:14px;padding:26px;text-align:center;color:#6b5a48;font-size:15px;line-height:1.8}
 .del{border:1px solid var(--line);background:#fff;border-radius:7px;padding:3px 9px;cursor:pointer;font-size:12px;color:#a8421f;white-space:nowrap}
 .del:hover{background:#fbeae6}
-@media print{.watchbtn,.watchlink{display:none}}
+.watchauth{margin:12px 0}
+.watchlogin>summary{cursor:pointer;color:var(--accent-d);font-weight:700;font-size:14px;padding:8px 0;user-select:none}
+.loginbox{margin-top:8px;padding:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;display:flex;flex-direction:column;gap:8px;max-width:460px}
+.loginbox input{padding:9px 11px;border:1px solid var(--line);border-radius:9px;font-size:15px;background:#fffaf3;width:100%}
+@media print{.watchbtn,.watchlink,.watchauth{display:none}}
 
 /* ===== メーカー一覧 ===== */
 .makergrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:14px;margin-top:14px}
@@ -474,8 +478,8 @@ WATCH_JS = r"""<script>
   has:function(u){return load().some(function(x){return x.url===u})},
   count:function(){return load().length},
   add:function(it){var a=load();if(!a.some(function(x){return x.url===it.url}))a.unshift(it);save(a);NW.refresh();},
-  remove:function(u){save(load().filter(function(x){return x.url!==u}));NW.refresh();},
-  clear:function(){save([]);NW.refresh();},
+  remove:function(u){save(load().filter(function(x){return x.url!==u}));if(window.onWatchRemove)try{window.onWatchRemove(u);}catch(e){}NW.refresh();},
+  clear:function(){var a=load();save([]);if(window.onWatchClear)try{window.onWatchClear(a);}catch(e){}NW.refresh();},
   toggle:function(it){if(NW.has(it.url))NW.remove(it.url);else NW.add(it);},
   refresh:function(){
     var n=load().length;
@@ -1324,12 +1328,65 @@ renderWatch();
 """
 
 
+# watch.html のクラウド同期（任意ログイン）。★自体は全ページ localStorage（軽量）。
+# ログイン時、watch.html 表示でクラウドと統合（union）し端末をまたいで持ち運べる。
+# 既存の record.html と同じ Supabase anon + RLS。table=public.watch_items（supabase/schema.sql）。
+WATCH_SYNC_JS = r"""
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+const SB=createClient('__SB_URL__','__SB_ANON__');
+const $=function(id){return document.getElementById(id);};
+let session=null, syncing=false;
+function rowFromItem(x){return {product_url:x.url,name:x.name||'',maker:x.maker||'',form:x.form||'',img:x.img||'',protein_dm:(x.protein_dm==null?'':String(x.protein_dm)),phosphorus_dm:(x.phosphorus_dm==null?'':String(x.phosphorus_dm)),calorie:(x.calorie==null?'':String(x.calorie)),source:x.source||''};}
+function itemFromRow(r){return {url:r.product_url,name:r.name,maker:r.maker,form:r.form,img:r.img,protein_dm:r.protein_dm,phosphorus_dm:r.phosphorus_dm,calorie:r.calorie,source:r.source};}
+function authUI(){
+ var el=$('watchauth'); if(!el)return;
+ if(session){
+  el.innerHTML='<div class="card"><b>☁ クラウド同期中</b>（'+session.user.email+'）'+
+   ' <button class="del" id="wso">ログアウト</button><br>'+
+   '<span class="mk">この端末の★とクラウドを統合します。別の端末でログインすると同じリストが見られます。</span></div>';
+  $('wso').onclick=async function(){await SB.auth.signOut();};
+ } else {
+  el.innerHTML='<details class="watchlogin"><summary>☁ ログインして端末間で同期（任意）</summary>'+
+   '<div class="loginbox"><span class="mk">メールとパスワードで、この端末の★を他の端末でも見られるようにします。</span>'+
+   '<div class="row2"><input id="wem" type="email" placeholder="メール" autocomplete="email">'+
+   '<input id="wpw" type="password" placeholder="パスワード(6文字以上)" autocomplete="current-password"></div>'+
+   '<div class="btn-row"><button class="btn btn-primary" id="wli" style="padding:8px 16px">ログイン</button>'+
+   '<button class="btn btn-ghost" id="wsu" style="padding:8px 16px">新規登録</button></div>'+
+   '<div id="wmsg" class="mk"></div></div></details>';
+  $('wli').onclick=async function(){var r=await SB.auth.signInWithPassword({email:$('wem').value.trim(),password:$('wpw').value});if(r.error)$('wmsg').textContent='⚠ '+r.error.message;};
+  $('wsu').onclick=async function(){var r=await SB.auth.signUp({email:$('wem').value.trim(),password:$('wpw').value});$('wmsg').textContent=r.error?('⚠ '+r.error.message):'確認メールを送信しました（設定によっては不要）。届いたら認証してください。';};
+ }
+}
+async function syncMerge(){
+ if(!session||syncing)return; syncing=true;
+ try{
+  var res=await SB.from('watch_items').select('*');
+  if(res.error){syncing=false;return;}              // テーブル未作成等は静かに諦め(ローカルのまま)
+  var cloud=res.data||[]; var local=window.NWatch?NWatch.list():[];
+  var cloudUrls={}; cloud.forEach(function(r){cloudUrls[r.product_url]=1;});
+  var localUrls={}; local.forEach(function(x){localUrls[x.url]=1;});
+  cloud.forEach(function(r){if(!localUrls[r.product_url]&&window.NWatch)NWatch.add(itemFromRow(r));});  // cloud→local
+  var push=local.filter(function(x){return !cloudUrls[x.url];}).map(rowFromItem);                        // local→cloud
+  if(push.length)await SB.from('watch_items').upsert(push,{onConflict:'user_id,product_url'});
+  if(window.NWatch)NWatch.refresh();
+ }catch(e){}
+ syncing=false;
+}
+// 外す/全消去をクラウドにも反映（ログイン時）
+window.onWatchRemove=function(u){if(session)SB.from('watch_items').delete().eq('product_url',u).then(function(){},function(){});};
+window.onWatchClear=function(){if(session)SB.from('watch_items').delete().neq('product_url','').then(function(){},function(){});};
+async function refresh(){var r=await SB.auth.getSession();session=r.data.session;authUI();await syncMerge();}
+window.addEventListener('DOMContentLoaded',function(){refresh();SB.auth.onAuthStateChange(function(_e,s){session=s;refresh();});});
+"""
+
+
 def build_watch() -> str:
+    sync = (WATCH_SYNC_JS.replace("__SB_URL__", SUPABASE_URL).replace("__SB_ANON__", SUPABASE_ANON))
     return pagehead("気になる / 端末内に保存", "気になるフード") + """
-<p class="lead">各ページで商品の <b>☆</b> を押すと、ここに集まります。保存は<b>この端末の中だけ</b>
-（ログイン不要・外部送信なし）。気になった商品を貯めて、いつでも見返し・<b>重ねて比較</b>できます。</p>
-<div class="disclaimer">これはあなた専用のメモです。当サイトはこのリストに順位やおすすめを付けません。
-端末やブラウザを変えると引き継がれません（後日ログイン同期に対応予定）。</div>
+<p class="lead">各ページで商品の <b>☆</b> を押すと、ここに集まります。保存は<b>この端末の中</b>に。
+ログインすると<b>端末をまたいで同期</b>できます（任意・外部送信は同期時のみ）。</p>
+<div class="disclaimer">これはあなた専用のメモです。当サイトはこのリストに順位やおすすめを付けません。</div>
+<div id="watchauth" class="watchauth"></div>
 <div id="watchsummary"></div>
 <div id="watchempty" class="watchempty" hidden>まだ何も保存されていません。
  各ページの商品名の横にある <b>☆</b> を押すと、ここに貯まっていきます。
@@ -1343,7 +1400,7 @@ def build_watch() -> str:
  <th>商品 / メーカー</th><th>種別</th><th>たんぱく質%(乾物量)</th><th>リン%(乾物量)</th>
  <th>カロリー密度</th><th>出典</th><th>購入先（比較）</th><th></th></tr></thead>
  <tbody id="wbody"></tbody></table></div>
-""" + '<script>' + WATCHPAGE_JS + '</script>'
+""" + '<script>' + WATCHPAGE_JS + '</script>' + '<script type="module">' + sync + '</script>'
 
 
 CALC_JS = r"""

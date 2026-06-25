@@ -13,7 +13,7 @@
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://ededdeddyw.github.io/catfood-fact-analysis/img/hero.jpg">
-<link rel="stylesheet" href="style.css?v=c3443f69"></head><body>
+<link rel="stylesheet" href="style.css?v=c707633b"></head><body>
 <script>
 (function(){
  var KEY='nekogohan_watch_v1';
@@ -24,8 +24,8 @@
   has:function(u){return load().some(function(x){return x.url===u})},
   count:function(){return load().length},
   add:function(it){var a=load();if(!a.some(function(x){return x.url===it.url}))a.unshift(it);save(a);NW.refresh();},
-  remove:function(u){save(load().filter(function(x){return x.url!==u}));NW.refresh();},
-  clear:function(){save([]);NW.refresh();},
+  remove:function(u){save(load().filter(function(x){return x.url!==u}));if(window.onWatchRemove)try{window.onWatchRemove(u);}catch(e){}NW.refresh();},
+  clear:function(){var a=load();save([]);if(window.onWatchClear)try{window.onWatchClear(a);}catch(e){}NW.refresh();},
   toggle:function(it){if(NW.has(it.url))NW.remove(it.url);else NW.add(it);},
   refresh:function(){
     var n=load().length;
@@ -50,10 +50,10 @@
  <a class="watchlink active" href="watch.html" title="気になるフード（端末内に保存）">★ 気になる<span class="watchbadge" data-watchcount hidden>0</span></a>
 </div></header>
 <main class="wrap"><div class="pagehead"><span class="eyebrow">気になる / 端末内に保存</span><h1>気になるフード</h1></div>
-<p class="lead">各ページで商品の <b>☆</b> を押すと、ここに集まります。保存は<b>この端末の中だけ</b>
-（ログイン不要・外部送信なし）。気になった商品を貯めて、いつでも見返し・<b>重ねて比較</b>できます。</p>
-<div class="disclaimer">これはあなた専用のメモです。当サイトはこのリストに順位やおすすめを付けません。
-端末やブラウザを変えると引き継がれません（後日ログイン同期に対応予定）。</div>
+<p class="lead">各ページで商品の <b>☆</b> を押すと、ここに集まります。保存は<b>この端末の中</b>に。
+ログインすると<b>端末をまたいで同期</b>できます（任意・外部送信は同期時のみ）。</p>
+<div class="disclaimer">これはあなた専用のメモです。当サイトはこのリストに順位やおすすめを付けません。</div>
+<div id="watchauth" class="watchauth"></div>
 <div id="watchsummary"></div>
 <div id="watchempty" class="watchempty" hidden>まだ何も保存されていません。
  各ページの商品名の横にある <b>☆</b> を押すと、ここに貯まっていきます。
@@ -103,6 +103,52 @@ window.cmpSel=function(){var a=(window.NWatch?NWatch.list():[]).slice(0,3);if(!a
  location.href='compare.html';};
 window.clearWatch=function(){if(confirm('気になるリストを全て消去しますか？')&&window.NWatch)NWatch.clear();};
 renderWatch();
+</script><script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+const SB=createClient('https://yjfogfsgwylzrkksremm.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlqZm9nZnNnd3lsenJra3NyZW1tIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIxNzM3NjYsImV4cCI6MjA5Nzc0OTc2Nn0.qxxpf2Gmzntz6XefggwLItjX_odCWqE3r1ZsYgNdd6k');
+const $=function(id){return document.getElementById(id);};
+let session=null, syncing=false;
+function rowFromItem(x){return {product_url:x.url,name:x.name||'',maker:x.maker||'',form:x.form||'',img:x.img||'',protein_dm:(x.protein_dm==null?'':String(x.protein_dm)),phosphorus_dm:(x.phosphorus_dm==null?'':String(x.phosphorus_dm)),calorie:(x.calorie==null?'':String(x.calorie)),source:x.source||''};}
+function itemFromRow(r){return {url:r.product_url,name:r.name,maker:r.maker,form:r.form,img:r.img,protein_dm:r.protein_dm,phosphorus_dm:r.phosphorus_dm,calorie:r.calorie,source:r.source};}
+function authUI(){
+ var el=$('watchauth'); if(!el)return;
+ if(session){
+  el.innerHTML='<div class="card"><b>☁ クラウド同期中</b>（'+session.user.email+'）'+
+   ' <button class="del" id="wso">ログアウト</button><br>'+
+   '<span class="mk">この端末の★とクラウドを統合します。別の端末でログインすると同じリストが見られます。</span></div>';
+  $('wso').onclick=async function(){await SB.auth.signOut();};
+ } else {
+  el.innerHTML='<details class="watchlogin"><summary>☁ ログインして端末間で同期（任意）</summary>'+
+   '<div class="loginbox"><span class="mk">メールとパスワードで、この端末の★を他の端末でも見られるようにします。</span>'+
+   '<div class="row2"><input id="wem" type="email" placeholder="メール" autocomplete="email">'+
+   '<input id="wpw" type="password" placeholder="パスワード(6文字以上)" autocomplete="current-password"></div>'+
+   '<div class="btn-row"><button class="btn btn-primary" id="wli" style="padding:8px 16px">ログイン</button>'+
+   '<button class="btn btn-ghost" id="wsu" style="padding:8px 16px">新規登録</button></div>'+
+   '<div id="wmsg" class="mk"></div></div></details>';
+  $('wli').onclick=async function(){var r=await SB.auth.signInWithPassword({email:$('wem').value.trim(),password:$('wpw').value});if(r.error)$('wmsg').textContent='⚠ '+r.error.message;};
+  $('wsu').onclick=async function(){var r=await SB.auth.signUp({email:$('wem').value.trim(),password:$('wpw').value});$('wmsg').textContent=r.error?('⚠ '+r.error.message):'確認メールを送信しました（設定によっては不要）。届いたら認証してください。';};
+ }
+}
+async function syncMerge(){
+ if(!session||syncing)return; syncing=true;
+ try{
+  var res=await SB.from('watch_items').select('*');
+  if(res.error){syncing=false;return;}              // テーブル未作成等は静かに諦め(ローカルのまま)
+  var cloud=res.data||[]; var local=window.NWatch?NWatch.list():[];
+  var cloudUrls={}; cloud.forEach(function(r){cloudUrls[r.product_url]=1;});
+  var localUrls={}; local.forEach(function(x){localUrls[x.url]=1;});
+  cloud.forEach(function(r){if(!localUrls[r.product_url]&&window.NWatch)NWatch.add(itemFromRow(r));});  // cloud→local
+  var push=local.filter(function(x){return !cloudUrls[x.url];}).map(rowFromItem);                        // local→cloud
+  if(push.length)await SB.from('watch_items').upsert(push,{onConflict:'user_id,product_url'});
+  if(window.NWatch)NWatch.refresh();
+ }catch(e){}
+ syncing=false;
+}
+// 外す/全消去をクラウドにも反映（ログイン時）
+window.onWatchRemove=function(u){if(session)SB.from('watch_items').delete().eq('product_url',u).then(function(){},function(){});};
+window.onWatchClear=function(){if(session)SB.from('watch_items').delete().neq('product_url','').then(function(){},function(){});};
+async function refresh(){var r=await SB.auth.getSession();session=r.data.session;authUI();await syncMerge();}
+window.addEventListener('DOMContentLoaded',function(){refresh();SB.auth.onAuthStateChange(function(_e,s){session=s;refresh();});});
 </script></main>
 <footer class="site"><div class="wrap">
  <svg class="fcat" viewBox="0 0 120 130" aria-hidden="true"><g class="catsil"><path d="M60 56 C42 56 33 80 33 100 C33 118 47 123 60 123 C73 123 87 118 87 100 C87 80 78 56 60 56Z"/><path d="M86 112 C110 110 110 78 92 72 C103 83 95 102 82 103Z"/><circle cx="60" cy="42" r="22"/><path d="M45 28 L41 6 L60 23 Z"/><path d="M75 28 L79 6 L60 23 Z"/></g></svg>
