@@ -59,9 +59,10 @@ PYTHONUTF8=1 $PY -u scripts/reextract_from_cache.py      # 抽出ロジック変
 
 ## 5. ログイン・体重記録（Supabase）
 - プロジェクト `nekogohan` / URL `https://yjfogfsgwylzrkksremm.supabase.co` / anon公開キーは `build_site.py` の `SUPABASE_ANON`（RLSで保護＝公開リポでも安全。service_role/DBパスは扱わない）
-- スキーマ `supabase/schema.sql`（cats / weight_entries + RLS）適用済
+- スキーマ `supabase/schema.sql`（cats / weight_entries + **watch_items**(2026-06-25適用済) + RLS）
 - `record.html`: 未ログイン=端末内(localStorage) / ログイン=クラウド同期(メール+パスワード)。SVGグラフ・目標体重・端末→クラウド移行。**実機で往復テスト済**
-- **Confirm email は現在OFF**（MVP。本番集客前に独自SMTP入れて再ON推奨）。テストユーザー(nekotest…/nekogohan.test…@gmail.com)は要削除
+- `watch.html`(気になる): 同じSupabase認証でログイン時クラウド同期(`watch_items`・union統合)。**2026-06-25 実機で往復同期テスト済**(★保存→ログイン→localStorage消去→再読込でクラウドから復活)。★自体は全ページlocalStorage。
+- **Confirm email は現在OFF**（MVP。本番集客前に独自SMTP入れて再ON推奨）。テストユーザー(nekotest…/nekogohan.test…/**nekogohan.watchtest@gmail.com**)は要削除
 
 ## 6. 読みもの（データ駆動ブログ・SEO）
 - 普通のAI量産はしない。**核心数字を `cat_stats()` で465商品DBから集計**（薄い量産を避け一次データで差別化）
