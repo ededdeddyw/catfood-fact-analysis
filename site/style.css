@@ -164,6 +164,9 @@ footer.site .fcat{width:40px;flex:none;opacity:.8}
 .elist td,.elist th{border-bottom:1px solid #efe7d8;padding:6px 8px;text-align:left}
 .elist .del{color:#a8421f;cursor:pointer;border:none;background:none;font-size:13px}
 .savednote{font-size:12px;color:#a3917c;margin-top:8px}
+.histotable td{vertical-align:middle}
+.histocell{width:176px}
+.histo{width:168px;height:44px;display:block}
 
 /* ===== 成分レーダー（5角形）一覧 ===== */
 .fbar{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:12px 0}

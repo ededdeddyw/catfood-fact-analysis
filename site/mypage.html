@@ -13,7 +13,7 @@
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://ededdeddyw.github.io/catfood-fact-analysis/img/hero.jpg">
-<link rel="stylesheet" href="style.css?v=0f14de91"></head><body>
+<link rel="stylesheet" href="style.css?v=abbfe401"></head><body>
 <script>
 (function(){
  var KEY='nekogohan_watch_v1';
@@ -106,7 +106,7 @@ function render(cats,watch){
  var avg=function(a){return a.length?(a.reduce(function(s,v){return s+v;},0)/a.length).toFixed(1):'—';};
  $('mpwatch').innerHTML='<div class="card"><b>★ 気になるフード '+watch.length+' 品</b><br>'+(watch.length?('たんぱく質(乾物量) 平均 <b>'+avg(prot)+'%</b> ／ カロリー密度 平均 <b>'+avg(cal)+'</b>　<a href="watch.html">一覧・比較 →</a>'):'<span class="na">まだありません。</span> <a href="find.html">目的から選ぶ →</a>')+'</div>';
  var anyUp=cats.some(function(c){var t=trendOf(c.entries);return t&&t.delta!=null&&t.delta>0;});
- $('mpbridge').innerHTML=anyUp?'<div class="disclaimer">📈 体重が増え気味の子がいます。総カロリーは「量 × カロリー密度」で決まります。<a href="weight.html">カロリー密度の低い順（体重管理ビュー）</a>で見て、候補を ★ に貯めて <a href="watch.html">重ねて比較</a>すると選びやすいです。適正量・減量は獣医師にご相談ください。</div>':'';
+ $('mpbridge').innerHTML=anyUp?'<div class="disclaimer">📈 体重が増え気味の子がいます。総カロリーは「量 × カロリー密度」で決まります。<a href="weight.html">カロリー密度の低い順（体重管理ビュー）</a>で見て、候補を ★ に貯めましょう。★が貯まったら <a href="watch.html#weight">気になるリストから「低カロリー優先」で近い提案</a>も使えます。適正量・減量は獣医師にご相談ください。</div>':'';
 }
 async function refresh(){var r=await SB.auth.getSession();session=r.data.session;await load();}
 window.addEventListener('DOMContentLoaded',function(){refresh();SB.auth.onAuthStateChange(function(_e,s){session=s;refresh();});});

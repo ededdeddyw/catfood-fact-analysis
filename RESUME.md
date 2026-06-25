@@ -4,7 +4,7 @@
 
 > **🟢 引き継ぎ状態（このセッション終了時点 2026-06-25）**：作業はすべて commit/push 済み・**master へマージ＆本番デプロイ済み・中断中の作業なし**。
 > 作業ブランチ `claude/amazing-bose-df109f` と `master` は同一（毎回 `git push origin HEAD` ＋ `git push origin HEAD:master` の2本立てで運用＝master push が Pages 自動デプロイ）。
-> 到達点＝サイト全機能 live: フードDB(**掲載634商品**)/目的マッチ/成分5角形/**重ね比較**/**成分ツール**/**メーカー別24社ページ**/体重記録+Supabaseログイン/読みもの9本/**商品画像86%(楽天→自前ホスト)**/**★気になる(localStorage+ログイン同期+類似提案)**/**「うちの子」ハブ(mypage)**。
+> 到達点＝サイト全機能 live: フードDB(**掲載634商品**)/目的マッチ/成分5角形/**重ね比較**/**成分ツール**/**メーカー別24社ページ**/体重記録+Supabaseログイン/読みもの12本/**商品画像86%(楽天→自前ホスト)**/**★気になる(localStorage+ログイン同期+目的別の類似提案)**/**「うちの子」ハブ(mypage)**/**calc分布ヒストグラム**。
 > 直近セッション(6/24-25)の主な追加: メーカー別ページ・ナビ5系統化・重ね比較・**大手取り込み**(楽天転記=ヒルズ/ネスレ/はごろも/ユニチャーム/デビフ/ペティオ/ライオン=公式未確認バッジ付き、**マース カルカンは公式kalkan.jp直取り**)・商品画像・SEO(og:image/JSON-LD)・モバイル表スクロール・**★気になるリスト**・**ログイン同期(watch_items適用済)**・**成分が近い提案**・**mypageハブ**。
 > 続けるなら「次の一手候補」(§9) から。Supabase: `watch_items` 適用済・実機往復同期テスト済。テストユーザー nekogohan.watchtest@gmail.com 等は本番前に要削除。
 
@@ -115,10 +115,17 @@ PYTHONUTF8=1 $PY -u scripts/reextract_from_cache.py      # 抽出ロジック変
 - **「うちの子」ハブ**（`mypage.html`・`MYPAGE_JS`）＝体重(record)+気になる(watch)を同ログインで統合・体重増→フード選びの橋渡し。プラットフォーム構想の入口。
 - スキーマは `supabase/schema.sql`（watch_items 追記済）。
 
+## 8.9 既存の磨き込み（2026-06-25・全て live）
+4本まとめて実装・実機検証済（calcヒストグラム5本描画／watch提案モード昇降順／#weight自動選択／コンソールエラー無）。
+- **動線統合**：record.html と watch.html の冒頭に「← 『うちの子』ハブにもどる」btn-row を追加（mypageを起点ハブ化）。
+- **目的別の提案**（`WATCHPAGE_JS suggestW`）：成分が近い候補プール(上位18)の中だけを `near`(平均に近い順) / `weight`(カロリー密度の低い順) / `protein`(たんぱく質の高い順) で並べ替え＝母集団全体の順位ではない。提案ボックス上部にモード切替の `fbtn`、提案カードにカロリー密度も表示。`macro_items` に `cal`(個包装は空) を追加。`location.hash==='#weight'/'#protein'` で初期モードを自動選択。mypageの体重増バナーから `watch.html#weight` へ直結。
+- **成分分布ヒストグラム**（`CALC_JS histo()`）：calc計算結果の表に各マクロの掲載DB分布を縦棒で描画、入力値を `▼`(accent縦線)でマーク。pctBelowの「位置」と並ぶ非評価の可視化。CSS `.histo/.histocell/.histotable`。
+- **読みもの3本追加**（計12本）：`blog-carbohydrate`(炭水化物/NFE 中央値27.2%) ／ `blog-ash`(灰分=ミネラル総量) ／ `blog-phosphorus-by-maker`(リン開示はメーカー方針差＝80%↑が2社/20%↓が7社で二極化・中央値27%)。`cat_stats` に nfe/ash分位点＋`_maker_disclosure()` を追加。
+- **メーカーページに開示率の文脈**（`build_maker_page`）：その社のリン開示率を全社中央値(約27%)と比較し「多く/少なく開示する方針」と明記＋品質ではない旨＋`blog-phosphorus-by-maker` へ誘導。中央値は `maker_groups` で算出し各 g に `p_rate_med`。
+
 ## 9. 次の一手候補
-- record.html を mypage と相互リンク／「うちの子」起点の動線整理／提案を目的別に（体重管理中なら低カロリーで近い等）
-- 成分分布グラフ(ヒストグラム)／記事さらに量産／PWA化／メーカーページに開示率の文脈解説
 - 残る大手は楽天/公式とも取得困難確定（シーバ=非掲載・マース他JS・ウェルペット/マルカン/アース/QIX/兼松/スペクトラム=静的成分なし）。新規取得より既存の磨き込みが高ROI
+- 成分分布ヒストグラムを shape/find にも展開／記事さらに量産（多頭・シニア・子猫など）／PWA化／mypageに「気になるの成分傾向」も統合表示
 - Pet-ER 公開 → 共有プロフィール基盤(mypageが芽) → Daily Lens 着手
 - 本番集客前: Confirm email を再ON＋独自SMTP／テストユーザー削除（§5）
 - 抽出のさらなる精緻化（per-site Playwrightで未取得32社・ヒルズ）

@@ -245,6 +245,9 @@ footer.site .fcat{width:40px;flex:none;opacity:.8}
 .elist td,.elist th{border-bottom:1px solid #efe7d8;padding:6px 8px;text-align:left}
 .elist .del{color:#a8421f;cursor:pointer;border:none;background:none;font-size:13px}
 .savednote{font-size:12px;color:#a3917c;margin-top:8px}
+.histotable td{vertical-align:middle}
+.histocell{width:176px}
+.histo{width:168px;height:44px;display:block}
 
 /* ===== 成分レーダー（5角形）一覧 ===== */
 .fbar{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:12px 0}
@@ -808,6 +811,10 @@ def maker_groups(products: list[dict]) -> list[dict]:
             "forms": forms, "therapeutic": ther,
         })
     out.sort(key=lambda m: m["count"], reverse=True)  # 収録数（網羅の事実）順
+    rates = sorted(m["p_rate"] for m in out)           # 全社のリン開示率の中央値（文脈用・非評価）
+    rmed = rates[len(rates) // 2] if rates else 0
+    for m in out:
+        m["p_rate_med"] = rmed
     return out
 
 
@@ -862,6 +869,10 @@ def build_maker_page(g: dict) -> str:
 <p class="lead">公式サイト：{src}<br>
 当サイト収録 <b>{g['count']}</b> 商品（{_forms_label(g['forms'])}）。
 うちリンを公式開示 <b>{g['p_disclosed']}</b> 商品（{g['p_rate']}%）。</p>
+<p class="mk">参考：当サイト収録メーカーのリン開示率の中央値は約 {g['p_rate_med']}% です
+（{'この社はそれより多く開示している方針です' if g['p_rate'] > g['p_rate_med'] else ('この社はそれより開示が少ない方針です' if g['p_rate'] < g['p_rate_med'] else 'この社はほぼ中央値です')}）。
+開示率はメーカーの<b>表示方針の違い</b>で、フードの品質や安全性とは関係しません。リンを開示していない＝多い・少ないではなく「公開していない」という意味です。
+方針差の全体像は <a href="blog-phosphorus-by-maker.html">読みもの：リン開示の方針差</a> をご覧ください。</p>
 {note}
 {rk_banner}
 <div class="disclaimer">数値は各メーカー公式の保証分析値を転記し、乾物量に換算したファクトです。
@@ -1108,6 +1119,9 @@ def build_record() -> str:
 """ + pagehead("うちの子の管理 / ログインでクラウド保存", "体重記録") + """
 <p class="lead">猫の体重を記録して、増減の傾向をグラフで確認できます。体重が増え気味なら
 <a href="weight.html">体重管理ビュー</a>でカロリー密度の低いフードを探せます。<b>適正体重・増減の評価は獣医師にご相談ください</b>（当サイトは診断を行いません）。</p>
+<div class="btn-row" style="margin-bottom:14px">
+ <a class="btn btn-ghost" href="mypage.html">← 「うちの子」ハブにもどる</a>
+ <a class="btn btn-ghost" href="watch.html">★ 気になるフード</a></div>
 <div class="panel" id="authbar" style="margin-bottom:14px"></div>
 <div class="tracker">
  <div class="panel">
@@ -1180,10 +1194,13 @@ def macro_items(products: list[dict]) -> list[dict]:
     items = []
     for r in products:
         if all(r.get(k) not in (None, "") for k in keys):
+            cal = r.get("calorie_density_100g", "")
+            if r.get("calorie_basis") == "per_piece":
+                cal = ""  # 個包装は密度比較できない
             items.append({"name": r.get("product_name", ""), "maker": r.get("maker", ""),
                           "url": r.get("url", ""), "fetched_at": r.get("fetched_at", ""),
                           "form": r.get("form", ""), "img": r.get("img", ""),
-                          "source": r.get("source", ""),
+                          "source": r.get("source", ""), "cal": cal,
                           "v": [round(float(r[k]), 1) for k in keys]})
     return items
 
@@ -1299,22 +1316,43 @@ WATCHPAGE_JS = r"""
 var PROD=__PROD__;                       // 5マクロ(乾物量)つき商品ベクトル（類似提案用）
 var MAXV=[70,45,15,15,50];
 function distW(a,b){var s=0;for(var i=0;i<5;i++){var d=(a[i]-b[i])/MAXV[i];s+=d*d;}return Math.sqrt(s);}
+var SUGMODE='near';   // near=成分が近い順 / weight=低カロリー優先 / protein=高たんぱく寄り
+(function(){var h=(location.hash||'').replace('#','');if(h==='weight'||h==='protein')SUGMODE=h;})();
+window.setSug=function(m){SUGMODE=m;suggestW();};
 function suggestW(){
  var box=document.getElementById('watchsuggest'); if(!box)return;
  var saved={}; (window.NWatch?NWatch.list():[]).forEach(function(x){saved[x.url]=1;});
  var vecs=[]; PROD.forEach(function(p){if(saved[p.url])vecs.push(p.v);});
  if(vecs.length<1){box.innerHTML='';return;}
  var c=[0,0,0,0,0]; vecs.forEach(function(v){for(var i=0;i<5;i++)c[i]+=v[i];}); for(var i=0;i<5;i++)c[i]/=vecs.length;
- var cand=PROD.filter(function(p){return !saved[p.url];}).map(function(p){return {p:p,d:distW(p.v,c)};})
-   .sort(function(x,y){return x.d-y.d;}).slice(0,6);
- box.innerHTML='<h2>あなたのリストと成分が近い、まだ入っていない商品</h2>'+
-  '<p class="lead">保存した'+vecs.length+'品の成分（乾物量）の<b>平均に近い順</b>です。'+
-  '<b>おすすめ・順位ではありません</b>——あなたが選んだ傾向に「成分が似ている」だけ。リストが増えるほど精度が上がります。</p>'+
+ // まず成分が「近い」候補プールを作り、その中だけを目的に応じて並べ替える（母集団全体の順位ではない）
+ var ranked=PROD.filter(function(p){return !saved[p.url];}).map(function(p){return {p:p,d:distW(p.v,c)};})
+   .sort(function(x,y){return x.d-y.d;});
+ var pool=ranked.slice(0,18), cand, note;
+ if(SUGMODE==='weight'){
+  cand=pool.filter(function(o){return o.p.cal!==''&&o.p.cal!=null&&!isNaN(parseFloat(o.p.cal));})
+    .sort(function(x,y){return parseFloat(x.p.cal)-parseFloat(y.p.cal);}).slice(0,6);
+  if(!cand.length)cand=ranked.slice(0,6);
+  note='保存した'+vecs.length+'品に<b>成分が近い候補の中で、カロリー密度が低い順</b>です。体重管理の参考に（適正量は獣医師へ）。';
+ } else if(SUGMODE==='protein'){
+  cand=pool.slice().sort(function(x,y){return y.p.v[0]-x.p.v[0];}).slice(0,6);
+  note='保存した'+vecs.length+'品に<b>成分が近い候補の中で、たんぱく質（乾物量）が高い順</b>です。';
+ } else {
+  cand=ranked.slice(0,6);
+  note='保存した'+vecs.length+'品の成分（乾物量）の<b>平均に近い順</b>です。';
+ }
+ var modes=[['near','成分が近い'],['weight','低カロリー優先'],['protein','高たんぱく寄り']];
+ var bar='<div class="fbar" style="margin:6px 0 12px">提案の見方：'+modes.map(function(m){
+   return '<button class="fbtn'+(SUGMODE===m[0]?' on':'')+'" onclick="setSug(\''+m[0]+'\')">'+m[1]+'</button>';}).join('')+'</div>';
+ box.innerHTML='<h2>あなたのリストと成分が近い、まだ入っていない商品</h2>'+bar+
+  '<p class="lead">'+note+
+  ' <b>おすすめ・順位ではありません</b>——あなたが選んだ傾向に「成分が似ている」だけ。リストが増えるほど精度が上がります。</p>'+
   '<div class="makergrid">'+cand.map(function(o){var p=o.p,rk=p.source==='rakuten';
    var th=p.img?'<img class="mthumb" src="'+p.img+'" alt="" loading="lazy">':'';
    var st=window.wbtn?window.wbtn({url:p.url,name:p.name,maker:p.maker,form:p.form,img:p.img||'',protein_dm:p.v[0],fat_dm:p.v[1],phosphorus_dm:'',moisture:'',calorie:'',source:p.source}):'';
+   var calb=(p.cal!==''&&p.cal!=null&&!isNaN(parseFloat(p.cal)))?'｜カロリー密度 '+p.cal:'';
    return '<div class="makercard sg"><div class="mhead">'+th+'<div class="mname">'+(p.name||'(無題)')+(rk?' <span class="unof">公式未確認</span>':'')+'</div></div>'+
-    '<div class="mmeta">'+p.maker+'・'+p.form+'｜たんぱく質(乾物量) '+p.v[0]+'%・脂肪 '+p.v[1]+'%</div>'+
+    '<div class="mmeta">'+p.maker+'・'+p.form+'｜たんぱく質(乾物量) '+p.v[0]+'%・脂肪 '+p.v[1]+'%'+calb+'</div>'+
     '<div class="mbadges">'+st+'<a class="mb" href="'+p.url+'" target="_blank" rel="noopener'+(rk?' nofollow':'')+'">'+(rk?'楽天':'公式')+'</a></div></div>';
   }).join('')+'</div>';
 }
@@ -1416,6 +1454,9 @@ def build_watch(products: list[dict]) -> str:
     return pagehead("気になる / 端末内に保存", "気になるフード") + """
 <p class="lead">各ページで商品の <b>☆</b> を押すと、ここに集まります。保存は<b>この端末の中</b>に。
 ログインすると<b>端末をまたいで同期</b>できます（任意・外部送信は同期時のみ）。</p>
+<div class="btn-row" style="margin:-4px 0 12px">
+ <a class="btn btn-ghost" href="mypage.html">← 「うちの子」ハブにもどる</a>
+ <a class="btn btn-ghost" href="record.html">体重記録</a></div>
 <div class="disclaimer">これはあなた専用のメモです。当サイトはこのリストに順位やおすすめを付けません。</div>
 <div id="watchauth" class="watchauth"></div>
 <div id="watchsummary"></div>
@@ -1482,7 +1523,7 @@ function render(cats,watch){
  var avg=function(a){return a.length?(a.reduce(function(s,v){return s+v;},0)/a.length).toFixed(1):'—';};
  $('mpwatch').innerHTML='<div class="card"><b>★ 気になるフード '+watch.length+' 品</b><br>'+(watch.length?('たんぱく質(乾物量) 平均 <b>'+avg(prot)+'%</b> ／ カロリー密度 平均 <b>'+avg(cal)+'</b>　<a href="watch.html">一覧・比較 →</a>'):'<span class="na">まだありません。</span> <a href="find.html">目的から選ぶ →</a>')+'</div>';
  var anyUp=cats.some(function(c){var t=trendOf(c.entries);return t&&t.delta!=null&&t.delta>0;});
- $('mpbridge').innerHTML=anyUp?'<div class="disclaimer">📈 体重が増え気味の子がいます。総カロリーは「量 × カロリー密度」で決まります。<a href="weight.html">カロリー密度の低い順（体重管理ビュー）</a>で見て、候補を ★ に貯めて <a href="watch.html">重ねて比較</a>すると選びやすいです。適正量・減量は獣医師にご相談ください。</div>':'';
+ $('mpbridge').innerHTML=anyUp?'<div class="disclaimer">📈 体重が増え気味の子がいます。総カロリーは「量 × カロリー密度」で決まります。<a href="weight.html">カロリー密度の低い順（体重管理ビュー）</a>で見て、候補を ★ に貯めましょう。★が貯まったら <a href="watch.html#weight">気になるリストから「低カロリー優先」で近い提案</a>も使えます。適正量・減量は獣医師にご相談ください。</div>':'';
 }
 async function refresh(){var r=await SB.auth.getSession();session=r.data.session;await load();}
 window.addEventListener('DOMContentLoaded',function(){refresh();SB.auth.onAuthStateChange(function(_e,s){session=s;refresh();});});
@@ -1520,6 +1561,17 @@ function radar(v,big){
  return '<svg viewBox="0 0 '+S+' '+S+'" class="radar" style="width:'+S+'px;height:'+S+'px" role="img"><g>'+g+ax+
   '<polygon points="'+vp.join(' ')+'" fill="var(--accent)" fill-opacity="0.22" stroke="var(--accent)" stroke-width="2"/>'+lb+'</g></svg>';}
 function pctBelow(idx,x){var n=DB.filter(d=>d.v[idx]<=x).length;return Math.round(100*n/DB.length);}
+function histo(idx,x){
+ var mx=MAX[idx],B=14,bins=new Array(B).fill(0);
+ DB.forEach(function(d){var k=Math.floor(d.v[idx]/mx*B);if(k<0)k=0;if(k>B-1)k=B-1;bins[k]++;});
+ var top=Math.max.apply(null,bins)||1,W=168,H=44,bw=W/B,bars='';
+ for(var i=0;i<B;i++){var h=bins[i]/top*(H-10);
+  bars+='<rect x="'+(i*bw+0.8).toFixed(1)+'" y="'+(H-8-h).toFixed(1)+'" width="'+(bw-1.6).toFixed(1)+'" height="'+h.toFixed(1)+'" rx="1" fill="var(--line)"/>';}
+ var mp=Math.min(W-1,Math.max(0,x/mx*W));
+ var mk='<line x1="'+mp.toFixed(1)+'" y1="1" x2="'+mp.toFixed(1)+'" y2="'+(H-8)+'" stroke="var(--accent)" stroke-width="2"/>'+
+  '<polygon points="'+(mp-3).toFixed(1)+',1 '+(mp+3).toFixed(1)+',1 '+mp.toFixed(1)+',5" fill="var(--accent)"/>';
+ return '<svg viewBox="0 0 '+W+' '+H+'" class="histo" preserveAspectRatio="none" role="img" aria-label="分布と入力値">'+bars+
+  '<line x1="0" y1="'+(H-8)+'" x2="'+W+'" y2="'+(H-8)+'" stroke="var(--line)"/>'+mk+'</svg>';}
 function compute(){
  var g=id=>parseFloat(document.getElementById(id).value);
  var m=g('m'),asf=[g('p'),g('f'),g('fb'),g('a')];
@@ -1527,15 +1579,15 @@ function compute(){
  var dm=asf.map(x=>Math.round(x/(100-m)*1000)/10);
  var nfe=Math.round((100-dm.reduce((s,x)=>s+x,0))*10)/10; if(nfe<0)nfe=0;
  var v=[dm[0],dm[1],dm[2],dm[3],nfe];
- var rowsT=v.map((x,i)=>'<tr><td>'+AX[i]+'</td><td class="num"><b>'+x+'%</b></td><td class="mk">掲載商品の中で下から '+pctBelow(i,x)+'%</td></tr>').join('');
+ var rowsT=v.map((x,i)=>'<tr><td>'+AX[i]+'</td><td class="num"><b>'+x+'%</b></td><td class="mk">下から '+pctBelow(i,x)+'%</td><td class="histocell">'+histo(i,x)+'</td></tr>').join('');
  var kn=DB.map(d=>({d:d,dist:Math.sqrt(v.reduce((s,x,i)=>s+Math.pow((x-d.v[i])/MAX[i],2),0))})).sort((a,b)=>a.dist-b.dist).slice(0,6);
  var sim=kn.map(function(o){var r=o.d;var nums=r.v.map((x,i)=>['P','脂','繊','灰','炭'][i]+' '+x+'%').join(' ・ ');
   return '<div class="shapecard"><div class="rname">'+(r.name||'(無題)')+'<span class="mk">'+r.maker+'・'+r.form+'</span></div>'+
    radar(r.v)+'<div class="rnums">'+nums+'</div><div class="rsrc"><a href="'+r.url+'" target="_blank" rel="noopener">公式</a></div></div>';}).join('');
  document.getElementById('out').innerHTML=
   '<div class="split" style="gap:24px"><div style="flex:0 0 auto;text-align:center">'+radar(v,true)+'<div class="mk">乾物量換算した成分のかたち</div></div>'+
-  '<div style="flex:1"><table class="elist"><tr><th>成分</th><th>乾物量</th><th>位置（非評価）</th></tr>'+rowsT+'</table>'+
-  '<p class="mk" style="margin-top:8px">※水分'+m+'%を除いた基準。炭水化物＝100−（たんぱく+脂肪+繊維+灰分）。「位置」は良し悪しでなく分布上の場所です。</p></div></div>'+
+  '<div style="flex:1"><table class="elist histotable"><tr><th>成分</th><th>乾物量</th><th>位置</th><th>掲載商品の分布（<span style="color:var(--accent)">▼</span>＝入力値）</th></tr>'+rowsT+'</table>'+
+  '<p class="mk" style="margin-top:8px">※水分'+m+'%を除いた基準。炭水化物＝100−（たんぱく+脂肪+繊維+灰分）。「位置」「分布」は良し悪しでなく、掲載'+DB.length+'商品の中での場所です（非評価）。</p></div></div>'+
   '<h2>成分が近い掲載商品</h2><p class="lead">入力した数値に<b>成分構成が近い</b>商品です（おすすめ順ではなく、近さ順）。</p><div class="shapegrid">'+sim+'</div>';
  document.getElementById('out').scrollIntoView({behavior:'smooth',block:'nearest'});}
 window.compute=compute;
@@ -1603,13 +1655,34 @@ def _by_form(products, key, form):
             if r.get("form") == form and r.get(key) not in (None, "")]
 
 
+def _maker_disclosure(products, key="phosphorus_disclosed", min_n=5):
+    """メーカーごとの開示率（収録min_n商品以上）を集計＝方針差の可視化（評価ではない）。"""
+    by: dict[str, list[dict]] = {}
+    for r in products:
+        by.setdefault(r.get("maker", ""), []).append(r)
+    rates = []
+    for m, ps in by.items():
+        if m and len(ps) >= min_n:
+            d = sum(1 for p in ps if p.get(key) == "yes")
+            rates.append(round(100 * d / len(ps)))
+    return rates
+
+
 def cat_stats(products) -> dict:
     phos = _floats(products, "phosphorus_dm")
     cal = _floats(products, "calorie_density_100g")
     mg = _floats(products, "magnesium_pct")
     ash = _floats(products, "ash_dm")
     prot = _floats(products, "protein_dm")
+    nfe = _floats(products, "nfe_dm")
+    mk_rates = _maker_disclosure(products)
     return {
+        "nfe_n": len(nfe), "nfe_med": _median(nfe),
+        "nfe_p10": _pctile(nfe, 0.1), "nfe_p90": _pctile(nfe, 0.9),
+        "ash_n": len(ash), "ash_p10": _pctile(ash, 0.1), "ash_p90": _pctile(ash, 0.9),
+        "mk_n": len(mk_rates), "mk_med": _median(mk_rates) if mk_rates else None,
+        "mk_hi": sum(1 for r in mk_rates if r >= 80),
+        "mk_lo": sum(1 for r in mk_rates if r <= 20),
         "n": len(products),
         "p_n": len(phos), "p_med": _median(phos),
         "p_min": round(min(phos), 2) if phos else None, "p_max": round(max(phos), 2) if phos else None,
@@ -1803,6 +1876,52 @@ def blog_pages(products) -> dict:
 <p class="lead"><code>乾物量の値(%) = 表示値(%) ÷ (100 − 水分%) × 100</code></p>
 <p class="lead">炭水化物は表示されないことが多いですが、<code>100 −（たんぱく質+脂肪+繊維+灰分+水分）</code>で概算できます。
 これらを自動でやるのが <a href="calc.html">成分ツール</a> です。掲載 {s['n']} 商品はすべてこの方法で揃えています。</p>
+"""))
+
+    # 10) 炭水化物（NFE）と完全肉食（データ駆動・shape/calcへ）
+    arts.append((
+        "blog-carbohydrate", "猫のごはんの『炭水化物』はどれくらい？ 乾物量の分布で見る", "2026-06-25",
+        "完全肉食の猫と炭水化物。表示されないNFE（可溶無窒素物）を掲載データから乾物量換算で集計し、分布で示します。良し悪しは判断しません。",
+        f"""
+<p class="lead">キャットフードの保証分析値に<b>炭水化物はふつう書かれていません</b>。代わりに
+<code>100 −（たんぱく質+脂肪+繊維+灰分+水分）</code>で概算した値を「炭水化物（NFE＝可溶無窒素物）」と呼びます。
+当サイト掲載で5成分が揃う {s['nfe_n']} 商品から乾物量換算で集計しました。</p>
+<h2>掲載データでの分布（乾物量換算）</h2>
+<p class="lead">炭水化物（乾物量）の中央値は <b>{s['nfe_med']}%</b>、多くの商品は <b>{s['nfe_p10']}〜{s['nfe_p90']}%</b> に収まりました。
+グレインフリーでも芋類・豆類由来の炭水化物が含まれることがあり、<b>「穀物なし＝炭水化物が低い」とは限りません</b>。</p>
+<p class="lead">猫は完全肉食動物ですが、必要量や適否は個体・健康状態で変わるため、当サイトは数値の良し悪しを判断しません。
+手元の袋の炭水化物は <a href="calc.html">成分ツール</a> で自動計算でき、各商品の構成は <a href="shape.html">成分のかたち</a> の5角形で見られます。</p>
+"""))
+
+    # 11) 灰分（ミネラル総量）（データ駆動）
+    arts.append((
+        "blog-ash", "キャットフードの『灰分』って何？ ミネラル総量の見方", "2026-06-25",
+        "灰分は燃やして残るミネラルの総量。高い・低いの意味と、掲載データでの分布を乾物量換算で整理しました。診断はしません。",
+        f"""
+<p class="lead">「灰分（かいぶん）」は、フードを燃やしたときに残る<b>ミネラルの総量</b>の目安です。汚れや粗悪さの指標ではなく、
+カルシウム・リン・マグネシウムなどの合計に相当します。当サイト掲載で灰分が分かる {s['ash_n']} 商品を乾物量換算で集計しました。</p>
+<h2>掲載データでの分布（乾物量換算）</h2>
+<p class="lead">多くの商品は灰分（乾物量）<b>{s['ash_p10']}〜{s['ash_p90']}%</b> に収まりました。
+灰分が高め＝ミネラルが多めという目安にはなりますが、<b>個々のミネラル（リンやマグネシウム）の量までは灰分だけでは分かりません</b>。
+尿路や腎臓で特定のミネラルが気になる場合は、<a href="kidney.html">リンの開示</a>や<a href="find.html">尿路ケア（マグネシウム開示）</a>を個別に見るのが確実です。</p>
+<p class="lead">灰分の高低そのものに良し悪しはなく、当サイトは評価しません。気になる場合はかかりつけの獣医師にご相談ください。</p>
+"""))
+
+    # 12) リン開示はメーカーで大きく違う（方針差・透明性）
+    arts.append((
+        "blog-phosphorus-by-maker", "リンを公開するかはメーカー次第 — 開示率の『方針差』を見る", "2026-06-25",
+        "同じリンでも、公式に数値を載せるメーカーとそうでないメーカーがいます。開示率の散らばりをデータで示します。開示の有無は品質ではありません。",
+        f"""
+<p class="lead"><a href="blog-phosphorus.html">前の記事</a>で見たとおり、リンを保証分析値に公式開示している商品は多くありません。
+これは商品ごとというより<b>メーカーの表示方針</b>で大きく分かれます。
+当サイト掲載で5商品以上ある {s['mk_n']} メーカーについて、社ごとのリン開示率を集計しました。</p>
+<h2>開示率はメーカーで二極化する</h2>
+<p class="lead">{s['mk_n']} メーカー中、リンを<b>ほぼ開示している社（開示率80%以上）が {s['mk_hi']} 社</b>、
+逆に<b>ほとんど開示していない社（20%以下）が {s['mk_lo']} 社</b>でした（中央値は約 {s['mk_med']}%）。
+中間が少なく、<b>「載せる方針／載せない方針」で分かれている</b>ことが分かります。</p>
+<p class="lead"><b>開示していない＝リンが多い、でも少ない、でもありません</b>——ただ「公開していない」という意味です。
+当サイトはこれを評価に使わず、4つの状態（記載あり／なし／不明・要確認／矛盾）として正直に扱います。
+各社の開示率は <a href="makers.html">メーカー一覧</a> で、リンを開示している商品だけの比較は <a href="kidney.html">腎臓相談シート</a> で見られます。</p>
 """))
 
     pages = {}
