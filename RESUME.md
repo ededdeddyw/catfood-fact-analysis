@@ -2,8 +2,8 @@
 
 最終更新 2026-06-25。新しいセッションはこれを読めば再開できる。詳細思想は `docs/01-07`、自動メモリも参照。
 
-> **🟡 引き継ぎ状態（このセッション終了時点 2026-06-25）**：4本(動線統合/目的別提案/分布ヒストグラム/読みもの3本+開示率文脈)を実装・実機検証・commit 済。**ブランチ `claude/angry-cartwright-3d5c12` へ push 済だが master 直 push（＝本番Pagesデプロイ）はオートモードのクラシファイアにブロックされ保留中**。デプロイするには手動で `git push origin claude/angry-cartwright-3d5c12:master` を実行（または許可ルール追加）。
-> 運用は毎回 `git push origin HEAD` ＋ `git push origin HEAD:master` の2本立て＝master push が Pages 自動デプロイ。
+> **🟢 引き継ぎ状態（このセッション終了時点 2026-06-25）**：4本(動線統合/目的別提案/分布ヒストグラム/読みもの3本+開示率文脈)を実装・実機検証・commit・**master へ push 済＝本番Pagesデプロイ済(run success 21s)・中断中の作業なし**。作業ブランチ `claude/angry-cartwright-3d5c12`。
+> 運用は毎回 `git push origin HEAD` ＋ `git push origin HEAD:master` の2本立て＝master push が Pages 自動デプロイ。**ただし master 直 push はオートモードのクラシファイアにブロックされる**ので、Claude自走時はブランチpushまで→ユーザーが手動で `git push origin <branch>:master`（または settings に許可ルール追加）。詳細は自動メモリ [[deploy-master-push-blocked]]。
 > 到達点＝サイト全機能 live: フードDB(**掲載634商品**)/目的マッチ/成分5角形/**重ね比較**/**成分ツール**/**メーカー別24社ページ**/体重記録+Supabaseログイン/読みもの12本/**商品画像86%(楽天→自前ホスト)**/**★気になる(localStorage+ログイン同期+目的別の類似提案)**/**「うちの子」ハブ(mypage)**/**calc分布ヒストグラム**。
 > 直近セッション(6/24-25)の主な追加: メーカー別ページ・ナビ5系統化・重ね比較・**大手取り込み**(楽天転記=ヒルズ/ネスレ/はごろも/ユニチャーム/デビフ/ペティオ/ライオン=公式未確認バッジ付き、**マース カルカンは公式kalkan.jp直取り**)・商品画像・SEO(og:image/JSON-LD)・モバイル表スクロール・**★気になるリスト**・**ログイン同期(watch_items適用済)**・**成分が近い提案**・**mypageハブ**。
 > 続けるなら「次の一手候補」(§9) から。Supabase: `watch_items` 適用済・実機往復同期テスト済。テストユーザー nekogohan.watchtest@gmail.com 等は本番前に要削除。
