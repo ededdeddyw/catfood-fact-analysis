@@ -2,9 +2,9 @@
 
 最終更新 2026-06-25。新しいセッションはこれを読めば再開できる。詳細思想は `docs/01-07`、自動メモリも参照。
 
-> **🟢 引き継ぎ状態（このセッション終了時点 2026-06-25）**：4本(動線統合/目的別提案/分布ヒストグラム/読みもの3本+開示率文脈)を実装・実機検証・commit・**master へ push 済＝本番Pagesデプロイ済(run success 21s)・中断中の作業なし**。作業ブランチ `claude/angry-cartwright-3d5c12`。
+> **🟡 引き継ぎ状態（このセッション終了時点 2026-06-25）**：磨き込み4本(動線統合/目的別提案/分布ヒストグラム/読みもの3本+開示率文脈)は **master 反映済**。さらに **商品個別ページ634枚**(全一覧の商品名クリックで遷移・成分表/5角形/原材料/★/出典購入/成分が近い商品/Product JSON-LD)を実装・実機検証・commit 済＝**ブランチ push 済だが master 直 push は保留**（オートモードのクラシファイアがブロック。ユーザーが手動で `git push origin claude/angry-cartwright-3d5c12:master`）。作業ブランチ `claude/angry-cartwright-3d5c12`。
 > 運用は毎回 `git push origin HEAD` ＋ `git push origin HEAD:master` の2本立て＝master push が Pages 自動デプロイ。**ただし master 直 push はオートモードのクラシファイアにブロックされる**ので、Claude自走時はブランチpushまで→ユーザーが手動で `git push origin <branch>:master`（または settings に許可ルール追加）。詳細は自動メモリ [[deploy-master-push-blocked]]。
-> 到達点＝サイト全機能 live: フードDB(**掲載634商品**)/目的マッチ/成分5角形/**重ね比較**/**成分ツール**/**メーカー別24社ページ**/体重記録+Supabaseログイン/読みもの12本/**商品画像86%(楽天→自前ホスト)**/**★気になる(localStorage+ログイン同期+目的別の類似提案)**/**「うちの子」ハブ(mypage)**/**calc分布ヒストグラム**。
+> 到達点＝サイト全機能 live: フードDB(**掲載634商品**)/目的マッチ/成分5角形/**重ね比較**/**成分ツール**/**メーカー別24社ページ**/体重記録+Supabaseログイン/読みもの12本/**商品画像86%(楽天→自前ホスト)**/**★気になる(localStorage+ログイン同期+目的別の類似提案)**/**「うちの子」ハブ(mypage)**/**calc分布ヒストグラム**/**商品個別ページ634枚(成分表+5角形+類似+JSON-LD)**。
 > 直近セッション(6/24-25)の主な追加: メーカー別ページ・ナビ5系統化・重ね比較・**大手取り込み**(楽天転記=ヒルズ/ネスレ/はごろも/ユニチャーム/デビフ/ペティオ/ライオン=公式未確認バッジ付き、**マース カルカンは公式kalkan.jp直取り**)・商品画像・SEO(og:image/JSON-LD)・モバイル表スクロール・**★気になるリスト**・**ログイン同期(watch_items適用済)**・**成分が近い提案**・**mypageハブ**。
 > 続けるなら「次の一手候補」(§9) から。Supabase: `watch_items` 適用済・実機往復同期テスト済。テストユーザー nekogohan.watchtest@gmail.com 等は本番前に要削除。
 
@@ -50,6 +50,7 @@ PYTHONUTF8=1 $PY -u scripts/reextract_from_cache.py      # 抽出ロジック変
 - `watch` 気になるフード＝**継続価値/リテンションの仕掛け**（2026-06-25）。全商品サーフェスの☆で端末内localStorage(`nekogohan_watch_v1`)に保存・ログイン不要。`WATCH_JS`を`<body>`直後に注入し`window.wbtn/NWatch`を描画前に定義、再描画ごとに同期。ヘッダーに件数バッジ。watch.htmlは一覧＋削除＋「リストの成分傾向」＋ワンクリック重ね比較＋**「成分が近い未保存商品」提案(centroid k-NN・育つほど精度↑)**＋**ログイン同期**(`watch_items`/`WATCH_SYNC_JS`)。
 - `mypage` **「うちの子」ハブ**（2026-06-25・`build_mypage`/`MYPAGE_JS`）＝体重記録(record)と気になる(watch)を同じSupabaseログインで束ねる。各猫の最新体重＋増減トレンド、気になる件数/平均、体重増→カロリー密度の低い順→★比較への橋渡し。logout時ローカル/login時クラウド。**プラットフォーム構想「共有プロフィール基盤」の入口**。
 - `makers` メーカー一覧 + `maker-<slug>.html` 社別ページ（19社。スラッグはドメイン由来=SEO。収録数順=網羅の事実であり評価ではない。`maker_groups`/`build_maker_page`）
+- **`product-<hash>.html` 商品個別ページ（634枚・2026-06-25・`build_product_page`）**＝全一覧の商品名クリックで遷移。安定slug＝`product_page_name(url)`（md5先頭10桁・再ビルドで不変=ブックマーク/SEOに優しい）。中身：成分表(4状態・乾物量)・5角形SVG(Python `radar_svg` 静的)・原材料・★気になる・出典/購入・**成分が近い商品(Python k-NN `_similar_products`)**・Product JSON-LD・**og:image=商品画像**(`page(og_image=)`)。商品名リンク `pnlink` を find/shape/calc/weight/kidney/maker(table_block)/watch に配線、★保存itemにも `page` を載せ保存品から個別ページへ。sitemapに634枚追加=SEO面が大幅増。
 - `calc` 成分ツール（袋の数値→乾物量換算+分布上の位置+成分が近い商品k近傍。DBに無い袋でも使える＝主役ハック）
 - `record` 体重記録（§5）
 - `weight`/`kidney` フードビュー、`coverage` 網羅性(②③)、`about` この調べ方+写真クレジット+**全データJSON公開**(`site/data/cat_products.json`)

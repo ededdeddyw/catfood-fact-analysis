@@ -13,7 +13,7 @@
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://ededdeddyw.github.io/catfood-fact-analysis/img/hero.jpg">
-<link rel="stylesheet" href="style.css?v=abbfe401"></head><body>
+<link rel="stylesheet" href="style.css?v=78641acc"></head><body>
 <script>
 (function(){
  var KEY='nekogohan_watch_v1';
@@ -66,11 +66,12 @@
 <div class="controls">表示 <b id="cnt">0</b> 商品｜並べ替えは列見出しをクリック｜
 <a href="makers.html">← メーカー一覧へ</a></div>
 <div class="tablewrap"><table><thead id="thead"></thead><tbody id="tbody"></tbody></table></div><script>
-let DATA=[{"maker": "株式会社ペティオ", "product_name": "ペティオ プラクト ねこちゃんの総合栄養食 無添加 とろーりごはん バラエティ 入", "url": "https://item.rakuten.co.jp/chanet/359836/", "form": "ウェット", "moisture_pct": "88.0", "protein_asfed": "7.5", "protein_dm": "62.5", "fat_dm": "8.3", "phosphorus_asfed": "0.05%", "phosphorus_dm": "0.4", "fiber_dm": "8.3", "ash_dm": "20.8", "nfe_dm": "0.1", "fiber_pct": "1.0", "ash_pct": "2.5", "magnesium_pct": "", "magnesium_disclosed": "no", "calorie_density_100g": "68.0", "calorie_basis": "per_100g", "grain_free": "no", "ingredients": "【ササミ味】 肉類(鶏、鶏レバー、鶏ササミ)、鶏脂、まぐろエキス、チキンエキス、小麦粉、殺菌乳酸菌(プラズマ乳酸菌)、酵母、オリゴ糖、増粘多糖類、ミネラル類(カルシウム、塩素、ナト", "is_therapeutic": "False", "phosphorus_disclosed": "yes", "source": "rakuten", "fetched_at": "2026-06-24", "img": "img/products/6568769d6573a44a.jpg"}], COLS=[{"k": "product_name", "t": "商品名", "type": "pname"}, {"k": "form", "t": "種別"}, {"k": "protein_dm", "t": "たんぱく質%(乾物量)"}, {"k": "fat_dm", "t": "脂肪%(乾物量)"}, {"k": "phosphorus_dm", "t": "リン%(乾物量)"}, {"k": "calorie_density_100g", "t": "カロリー密度", "type": "cal"}, {"k": "url", "t": "出典", "type": "src"}, {"k": "buy", "t": "購入先（比較）", "type": "buy"}], sortKey="product_name", asc=true, ponly=false;
+let DATA=[{"maker": "株式会社ペティオ", "product_name": "ペティオ プラクト ねこちゃんの総合栄養食 無添加 とろーりごはん バラエティ 入", "url": "https://item.rakuten.co.jp/chanet/359836/", "form": "ウェット", "moisture_pct": "88.0", "protein_asfed": "7.5", "protein_dm": "62.5", "fat_dm": "8.3", "phosphorus_asfed": "0.05%", "phosphorus_dm": "0.4", "fiber_dm": "8.3", "ash_dm": "20.8", "nfe_dm": "0.1", "fiber_pct": "1.0", "ash_pct": "2.5", "magnesium_pct": "", "magnesium_disclosed": "no", "calorie_density_100g": "68.0", "calorie_basis": "per_100g", "grain_free": "no", "ingredients": "【ササミ味】 肉類(鶏、鶏レバー、鶏ササミ)、鶏脂、まぐろエキス、チキンエキス、小麦粉、殺菌乳酸菌(プラズマ乳酸菌)、酵母、オリゴ糖、増粘多糖類、ミネラル類(カルシウム、塩素、ナト", "is_therapeutic": "False", "phosphorus_disclosed": "yes", "source": "rakuten", "fetched_at": "2026-06-24", "img": "img/products/6568769d6573a44a.jpg", "page": "product-8dfaa081ed.html"}], COLS=[{"k": "product_name", "t": "商品名", "type": "pname"}, {"k": "form", "t": "種別"}, {"k": "protein_dm", "t": "たんぱく質%(乾物量)"}, {"k": "fat_dm", "t": "脂肪%(乾物量)"}, {"k": "phosphorus_dm", "t": "リン%(乾物量)"}, {"k": "calorie_density_100g", "t": "カロリー密度", "type": "cal"}, {"k": "url", "t": "出典", "type": "src"}, {"k": "buy", "t": "購入先（比較）", "type": "buy"}], sortKey="product_name", asc=true, ponly=false;
 function cell(v,u){return (v===''||v==null)?'<span class="na">記載なし（要確認）</span>':v+(u||'');}
 function thumb(r){return r.img?'<img class="pthumb" src="'+r.img+'" alt="" loading="lazy">':'';}
 function unof(r){return r.source==='rakuten'?' <span class="unof" title="出典は楽天商品ページ＝公式の保証分析値の転記。公式ページ未確認です。">公式未確認</span>':'';}
-function witem(r){return {url:r.url,name:r.product_name,maker:r.maker,form:r.form,img:r.img||'',protein_dm:r.protein_dm,fat_dm:r.fat_dm,phosphorus_dm:r.phosphorus_dm,moisture:r.moisture_pct,calorie:(r.calorie_basis==='per_piece'?'':r.calorie_density_100g),source:r.source};}
+function plink(r){var nm=(r.product_name||'(無題)');return r.page?('<a class="pnlink" href="'+r.page+'">'+nm+'</a>'):nm;}
+function witem(r){return {url:r.url,name:r.product_name,maker:r.maker,form:r.form,img:r.img||'',protein_dm:r.protein_dm,fat_dm:r.fat_dm,phosphorus_dm:r.phosphorus_dm,moisture:r.moisture_pct,calorie:(r.calorie_basis==='per_piece'?'':r.calorie_density_100g),source:r.source,page:r.page};}
 function star(r){return (window.wbtn?window.wbtn(witem(r)):'');}
 function srcCell(r){var rk=r.source==='rakuten';return '<td><a href="'+r.url+'" target="_blank" rel="noopener'+(rk?' nofollow':'')+'">'+(rk?'楽天':'公式')+'</a> <span class="na">'+r.fetched_at+'</span></td>';}
 function buy(r){var q=encodeURIComponent(((r.maker||'')+' '+(r.product_name||'')).trim());
@@ -86,8 +87,8 @@ function draw(){let rows=DATA.slice();
   x=(x||'').toString();y=(y||'').toString();return asc?x.localeCompare(y,'ja'):y.localeCompare(x,'ja');});
  let h='<tr>'+COLS.map(c=>'<th onclick="sortBy(\''+c.k+'\')">'+c.t+'</th>').join('')+'</tr>';
  let b=rows.map(r=>{return '<tr>'+COLS.map(c=>{
-   if(c.type==='name')return '<td><span class="pcell">'+thumb(r)+'<span>'+(r.product_name||'(無題)')+unof(r)+'<br><span class="mk">'+r.maker+'</span></span>'+star(r)+'</span></td>';
-   if(c.type==='pname')return '<td><span class="pcell">'+thumb(r)+'<span>'+(r.product_name||'(無題)')+unof(r)+'</span>'+star(r)+'</span></td>';
+   if(c.type==='name')return '<td><span class="pcell">'+thumb(r)+'<span>'+plink(r)+unof(r)+'<br><span class="mk">'+r.maker+'</span></span>'+star(r)+'</span></td>';
+   if(c.type==='pname')return '<td><span class="pcell">'+thumb(r)+'<span>'+plink(r)+unof(r)+'</span>'+star(r)+'</span></td>';
    if(c.type==='cal'){return '<td class="num">'+(r.calorie_basis==='per_piece'?'<span class="na">個包装・密度比較不可</span>':cell(r.calorie_density_100g))+'</td>';}
    if(c.type==='ther')return '<td>'+(r.is_therapeutic==='True'?'<span class="ther">療法食</span>':'—')+'</td>';
    if(c.type==='src')return srcCell(r);

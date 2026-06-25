@@ -179,8 +179,25 @@ footer.site .fcat{width:40px;flex:none;opacity:.8}
 .rnums{font-size:11.5px;color:#6b5a48;margin:8px 0 6px;font-variant-numeric:tabular-nums}
 .rsrc{font-size:11px}.rsrc .buy a{margin-left:2px}
 
+/* ===== 商品個別ページ ===== */
+.ppgrid{display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start;margin-top:8px}
+.ppmedia{flex:0 0 230px;text-align:center}
+.ppimg{width:230px;height:230px;object-fit:cover;border-radius:16px;border:1px solid var(--line);background:#f1e3d2;display:block}
+.ppnoimg{display:flex;align-items:center;justify-content:center;color:#a3917c;font-size:13px}
+.ppradar{margin-top:14px}
+.ppmain{flex:1;min-width:280px}
+.pptable{width:100%;font-size:14.5px}
+.pptable td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.pping{white-space:pre-wrap;font-size:13.5px;color:#5d4a37;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.ppstarrow{display:flex;align-items:center;gap:8px;margin:8px 0 14px}
+.ppstar{font-size:26px;border:1px solid var(--line);border-radius:10px}
+.makercard.sg{text-decoration:none}
+@media(max-width:560px){.ppmedia{flex-basis:100%}.ppimg{width:100%;height:auto;aspect-ratio:1/1}}
+
 /* ===== 商品サムネイル（楽天→自前ホスト・出典はproduct_images.csv） ===== */
 .pcell{display:flex;gap:10px;align-items:center;text-align:left}
+.pnlink{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
+.pnlink:hover{color:var(--accent-d);border-bottom-color:var(--accent)}
 .pthumb{width:42px;height:42px;flex:none;object-fit:cover;border-radius:8px;background:#f1e3d2;
  border:1px solid var(--line)}
 .pthumb-card{width:60px;height:60px;border-radius:10px;display:block;margin:0 auto 4px}
