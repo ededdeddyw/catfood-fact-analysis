@@ -201,6 +201,11 @@ footer.site .fcat{width:40px;flex:none;opacity:.8}
 .watchempty{background:var(--card);border:1px dashed var(--line);border-radius:14px;padding:26px;text-align:center;color:#6b5a48;font-size:15px;line-height:1.8}
 .del{border:1px solid var(--line);background:#fff;border-radius:7px;padding:3px 9px;cursor:pointer;font-size:12px;color:#a8421f;white-space:nowrap}
 .del:hover{background:#fbeae6}
+.watchsuggest{margin-top:26px}
+.makercard.sg{cursor:default}
+.makercard.sg:hover{transform:none;box-shadow:0 2px 10px rgba(94,59,34,.05);border-color:var(--line)}
+.makercard.sg .mbadges{align-items:center;gap:8px}
+.makercard.sg .mbadges .watchbtn{font-size:20px}
 .watchauth{margin:12px 0}
 .watchlogin>summary{cursor:pointer;color:var(--accent-d);font-weight:700;font-size:14px;padding:8px 0;user-select:none}
 .loginbox{margin-top:8px;padding:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;display:flex;flex-direction:column;gap:8px;max-width:460px}

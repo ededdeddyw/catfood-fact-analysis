@@ -282,6 +282,11 @@ footer.site .fcat{width:40px;flex:none;opacity:.8}
 .watchempty{background:var(--card);border:1px dashed var(--line);border-radius:14px;padding:26px;text-align:center;color:#6b5a48;font-size:15px;line-height:1.8}
 .del{border:1px solid var(--line);background:#fff;border-radius:7px;padding:3px 9px;cursor:pointer;font-size:12px;color:#a8421f;white-space:nowrap}
 .del:hover{background:#fbeae6}
+.watchsuggest{margin-top:26px}
+.makercard.sg{cursor:default}
+.makercard.sg:hover{transform:none;box-shadow:0 2px 10px rgba(94,59,34,.05);border-color:var(--line)}
+.makercard.sg .mbadges{align-items:center;gap:8px}
+.makercard.sg .mbadges .watchbtn{font-size:20px}
 .watchauth{margin:12px 0}
 .watchlogin>summary{cursor:pointer;color:var(--accent-d);font-weight:700;font-size:14px;padding:8px 0;user-select:none}
 .loginbox{margin-top:8px;padding:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;display:flex;flex-direction:column;gap:8px;max-width:460px}
@@ -451,7 +456,8 @@ NAV = [
                        ("compare", "重ねて比較", "compare.html"),
                        ("calc", "成分ツール", "calc.html"),
                        ("makers", "メーカー一覧", "makers.html")]),
-    ("group", "健康・記録", [("record", "体重記録", "record.html"),
+    ("group", "健康・記録", [("mypage", "うちの子", "mypage.html"),
+                             ("record", "体重記録", "record.html"),
                              ("weight", "体重管理", "weight.html"),
                              ("kidney", "腎臓シート", "kidney.html")]),
     ("link", "blog", "読みもの", "blog.html"),
@@ -1290,6 +1296,28 @@ def build_compare(products: list[dict]) -> str:
 
 
 WATCHPAGE_JS = r"""
+var PROD=__PROD__;                       // 5マクロ(乾物量)つき商品ベクトル（類似提案用）
+var MAXV=[70,45,15,15,50];
+function distW(a,b){var s=0;for(var i=0;i<5;i++){var d=(a[i]-b[i])/MAXV[i];s+=d*d;}return Math.sqrt(s);}
+function suggestW(){
+ var box=document.getElementById('watchsuggest'); if(!box)return;
+ var saved={}; (window.NWatch?NWatch.list():[]).forEach(function(x){saved[x.url]=1;});
+ var vecs=[]; PROD.forEach(function(p){if(saved[p.url])vecs.push(p.v);});
+ if(vecs.length<1){box.innerHTML='';return;}
+ var c=[0,0,0,0,0]; vecs.forEach(function(v){for(var i=0;i<5;i++)c[i]+=v[i];}); for(var i=0;i<5;i++)c[i]/=vecs.length;
+ var cand=PROD.filter(function(p){return !saved[p.url];}).map(function(p){return {p:p,d:distW(p.v,c)};})
+   .sort(function(x,y){return x.d-y.d;}).slice(0,6);
+ box.innerHTML='<h2>あなたのリストと成分が近い、まだ入っていない商品</h2>'+
+  '<p class="lead">保存した'+vecs.length+'品の成分（乾物量）の<b>平均に近い順</b>です。'+
+  '<b>おすすめ・順位ではありません</b>——あなたが選んだ傾向に「成分が似ている」だけ。リストが増えるほど精度が上がります。</p>'+
+  '<div class="makergrid">'+cand.map(function(o){var p=o.p,rk=p.source==='rakuten';
+   var th=p.img?'<img class="mthumb" src="'+p.img+'" alt="" loading="lazy">':'';
+   var st=window.wbtn?window.wbtn({url:p.url,name:p.name,maker:p.maker,form:p.form,img:p.img||'',protein_dm:p.v[0],fat_dm:p.v[1],phosphorus_dm:'',moisture:'',calorie:'',source:p.source}):'';
+   return '<div class="makercard sg"><div class="mhead">'+th+'<div class="mname">'+(p.name||'(無題)')+(rk?' <span class="unof">公式未確認</span>':'')+'</div></div>'+
+    '<div class="mmeta">'+p.maker+'・'+p.form+'｜たんぱく質(乾物量) '+p.v[0]+'%・脂肪 '+p.v[1]+'%</div>'+
+    '<div class="mbadges">'+st+'<a class="mb" href="'+p.url+'" target="_blank" rel="noopener'+(rk?' nofollow':'')+'">'+(rk?'楽天':'公式')+'</a></div></div>';
+  }).join('')+'</div>';
+}
 function fmtW(v,u){return (v===''||v==null||v===undefined)?'<span class="na">—</span>':v+(u||'');}
 function buyW(r){var q=encodeURIComponent(((r.maker||'')+' '+(r.name||'')).trim());
  return [['楽天','https://search.rakuten.co.jp/search/mall/'+q+'/'],['Amazon','https://www.amazon.co.jp/s?k='+q],
@@ -1317,6 +1345,7 @@ function renderWatch(){
     '<td class="buy">'+buyW(r)+'</td>'+
     '<td><button class="del" data-rm="'+encodeURIComponent(r.url)+'">外す</button></td></tr>';
  }).join('');
+ suggestW();
 }
 window.onWatchRefresh=renderWatch;
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-rm]');if(b&&window.NWatch){NWatch.remove(decodeURIComponent(b.dataset.rm));}});
@@ -1380,8 +1409,10 @@ window.addEventListener('DOMContentLoaded',function(){refresh();SB.auth.onAuthSt
 """
 
 
-def build_watch() -> str:
+def build_watch(products: list[dict]) -> str:
     sync = (WATCH_SYNC_JS.replace("__SB_URL__", SUPABASE_URL).replace("__SB_ANON__", SUPABASE_ANON))
+    prod = macro_items(products)  # 5マクロ(乾物量)つき＝類似提案のための商品ベクトル
+    wjs = WATCHPAGE_JS.replace("__PROD__", json.dumps(prod, ensure_ascii=False))
     return pagehead("気になる / 端末内に保存", "気になるフード") + """
 <p class="lead">各ページで商品の <b>☆</b> を押すと、ここに集まります。保存は<b>この端末の中</b>に。
 ログインすると<b>端末をまたいで同期</b>できます（任意・外部送信は同期時のみ）。</p>
@@ -1400,7 +1431,79 @@ def build_watch() -> str:
  <th>商品 / メーカー</th><th>種別</th><th>たんぱく質%(乾物量)</th><th>リン%(乾物量)</th>
  <th>カロリー密度</th><th>出典</th><th>購入先（比較）</th><th></th></tr></thead>
  <tbody id="wbody"></tbody></table></div>
-""" + '<script>' + WATCHPAGE_JS + '</script>' + '<script type="module">' + sync + '</script>'
+<div id="watchsuggest" class="watchsuggest"></div>
+""" + '<script>' + wjs + '</script>' + '<script type="module">' + sync + '</script>'
+
+
+# 「うちの子」ハブ＝体重記録(record)と気になる(watch)を同じログインで束ねる。
+# プラットフォーム構想「共有プロフィール基盤」の入口。logout時はローカル、login時はクラウド。
+MYPAGE_JS = r"""
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+const SB=createClient('__SB_URL__','__SB_ANON__');
+const $=function(id){return document.getElementById(id);};
+let session=null;
+function lWeight(){try{return JSON.parse(localStorage.getItem('nekogohan_weight_v1'))||{cats:[]};}catch(e){return {cats:[]};}}
+function lWatch(){try{return JSON.parse(localStorage.getItem('nekogohan_watch_v1'))||[];}catch(e){return [];}}
+function trendOf(es){if(!es||!es.length)return null;var s=es.slice().sort(function(a,b){return a.date<b.date?-1:1;});var last=s[s.length-1],prev=s.length>1?s[s.length-2]:null;return {last:last,delta:prev?+(Number(last.kg)-Number(prev.kg)).toFixed(2):null};}
+function catCard(name,target,es){
+ var t=trendOf(es),body;
+ if(t){var d=t.delta;var cls=d==null?'flat':(d>0?'up':(d<0?'down':'flat'));
+  var tr=d==null?'':' <span class="trend"><span class="'+cls+'">'+(d>0?'▲ +'+Math.abs(d)+'kg':(d<0?'▼ '+Math.abs(d)+'kg':'→ 横ばい'))+'</span></span>';
+  body='最新 <b>'+t.last.kg+'kg</b> <span class="na">('+t.last.date+')</span>'+tr;
+ } else body='<span class="na">まだ記録がありません</span>';
+ return '<div class="card"><b>🐈 '+(name||'うちの子')+'</b>'+(target?' <span class="mk">目標 '+target+'kg</span>':'')+'<br>'+body+'</div>';
+}
+async function load(){
+ var cats=[],watch=[];
+ if(session){
+  try{
+   var c=await SB.from('cats').select('*').order('created_at');
+   var e=await SB.from('weight_entries').select('*');
+   var w=await SB.from('watch_items').select('product_url,name,protein_dm,calorie');
+   var ents=e.data||[];
+   cats=(c.data||[]).map(function(cat){return {name:cat.name,target:cat.target,entries:ents.filter(function(x){return x.cat_id===cat.id;}).map(function(x){return {date:x.entry_date,kg:x.kg};})};});
+   watch=w.data||[];
+  }catch(err){}
+ } else {
+  cats=(lWeight().cats||[]).map(function(c){return {name:c.name,target:c.target,entries:c.entries||[]};});
+  watch=lWatch().map(function(x){return {name:x.name,protein_dm:x.protein_dm,calorie:x.calorie};});
+ }
+ render(cats,watch);
+}
+function render(cats,watch){
+ if(session){$('mpauth').innerHTML='<div class="card"><b>☁ '+session.user.email+'</b> で同期中（体重も気になるも端末をまたいで持ち運べます） <button class="del" id="mso">ログアウト</button></div>';$('mso').onclick=async function(){await SB.auth.signOut();};}
+ else {$('mpauth').innerHTML='<details class="watchlogin"><summary>☁ ログインして「うちの子」を端末間で同期（任意）</summary><div class="loginbox"><span class="mk">体重記録と気になるフードを、同じアカウントでどの端末からでも。</span><div class="row2"><input id="mem" type="email" placeholder="メール"><input id="mpw" type="password" placeholder="パスワード(6文字以上)"></div><div class="btn-row"><button class="btn btn-primary" style="padding:8px 16px" id="mli">ログイン</button><button class="btn btn-ghost" style="padding:8px 16px" id="msu">新規登録</button></div><div id="mmsg" class="mk"></div></div></details>';
+  $('mli').onclick=async function(){var r=await SB.auth.signInWithPassword({email:$('mem').value.trim(),password:$('mpw').value});if(r.error)$('mmsg').textContent='⚠ '+r.error.message;};
+  $('msu').onclick=async function(){var r=await SB.auth.signUp({email:$('mem').value.trim(),password:$('mpw').value});$('mmsg').textContent=r.error?('⚠ '+r.error.message):'確認メールを送信しました（不要な設定なら今すぐログインできます）。';};
+ }
+ $('mpcats').innerHTML=cats.length?cats.map(function(c){return catCard(c.name,c.target,c.entries);}).join(''):'<div class="watchempty">体重記録はまだありません。<div class="btn-row" style="margin-top:12px;justify-content:center"><a class="btn btn-primary" href="record.html">体重を記録する →</a></div></div>';
+ var prot=watch.map(function(x){return parseFloat(x.protein_dm);}).filter(function(v){return !isNaN(v);});
+ var cal=watch.map(function(x){return parseFloat(x.calorie);}).filter(function(v){return !isNaN(v);});
+ var avg=function(a){return a.length?(a.reduce(function(s,v){return s+v;},0)/a.length).toFixed(1):'—';};
+ $('mpwatch').innerHTML='<div class="card"><b>★ 気になるフード '+watch.length+' 品</b><br>'+(watch.length?('たんぱく質(乾物量) 平均 <b>'+avg(prot)+'%</b> ／ カロリー密度 平均 <b>'+avg(cal)+'</b>　<a href="watch.html">一覧・比較 →</a>'):'<span class="na">まだありません。</span> <a href="find.html">目的から選ぶ →</a>')+'</div>';
+ var anyUp=cats.some(function(c){var t=trendOf(c.entries);return t&&t.delta!=null&&t.delta>0;});
+ $('mpbridge').innerHTML=anyUp?'<div class="disclaimer">📈 体重が増え気味の子がいます。総カロリーは「量 × カロリー密度」で決まります。<a href="weight.html">カロリー密度の低い順（体重管理ビュー）</a>で見て、候補を ★ に貯めて <a href="watch.html">重ねて比較</a>すると選びやすいです。適正量・減量は獣医師にご相談ください。</div>':'';
+}
+async function refresh(){var r=await SB.auth.getSession();session=r.data.session;await load();}
+window.addEventListener('DOMContentLoaded',function(){refresh();SB.auth.onAuthStateChange(function(_e,s){session=s;refresh();});});
+"""
+
+
+def build_mypage() -> str:
+    mjs = MYPAGE_JS.replace("__SB_URL__", SUPABASE_URL).replace("__SB_ANON__", SUPABASE_ANON)
+    return pagehead("うちの子 / プロフィール", "うちの子") + """
+<p class="lead">体重の記録と「気になるフード」を、ひとつの画面で。ログインすれば、どの端末からも同じ「うちの子」を見られます。
+保存・記録は<b>あなただけのもの</b>（外部送信は同期時のみ・非診断）。</p>
+<div id="mpauth" class="watchauth"></div>
+<div id="mpbridge"></div>
+<h2>体重</h2>
+<div id="mpcats" class="cards"></div>
+<h2>気になるフード</h2>
+<div id="mpwatch"></div>
+<div class="btn-row" style="margin-top:18px">
+ <a class="btn btn-ghost" href="record.html">体重記録をひらく →</a>
+ <a class="btn btn-ghost" href="watch.html">気になるをひらく →</a></div>
+""" + '<script type="module">' + mjs + '</script>'
 
 
 CALC_JS = r"""
@@ -1795,8 +1898,10 @@ def main() -> None:
                        "各キャットフードの主要成分(たんぱく質・脂肪・繊維・灰分・炭水化物)を乾物量換算の5角形レーダーで一覧。点数ではなく成分の構成。"),
         "compare.html": ("compare", "重ねて比較", build_compare(products),
                          "気になるキャットフードを2〜3商品選んで、成分の5角形を重ね、たんぱく質・脂肪・リン・カロリーなどの実値を並べて比較。順位は付けません。"),
-        "watch.html": ("watch", "気になるフード", build_watch(),
+        "watch.html": ("watch", "気になるフード", build_watch(products),
                        "気になったキャットフードを端末内に保存して見返せるリスト。リストの成分傾向の確認や、ワンクリックでの重ね比較も。ログイン不要・非診断。"),
+        "mypage.html": ("mypage", "うちの子", build_mypage(),
+                        "うちの子の体重記録と気になるフードをひとつの画面で。ログインで端末をまたいで同期。体重の傾向からフード選びへ橋渡し。非診断。"),
         "calc.html": ("calc", "成分ツール", build_calc(products),
                       "手元のフードの保証分析値を入れると乾物量換算の成分5角形・掲載商品内での位置・成分が近い商品が分かる。DBに無いフードでも使える。"),
         "record.html": ("record", "体重記録", build_record(),
