@@ -46,7 +46,8 @@ PYTHONUTF8=1 $PY -u scripts/reextract_from_cache.py      # 抽出ロジック変
 - `find` 目的から選ぶ（透明な条件マッチ=GOALS。体重/高たんぱく/水分/グレインフリー/繊維=生活、尿路/腎臓=健康・獣医併記）
 - `shape` 成分5角形レーダー一覧（乾物量、点数化しない）
 - `compare` 重ねて比較（2〜3商品を選んで5角形を1枚に重ね、主要値を並べる。順位は付けない。`build_compare`/`COMPARE_JS`）。`watch`からURLハンドオフで自動プリ選択。
-- `watch` 気になるフード＝**継続価値/リテンションの仕掛け**（2026-06-25）。全商品サーフェスの☆で端末内localStorage(`nekogohan_watch_v1`)に保存・ログイン不要。`WATCH_JS`を`<body>`直後に注入し`window.wbtn/NWatch`を描画前に定義、再描画ごとに同期。ヘッダーに件数バッジ。watch.htmlは一覧＋削除＋「リストの成分傾向」＋ワンクリック重ね比較。非診断・非ランキング（あなた専用メモ）。将来Supabaseでログイン同期予定。
+- `watch` 気になるフード＝**継続価値/リテンションの仕掛け**（2026-06-25）。全商品サーフェスの☆で端末内localStorage(`nekogohan_watch_v1`)に保存・ログイン不要。`WATCH_JS`を`<body>`直後に注入し`window.wbtn/NWatch`を描画前に定義、再描画ごとに同期。ヘッダーに件数バッジ。watch.htmlは一覧＋削除＋「リストの成分傾向」＋ワンクリック重ね比較＋**「成分が近い未保存商品」提案(centroid k-NN・育つほど精度↑)**＋**ログイン同期**(`watch_items`/`WATCH_SYNC_JS`)。
+- `mypage` **「うちの子」ハブ**（2026-06-25・`build_mypage`/`MYPAGE_JS`）＝体重記録(record)と気になる(watch)を同じSupabaseログインで束ねる。各猫の最新体重＋増減トレンド、気になる件数/平均、体重増→カロリー密度の低い順→★比較への橋渡し。logout時ローカル/login時クラウド。**プラットフォーム構想「共有プロフィール基盤」の入口**。
 - `makers` メーカー一覧 + `maker-<slug>.html` 社別ページ（19社。スラッグはドメイン由来=SEO。収録数順=網羅の事実であり評価ではない。`maker_groups`/`build_maker_page`）
 - `calc` 成分ツール（袋の数値→乾物量換算+分布上の位置+成分が近い商品k近傍。DBに無い袋でも使える＝主役ハック）
 - `record` 体重記録（§5）
